@@ -14,6 +14,9 @@
 		C3405A451C6B9A6F00512049 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3405A431C6B9A6F00512049 /* LaunchScreen.storyboard */; };
 		C3405A501C6B9A6F00512049 /* ToolwatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3405A4F1C6B9A6F00512049 /* ToolwatchTests.swift */; };
 		C3405A5B1C6B9A7000512049 /* ToolwatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3405A5A1C6B9A7000512049 /* ToolwatchUITests.swift */; };
+		C3CB4DD01C6BC56600B5BAE8 /* WatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CB4DCF1C6BC56600B5BAE8 /* WatchesViewController.swift */; };
+		C3CB4DD21C6BC5DB00B5BAE8 /* Watch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CB4DD11C6BC5DB00B5BAE8 /* Watch.swift */; };
+		C3CB4DD41C6BC8EC00B5BAE8 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CB4DD31C6BC8EC00B5BAE8 /* SampleData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		C3405A561C6B9A7000512049 /* ToolwatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToolwatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3405A5A1C6B9A7000512049 /* ToolwatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolwatchUITests.swift; sourceTree = "<group>"; };
 		C3405A5C1C6B9A7000512049 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3CB4DCF1C6BC56600B5BAE8 /* WatchesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchesViewController.swift; sourceTree = "<group>"; };
+		C3CB4DD11C6BC5DB00B5BAE8 /* Watch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Watch.swift; sourceTree = "<group>"; };
+		C3CB4DD31C6BC8EC00B5BAE8 /* SampleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,9 @@
 				C3405A411C6B9A6F00512049 /* Assets.xcassets */,
 				C3405A431C6B9A6F00512049 /* LaunchScreen.storyboard */,
 				C3405A461C6B9A6F00512049 /* Info.plist */,
+				C3CB4DCF1C6BC56600B5BAE8 /* WatchesViewController.swift */,
+				C3CB4DD11C6BC5DB00B5BAE8 /* Watch.swift */,
+				C3CB4DD31C6BC8EC00B5BAE8 /* SampleData.swift */,
 			);
 			path = Toolwatch;
 			sourceTree = "<group>";
@@ -187,6 +196,9 @@
 		C3405A2F1C6B9A6F00512049 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					testa,
+				);
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Toolwatch;
@@ -256,7 +268,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3CB4DD01C6BC56600B5BAE8 /* WatchesViewController.swift in Sources */,
+				C3CB4DD21C6BC5DB00B5BAE8 /* Watch.swift in Sources */,
 				C3405A3D1C6B9A6F00512049 /* ViewController.swift in Sources */,
+				C3CB4DD41C6BC8EC00B5BAE8 /* SampleData.swift in Sources */,
 				C3405A3B1C6B9A6F00512049 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,6 +499,7 @@
 				C3405A611C6B9A7000512049 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C3405A621C6B9A7000512049 /* Build configuration list for PBXNativeTarget "ToolwatchTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +508,7 @@
 				C3405A641C6B9A7000512049 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C3405A651C6B9A7000512049 /* Build configuration list for PBXNativeTarget "ToolwatchUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +517,7 @@
 				C3405A671C6B9A7000512049 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
