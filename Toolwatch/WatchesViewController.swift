@@ -71,12 +71,19 @@ class WatchesViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCellWithIdentifier("WatchCell", forIndexPath: indexPath)
+//
+//        let watch = watches[indexPath.row] as Watch
+//        cell.textLabel?.text = watch.brand + " " + watch.model!
+//        cell.detailTextLabel?.text = String(watch.accuracy) + " seconds per day"
+//
+//        return cell
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("WatchCell", forIndexPath: indexPath)
-
+            as! WatchCell
+        
         let watch = watches[indexPath.row] as Watch
-        cell.textLabel?.text = watch.brand + " " + watch.model!
-        cell.detailTextLabel?.text = String(watch.accuracy) + " seconds per day"
-
+        cell.watch = watch
         return cell
     }
 
