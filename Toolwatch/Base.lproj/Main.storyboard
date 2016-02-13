@@ -149,7 +149,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVf-R2-uzZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="593" y="-616"/>
+            <point key="canvasLocation" x="1344.5" y="-572.5"/>
         </scene>
         <!--Watches View Controller-->
         <scene sceneID="vf4-H0-hLC">
@@ -161,34 +161,49 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="-20" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="WatchCell" rowHeight="70" id="qJ7-0g-FLs" customClass="WatchCell" customModule="Toolwatch" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="WatchCell" rowHeight="70" id="qJ7-0g-FLs" customClass="WatchCell" customModule="Toolwatch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qJ7-0g-FLs" id="dvm-Qp-oek">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="69"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IgH-dW-5bg">
-                                            <rect key="frame" x="8" y="8" width="375" height="118"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Rolex - Submariner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1b-6H-ldr">
-                                                    <rect key="frame" x="0.0" y="0.0" width="169" height="28"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
-                                                    <color key="textColor" red="0.20000000000000001" green="0.19607843137254902" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="+3.2 seconds per day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFT-ou-mxy">
-                                                    <rect key="frame" x="0.0" y="28" width="169" height="20"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rolex - Submariner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1b-6H-ldr">
+                                            <rect key="frame" x="14" y="14" width="169" height="28"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
+                                            <color key="textColor" red="0.20000000000000001" green="0.19607843137254902" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+3.2 seconds per day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFT-ou-mxy">
+                                            <rect key="frame" x="14" y="41" width="133" height="20"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGX-L6-3dl">
+                                            <rect key="frame" x="281" y="22" width="45" height="34"/>
+                                            <color key="backgroundColor" red="0.30196078431372547" green="0.46666666666666667" blue="0.65490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                            <state key="normal" title="Button">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btm-jY-OpX">
+                                            <rect key="frame" x="342" y="26" width="25" height="25"/>
+                                            <state key="normal" backgroundImage="right-icon"/>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="accuracyLabel" destination="AFT-ou-mxy" id="QTj-uw-hvz"/>
+                                    <outlet property="ctaButton" destination="hGX-L6-3dl" id="3Zv-VR-3El"/>
+                                    <outlet property="detailButton" destination="btm-jY-OpX" id="o2G-3Q-Gcc"/>
                                     <outlet property="watchLabel" destination="a1b-6H-ldr" id="WqR-4a-0AV"/>
                                 </connections>
                             </tableViewCell>
@@ -202,7 +217,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ugz-Jr-Yxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1268.5" y="-616.5"/>
+            <point key="canvasLocation" x="1956.5" y="-572.5"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="n2r-T6-e7b">
@@ -259,6 +274,7 @@
         <image name="login-btn" width="231" height="32"/>
         <image name="logo-image" width="58" height="11"/>
         <image name="register-btn" width="110" height="32"/>
+        <image name="right-icon" width="80" height="80"/>
         <image name="top-background-image" width="250" height="207"/>
     </resources>
 </document>

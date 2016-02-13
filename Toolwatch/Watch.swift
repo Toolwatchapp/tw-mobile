@@ -10,17 +10,17 @@ import Foundation
 
 struct Watch {
     
-    var id: Int64
+    var id: Int
     var brand: String
     var model: String?
     var yearOfPurchase: String?
     var serial: String?
     var caliber: String?
-    var statusId: Float64
-    var accuracy: Float64
+    var statusId: Float
+    var accuracy: Float
     
-    init(id: Int64, brand: String, model: String?, yearOfPurchase: String?, serial: String?,
-        caliber: String?, statusId: Float64, accuracy: Float64){
+    init(id: Int, brand: String, model: String?, yearOfPurchase: String?, serial: String?,
+        caliber: String?, statusId: Float, accuracy: Float){
         
             self.id = id
             self.brand = brand
