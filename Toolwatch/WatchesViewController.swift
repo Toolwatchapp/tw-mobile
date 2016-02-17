@@ -79,6 +79,10 @@ class WatchesViewController: UITableViewController {
         cell.watch = watch
         return cell
     }
+    
+    func test(){
+        print("there aa")
+    }
 
 
     /*

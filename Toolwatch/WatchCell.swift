@@ -12,25 +12,25 @@ class WatchCell: UITableViewCell {
     
     @IBOutlet weak var watchLabel: UILabel!
     @IBOutlet weak var accuracyLabel: UILabel!
-    @IBOutlet weak var ctaButton: UIButton!
-    @IBOutlet weak var detailButton: UIButton!
     
     var watch: Watch! {
         didSet {
             watchLabel.text = watch.brand + " " + watch.model!
             accuracyLabel.text = self.accuracyLabelText(watch.statusId, accuracy: watch.accuracy)
-            ctaButton = self.createCtaButton(watch.statusId)
-            detailButton = self.createDetailButton()
+            self.createCtaButton(watch.statusId)
+            self.createDetailButton()
         }
     }
     
-    private func createDetailButton() -> UIButton {
+    private func createDetailButton() {
         let image = UIImage(named: "right-icon") as UIImage?
         let button   = UIButton(type: UIButtonType.Custom) as UIButton
-        button.frame = CGRectMake(100, 100, 100, 100)
+        button.frame = CGRectMake((self.frame.width - 50), 25, 30, 30)
         button.setImage(image, forState: .Normal)
-        button.addTarget(self, action: "btnTouched:", forControlEvents:.TouchUpInside)
-        return button
+        
+        
+        self.addSubview(button);
+        
     }
     
     private func accuracyLabelText(status:Float, accuracy:Float) -> String {
@@ -51,15 +51,22 @@ class WatchCell: UITableViewCell {
         return label
     }
     
-    private func createCtaButton(status:Float) -> UIButton {
+    func test(){
+        print("there")
+        print(self.watch.id)
+    }
+    
+    private func createCtaButton(status:Float) {
         
         var ctaButton   = UIButton(type: UIButtonType.System) as UIButton
-        ctaButton.frame = CGRectMake(20, 20, 100, 50)
-        ctaButton.backgroundColor = UIColor(colorLiteralRed: 77, green: 119, blue: 167, alpha: 0)
-        ctaButton.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        ctaButton.frame = CGRectMake((self.frame.width - 180), 25, 120, 30)
+        ctaButton.backgroundColor = UIColor(red: 77/255, green: 119/255, blue: 167/255, alpha: 1)
+        ctaButton.addTarget(self, action: "test", forControlEvents: UIControlEvents.TouchUpInside)
         ctaButton.layer.cornerRadius = 5;
+        ctaButton.titleLabel?.textAlignment = NSTextAlignment.Center
         ctaButton.titleLabel!.font =  UIFont(name: "Avenir-Light", size: 15)
-        ctaButton.titleLabel!.textColor = UIColor.whiteColor()
+        ctaButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         
         switch status {
             
@@ -73,7 +80,7 @@ class WatchCell: UITableViewCell {
             
         }
         
-        return ctaButton
+        self.addSubview(ctaButton);
     }
     
     
