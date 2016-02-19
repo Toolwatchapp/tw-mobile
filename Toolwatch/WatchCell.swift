@@ -24,6 +24,11 @@ class WatchCell: UITableViewCell {
         }
     }
     
+    /// CallBack for buttons in the cell
+    /// http://stackoverflow.com/a/31400551
+    var detailCallback : ((watch: Watch)-> Void)?
+    var measureCallback : ((watch: Watch)-> Void)?
+    
     /**
      Create the detail button showing the watch data
      */
@@ -32,7 +37,7 @@ class WatchCell: UITableViewCell {
         let button   = UIButton(type: UIButtonType.Custom) as UIButton
         button.frame = CGRectMake((self.frame.width - 50), 25, 30, 30)
         button.setImage(image, forState: .Normal)
-        
+        button.addTarget(self, action: "detailBtnClicked", forControlEvents: UIControlEvents.TouchUpInside)
         
         self.addSubview(button);
         
@@ -64,9 +69,18 @@ class WatchCell: UITableViewCell {
         return label
     }
     
-    func test(){
-        print("there")
-        print(self.watch.id)
+    /**
+     action for detail button
+     */
+    func detailBtnClicked(){
+        detailCallback!(watch: watch);
+    }
+    
+    /**
+     action for measure button
+     */
+    func measureBtnClicked(){
+        measureCallback!(watch: watch);
     }
     
     /**
@@ -80,7 +94,7 @@ class WatchCell: UITableViewCell {
         
         ctaButton.frame = CGRectMake((self.frame.width - 180), 25, 120, 30)
         ctaButton.backgroundColor = UIColor(red: 77/255, green: 119/255, blue: 167/255, alpha: 1)
-        ctaButton.addTarget(self, action: "test", forControlEvents: UIControlEvents.TouchUpInside)
+        ctaButton.addTarget(self, action: "measureBtnClicked", forControlEvents: UIControlEvents.TouchUpInside)
         ctaButton.layer.cornerRadius = 5;
         ctaButton.titleLabel?.textAlignment = NSTextAlignment.Center
         ctaButton.titleLabel!.font =  UIFont(name: "Avenir-Light", size: 15)

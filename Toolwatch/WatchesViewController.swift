@@ -12,6 +12,7 @@ import UIKit
 class WatchesViewController: UITableViewWithHeader {
     
     var watches:[Watch] = watchesData
+    var selectedWatch: Watch!
 
     /**
      Override the didLoad to load the header
@@ -19,8 +20,8 @@ class WatchesViewController: UITableViewWithHeader {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        super.createHeader("header-art-image", title: "Measures", subtitle: "Add or start a measure",
-            btnArt: "plus-icon-image", btnAction: "addWatch:", rightButton: true)
+        super.createHeader("header-dashboard", title: "Measures", subtitle: "Add or start a measure",
+            btnArt: "add-btn", btnAction: "addWatch:", rightButton: true)
     }
     
     /**
@@ -74,7 +75,24 @@ class WatchesViewController: UITableViewWithHeader {
         
         let watch = watches[indexPath.row] as Watch
         cell.watch = watch
+        cell.detailCallback = self.detailCallback;
+        cell.measureCallback = self.measureCallback;
         return cell
+    }
+    
+    func measureCallback(watch: Watch){
+        print("measures")
+        print(watch.id)
+        
+        self.selectedWatch = watch;
+        
+        let addMeasureView =  self.storyboard?.instantiateViewControllerWithIdentifier("NewMeasureID") as! UINavigationController
+        self.presentViewController(addMeasureView, animated: true, completion: nil)
+    }
+    
+    func detailCallback(watch: Watch){
+        print("details")
+        print(watch.id)
     }
     
     /**
@@ -83,6 +101,7 @@ class WatchesViewController: UITableViewWithHeader {
      - parameter segue: the triggered segue
      */
     @IBAction func saveWatch(segue:UIStoryboardSegue) {
+        
         if let addWatchViewController = segue.sourceViewController as? AddWatchViewController {
             
             //Add the new watch to the watches array

@@ -53,7 +53,7 @@ class UITableViewWithHeader: UITableViewController {
         
         self.createHeader(headerArt, title: title, subtitle: subtitle)
         self.tableView.tableHeaderView?.addSubview(self.createButton(rightBtnArt, action: rightBtnAction, right: true))
-        self.tableView.tableHeaderView?.addSubview(self.createButton(leftBtnArt, action: leftBtnArt, right: false))
+        self.tableView.tableHeaderView?.addSubview(self.createButton(leftBtnArt, action: leftBtnAction, right: false))
     }
     
     
@@ -104,9 +104,9 @@ class UITableViewWithHeader: UITableViewController {
         button.setImage(image, forState: .Normal)
         
         if(right){
-            button.frame = CGRectMake(self.view.frame.size.width-20, 10, 30, 30)
+            button.frame = CGRectMake(self.view.frame.size.width-40, 20, 30, 30)
         }else{
-            button.frame = CGRectMake(10, 10, 30, 30)
+            button.frame = CGRectMake(10, 20, 30, 30)
         }
         button.addTarget(self, action: Selector(action), forControlEvents: UIControlEvents.TouchUpInside)
 
