@@ -8,20 +8,25 @@
 
 import UIKit
 
+/// Custom UITableViewCell for the dashboard
 class WatchCell: UITableViewCell {
     
     @IBOutlet weak var watchLabel: UILabel!
     @IBOutlet weak var accuracyLabel: UILabel!
     
+    /// Constructor for the custom cell
     var watch: Watch! {
         didSet {
-            watchLabel.text = watch.brand + " " + watch.model!
+            watchLabel.text = watch.brand + " " + watch.model
             accuracyLabel.text = self.accuracyLabelText(watch.statusId, accuracy: watch.accuracy)
             self.createCtaButton(watch.statusId)
             self.createDetailButton()
         }
     }
     
+    /**
+     Create the detail button showing the watch data
+     */
     private func createDetailButton() {
         let image = UIImage(named: "right-icon") as UIImage?
         let button   = UIButton(type: UIButtonType.Custom) as UIButton
@@ -33,6 +38,14 @@ class WatchCell: UITableViewCell {
         
     }
     
+    /**
+     Creates the accuracy label based on the status and the accuracy
+     
+     - parameter status:   Status of the watch
+     - parameter accuracy: Accuracy of the watch
+     
+     - returns: A String for the accuracy label
+     */
     private func accuracyLabelText(status:Float, accuracy:Float) -> String {
         
         var label = String()
@@ -56,6 +69,11 @@ class WatchCell: UITableViewCell {
         print(self.watch.id)
     }
     
+    /**
+     creates the CTA button (measure-me / check accuracy)
+     
+     - parameter status: the status of the watch
+     */
     private func createCtaButton(status:Float) {
         
         var ctaButton   = UIButton(type: UIButtonType.System) as UIButton

@@ -8,27 +8,65 @@
 
 import UIKit
 
+/// Dashboard controller
 class WatchesViewController: UITableViewWithHeader {
     
     var watches:[Watch] = watchesData
 
+    /**
+     Override the didLoad to load the header
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        super.createHeader("header-art-image", title: "Measures", subtitle: "Add or start a measure")
-       
+        super.createHeader("header-art-image", title: "Measures", subtitle: "Add or start a measure",
+            btnArt: "plus-icon-image", btnAction: "addWatch:", rightButton: true)
+    }
+    
+    /**
+     Present the new watch controller
+     
+     - parameter sender: Add Watch button
+     */
+    func addWatch(sender:UIButton!)
+    {
+        let addWatchView =  self.storyboard?.instantiateViewControllerWithIdentifier("AddWatchId") as! UINavigationController
+        self.presentViewController(addWatchView, animated: true, completion: nil)
     }
 
+    /**
+     Override the number of section to be 1
+     
+     - parameter tableView: watches table view
+     
+     - returns: 1
+     */
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         return 1
     }
 
+    /**
+     Override the number of cells
+     
+     - parameter tableView: watches table view
+     - parameter section:   sections
+     
+     - returns: amont of watch in watches
+     */
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return watches.count
     }
     
+    /**
+     Creates the table view with the cells
+     
+     - parameter tableView: The watch table view
+     - parameter indexPath
+     
+     - returns: A populated table view
+     */
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("WatchCell", forIndexPath: indexPath)
@@ -37,6 +75,25 @@ class WatchesViewController: UITableViewWithHeader {
         let watch = watches[indexPath.row] as Watch
         cell.watch = watch
         return cell
+    }
+    
+    /**
+     Add a new watch to the list
+     
+     - parameter segue: the triggered segue
+     */
+    @IBAction func saveWatch(segue:UIStoryboardSegue) {
+        if let addWatchViewController = segue.sourceViewController as? AddWatchViewController {
+            
+            //Add the new watch to the watches array
+            if let watch = addWatchViewController.watch {
+                watches.append(watch)
+                
+                //update the tableView
+                let indexPath = NSIndexPath(forRow: watches.count-1, inSection: 0)
+                tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            }
+        }
     }
 
 }
