@@ -18,10 +18,8 @@ class UITableViewWithHeader: UITableViewController {
      - parameter subtitle:  The subtitle of the view
      */
     func createHeader(headerArt: String, title: String, subtitle: String){
-        //Frame
         
         self.tableView.tableHeaderView = self.createHeaderView(headerArt, title: title, subtitle: subtitle)
-        
     }
     
     /**
@@ -37,7 +35,25 @@ class UITableViewWithHeader: UITableViewController {
     func createHeader(headerArt: String, title: String, subtitle: String, btnArt: String, btnAction: String, rightButton: Bool){
         
         self.createHeader(headerArt, title: title, subtitle: subtitle)
-        self.tableView.tableHeaderView?.addSubview(self.createButton(btnArt, action: btnAction, right: rightButton));
+        self.tableView.tableHeaderView?.addSubview(self.createButton(btnArt, action: btnAction, right: rightButton))
+    }
+    
+    /**
+     Creates a header with two titles and two buttons (left and right)
+     
+     - parameter headerArt:      background for the header
+     - parameter title:          title
+     - parameter subtitle:       subtitle
+     - parameter rightBtnArt:    right button background
+     - parameter rightBtnAction: right button action
+     - parameter leftBtnArt:     left button background
+     - parameter leftBtnAction:  left button action
+     */
+    func createHeader(headerArt: String, title: String, subtitle: String, rightBtnArt: String, rightBtnAction: String, leftBtnArt: String, leftBtnAction: String){
+        
+        self.createHeader(headerArt, title: title, subtitle: subtitle)
+        self.tableView.tableHeaderView?.addSubview(self.createButton(rightBtnArt, action: rightBtnAction, right: true))
+        self.tableView.tableHeaderView?.addSubview(self.createButton(leftBtnArt, action: leftBtnArt, right: false))
     }
     
     
@@ -75,7 +91,8 @@ class UITableViewWithHeader: UITableViewController {
      Creates button to be placed on header
      
      - parameter backgroundImage: background for the button
-     - parameter action:          action
+     - parameter action:          The action to be executed when the button is pressed. 
+     Be advise that the daughter class MUST provide the action function
      - parameter right:           is the button to be placed right or left
      
      - returns: an UIButton to be placed on the header
@@ -87,11 +104,11 @@ class UITableViewWithHeader: UITableViewController {
         button.setImage(image, forState: .Normal)
         
         if(right){
-            button.frame = CGRectMake(10, 10, 30, 30)
-        }else{
             button.frame = CGRectMake(self.view.frame.size.width-20, 10, 30, 30)
+        }else{
+            button.frame = CGRectMake(10, 10, 30, 30)
         }
-        button.addTarget(self, action: "test", forControlEvents: UIControlEvents.TouchUpInside)
+        button.addTarget(self, action: Selector(action), forControlEvents: UIControlEvents.TouchUpInside)
 
         return button;
     }
