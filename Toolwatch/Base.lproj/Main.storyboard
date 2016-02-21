@@ -242,17 +242,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSO-iF-hTv">
-                                                    <rect key="frame" x="207" y="8" width="160" height="30"/>
-                                                    <color key="backgroundColor" red="0.30588235289999999" green="0.47450980390000003" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                    <state key="normal" title="+1 min     Add a min.">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="addMinute:" destination="zdj-fX-4eU" eventType="touchUpInside" id="onC-8w-UVp"/>
-                                                    </connections>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U4Q-M1-4TT">
                                                     <rect key="frame" x="8" y="7" width="160" height="30"/>
                                                     <color key="backgroundColor" red="0.30588235294117649" green="0.47450980392156861" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
@@ -262,6 +251,17 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="retrieveMinute:" destination="zdj-fX-4eU" eventType="touchUpInside" id="4DB-fE-ini"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSO-iF-hTv">
+                                                    <rect key="frame" x="207" y="8" width="160" height="30"/>
+                                                    <color key="backgroundColor" red="0.30588235289999999" green="0.47450980390000003" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                    <state key="normal" title="+1 min     Add a min.">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="addMinute:" destination="zdj-fX-4eU" eventType="touchUpInside" id="onC-8w-UVp"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -298,6 +298,9 @@
                                                     <state key="normal" title="I'M SYNCHRONIZED">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="jkA-SW-aQM" kind="unwind" identifier="NewMeasure" unwindAction="newMeasure:" id="Q2G-9O-eGC"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -317,6 +320,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C5W-be-Xbs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="jkA-SW-aQM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2911.5" y="-1334.5"/>
         </scene>

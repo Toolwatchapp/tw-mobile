@@ -96,6 +96,20 @@ class WatchesViewController: UITableViewWithHeader {
     }
     
     /**
+     Add a new measure to the selected watch
+     
+     - parameter segue: the triggered segue
+     */
+    @IBAction func newMeasure(segue:UIStoryboardSegue) {
+        
+        if let addMeasureViewController = segue.sourceViewController as? MeasureViewController {
+            
+           print(addMeasureViewController.clickedDate)
+            print(addMeasureViewController.offsetedDate)
+        }
+    }
+    
+    /**
      Add a new watch to the list
      
      - parameter segue: the triggered segue

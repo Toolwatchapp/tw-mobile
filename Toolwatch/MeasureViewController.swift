@@ -11,42 +11,72 @@ import UIKit
 class MeasureViewController: UITableViewWithHeader {
     
     @IBOutlet weak var time: UILabel!
-    var offset: Double = 1
-    var initDate: NSDate = NSDate()
+    var offsetedDate: NSDate!
     var clickedDate: NSDate!
     
     /**
-     Override didLaod so we can create the header
+     Override didLoad so we can create the header
      */
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        
-        setTime()
+        getNextMinute()
 
         super.createHeader("header-measure", title: "Synchronization",
             subtitle: "\nPlease hit the button when \nthe seconds-hand reaches the time bellow",
             rightBtnArt: "refresh-btn", rightBtnAction: "refreshBtnClicked", leftBtnArt: "back-btn", leftBtnAction: "backBtnClicked:")
     }
     
+    /**
+     Changes the time label's text
+     */
     private func setTime(){
-        let date = initDate.dateByAddingTimeInterval(offset*60.0)
-        
 
         let formatter = NSDateFormatter()
         formatter.dateFormat = "HH:mm"
-        time.text = formatter.stringFromDate(date)+":00"
+        time.text = formatter.stringFromDate(offsetedDate)+":00"
     }
     
-    @IBAction func retrieveMinute(sender: AnyObject) {
+    /**
+     Computes the next minute given current time
+     */
+    private func getNextMinute(){
         
-        offset--
+        let d = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(NSCalendarUnit.Second, fromDate: d)
+        let seconds = components.second
+        var offsetSeconds = 0;
+        
+        if(seconds >= 50){
+            offsetSeconds = 60 - seconds
+        }else{
+            offsetSeconds = -seconds
+        }
+        
+        offsetedDate = d.dateByAddingTimeInterval(Double(offsetSeconds+60))
+        
         setTime()
     }
     
+    /**
+     Adds a minute to the text
+     
+     - parameter sender
+     */
+    @IBAction func retrieveMinute(sender: AnyObject) {
+        
+        offsetedDate = offsetedDate.dateByAddingTimeInterval(-60);
+        setTime()
+    }
+    
+    /**
+     Removes a minute to the text
+     
+     - parameter sender
+     */
     @IBAction func addMinute(sender: AnyObject) {
-        offset++
+        offsetedDate = offsetedDate.dateByAddingTimeInterval(60);
         setTime()
     }
     
@@ -66,11 +96,8 @@ class MeasureViewController: UITableViewWithHeader {
      - parameter sender
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "SaveWatch" {
-            //watch = Watch(brand: brand.text!, model: model.text!, yearOfPurchase: yearOfPurchase.text!, serial: serial.text!, caliber: caliber.text!)
+        if segue.identifier == "NewMeasure" {
+            clickedDate = NSDate()
         }
     }
-    
-    
-
 }
