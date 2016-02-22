@@ -18,8 +18,8 @@ class WatchCell: UITableViewCell {
     var watch: Watch! {
         didSet {
             watchLabel.text = watch.brand + " " + watch.model
-            accuracyLabel.text = self.accuracyLabelText(watch.statusId, accuracy: watch.accuracy)
-            self.createCtaButton(watch.statusId)
+            accuracyLabel.text = self.accuracyLabelText()
+            self.createCtaButton()
             self.createDetailButton()
         }
     }
@@ -51,20 +51,23 @@ class WatchCell: UITableViewCell {
      
      - returns: A String for the accuracy label
      */
-    private func accuracyLabelText(status:Float, accuracy:Float) -> String {
+    private func accuracyLabelText() -> String {
         
         var label = String()
         
-        switch status {
+        switch watch.currentStatus() {
             
-        case 0, 1:
+        case Watch.Status.NEVER_MEASURED, Watch.Status.FIRST_MEASURE:
             label = "Pending measurement"
-        case 1.5:
-            label = "Measure in " + String(watch.accuracy) + " hours"
-        case 2:
-            label = String(watch.accuracy) + " seconds per day"
+            break
+        case Watch.Status.WAITING_LIMIT:
+            label = "Measure in " + String(watch.timeToWaitBeforeAccuracy()) + " hours"
+            break
+        case Watch.Status.ACCURACY_MEASURE:
+            label = String(watch.accuracy()) + " seconds per day"
+            break
         default:
-            label = "Something wrong"
+            print("Something went wrong")
         }
         return label
     }
@@ -88,9 +91,9 @@ class WatchCell: UITableViewCell {
      
      - parameter status: the status of the watch
      */
-    private func createCtaButton(status:Float) {
+    private func createCtaButton() {
         
-        var ctaButton   = UIButton(type: UIButtonType.System) as UIButton
+        let ctaButton   = UIButton(type: UIButtonType.System) as UIButton
         
         ctaButton.frame = CGRectMake((self.frame.width - 180), 25, 120, 30)
         ctaButton.backgroundColor = UIColor(red: 77/255, green: 119/255, blue: 167/255, alpha: 1)
@@ -100,16 +103,16 @@ class WatchCell: UITableViewCell {
         ctaButton.titleLabel!.font =  UIFont(name: "Avenir-Light", size: 15)
         ctaButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         
-        switch status {
+        switch watch.currentStatus() {
             
-        case 0, 2:
+        case Watch.Status.NEVER_MEASURED, Watch.Status.ACCURACY_MEASURE:
             ctaButton.setTitle("Measure me", forState: UIControlState.Normal)
-        case 1:
+            break
+        case Watch.Status.FIRST_MEASURE:
             ctaButton.setTitle("Check accuracy", forState: UIControlState.Normal)
+            break
         default:
-            ctaButton = UIButton()
-            ctaButton.frame = CGRectMake(0, 0, 0, 0)
-            
+            print("Something went wrong")
         }
         
         self.addSubview(ctaButton);

@@ -24,7 +24,7 @@ class MeasureViewController: UITableViewWithHeader {
 
         super.createHeader("header-measure", title: "Synchronization",
             subtitle: "\nPlease hit the button when \nthe seconds-hand reaches the time bellow",
-            rightBtnArt: "refresh-btn", rightBtnAction: "refreshBtnClicked", leftBtnArt: "back-btn", leftBtnAction: "backBtnClicked:")
+            rightBtnArt: "refresh-btn", rightBtnAction: "refreshBtnClicked:", leftBtnArt: "back-btn", leftBtnAction: "backBtnClicked:")
     }
     
     /**
@@ -81,6 +81,15 @@ class MeasureViewController: UITableViewWithHeader {
     }
     
     /**
+     Refreshes the time
+     
+     - parameter sender
+     */
+    func refreshBtnClicked(sender:UIButton!){
+        getNextMinute();
+    }
+    
+    /**
      Handle click on the back button
      
      - parameter sender: The Back button
@@ -90,7 +99,7 @@ class MeasureViewController: UITableViewWithHeader {
     }
     
     /**
-     When we are about to leave, create a new watch with the form content
+     When we are about to leave, register the clicked date
      
      - parameter segue
      - parameter sender
