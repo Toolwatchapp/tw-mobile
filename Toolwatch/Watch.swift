@@ -73,43 +73,73 @@ class Watch {
             self.measures = measures
     }
     
+    /**
+     Adds a measure to the watch
+     
+     - parameter userTime:      userTime in seconds since 1970
+     - parameter referenceTime: referenceTime in seconds since 1970
+     */
     func addMeasure(userTime:Double, referenceTime:Double){
         switch self.status {
             
         case Status.NEVER_MEASURED, Status.ACCURACY_MEASURE:
             measures.append(Measure(measureTime: userTime, measureReferenceTime: referenceTime))
-            self.status = Status.FIRST_MEASURE
+            self.status = Status.WAITING_LIMIT
             break
         case Status.FIRST_MEASURE:
             measures.last!.addAccuracyMeasure(userTime, accuracyReferenceTime: referenceTime)
-            self.status = Status.WAITING_LIMIT
+            self.status = Status.ACCURACY_MEASURE
             break
         default:
             print("Something went wrong")
         }
     }
 
+    /**
+     Gets the accuracy of the last measure
+     
+     - returns: the accuracy or an empty Double if we don't have any accuracy
+     */
     func accuracy() -> Double{
         
         if(status == Status.ACCURACY_MEASURE){
             return measures.last!.accuracy;
         }
-        return 0
+        return Double()
     }
 
+    /**
+     Gets the current status of a watch
+     
+     - returns: Watch.Status enum
+     */
     func currentStatus() -> Watch.Status{
         
-        if((NSDate().timeIntervalSince1970-measures.last!.measureReferenceTime)/3600 > 12){
+        if(self.status == Status.FIRST_MEASURE &&
+            (NSDate().timeIntervalSince1970-measures.last!.measureReferenceTime)/3600 > 12){
+                
             self.status = Status.FIRST_MEASURE
         }
         
         return self.status
     }
 
+    /**
+     Computes the time remaining before we can take the second measure
+     
+     - returns: hours left
+     */
     func timeToWaitBeforeAccuracy() -> Int{
         return Int(round(12-(NSDate().timeIntervalSince1970-measures.last!.measureReferenceTime)/3600))
     }
     
+    /**
+     
+     - NEVER_MEASURED:   The watch has just been created
+     - FIRST_MEASURE:    We are at 1/2 state
+     - WAITING_LIMIT:    We did the first measure less than 12 hours ago
+     - ACCURACY_MEASURE: We are at the 2/2 state
+     */
     enum Status {
         case NEVER_MEASURED
         case FIRST_MEASURE

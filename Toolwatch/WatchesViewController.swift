@@ -12,7 +12,7 @@ import UIKit
 class WatchesViewController: UITableViewWithHeader {
     
     var watches:[Watch] = watchesData
-    var selectedWatch: Watch!
+    var selectedCell: WatchCell!
 
     /**
      Override the didLoad to load the header
@@ -77,22 +77,21 @@ class WatchesViewController: UITableViewWithHeader {
         cell.watch = watch
         cell.detailCallback = self.detailCallback;
         cell.measureCallback = self.measureCallback;
+        cell.indexPath = indexPath
         return cell
     }
     
-    func measureCallback(watch: Watch){
-        print("measures")
-        print(watch.id)
+    func measureCallback(watchCell: WatchCell){
         
-        self.selectedWatch = watch;
+        self.selectedCell = watchCell;
         
         let addMeasureView =  self.storyboard?.instantiateViewControllerWithIdentifier("NewMeasureID") as! UINavigationController
         self.presentViewController(addMeasureView, animated: true, completion: nil)
     }
     
-    func detailCallback(watch: Watch){
+    func detailCallback(watchCell: WatchCell){
         print("details")
-        print(watch.id)
+        print(watchCell.watch.id)
     }
     
     /**
@@ -104,8 +103,15 @@ class WatchesViewController: UITableViewWithHeader {
         
         if let addMeasureViewController = segue.sourceViewController as? MeasureViewController {
             
-           print(addMeasureViewController.clickedDate)
-            print(addMeasureViewController.offsetedDate)
+            self.selectedCell.watch.addMeasure(addMeasureViewController.clickedDate.timeIntervalSince1970,
+                referenceTime: addMeasureViewController.offsetedDate.timeIntervalSince1970)
+            
+            self.tableView.reloadRowsAtIndexPaths([self.selectedCell.indexPath], withRowAnimation: .Automatic)
+            
+            //If this was measure 2/2
+            if(self.selectedCell.watch.currentStatus() == Watch.Status.ACCURACY_MEASURE){
+                print("result view")
+            }
         }
     }
     

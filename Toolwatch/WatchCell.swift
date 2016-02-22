@@ -26,8 +26,10 @@ class WatchCell: UITableViewCell {
     
     /// CallBack for buttons in the cell
     /// http://stackoverflow.com/a/31400551
-    var detailCallback : ((watch: Watch)-> Void)?
-    var measureCallback : ((watch: Watch)-> Void)?
+    var detailCallback : ((watchCell: WatchCell)-> Void)?
+    var measureCallback : ((watchCell: WatchCell)-> Void)?
+    
+    var indexPath:NSIndexPath!
     
     /**
      Create the detail button showing the watch data
@@ -61,13 +63,11 @@ class WatchCell: UITableViewCell {
             label = "Pending measurement"
             break
         case Watch.Status.WAITING_LIMIT:
-            label = "Measure in " + String(watch.timeToWaitBeforeAccuracy()) + " hours"
+            label = "Measure accuracy in " + String(watch.timeToWaitBeforeAccuracy()) + " hours"
             break
         case Watch.Status.ACCURACY_MEASURE:
             label = String(watch.accuracy()) + " seconds per day"
             break
-        default:
-            print("Something went wrong")
         }
         return label
     }
@@ -76,14 +76,14 @@ class WatchCell: UITableViewCell {
      action for detail button
      */
     func detailBtnClicked(){
-        detailCallback!(watch: watch);
+        detailCallback!(watchCell: self);
     }
     
     /**
      action for measure button
      */
     func measureBtnClicked(){
-        measureCallback!(watch: watch);
+        measureCallback!(watchCell: self);
     }
     
     /**
@@ -107,15 +107,20 @@ class WatchCell: UITableViewCell {
             
         case Watch.Status.NEVER_MEASURED, Watch.Status.ACCURACY_MEASURE:
             ctaButton.setTitle("Measure me", forState: UIControlState.Normal)
+            self.addSubview(ctaButton);
             break
         case Watch.Status.FIRST_MEASURE:
             ctaButton.setTitle("Check accuracy", forState: UIControlState.Normal)
+            self.addSubview(ctaButton);
             break
-        default:
-            print("Something went wrong")
+        case Watch.Status.WAITING_LIMIT:
+            print("Waiting")
+            break
         }
         
-        self.addSubview(ctaButton);
+        
+        
+        
     }
     
     
