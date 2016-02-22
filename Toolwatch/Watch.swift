@@ -19,7 +19,7 @@ class Watch {
     var yearOfPurchase: String
     var serial: String
     var caliber: String
-    var status: Float
+    var status: Watch.Status
     var measures: [Measure]
     
     /**
@@ -61,7 +61,7 @@ class Watch {
      - returns: A new watch
      */
     init(id: Int, brand: String, model: String, yearOfPurchase: String, serial: String,
-        caliber: String, status: Float, measures: [Measure]){
+        caliber: String, status: Watch.Status, measures: [Measure]){
         
             self.id = id
             self.brand = brand
@@ -76,11 +76,11 @@ class Watch {
     func addMeasure(userTime:Double, referenceTime:Double){
         switch self.status {
             
-        case 0,2:
+        case Status.NEVER_MEASURED, Status.ACCURACY_MEASURE:
             measures.append(Measure(measureTime: userTime, measureReferenceTime: referenceTime))
             self.status = Status.FIRST_MEASURE
             break
-        case 1:
+        case Status.FIRST_MEASURE:
             measures.last!.addAccuracyMeasure(userTime, accuracyReferenceTime: referenceTime)
             self.status = Status.WAITING_LIMIT
             break
@@ -97,7 +97,7 @@ class Watch {
         return 0
     }
 
-    func currentStatus() -> Float{
+    func currentStatus() -> Watch.Status{
         
         if((NSDate().timeIntervalSince1970-measures.last!.measureReferenceTime)/3600 > 12){
             self.status = Status.FIRST_MEASURE
@@ -110,11 +110,11 @@ class Watch {
         return Int(round(12-(NSDate().timeIntervalSince1970-measures.last!.measureReferenceTime)/3600))
     }
     
-    struct Status {
-        static let NEVER_MEASURED:Float = 0
-        static let FIRST_MEASURE:Float = 1
-        static let WAITING_LIMIT:Float = 1.5
-        static let ACCURACY_MEASURE:Float = 2
+    enum Status {
+        case NEVER_MEASURED
+        case FIRST_MEASURE
+        case WAITING_LIMIT
+        case ACCURACY_MEASURE
     }
     
 }
