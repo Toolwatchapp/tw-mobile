@@ -16,6 +16,7 @@ class AddWatchViewController: UITableViewWithHeader {
     @IBOutlet weak var caliber: UITextField!
     @IBOutlet weak var yearOfPurchase: UITextField!
     @IBOutlet weak var serial: UITextField!
+    @IBOutlet weak var addWatchButton: UIButton!
     var watch: Watch!
     
     /**
@@ -24,8 +25,32 @@ class AddWatchViewController: UITableViewWithHeader {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addWatchButton.layer.cornerRadius = 5;
+        
         super.createHeader("header-watch", title: "", subtitle: "Add a watch",
             btnArt: "back-btn", btnAction: "backBtnClicked:", rightButton: false)
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        //We used 30% of the frame for the header
+        //We need 10% for the validate button
+        //The 60% remaining are 40% for inputs and 20 for labels
+        
+        //Even number are labels
+        if(indexPath.item % 2 == 0 && indexPath.item != 10){
+            //The heigh of the screen * (20% / 5 labels / 100)
+            return self.view.frame.size.height * (20/5/100)
+       
+        //Odd numbers are input
+        }else if(indexPath.item != 10){
+            //The heigh of the screen * (40% / 5 inputs / 100)
+            return self.view.frame.size.height * (40/5/100)
+            
+        //The validate button
+        }else{
+            return self.view.frame.size.height * 0.1
+        }
     }
     
     /**

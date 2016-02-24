@@ -17,9 +17,9 @@ class UITableViewWithHeader: UITableViewController {
      - parameter title:     The title of the view
      - parameter subtitle:  The subtitle of the view
      */
-    func createHeader(headerArt: String, title: String, subtitle: String, headerHeight: Int = 200){
+    func createHeader(headerArt: String, title: String = "", subtitle: String = "", headerProportion: Float = 0.3){
         
-        self.tableView.tableHeaderView = self.createHeaderView(headerArt, title: title, subtitle: subtitle, headerHeight: headerHeight)
+        self.tableView.tableHeaderView = self.createHeaderView(headerArt, title: title, subtitle: subtitle, headerProportion: headerProportion)
     }
     
     /**
@@ -32,9 +32,9 @@ class UITableViewWithHeader: UITableViewController {
      - parameter btnAction:   action for the button
      - parameter rightButton: is the button to be placed top left or right
      */
-    func createHeader(headerArt: String, title: String, subtitle: String, btnArt: String, btnAction: String, rightButton: Bool, headerHeight: Int = 200){
+    func createHeader(headerArt: String, title: String, subtitle: String, btnArt: String, btnAction: String, rightButton: Bool, headerProportion: Float = 0.3){
         
-        self.createHeader(headerArt, title: title, subtitle: subtitle, headerHeight: headerHeight)
+        self.createHeader(headerArt, title: title, subtitle: subtitle, headerProportion: headerProportion)
         self.tableView.tableHeaderView?.addSubview(self.createButton(btnArt, action: btnAction, right: rightButton))
     }
     
@@ -49,9 +49,9 @@ class UITableViewWithHeader: UITableViewController {
      - parameter leftBtnArt:     left button background
      - parameter leftBtnAction:  left button action
      */
-    func createHeader(headerArt: String, title: String, subtitle: String, rightBtnArt: String, rightBtnAction: String, leftBtnArt: String, leftBtnAction: String, headerHeight: Int = 200){
+    func createHeader(headerArt: String, title: String, subtitle: String, rightBtnArt: String, rightBtnAction: String, leftBtnArt: String, leftBtnAction: String, headerProportion: Float = 0.3){
         
-        self.createHeader(headerArt, title: title, subtitle: subtitle, headerHeight: headerHeight)
+        self.createHeader(headerArt, title: title, subtitle: subtitle, headerProportion: headerProportion)
         self.tableView.tableHeaderView?.addSubview(self.createButton(rightBtnArt, action: rightBtnAction, right: true))
         self.tableView.tableHeaderView?.addSubview(self.createButton(leftBtnArt, action: leftBtnAction, right: false))
     }
@@ -66,9 +66,9 @@ class UITableViewWithHeader: UITableViewController {
      
      - returns: an UIView with title, subtitle and background
      */
-    private func createHeaderView(headerArt: String, title: String, subtitle: String, headerHeight: Int) -> UIView{
+    private func createHeaderView(headerArt: String, title: String, subtitle: String, headerProportion: Float) -> UIView{
         
-        let frame = CGRectMake(0, 0, self.view.frame.size.width, CGFloat(headerHeight))
+        let frame = CGRectMake(0, 0, self.view.frame.size.width, CGFloat(self.view.frame.size.height*CGFloat(headerProportion)))
         let headerView = UIView(frame: frame);
         
         //Background image
@@ -97,7 +97,7 @@ class UITableViewWithHeader: UITableViewController {
      
      - returns: an UIButton to be placed on the header
      */
-    private func createButton(backgroundImage: String, action: String, right: Bool) -> UIButton {
+    func createButton(backgroundImage: String, action: String, right: Bool) -> UIButton {
         
         let image = UIImage(named: backgroundImage) as UIImage?
         let button   = UIButton(type: UIButtonType.Custom) as UIButton
@@ -123,7 +123,7 @@ class UITableViewWithHeader: UITableViewController {
      
      - returns: A UILabel to be placed on the header
      */
-    private func createLabel(labelText: String, postion: CGFloat, font : String, size: Int) -> UILabel {
+    func createLabel(labelText: String, postion: CGFloat, font : String, size: Int) -> UILabel {
         
         let label = UILabel(frame: CGRectMake(0, postion, self.view.frame.size.width, 100))
         label.textAlignment = NSTextAlignment.Center

@@ -40,7 +40,23 @@ class MeasureViewController: UITableViewWithHeader {
 
         super.createHeader("header-measure", title: "Synchronization",
             subtitle: "\nPlease hit the button when \nthe seconds-hand reaches the time bellow",
-            rightBtnArt: "refresh-btn", rightBtnAction: "refreshBtnClicked:", leftBtnArt: "back-btn", leftBtnAction: "backBtnClicked:")
+            rightBtnArt: "refresh-btn", rightBtnAction: "refreshBtnClicked:", leftBtnArt: "back-btn", leftBtnAction: "backBtnClicked:", headerProportion:0.35)
+    }
+    
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        //We used 35% of the frame for the header
+        switch indexPath.item{
+        case 0: // +/- button
+            return self.view.frame.size.height * 0.075
+        case 1: // Time label
+            return self.view.frame.size.height * 0.4
+        case 2: // I am sync button
+            return self.view.frame.size.height * 0.2
+        default: // Should'nt happen
+            return 0
+        }
     }
     
     /**
