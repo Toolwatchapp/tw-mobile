@@ -24,6 +24,15 @@ class WatchesViewController: UITableViewWithHeader {
             btnArt: "add-btn", btnAction: "addWatch:", rightButton: true)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        
+        if((selectedCell) != nil){
+             self.tableView.reloadRowsAtIndexPaths([self.selectedCell.indexPath], withRowAnimation: .Automatic)
+        }
+        
+        super.viewDidAppear(animated)
+    }
+    
     /**
      Present the new watch controller
      
@@ -86,33 +95,14 @@ class WatchesViewController: UITableViewWithHeader {
         self.selectedCell = watchCell;
         
         let addMeasureView =  self.storyboard?.instantiateViewControllerWithIdentifier("NewMeasureID") as! UINavigationController
+        let addMeasureTableView = addMeasureView.topViewController as! MeasureViewController
+        addMeasureTableView.watch = self.selectedCell.watch
         self.presentViewController(addMeasureView, animated: true, completion: nil)
     }
     
     func detailCallback(watchCell: WatchCell){
         print("details")
         print(watchCell.watch.id)
-    }
-    
-    /**
-     Add a new measure to the selected watch
-     
-     - parameter segue: the triggered segue
-     */
-    @IBAction func newMeasure(segue:UIStoryboardSegue) {
-        
-        if let addMeasureViewController = segue.sourceViewController as? MeasureViewController {
-            
-            self.selectedCell.watch.addMeasure(addMeasureViewController.clickedDate.timeIntervalSince1970,
-                referenceTime: addMeasureViewController.offsetedDate.timeIntervalSince1970)
-            
-            self.tableView.reloadRowsAtIndexPaths([self.selectedCell.indexPath], withRowAnimation: .Automatic)
-            
-            //If this was measure 2/2
-            if(self.selectedCell.watch.currentStatus() == Watch.Status.ACCURACY_MEASURE){
-                print("result view")
-            }
-        }
     }
     
     /**

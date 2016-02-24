@@ -7,24 +7,6 @@
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="AdAZr">
-            <objects>
-                <viewController id="As" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="AnL5"/>
-                        <viewControllerLayoutGuide type="bottom" id="AG"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ao">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AYvDP" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
-        </scene>
-        <!--View Controller-->
         <scene sceneID="AmBJ6">
             <objects>
                 <viewController id="AJRZ" sceneMemberID="viewController">
@@ -147,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AAgT" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="62.5" y="166.5"/>
+            <point key="canvasLocation" x="110.5" y="166.5"/>
         </scene>
         <!--Item-->
         <scene sceneID="x82-bo-vyS">
@@ -164,11 +146,12 @@
                     </toolbar>
                     <connections>
                         <segue destination="YJQ-Zx-yXk" kind="relationship" relationship="rootViewController" id="Dt2-2S-1AW"/>
+                        <segue destination="jkA-SW-aQM" kind="unwind" unwindAction="newMeasure:" id="Egx-bt-oR9"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVf-R2-uzZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1344.5" y="-572.5"/>
+            <point key="canvasLocation" x="1442.5" y="-572.5"/>
         </scene>
         <!--Watches View Controller-->
         <scene sceneID="vf4-H0-hLC">
@@ -224,6 +207,94 @@
             </objects>
             <point key="canvasLocation" x="1956.5" y="-572.5"/>
         </scene>
+        <!--Result View Controller-->
+        <scene sceneID="MZe-KI-SgY">
+            <objects>
+                <tableViewController id="W1C-O3-Ks6" customClass="ResultViewController" customModule="Toolwatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="fC1-c3-0K1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="GC6-Xz-0Yq">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="63" id="NR6-7x-7FC">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NR6-7x-7FC" id="IHJ-Qj-llO">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54X-nc-p7c">
+                                                    <rect key="frame" x="8" y="8" width="359" height="47"/>
+                                                    <color key="backgroundColor" red="0.30196078430000001" green="0.46666666670000001" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="23"/>
+                                                    <state key="normal" title="Start a new measure">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="LTm-cc-w5B" kind="show" id="YFU-mu-QER"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="63" id="ylS-WH-aUM">
+                                        <rect key="frame" x="0.0" y="63" width="375" height="63"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ylS-WH-aUM" id="oR9-h8-H96">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="or be a true watch-lover and share result on" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OyA-A9-pqW">
+                                                    <rect key="frame" x="8" y="21" width="359" height="21"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="63" id="11u-l8-7Kc">
+                                        <rect key="frame" x="0.0" y="126" width="375" height="63"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="11u-l8-7Kc" id="qLV-cZ-onO">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ho4-GA-jp7">
+                                                    <rect key="frame" x="13" y="12" width="104" height="40"/>
+                                                    <state key="normal" backgroundImage="facebook-btn-1"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTb-Ez-EI5">
+                                                    <rect key="frame" x="135" y="12" width="104" height="40"/>
+                                                    <state key="normal" backgroundImage="twitter-btn"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roS-69-ANn">
+                                                    <rect key="frame" x="263" y="12" width="104" height="40"/>
+                                                    <state key="normal" backgroundImage="insta-btn"/>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="W1C-O3-Ks6" id="0hw-xo-N8g"/>
+                            <outlet property="delegate" destination="W1C-O3-Ks6" id="NAK-bl-v7E"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="cmW-xq-rYy"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="measureButton" destination="54X-nc-p7c" id="v5K-Yx-Id3"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GJF-Zq-yIt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1442.5" y="-1340.5"/>
+        </scene>
         <!--Measure View Controller-->
         <scene sceneID="kot-Qt-I8c">
             <objects>
@@ -242,17 +313,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U4Q-M1-4TT">
-                                                    <rect key="frame" x="8" y="7" width="160" height="30"/>
-                                                    <color key="backgroundColor" red="0.30588235294117649" green="0.47450980392156861" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                    <state key="normal" title="-1 min    Remove a min.">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="retrieveMinute:" destination="zdj-fX-4eU" eventType="touchUpInside" id="4DB-fE-ini"/>
-                                                    </connections>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSO-iF-hTv">
                                                     <rect key="frame" x="207" y="8" width="160" height="30"/>
                                                     <color key="backgroundColor" red="0.30588235289999999" green="0.47450980390000003" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -262,6 +322,17 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="addMinute:" destination="zdj-fX-4eU" eventType="touchUpInside" id="onC-8w-UVp"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U4Q-M1-4TT">
+                                                    <rect key="frame" x="8" y="7" width="160" height="30"/>
+                                                    <color key="backgroundColor" red="0.30588235294117649" green="0.47450980392156861" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                    <state key="normal" title="-1 min    Remove a min.">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="retrieveMinute:" destination="zdj-fX-4eU" eventType="touchUpInside" id="4DB-fE-ini"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -299,7 +370,7 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="jkA-SW-aQM" kind="unwind" identifier="NewMeasure" unwindAction="newMeasure:" id="Q2G-9O-eGC"/>
+                                                        <action selector="syncButtonPressed:" destination="zdj-fX-4eU" eventType="touchUpInside" id="Ha4-g7-OPh"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -316,13 +387,16 @@
                     <navigationItem key="navigationItem" id="HcD-VO-uL4"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="addMinuteButton" destination="fSO-iF-hTv" id="ETy-Yv-QVQ"/>
+                        <outlet property="removeMinuteButton" destination="U4Q-M1-4TT" id="PLP-kF-GEG"/>
+                        <outlet property="syncButton" destination="vJu-Pp-9tp" id="ugU-xE-AQd"/>
                         <outlet property="time" destination="Zmf-GQ-OGd" id="2Vf-Gw-Hsu"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C5W-be-Xbs" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="jkA-SW-aQM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2911.5" y="-1334.5"/>
+            <point key="canvasLocation" x="2911.5" y="-1332.5"/>
         </scene>
         <!--Add Watch View Controller-->
         <scene sceneID="DIU-5I-74s">
@@ -560,7 +634,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BN3-dl-Ozq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1771" y="551"/>
+            <point key="canvasLocation" x="1344.5" y="746.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="DBx-Rt-Qmb">
@@ -616,18 +690,43 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S69-Af-9CV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2434.5" y="-1334.5"/>
+            <point key="canvasLocation" x="2434.5" y="-1332.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tgB-Ts-c89">
+            <objects>
+                <navigationController restorationIdentifier="ResultID" storyboardIdentifier="ResultID" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="5Ss-Z0-Ock" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9jP-MK-ofA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="W1C-O3-Ks6" kind="relationship" relationship="rootViewController" id="7AE-6V-nqa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z8b-NA-Z2A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1956.5" y="-1340.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="background-image" width="249" height="444"/>
         <image name="divider-image" width="231" height="2"/>
         <image name="facebook-btn" width="117" height="32"/>
+        <image name="facebook-btn-1" width="75" height="31"/>
         <image name="facebook-image" width="19" height="19"/>
         <image name="header-art-image" width="249" height="133"/>
+        <image name="insta-btn" width="75" height="31"/>
         <image name="login-btn" width="231" height="32"/>
         <image name="logo-image" width="58" height="11"/>
         <image name="register-btn" width="110" height="32"/>
         <image name="top-background-image" width="250" height="207"/>
+        <image name="twitter-btn" width="75" height="31"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="YFU-mu-QER"/>
+    </inferredMetricsTieBreakers>
 </document>

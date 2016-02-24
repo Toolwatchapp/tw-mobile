@@ -11,8 +11,12 @@ import UIKit
 class MeasureViewController: UITableViewWithHeader {
     
     @IBOutlet weak var time: UILabel!
+    @IBOutlet weak var syncButton: UIButton!
+    @IBOutlet weak var addMinuteButton: UIButton!
+    @IBOutlet weak var removeMinuteButton: UIButton!
     var offsetedDate: NSDate!
     var clickedDate: NSDate!
+    var watch:Watch!
     
     /**
      Override didLoad so we can create the header
@@ -21,6 +25,10 @@ class MeasureViewController: UITableViewWithHeader {
         super.viewDidLoad()
         
         getNextMinute()
+        
+        syncButton.layer.cornerRadius = 5;
+        addMinuteButton.layer.cornerRadius = 5;
+        removeMinuteButton.layer.cornerRadius = 5;
 
         super.createHeader("header-measure", title: "Synchronization",
             subtitle: "\nPlease hit the button when \nthe seconds-hand reaches the time bellow",
@@ -80,6 +88,21 @@ class MeasureViewController: UITableViewWithHeader {
         setTime()
     }
     
+    @IBAction func syncButtonPressed(sender: AnyObject){
+        clickedDate = NSDate();
+        watch.addMeasure(clickedDate.timeIntervalSince1970, referenceTime: offsetedDate.timeIntervalSince1970)
+        
+        if(watch.currentStatus() == Watch.Status.ACCURACY_MEASURE){
+            let resultView =  self.storyboard?.instantiateViewControllerWithIdentifier("ResultID") as! UINavigationController
+            let resultTableView = resultView.topViewController as! ResultViewController
+            resultTableView.watch = self.watch
+            self.presentViewController(resultView, animated: true, completion: nil)
+        }else{
+            self.dismissViewControllerAnimated(true, completion: nil);
+        }
+
+    }
+    
     /**
      Refreshes the time
      
@@ -97,16 +120,5 @@ class MeasureViewController: UITableViewWithHeader {
     func backBtnClicked(sender:UIButton!){
         self.dismissViewControllerAnimated(true, completion: nil);
     }
-    
-    /**
-     When we are about to leave, register the clicked date
-     
-     - parameter segue
-     - parameter sender
-     */
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "NewMeasure" {
-            clickedDate = NSDate()
-        }
-    }
+
 }

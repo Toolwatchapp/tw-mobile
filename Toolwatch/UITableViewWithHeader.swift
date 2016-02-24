@@ -17,9 +17,9 @@ class UITableViewWithHeader: UITableViewController {
      - parameter title:     The title of the view
      - parameter subtitle:  The subtitle of the view
      */
-    func createHeader(headerArt: String, title: String, subtitle: String){
+    func createHeader(headerArt: String, title: String, subtitle: String, headerHeight: Int = 200){
         
-        self.tableView.tableHeaderView = self.createHeaderView(headerArt, title: title, subtitle: subtitle)
+        self.tableView.tableHeaderView = self.createHeaderView(headerArt, title: title, subtitle: subtitle, headerHeight: headerHeight)
     }
     
     /**
@@ -32,9 +32,9 @@ class UITableViewWithHeader: UITableViewController {
      - parameter btnAction:   action for the button
      - parameter rightButton: is the button to be placed top left or right
      */
-    func createHeader(headerArt: String, title: String, subtitle: String, btnArt: String, btnAction: String, rightButton: Bool){
+    func createHeader(headerArt: String, title: String, subtitle: String, btnArt: String, btnAction: String, rightButton: Bool, headerHeight: Int = 200){
         
-        self.createHeader(headerArt, title: title, subtitle: subtitle)
+        self.createHeader(headerArt, title: title, subtitle: subtitle, headerHeight: headerHeight)
         self.tableView.tableHeaderView?.addSubview(self.createButton(btnArt, action: btnAction, right: rightButton))
     }
     
@@ -49,9 +49,9 @@ class UITableViewWithHeader: UITableViewController {
      - parameter leftBtnArt:     left button background
      - parameter leftBtnAction:  left button action
      */
-    func createHeader(headerArt: String, title: String, subtitle: String, rightBtnArt: String, rightBtnAction: String, leftBtnArt: String, leftBtnAction: String){
+    func createHeader(headerArt: String, title: String, subtitle: String, rightBtnArt: String, rightBtnAction: String, leftBtnArt: String, leftBtnAction: String, headerHeight: Int = 200){
         
-        self.createHeader(headerArt, title: title, subtitle: subtitle)
+        self.createHeader(headerArt, title: title, subtitle: subtitle, headerHeight: headerHeight)
         self.tableView.tableHeaderView?.addSubview(self.createButton(rightBtnArt, action: rightBtnAction, right: true))
         self.tableView.tableHeaderView?.addSubview(self.createButton(leftBtnArt, action: leftBtnAction, right: false))
     }
@@ -66,9 +66,9 @@ class UITableViewWithHeader: UITableViewController {
      
      - returns: an UIView with title, subtitle and background
      */
-    private func createHeaderView(headerArt: String, title: String, subtitle: String) -> UIView{
+    private func createHeaderView(headerArt: String, title: String, subtitle: String, headerHeight: Int) -> UIView{
         
-        let frame = CGRectMake(0, 0, self.view.frame.size.width, 200)
+        let frame = CGRectMake(0, 0, self.view.frame.size.width, CGFloat(headerHeight))
         let headerView = UIView(frame: frame);
         
         //Background image
@@ -80,7 +80,7 @@ class UITableViewWithHeader: UITableViewController {
         headerView.addSubview(headerImageView);
         headerView.sendSubviewToBack(headerImageView);
         
-        headerView.addSubview(self.createLabel(title, postion: (headerImageView.frame.size.height/2)-20, font: "Avenir-Book",  size: 35))
+        headerView.addSubview(self.createLabel(title, postion: (headerImageView.frame.size.height/2)-20, font: "Avenir-Light",  size: 35))
         headerView.addSubview(self.createLabel(subtitle, postion: (headerImageView.frame.size.height/2)+5, font: "Avenir-Light",  size: 15))
         
         return headerView
