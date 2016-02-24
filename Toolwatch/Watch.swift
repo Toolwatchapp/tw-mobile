@@ -37,7 +37,7 @@ class Watch: NSObject, NSCoding {
      - parameter serial:
      - parameter caliber:
      
-     - returns: A new watch with a -1 id and no measure
+     - returns: A new watch with timestamp as id
      */
     init(brand: String, model: String, yearOfPurchase: String, serial: String,
         caliber: String){
@@ -48,7 +48,7 @@ class Watch: NSObject, NSCoding {
             self.serial = serial
             self.caliber = caliber
             self.status = Status.NEVER_MEASURED
-            self.id = -1
+            self.id = Int(NSDate().timeIntervalSince1970)
             self.measures = [Measure]()
     }
     

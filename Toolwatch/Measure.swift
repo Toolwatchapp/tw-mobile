@@ -42,10 +42,10 @@ class Measure : NSObject, NSCoding{
      - parameter measureTime:          1/2 userTime  in seconds since 1970
      - parameter measureReferenceTime: 1/2 refTime in seconds since 1970
      
-     - returns: A new measure with -1 id
+     - returns: A new measure with timestamp as id
      */
     init(measureTime: Double, measureReferenceTime:Double){
-        self.id = -1
+        self.id = Int(NSDate().timeIntervalSince1970)
         self.measureReferenceTime = measureReferenceTime
         self.measureUserTime = measureTime
     }
@@ -112,7 +112,6 @@ class Measure : NSObject, NSCoding{
         let accuracyUserTime = aDecoder.decodeObjectForKey("MEASURE_ACCURACY_USER_TIME") as? Double
         let accuracyReferenceTime = aDecoder.decodeObjectForKey("MEASURE_ACCURACY_REFERENCE_TIME") as? Double
         
-        //Depending on the measure status, we don't use the same constructor
         if(accuracyUserTime == nil && accuracyReferenceTime == nil){
             self.init(id: id, measureTime: measureUserTime!,measureReferenceTime: measureReferenceTime!)
         }else{

@@ -29,6 +29,14 @@ class MeasureViewController: UITableViewWithHeader {
         syncButton.layer.cornerRadius = 5;
         addMinuteButton.layer.cornerRadius = 5;
         removeMinuteButton.layer.cornerRadius = 5;
+        
+         // loop through notifications and cancel the one for the current watch
+        for notification in UIApplication.sharedApplication().scheduledLocalNotifications!{
+            if (notification.userInfo!["UUID"] as! Int == self.watch.id) {
+                UIApplication.sharedApplication().cancelLocalNotification(notification)
+                break
+            }
+        }
 
         super.createHeader("header-measure", title: "Synchronization",
             subtitle: "\nPlease hit the button when \nthe seconds-hand reaches the time bellow",
@@ -92,14 +100,32 @@ class MeasureViewController: UITableViewWithHeader {
         clickedDate = NSDate();
         watch.addMeasure(clickedDate.timeIntervalSince1970, referenceTime: offsetedDate.timeIntervalSince1970)
         
+        let notification = UILocalNotification()
+        
+        notification.alertAction = "open"
+        notification.soundName = UILocalNotificationDefaultSoundName
+        notification.userInfo = ["UUID": watch.id, ]
+        notification.category = "TODO_CATEGORY"
+        
+        //This was measure 2/2, display the result screen
         if(watch.currentStatus() == Watch.Status.ACCURACY_MEASURE){
             let resultView =  self.storyboard?.instantiateViewControllerWithIdentifier("ResultID") as! UINavigationController
             let resultTableView = resultView.topViewController as! ResultViewController
             resultTableView.watch = self.watch
             self.presentViewController(resultView, animated: true, completion: nil)
+            
+            notification.alertBody = "Let's start a new measure for your " + self.watch.brand + " " + self.watch.model + "!"
+            notification.fireDate = NSDate().dateByAddingTimeInterval(30*24*60*60) // 1 month
+            
+        //This was measure 1/1 go back to the watch list
         }else{
+            notification.alertBody = "It's to the check your " + self.watch.brand + " " + self.watch.model + " acuracy !"
+            notification.fireDate = NSDate().dateByAddingTimeInterval(12*60*60) // 12 hours
             self.dismissViewControllerAnimated(true, completion: nil);
         }
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+
 
     }
     
