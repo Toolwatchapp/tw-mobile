@@ -11,7 +11,7 @@ import UIKit
 /// Dashboard controller
 class WatchesViewController: UITableViewWithHeader {
     
-    var watches:[Watch] = watchesData
+    var watches:[Watch] = [Watch]()
     var selectedCell: WatchCell!
 
     /**
@@ -22,12 +22,22 @@ class WatchesViewController: UITableViewWithHeader {
         
         super.createHeader("header-dashboard", title: "Measures", subtitle: "Add or start a measure",
             btnArt: "add-btn", btnAction: "addWatch:", rightButton: true)
+        
+        if let savedWatches = loadWatches() {
+            print("loading")
+            watches = savedWatches
+        } else {
+            // Load the sample data.
+            watches = watchesData
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         
         if((selectedCell) != nil){
-             self.tableView.reloadRowsAtIndexPaths([self.selectedCell.indexPath], withRowAnimation: .Automatic)
+            self.tableView.reloadRowsAtIndexPaths([self.selectedCell.indexPath], withRowAnimation: .Automatic)
+            self.selectedCell = nil
+            self.saveWatches();
         }
         
         super.viewDidAppear(animated)
@@ -121,8 +131,32 @@ class WatchesViewController: UITableViewWithHeader {
                 //update the tableView
                 let indexPath = NSIndexPath(forRow: watches.count-1, inSection: 0)
                 tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                self.saveWatches()
             }
         }
+    }
+    
+    // MARK: NSCoding
+    
+    /**
+    Persists watch
+    */
+    func saveWatches(){
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(self.watches, toFile: Watch.ArchiveURL.path!)
+        print("Saving...")
+        if !isSuccessfulSave {
+            print("Failed to save watches...")
+        }
+    }
+    
+    /**
+     Loads watches
+     
+     - returns: an array of watch
+     */
+    func loadWatches() -> [Watch]? {
+        
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(Watch.ArchiveURL.path!) as? [Watch]
     }
 
 }

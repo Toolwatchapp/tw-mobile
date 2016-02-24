@@ -9,18 +9,24 @@
 import Foundation
 
 /**
-*  A simple datastructure for watches
+*  A simple datastructure for watches that handles saving via NSCoding
 */
-class Watch {
+class Watch: NSObject, NSCoding {
     
+    /// Core attributes
     var id: Int
     var brand: String
     var model: String
     var yearOfPurchase: String
     var serial: String
     var caliber: String
-    var status: Watch.Status
+    var status: Int
     var measures: [Measure]
+    
+    /// Persistence related attribute
+    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("watches")
+    
     
     /**
      Constructor for watches created in the app
@@ -61,7 +67,7 @@ class Watch {
      - returns: A new watch
      */
     init(id: Int, brand: String, model: String, yearOfPurchase: String, serial: String,
-        caliber: String, status: Watch.Status, measures: [Measure]){
+        caliber: String, status: Int, measures: [Measure]){
         
             self.id = id
             self.brand = brand
@@ -103,7 +109,7 @@ class Watch {
     func accuracy() -> Double{
         
         if(status == Status.ACCURACY_MEASURE){
-            return measures.last!.accuracy;
+            return measures.last!.accuracy();
         }
         return Double()
     }
@@ -113,7 +119,7 @@ class Watch {
      
      - returns: Watch.Status enum
      */
-    func currentStatus() -> Watch.Status{
+    func currentStatus() -> Int{
         
         if(self.status == Status.FIRST_MEASURE &&
             (NSDate().timeIntervalSince1970-measures.last!.measureReferenceTime)/3600 > 12){
@@ -130,6 +136,7 @@ class Watch {
      - returns: hours left
      */
     func timeToWaitBeforeAccuracy() -> Int{
+        print(measures.last!.measureReferenceTime)
         return Int(round(12-(NSDate().timeIntervalSince1970-measures.last!.measureReferenceTime)/3600))
     }
     
@@ -140,11 +147,52 @@ class Watch {
      - WAITING_LIMIT:    We did the first measure less than 12 hours ago
      - ACCURACY_MEASURE: We are at the 2/2 state
      */
-    enum Status {
-        case NEVER_MEASURED
-        case FIRST_MEASURE
-        case WAITING_LIMIT
-        case ACCURACY_MEASURE
+    struct Status {
+        static let NEVER_MEASURED:Int = 0
+        static let FIRST_MEASURE:Int = 1
+        static let WAITING_LIMIT:Int = 2
+        static let ACCURACY_MEASURE:Int = 3
     }
+    
+    // MARK: NSCoding
+    
+    /**
+    Encodes a watch and save it to file
+    
+    - parameter aCoder:
+    */
+    func encodeWithCoder(aCoder: NSCoder){
+        aCoder.encodeInteger(self.id, forKey: "WATCH_ID");
+        aCoder.encodeObject(self.brand, forKey: "WATCH_BRAND")
+        aCoder.encodeObject(self.model, forKey: "WATCH_MODEL")
+        aCoder.encodeObject(self.yearOfPurchase, forKey: "WATCH_YEAR")
+        aCoder.encodeObject(self.serial, forKey: "WATCH_SERIAL")
+        aCoder.encodeObject(self.caliber, forKey: "WATCH_CALIBER")
+        aCoder.encodeInteger(self.status, forKey: "WATCH_STATUS")
+        aCoder.encodeObject(self.measures, forKey: "WATCH_MEASURES")
+        
+    }
+    
+    /**
+     Decodes a watch from file
+     
+     - parameter aDecoder: 
+     
+     - returns: a populated watch
+     */
+    required convenience init?(coder aDecoder: NSCoder) {
+        let id = aDecoder.decodeIntegerForKey("WATCH_ID")
+        let brand = aDecoder.decodeObjectForKey("WATCH_BRAND") as! String
+        let model = aDecoder.decodeObjectForKey("WATCH_MODEL") as! String
+        let year = aDecoder.decodeObjectForKey("WATCH_YEAR") as! String
+        let serial = aDecoder.decodeObjectForKey("WATCH_SERIAL") as! String
+        let caliber = aDecoder.decodeObjectForKey("WATCH_CALIBER") as! String
+        let measures = aDecoder.decodeObjectForKey("WATCH_MEASURES") as! [Measure]
+        let status = aDecoder.decodeIntegerForKey( "WATCH_STATUS" )
+        
+        self.init(id: id, brand: brand, model: model, yearOfPurchase: year, serial: serial,
+            caliber: caliber, status: status, measures: measures)
+    }
+
     
 }

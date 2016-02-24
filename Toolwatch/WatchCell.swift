@@ -68,6 +68,8 @@ class WatchCell: UITableViewCell {
         case Watch.Status.ACCURACY_MEASURE:
             label = String(watch.accuracy()) + " seconds per day"
             break
+        default:
+            print("Something went wrong")
         }
         return label
     }
@@ -116,13 +118,9 @@ class WatchCell: UITableViewCell {
         case Watch.Status.WAITING_LIMIT:
             print("Waiting")
             break
+        default:
+            print("Something went wrong")
         }
-        
-        
-        
-        
     }
-    
-    
 
 }

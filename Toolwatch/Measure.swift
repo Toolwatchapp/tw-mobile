@@ -9,14 +9,13 @@
 import Foundation
 
 /// Representes a couple of measure
-class Measure {
+class Measure : NSObject, NSCoding{
     
     var id: Int
     var measureUserTime: Double
     var measureReferenceTime: Double
     var accuracyUserTime: Double!
     var accuracyReferenceTime: Double!
-    var accuracy: Double!
     
     /**
      Default constructor for measure coming from the API
@@ -35,7 +34,6 @@ class Measure {
         self.measureUserTime = measureTime
         self.accuracyUserTime = accuracyTime
         self.accuracyReferenceTime = accuracyReferenceTime
-        self.computeAccuracy()
     }
     
     /**
@@ -53,6 +51,20 @@ class Measure {
     }
     
     /**
+     Creates a new measure
+     
+     - parameter measureTime:          1/2 userTime  in seconds since 1970
+     - parameter measureReferenceTime: 1/2 refTime in seconds since 1970
+     
+     */
+    init(id:Int, measureTime: Double, measureReferenceTime:Double){
+        self.id = id
+        self.measureReferenceTime = measureReferenceTime
+        self.measureUserTime = measureTime
+    }
+    
+    
+    /**
      Adds the 2/2 measure
      
      - parameter accuracyTime:          accuracyUserTime in seconds since 1970
@@ -62,21 +74,51 @@ class Measure {
         
         self.accuracyUserTime = accuracyTime
         self.accuracyReferenceTime = accuracyReferenceTime
-        self.computeAccuracy()
+    }
+    
+    func accuracy() -> Double{
+        let userDelta = self.accuracyUserTime-self.measureUserTime
+        let refDelta = self.accuracyReferenceTime-self.measureReferenceTime
+        return round(((userDelta*86400/refDelta)-86400)*100)/100
+    }
+    
+    // MARK: NSCoding
+    
+    /**
+    Encodes a measure for peristence
+    
+    - parameter aCoder:
+    */
+    func encodeWithCoder(aCoder: NSCoder){
+        aCoder.encodeInteger(self.id, forKey: "MEASURE_ID");
+        aCoder.encodeObject(self.measureUserTime, forKey: "MEASURE_USER_TIME")
+        aCoder.encodeObject(self.measureReferenceTime, forKey: "MEASURE_REFERENCE_TIME")
+        aCoder.encodeObject(self.accuracyUserTime, forKey: "MEASURE_ACCURACY_USER_TIME")
+        aCoder.encodeObject(self.accuracyReferenceTime, forKey: "MEASURE_ACCURACY_REFERENCE_TIME")
         
     }
     
     /**
-     Computes the accuracy to the 1/100 of sec
+     Decodes a measure from persistence
+     
+     - parameter aDecoder:
+     
+     - returns: a populated measure
      */
-    private func computeAccuracy(){
+    required convenience init?(coder aDecoder: NSCoder) {
+        let id = aDecoder.decodeIntegerForKey("MEASURE_ID")
+        let measureUserTime = aDecoder.decodeObjectForKey("MEASURE_USER_TIME") as? Double
+        let measureReferenceTime = aDecoder.decodeObjectForKey("MEASURE_REFERENCE_TIME") as? Double
+        let accuracyUserTime = aDecoder.decodeObjectForKey("MEASURE_ACCURACY_USER_TIME") as? Double
+        let accuracyReferenceTime = aDecoder.decodeObjectForKey("MEASURE_ACCURACY_REFERENCE_TIME") as? Double
         
-        let userDelta = self.accuracyUserTime-self.measureUserTime
-        let refDelta = self.accuracyReferenceTime-self.measureReferenceTime
-        self.accuracy = round(((userDelta*86400/refDelta)-86400)*100)/100
-
+        //Depending on the measure status, we don't use the same constructor
+        if(accuracyUserTime == nil && accuracyReferenceTime == nil){
+            self.init(id: id, measureTime: measureUserTime!,measureReferenceTime: measureReferenceTime!)
+        }else{
+            self.init(id: id, measureTime: measureUserTime!, measureReferenceTime:measureReferenceTime!,  accuracyTime: accuracyUserTime!, accuracyReferenceTime: accuracyReferenceTime!)
+        }
+        
     }
-    
-    
     
 }
