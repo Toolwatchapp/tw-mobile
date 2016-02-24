@@ -34,11 +34,7 @@ class WatchesViewController: UITableViewWithHeader {
     
     override func viewDidAppear(animated: Bool) {
         
-        if((selectedCell) != nil){
-            self.tableView.reloadRowsAtIndexPaths([self.selectedCell.indexPath], withRowAnimation: .Automatic)
-            self.selectedCell = nil
-            self.saveWatches();
-        }
+
         
         super.viewDidAppear(animated)
     }
@@ -100,6 +96,11 @@ class WatchesViewController: UITableViewWithHeader {
         return cell
     }
     
+    /**
+     Displays the MeasureController
+     
+     - parameter watchCell: The clicked cell
+     */
     func measureCallback(watchCell: WatchCell){
         
         self.selectedCell = watchCell;
@@ -110,9 +111,18 @@ class WatchesViewController: UITableViewWithHeader {
         self.presentViewController(addMeasureView, animated: true, completion: nil)
     }
     
+    /**
+     Displays the edit watch controller
+     
+     - parameter watchCell: the clicked cell
+     */
     func detailCallback(watchCell: WatchCell){
-        print("details")
-        print(watchCell.watch.id)
+        self.selectedCell = watchCell;
+        
+        let editWatchView =  self.storyboard?.instantiateViewControllerWithIdentifier("EditWatchId") as! UINavigationController
+        let editWatchTableView = editWatchView.topViewController as! EditWatchViewController
+        editWatchTableView.watch = self.selectedCell.watch
+        self.presentViewController(editWatchView, animated: true, completion: nil)
     }
     
     /**
@@ -134,6 +144,40 @@ class WatchesViewController: UITableViewWithHeader {
                 self.saveWatches()
             }
         }
+    }
+    
+    /**
+     When we leave the result screen
+     
+     - parameter segue: the triggered segue
+     */
+    @IBAction func measureComplete(segue:UIStoryboardSegue) {
+        
+        self.tableView.reloadRowsAtIndexPaths([self.selectedCell.indexPath], withRowAnimation: .Automatic)
+        self.saveWatches()
+    }
+    
+    /**
+     Delete a watch
+     
+     - parameter segue: the triggered segue
+     */
+    @IBAction func deleteWatch(segue:UIStoryboardSegue) {
+        
+        self.watches.removeAtIndex(self.selectedCell.indexPath.item)
+        self.tableView.deleteRowsAtIndexPaths([self.selectedCell.indexPath], withRowAnimation: .Automatic)
+        self.saveWatches()
+    }
+    
+    /**
+     Edit a watch to the list
+     
+     - parameter segue: the triggered segue
+     */
+    @IBAction func editWatch(segue:UIStoryboardSegue) {
+
+        self.tableView.reloadRowsAtIndexPaths([self.selectedCell.indexPath], withRowAnimation: .Automatic)
+        self.saveWatches()
     }
     
     // MARK: NSCoding

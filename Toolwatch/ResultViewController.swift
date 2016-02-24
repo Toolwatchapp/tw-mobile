@@ -20,13 +20,6 @@ class ResultViewController: UITableViewWithHeader {
         measureButton.layer.cornerRadius = 5;
         
         super.createHeader("header-result", title: "\n\n\n 2.04", subtitle: "Congratulation \n The accuracy of your Rolex is: \n \n \n \n seconds a day",
-            btnArt: "back-btn", btnAction: "backBtnClicked:", rightButton: false, headerHeight: 500)
+             headerHeight: 500)
     }
-    
-    @IBAction func measureButtonPressed(sender: AnyObject){
-        
-        self.dismissViewControllerAnimated(true, completion: nil);
-    }
-
-
 }
