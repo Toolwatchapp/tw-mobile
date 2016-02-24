@@ -13,6 +13,8 @@ class WatchesViewController: UITableViewWithHeader {
     
     var watches:[Watch] = [Watch]()
     var selectedCell: WatchCell!
+    
+    static var needRefresh:Bool = false
 
     /**
      Override the didLoad to load the header
@@ -32,9 +34,18 @@ class WatchesViewController: UITableViewWithHeader {
         }
     }
     
+    /**
+     Will refresh the list if WatchesViewController.needRefresh = true
+     
+     - parameter animated: animated description
+     */
     override func viewDidAppear(animated: Bool) {
         
-
+        if(WatchesViewController.needRefresh){
+            self.tableView.reloadRowsAtIndexPaths([self.selectedCell.indexPath], withRowAnimation: .Automatic)
+            self.saveWatches()
+            WatchesViewController.needRefresh = false
+        }
         
         super.viewDidAppear(animated)
     }

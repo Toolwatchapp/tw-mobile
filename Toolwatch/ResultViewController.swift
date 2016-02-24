@@ -13,7 +13,9 @@ class ResultViewController: UITableViewWithHeader {
     @IBOutlet weak var measureButton: UIButton!
     var watch:Watch!
    
-    
+    /**
+     Add the header and related fields
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,7 +66,14 @@ class ResultViewController: UITableViewWithHeader {
         )
     }
     
-    
+    /**
+     Defines custom height for each rows
+     
+     - parameter tableView:
+     - parameter indexPath:
+     
+     - returns: the heigh of a row
+     */
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         //We used 60% of the frame for the header

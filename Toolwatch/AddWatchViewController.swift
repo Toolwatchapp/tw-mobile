@@ -31,11 +31,19 @@ class AddWatchViewController: UITableViewWithHeader {
             btnArt: "back-btn", btnAction: "backBtnClicked:", rightButton: false)
     }
     
+    /**
+     Defines custom height for each rows
+     
+     - parameter tableView:
+     - parameter indexPath:
+     
+     - returns: the heigh of a row
+     */
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         //We used 30% of the frame for the header
         //We need 10% for the validate button
-        //The 60% remaining are 40% for inputs and 20 for labels
+        //The 60% remaining are 40% for inputs and 20% for labels
         
         //Even number are labels
         if(indexPath.item % 2 == 0 && indexPath.item != 10){

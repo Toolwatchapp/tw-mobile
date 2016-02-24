@@ -38,6 +38,14 @@ class EditWatchViewController: UITableViewWithHeader {
             btnArt: "back-btn", btnAction: "backBtnClicked:", rightButton: false)
     }
     
+    /**
+     Defines custom height for each rows
+     
+     - parameter tableView:
+     - parameter indexPath:
+     
+     - returns: the heigh of a row
+     */
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         //We used 30% of the frame for the header

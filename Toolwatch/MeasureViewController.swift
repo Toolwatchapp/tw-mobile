@@ -43,7 +43,14 @@ class MeasureViewController: UITableViewWithHeader {
             rightBtnArt: "refresh-btn", rightBtnAction: "refreshBtnClicked:", leftBtnArt: "back-btn", leftBtnAction: "backBtnClicked:", headerProportion:0.35)
     }
     
-    
+    /**
+     Defines custom height for each rows
+     
+     - parameter tableView:
+     - parameter indexPath:
+     
+     - returns: the heigh of a row
+     */
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         //We used 35% of the frame for the header
@@ -112,12 +119,21 @@ class MeasureViewController: UITableViewWithHeader {
         setTime()
     }
     
+    /**
+     Behaviour of the sync button
+     
+     - parameter sender:
+     */
     @IBAction func syncButtonPressed(sender: AnyObject){
+        
+        //The user just clicked
         clickedDate = NSDate();
+        
+        //We add the measure to the watch
         watch.addMeasure(clickedDate.timeIntervalSince1970, referenceTime: offsetedDate.timeIntervalSince1970)
         
+        //Start to build a local notification
         let notification = UILocalNotification()
-        
         notification.alertAction = "open"
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.userInfo = ["UUID": watch.id, ]
@@ -125,23 +141,29 @@ class MeasureViewController: UITableViewWithHeader {
         
         //This was measure 2/2, display the result screen
         if(watch.currentStatus() == Watch.Status.ACCURACY_MEASURE){
+            
+            //Notify in one month
+            notification.alertBody = "Let's start a new measure for your " + self.watch.brand + " " + self.watch.model + "!"
+            notification.fireDate = NSDate().dateByAddingTimeInterval(30*24*60*60) // 1 month
+
+            //Show the result screen
             let resultView =  self.storyboard?.instantiateViewControllerWithIdentifier("ResultID") as! UINavigationController
             let resultTableView = resultView.topViewController as! ResultViewController
             resultTableView.watch = self.watch
             self.presentViewController(resultView, animated: true, completion: nil)
             
-            notification.alertBody = "Let's start a new measure for your " + self.watch.brand + " " + self.watch.model + "!"
-            notification.fireDate = NSDate().dateByAddingTimeInterval(30*24*60*60) // 1 month
-            
         //This was measure 1/1 go back to the watch list
         }else{
-            notification.alertBody = "It's to the check your " + self.watch.brand + " " + self.watch.model + " acuracy !"
+            //Notify in 12 hours
+            notification.alertBody = "It's time to the check your " + self.watch.brand + " " + self.watch.model + " acuracy !"
             notification.fireDate = NSDate().dateByAddingTimeInterval(12*60*60) // 12 hours
+            
+            //Show the watch screen
+            WatchesViewController.needRefresh = true;
             self.dismissViewControllerAnimated(true, completion: nil);
         }
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
-
 
     }
     
