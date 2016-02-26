@@ -11,7 +11,7 @@ import Foundation
 /**
 *  A simple datastructure for watches that handles saving via NSCoding
 */
-class Watch: NSObject, NSCoding {
+class Watch: SyncronizableModel, NSCoding {
     
     /// Core attributes
     var id: Int

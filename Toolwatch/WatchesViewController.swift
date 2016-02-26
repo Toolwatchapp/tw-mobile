@@ -15,6 +15,7 @@ class WatchesViewController: UITableViewWithHeader {
     var selectedCell: WatchCell!
     
     static var needRefresh:Bool = false
+    static var pendingRequests:[APIRequest] = []
 
     /**
      Override the didLoad to load the header

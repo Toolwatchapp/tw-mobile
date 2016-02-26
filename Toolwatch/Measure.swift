@@ -9,7 +9,7 @@
 import Foundation
 
 /// Representes a couple of measure
-class Measure : NSObject, NSCoding{
+class Measure : SyncronizableModel, NSCoding{
     
     var id: Int
     var measureUserTime: Double
