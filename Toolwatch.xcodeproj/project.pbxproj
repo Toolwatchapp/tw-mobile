@@ -31,6 +31,7 @@
 		C3E0ED681C7FBEE100AD68F8 /* SyncronizableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E0ED671C7FBEE100AD68F8 /* SyncronizableModel.swift */; };
 		C3E0ED6A1C7FC4AE00AD68F8 /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E0ED691C7FC4AE00AD68F8 /* Reach.swift */; };
 		C3E0ED6E1C7FD3C000AD68F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E0ED6D1C7FD3C000AD68F8 /* LoginViewController.swift */; };
+		C3E0ED711CB6F06F00AD68F8 /* HTTPCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E0ED701CB6F06F00AD68F8 /* HTTPCode.swift */; };
 		C3E59D941C7D0A560081B711 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E59D931C7D0A560081B711 /* ResultViewController.swift */; };
 		C3FF3ACB1C7519B60039B1E5 /* UITableViewWithHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF3ACA1C7519B60039B1E5 /* UITableViewWithHeader.swift */; };
 /* End PBXBuildFile section */
@@ -156,8 +157,9 @@
 		C3E0ED041C7FB76200AD68F8 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		C3E0ED4F1C7FB94400AD68F8 /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		C3E0ED671C7FBEE100AD68F8 /* SyncronizableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncronizableModel.swift; sourceTree = "<group>"; };
-		C3E0ED691C7FC4AE00AD68F8 /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
+		C3E0ED691C7FC4AE00AD68F8 /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reach.swift; path = ../Reach.swift; sourceTree = "<group>"; };
 		C3E0ED6D1C7FD3C000AD68F8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C3E0ED701CB6F06F00AD68F8 /* HTTPCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPCode.swift; sourceTree = "<group>"; };
 		C3E59D931C7D0A560081B711 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		C3FF3ACA1C7519B60039B1E5 /* UITableViewWithHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewWithHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,7 +194,6 @@
 		C3405A2E1C6B9A6F00512049 = {
 			isa = PBXGroup;
 			children = (
-				C3E0ED691C7FC4AE00AD68F8 /* Reach.swift */,
 				C3E0ED041C7FB76200AD68F8 /* Alamofire.xcodeproj */,
 				C3405A391C6B9A6F00512049 /* Toolwatch */,
 				C3405A4E1C6B9A6F00512049 /* ToolwatchTests */,
@@ -214,6 +215,7 @@
 		C3405A391C6B9A6F00512049 /* Toolwatch */ = {
 			isa = PBXGroup;
 			children = (
+				C3E0ED6F1CB6F02C00AD68F8 /* api */,
 				C360296D1C7D068B00BBAE51 /* views */,
 				C360296C1C7D064000BBAE51 /* controllers */,
 				C360296B1C7D060300BBAE51 /* models */,
@@ -222,7 +224,6 @@
 				C3405A411C6B9A6F00512049 /* Assets.xcassets */,
 				C3405A461C6B9A6F00512049 /* Info.plist */,
 				C3CB4DD31C6BC8EC00B5BAE8 /* SampleData.swift */,
-				C3E0ED021C7FB69F00AD68F8 /* SwiftyJSON.swift */,
 			);
 			path = Toolwatch;
 			sourceTree = "<group>";
@@ -250,7 +251,6 @@
 			children = (
 				C3AE4FAE1C7B4D46000C0F30 /* Measure.swift */,
 				C3CB4DD11C6BC5DB00B5BAE8 /* Watch.swift */,
-				C3E0ED4F1C7FB94400AD68F8 /* APIRequest.swift */,
 				C3E0ED671C7FBEE100AD68F8 /* SyncronizableModel.swift */,
 			);
 			name = models;
@@ -292,6 +292,17 @@
 				C3E0ED491C7FB77900AD68F8 /* Alamofire.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C3E0ED6F1CB6F02C00AD68F8 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				C3E0ED691C7FC4AE00AD68F8 /* Reach.swift */,
+				C3E0ED4F1C7FB94400AD68F8 /* APIRequest.swift */,
+				C3E0ED021C7FB69F00AD68F8 /* SwiftyJSON.swift */,
+				C3E0ED701CB6F06F00AD68F8 /* HTTPCode.swift */,
+			);
+			name = api;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -499,6 +510,7 @@
 				C3E0ED681C7FBEE100AD68F8 /* SyncronizableModel.swift in Sources */,
 				C39FF6921C77830B008EF0FE /* AddWatchViewController.swift in Sources */,
 				C3E0ED6A1C7FC4AE00AD68F8 /* Reach.swift in Sources */,
+				C3E0ED711CB6F06F00AD68F8 /* HTTPCode.swift in Sources */,
 				C3E0ED501C7FB94400AD68F8 /* APIRequest.swift in Sources */,
 				C3405A3D1C6B9A6F00512049 /* ViewController.swift in Sources */,
 				C3CB4DD41C6BC8EC00B5BAE8 /* SampleData.swift in Sources */,

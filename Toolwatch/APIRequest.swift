@@ -11,90 +11,149 @@ import Alamofire
 
 class APIRequest{
     
-    var httpMethod:Alamofire.Method
-    var url:String
-    var parameters:[String: String]
-    var valuesToModify:[String:String]
-    var model:SyncronizableModel
-    var requestCreated:Double
-    let baseUrl:String = "https://tw-prepod-pr-126.herokuapp.com/api/"
+    private var httpMethod:Alamofire.Method
+    private var url:String
+    private var parameters:[String: String]
+    private var valuesToModify:[String:String]
+    private var model:SyncronizableModel
+    private var callback : ((SyncronizableModel, Int)-> Void)?
+    private var requestCreated:Double
+    private let baseUrl:String = "https://tw-prepod-pr-126.herokuapp.com/api/"
     
     private static var apiKey:String!
     
+    /**
+     Construcs an APIRequest
+     
+     - parameter httpMethod:     <#httpMethod description#>
+     - parameter url:            <#url description#>
+     - parameter model:          <#model description#>
+     - parameter parameters:     <#parameters description#>
+     - parameter valuesToModify: <#valuesToModify description#>
+     
+     - returns: <#return value description#>
+     */
     init(httpMethod:Alamofire.Method, url:String, model:SyncronizableModel, parameters:[String: String] = [String: String](),
         valuesToModify:[String:String] = [String: String]()){
             
-        self.httpMethod = httpMethod
-        self.url = baseUrl+url
-        self.model = model
-        self.parameters = parameters
+            self.httpMethod = httpMethod
+            self.url = baseUrl+url
+            self.model = model
+            self.parameters = parameters
             
-        if(APIRequest.apiKey != nil){
-            self.parameters["X-API-KEY"] = APIRequest.apiKey
-        }
+            if(APIRequest.apiKey != nil){
+                self.parameters["X-API-KEY"] = APIRequest.apiKey
+            }
             
-        self.valuesToModify = valuesToModify
-        self.requestCreated = NSDate().timeIntervalSince1970
+            self.valuesToModify = valuesToModify
+            self.requestCreated = NSDate().timeIntervalSince1970
     }
     
+    /**
+     Adds a key to change in the model
+     
+     - parameter key:   <#key description#>
+     - parameter value: <#value description#>
+     
+     - returns: <#return value description#>
+     */
     func addChangeValue(key:String, value:String) -> APIRequest{
         valuesToModify[key] = value
         return self
     }
     
+    /**
+     Adds a parameter for the query
+     
+     - parameter key:   <#key description#>
+     - parameter value: <#value description#>
+     
+     - returns: <#return value description#>
+     */
     func addParameter(key:String, value:String) -> APIRequest{
         
         parameters[key] = value
         return self
     }
     
+    func callback(callback: (SyncronizableModel, Int)-> Void) -> APIRequest{
+        self.callback = callback;
+        return self;
+    }
+    
+    /**
+     Executes the query or store it
+     
+     - returns: <#return value description#>
+     */
     func execute() -> Int! {
         
         let status = Reach().connectionStatus()
         
         switch status {
-            case .Unknown, .Offline:
-                WatchesViewController.pendingRequests.append(self);
-                return 0
+        case .Unknown, .Offline:
+            WatchesViewController.pendingRequests.append(self);
+            return 0
             
-            case .Online(.WWAN), .Online(.WiFi):
-                
-                var returnValue:Int!
+        case .Online(.WWAN), .Online(.WiFi):
+            return self.executeQuery();
             
-                Alamofire.request(self.httpMethod, self.url, parameters: self.parameters).validate().responseJSON {
-                    
-                    response in switch response.result {
-                    case .Success:
-                        
-                        
-                        if let value = response.result.value {
-                            let json = JSON(value)
-                            
-                            if let apiKey = json["key"].string{
-                                APIRequest.apiKey = apiKey;
-                                print("Yihaa");
-                            }
-                            
-                            self.model.externalId = json["id"].intValue
-                            self.model.lastSync = NSDate().timeIntervalSince1970
-                            
-                            for(key, value) in self.valuesToModify{
-                                
-                                self.model.setValue(json[value].object, forKey: key)
-                            }
-                            
-                            print("JSON: \(json)")
-                            returnValue = (response.response?.statusCode)!
-                            print(returnValue)
-                        }
-                        
-                    case .Failure(let error):
-                        print(error)
-                    }
-                }
-                
-            return returnValue
         }
     }
-
+    
+    /**
+     Executes the query
+     
+     - returns: <#return value description#>
+     */
+    private func executeQuery() -> Int{
+        var returnValue:Int!
+        
+        Alamofire.request(self.httpMethod, self.url, parameters: self.parameters).validate().responseJSON {
+            
+            response in switch response.result {
+                
+            case .Success:
+                self.updateModel(response)
+                
+            case .Failure(let error):
+                print(error)
+                
+            }
+            
+            returnValue = (response.response?.statusCode)!
+            print(returnValue)
+            
+            if(self.callback != nil){
+                self.callback!(self.model, returnValue)
+            }
+        }
+        return returnValue
+    }
+    
+    /**
+     Updates the given Syncable Model
+     
+     - parameter response: <#response description#>
+     */
+    private func updateModel(response: Response<AnyObject, NSError>) -> Void {
+        if let value = response.result.value {
+            let json = JSON(value)
+            
+            if let apiKey = json["key"].string{
+                APIRequest.apiKey = apiKey;
+            }
+            
+            self.model.externalId = json["id"].intValue
+            self.model.lastSync = NSDate().timeIntervalSince1970
+            
+            for(key, value) in self.valuesToModify{
+                
+                self.model.setValue(json[value].object, forKey: key)
+            }
+            print("JSON: \(json)")
+            
+        }
+    }
+    
 }
