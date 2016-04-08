@@ -19,6 +19,9 @@
 - [x] Add/edit/delete watches
 - [x] Local persistence
 - [x] Local notification
+- [x] Login (email)
+- [x] Signup (email)
+- [ ] Login fb
 - [ ] Remote sync
 - [ ] Remote notification
 - [ ] Social share
