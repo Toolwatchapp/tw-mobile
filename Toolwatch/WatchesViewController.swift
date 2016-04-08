@@ -212,6 +212,8 @@ class WatchesViewController: UITableViewWithHeader {
      */
     func loadWatches() -> [Watch]? {
         
+        
+        
         return NSKeyedUnarchiver.unarchiveObjectWithFile(Watch.ArchiveURL.path!) as? [Watch]
     }
 

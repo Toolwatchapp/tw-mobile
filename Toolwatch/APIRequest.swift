@@ -86,17 +86,16 @@ class APIRequest{
      
      - returns: <#return value description#>
      */
-    func execute() -> Int! {
+    func execute() -> Void {
         
         let status = Reach().connectionStatus()
         
         switch status {
         case .Unknown, .Offline:
             WatchesViewController.pendingRequests.append(self);
-            return 0
             
         case .Online(.WWAN), .Online(.WiFi):
-            return self.executeQuery();
+            self.executeQuery();
             
         }
     }
@@ -106,8 +105,7 @@ class APIRequest{
      
      - returns: <#return value description#>
      */
-    private func executeQuery() -> Int{
-        var returnValue:Int!
+    private func executeQuery(){
         
         Alamofire.request(self.httpMethod, self.url, parameters: self.parameters).validate().responseJSON {
             
@@ -121,14 +119,13 @@ class APIRequest{
                 
             }
             
-            returnValue = (response.response?.statusCode)!
+            let returnValue = (response.response?.statusCode)!
             print(returnValue)
             
             if(self.callback != nil){
                 self.callback!(self.model, returnValue)
             }
         }
-        return returnValue
     }
     
     /**
