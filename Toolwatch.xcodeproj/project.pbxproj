@@ -33,6 +33,7 @@
 		C3E0ED6E1C7FD3C000AD68F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E0ED6D1C7FD3C000AD68F8 /* LoginViewController.swift */; };
 		C3E0ED711CB6F06F00AD68F8 /* HTTPCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E0ED701CB6F06F00AD68F8 /* HTTPCode.swift */; };
 		C3E0ED731CB7250D00AD68F8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E0ED721CB7250D00AD68F8 /* API.swift */; };
+		C3E0ED751CB7E2CD00AD68F8 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E0ED741CB7E2CD00AD68F8 /* RegisterViewController.swift */; };
 		C3E59D941C7D0A560081B711 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E59D931C7D0A560081B711 /* ResultViewController.swift */; };
 		C3FF3ACB1C7519B60039B1E5 /* UITableViewWithHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF3ACA1C7519B60039B1E5 /* UITableViewWithHeader.swift */; };
 /* End PBXBuildFile section */
@@ -162,6 +163,7 @@
 		C3E0ED6D1C7FD3C000AD68F8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C3E0ED701CB6F06F00AD68F8 /* HTTPCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPCode.swift; sourceTree = "<group>"; };
 		C3E0ED721CB7250D00AD68F8 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		C3E0ED741CB7E2CD00AD68F8 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C3E59D931C7D0A560081B711 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		C3FF3ACA1C7519B60039B1E5 /* UITableViewWithHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewWithHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -268,6 +270,7 @@
 				C3E59D931C7D0A560081B711 /* ResultViewController.swift */,
 				C3E0ED001C7E08E700AD68F8 /* EditWatchViewController.swift */,
 				C3E0ED6D1C7FD3C000AD68F8 /* LoginViewController.swift */,
+				C3E0ED741CB7E2CD00AD68F8 /* RegisterViewController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 				C3E0ED681C7FBEE100AD68F8 /* SyncronizableModel.swift in Sources */,
 				C39FF6921C77830B008EF0FE /* AddWatchViewController.swift in Sources */,
 				C3E0ED6A1C7FC4AE00AD68F8 /* Reach.swift in Sources */,
+				C3E0ED751CB7E2CD00AD68F8 /* RegisterViewController.swift in Sources */,
 				C3E0ED711CB6F06F00AD68F8 /* HTTPCode.swift in Sources */,
 				C3E0ED501C7FB94400AD68F8 /* APIRequest.swift in Sources */,
 				C3405A3D1C6B9A6F00512049 /* ViewController.swift in Sources */,

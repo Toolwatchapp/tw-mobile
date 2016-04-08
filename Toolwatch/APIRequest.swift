@@ -15,7 +15,7 @@ class APIRequest{
     private var url:String
     private var parameters:[String: String]
     private var valuesToModify:[String:String]
-    private var model:SyncronizableModel
+    private var model:SyncronizableModel!
     private var callback : ((SyncronizableModel, Int)-> Void)?
     private var requestCreated:Double
     private let baseUrl:String = "https://tw-prepod-pr-126.herokuapp.com/api/"
@@ -33,7 +33,7 @@ class APIRequest{
      
      - returns: <#return value description#>
      */
-    init(httpMethod:Alamofire.Method, url:String, model:SyncronizableModel, parameters:[String: String] = [String: String](),
+    init(httpMethod:Alamofire.Method, url:String, model:SyncronizableModel! = nil, parameters:[String: String] = [String: String](),
         valuesToModify:[String:String] = [String: String]()){
             
             self.httpMethod = httpMethod
