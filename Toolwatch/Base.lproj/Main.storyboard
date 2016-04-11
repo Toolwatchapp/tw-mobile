@@ -6,24 +6,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="AfFd">
-            <objects>
-                <viewController id="AZM1" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Acv8"/>
-                        <viewControllerLayoutGuide type="bottom" id="AY1"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="AL">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="A8sDp" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
-        </scene>
         <!--Login View Controller-->
         <scene sceneID="AmBJ6">
             <objects>
@@ -97,8 +79,8 @@
                                 <color key="textColor" red="0.11372549019608" green="0.11372549019608" blue="0.14901960784314" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="mathieu.nayrolles@gmail.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oxD-lH-sl2">
-                                <rect key="frame" x="15" y="287" width="346" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ma@a.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oxD-lH-sl2">
+                                <rect key="frame" x="16" y="287" width="346" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -108,11 +90,6 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="qwerty" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9yr-vH-yjs">
-                                <rect key="frame" x="15" y="368" width="346" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AlS71161109475227">
                                 <rect key="frame" x="15" y="445" width="346" height="47"/>
                                 <color key="backgroundColor" red="0.30588235289999999" green="0.47450980390000003" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -126,6 +103,11 @@
                                 <rect key="frame" x="319" y="459" width="20" height="20"/>
                                 <rect key="contentStretch" x="0.94999999999999996" y="0.69999999999999996" width="1" height="1"/>
                             </activityIndicatorView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="qwerty" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9yr-vH-yjs">
+                                <rect key="frame" x="15" y="368" width="346" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -474,23 +456,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Aa-G6-KOJ">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Aa-G6-KOJ" customClass="AutoCompleteTextField" customModule="Toolwatch" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="0.0" width="359" height="35"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="4Aa-G6-KOJ" firstAttribute="top" secondItem="8C0-Ml-a2R" secondAttribute="topMargin" id="3W9-yd-SDY"/>
-                                                <constraint firstItem="4Aa-G6-KOJ" firstAttribute="leading" secondItem="8C0-Ml-a2R" secondAttribute="leadingMargin" id="Ara-iq-zwU"/>
-                                                <constraint firstItem="4Aa-G6-KOJ" firstAttribute="leading" secondItem="8C0-Ml-a2R" secondAttribute="leadingMargin" id="BZQ-Tg-EXL"/>
-                                                <constraint firstItem="4Aa-G6-KOJ" firstAttribute="trailing" secondItem="8C0-Ml-a2R" secondAttribute="trailingMargin" id="Bc4-kD-4hS"/>
-                                                <constraint firstItem="4Aa-G6-KOJ" firstAttribute="bottom" secondItem="8C0-Ml-a2R" secondAttribute="bottomMargin" id="MSI-uW-atu"/>
-                                                <constraint firstItem="4Aa-G6-KOJ" firstAttribute="bottom" secondItem="8C0-Ml-a2R" secondAttribute="bottomMargin" id="TQP-Un-1LK"/>
-                                                <constraint firstItem="4Aa-G6-KOJ" firstAttribute="top" secondItem="8C0-Ml-a2R" secondAttribute="topMargin" id="Yvk-oB-UeQ"/>
-                                                <constraint firstItem="4Aa-G6-KOJ" firstAttribute="top" secondItem="8C0-Ml-a2R" secondAttribute="topMargin" id="eNw-2h-CgT"/>
-                                                <constraint firstItem="4Aa-G6-KOJ" firstAttribute="trailing" secondItem="8C0-Ml-a2R" secondAttribute="trailingMargin" id="fnQ-si-mm8"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="20" id="U2Y-vN-cfQ">
@@ -516,22 +487,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OwI-LD-OAB">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OwI-LD-OAB" customClass="AutoCompleteTextField" customModule="Toolwatch" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="0.0" width="359" height="35"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="OwI-LD-OAB" firstAttribute="trailing" secondItem="e1O-E1-ofC" secondAttribute="trailingMargin" id="CqF-YU-NNB"/>
-                                                <constraint firstItem="OwI-LD-OAB" firstAttribute="trailing" secondItem="e1O-E1-ofC" secondAttribute="trailingMargin" id="KlH-qX-YPg"/>
-                                                <constraint firstItem="OwI-LD-OAB" firstAttribute="top" secondItem="e1O-E1-ofC" secondAttribute="topMargin" id="OJE-cE-4M9"/>
-                                                <constraint firstItem="OwI-LD-OAB" firstAttribute="bottom" secondItem="e1O-E1-ofC" secondAttribute="bottomMargin" id="Xon-GD-0GX"/>
-                                                <constraint firstItem="OwI-LD-OAB" firstAttribute="leading" secondItem="e1O-E1-ofC" secondAttribute="leadingMargin" id="fbz-On-FlE"/>
-                                                <constraint firstItem="OwI-LD-OAB" firstAttribute="bottom" secondItem="e1O-E1-ofC" secondAttribute="bottomMargin" id="tG4-6T-xhg"/>
-                                                <constraint firstItem="OwI-LD-OAB" firstAttribute="leading" secondItem="e1O-E1-ofC" secondAttribute="leadingMargin" id="tnn-kS-SSJ"/>
-                                                <constraint firstItem="OwI-LD-OAB" firstAttribute="top" secondItem="e1O-E1-ofC" secondAttribute="topMargin" id="xkl-hx-RXo"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="20" id="r5p-mt-rLz">
@@ -697,8 +658,10 @@
                     <connections>
                         <outlet property="addWatchButton" destination="1tq-L6-Qqz" id="yZ6-4m-WIw"/>
                         <outlet property="brand" destination="4Aa-G6-KOJ" id="kbu-Zs-3Si"/>
+                        <outlet property="brandCell" destination="DEs-9x-vrF" id="y95-uS-nIF"/>
                         <outlet property="caliber" destination="ZZV-pU-PVU" id="RI6-3S-RKH"/>
                         <outlet property="model" destination="OwI-LD-OAB" id="dHN-Th-qTw"/>
+                        <outlet property="modelCell" destination="f76-Ti-rxa" id="sWX-cu-5RN"/>
                         <outlet property="serial" destination="wf2-ge-Tc6" id="w62-EO-FjF"/>
                         <outlet property="yearOfPurchase" destination="QpC-NO-10g" id="BxR-h9-ST3"/>
                     </connections>
@@ -769,7 +732,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="drZ-y3-kwk">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ma@a.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="drZ-y3-kwk">
                                                     <rect key="frame" x="8" y="0.0" width="359" height="35"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -806,7 +769,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2hO-kx-i7x">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ma@a.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2hO-kx-i7x">
                                                     <rect key="frame" x="8" y="0.0" width="359" height="35"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -843,10 +806,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09F-Ej-sC6">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="qwerty" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09F-Ej-sC6">
                                                     <rect key="frame" x="8" y="0.0" width="359" height="35"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -880,10 +843,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="456-l5-kwo">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="qwerty" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="456-l5-kwo">
                                                     <rect key="frame" x="8" y="0.0" width="359" height="35"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -917,7 +880,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Xg-vm-amt">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="aa" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Xg-vm-amt">
                                                     <rect key="frame" x="8" y="0.0" width="359" height="35"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -954,7 +917,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IAB-aZ-cS0">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="bb" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IAB-aZ-cS0">
                                                     <rect key="frame" x="8" y="0.0" width="359" height="35"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -968,45 +931,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="20" id="jFo-zx-WU5">
-                                        <rect key="frame" x="0.0" y="384" width="375" height="20"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jFo-zx-WU5" id="SL8-nA-2LO">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="COUNTRY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auP-Nb-VUF">
-                                                    <rect key="frame" x="8" y="4" width="84" height="21"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="nih-78-OwO">
-                                        <rect key="frame" x="0.0" y="404" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nih-78-OwO" id="SAe-2h-Q8D">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e01-BE-mG3">
-                                                    <rect key="frame" x="8" y="0.0" width="359" height="35"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="e01-BE-mG3" firstAttribute="trailing" secondItem="SAe-2h-Q8D" secondAttribute="trailingMargin" id="CvA-M8-WsH"/>
-                                                <constraint firstItem="e01-BE-mG3" firstAttribute="leading" secondItem="SAe-2h-Q8D" secondAttribute="leadingMargin" id="Qw6-Pw-7hh"/>
-                                                <constraint firstItem="e01-BE-mG3" firstAttribute="top" secondItem="SAe-2h-Q8D" secondAttribute="topMargin" id="p0X-dZ-eNq"/>
-                                                <constraint firstItem="e01-BE-mG3" firstAttribute="bottom" secondItem="SAe-2h-Q8D" secondAttribute="bottomMargin" id="zHC-pV-AbF"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Lec-lN-3Hj">
-                                        <rect key="frame" x="0.0" y="448" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="384" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lec-lN-3Hj" id="U0c-YF-YeA">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1042,7 +968,6 @@
                         <outlet property="activityIndicator" destination="49J-FE-kMa" id="gLp-uw-o9c"/>
                         <outlet property="confirmEmail" destination="2hO-kx-i7x" id="Ann-o9-jHY"/>
                         <outlet property="confirmPassword" destination="456-l5-kwo" id="f9y-Xg-J3d"/>
-                        <outlet property="country" destination="e01-BE-mG3" id="llQ-Dz-uDo"/>
                         <outlet property="email" destination="drZ-y3-kwk" id="bMT-Ra-BzD"/>
                         <outlet property="firstname" destination="IAB-aZ-cS0" id="bJG-pw-qe8"/>
                         <outlet property="name" destination="0Xg-vm-amt" id="4ZA-7v-9FZ"/>
@@ -1185,18 +1110,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ulm-vw-V09">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ulm-vw-V09" customClass="AutoCompleteTextField" customModule="Toolwatch" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="0.0" width="359" height="35"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Ulm-vw-V09" firstAttribute="leading" secondItem="4ys-Be-oTs" secondAttribute="leadingMargin" id="05z-Dv-19q"/>
-                                                <constraint firstItem="Ulm-vw-V09" firstAttribute="top" secondItem="4ys-Be-oTs" secondAttribute="topMargin" id="3je-He-sjr"/>
-                                                <constraint firstItem="Ulm-vw-V09" firstAttribute="bottom" secondItem="4ys-Be-oTs" secondAttribute="bottomMargin" id="F4D-DD-Lwy"/>
-                                                <constraint firstItem="Ulm-vw-V09" firstAttribute="trailing" secondItem="4ys-Be-oTs" secondAttribute="trailingMargin" id="UVg-zd-7EZ"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="20" id="6zn-RT-RMP">
@@ -1222,18 +1141,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eaa-EY-faZ">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eaa-EY-faZ" customClass="AutoCompleteTextField" customModule="Toolwatch" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="0.0" width="359" height="35"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="eaa-EY-faZ" firstAttribute="bottom" secondItem="UMg-CH-Ffw" secondAttribute="bottomMargin" id="JhB-TS-qCq"/>
-                                                <constraint firstItem="eaa-EY-faZ" firstAttribute="leading" secondItem="UMg-CH-Ffw" secondAttribute="leadingMargin" id="LSR-y3-Xgn"/>
-                                                <constraint firstItem="eaa-EY-faZ" firstAttribute="top" secondItem="UMg-CH-Ffw" secondAttribute="topMargin" id="VeF-EA-usT"/>
-                                                <constraint firstItem="eaa-EY-faZ" firstAttribute="trailing" secondItem="UMg-CH-Ffw" secondAttribute="trailingMargin" id="rdF-am-K4p"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="20" id="X59-5a-2ZW">
@@ -1402,9 +1315,11 @@
                     <connections>
                         <outlet property="EditButton" destination="G1z-ei-X9T" id="MSa-jI-d99"/>
                         <outlet property="brand" destination="Ulm-vw-V09" id="S2d-Ar-tWm"/>
+                        <outlet property="brandCell" destination="Sgo-Bo-RcQ" id="F46-7B-Cnk"/>
                         <outlet property="caliber" destination="oCq-kO-ToE" id="2Bm-1h-aue"/>
                         <outlet property="deleteButton" destination="jdX-4q-hct" id="Mid-Ir-9uH"/>
                         <outlet property="model" destination="eaa-EY-faZ" id="sZw-YJ-jrL"/>
+                        <outlet property="modelCell" destination="4Tq-kz-K3e" id="NWg-m2-T5D"/>
                         <outlet property="serial" destination="K89-3p-dj1" id="DT3-0C-aQE"/>
                         <outlet property="yearOfPurchase" destination="HcP-o7-nyO" id="flt-oX-tAu"/>
                     </connections>

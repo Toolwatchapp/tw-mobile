@@ -9,7 +9,7 @@
 import Foundation
 
 /// Representes a couple of measure
-class Measure : SyncronizableModel, NSCoding{
+class Measure : NSObject, NSCoding{
     
     var id: Int
     var measureUserTime: Double
@@ -79,7 +79,7 @@ class Measure : SyncronizableModel, NSCoding{
     func accuracy() -> Double{
         let userDelta = self.accuracyUserTime-self.measureUserTime
         let refDelta = self.accuracyReferenceTime-self.measureReferenceTime
-        return round(((userDelta*86400/refDelta)-86400)*100)/100
+        return round(((refDelta*86400/userDelta)-86400)*100)/100
     }
     
     // MARK: NSCoding

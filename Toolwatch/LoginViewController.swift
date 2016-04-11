@@ -28,8 +28,14 @@ class LoginViewController: UIViewController {
             (result:Bool) in
             if(result){
                 
-                let addWatchView =  self.storyboard?.instantiateViewControllerWithIdentifier("DashboardID") as! UITabBarController
-                self.presentViewController(addWatchView, animated: true, completion: nil)
+                API.getWatches({
+                    (watches:[Watch]) in
+                    
+                    let dashboard =  self.storyboard?.instantiateViewControllerWithIdentifier("DashboardID") as! UITabBarController
+                    WatchesViewController.watches = watches;
+                    self.presentViewController(dashboard, animated: true, completion: nil)
+                    
+                });
                 
             }else{
                 let alertController = UIAlertController(

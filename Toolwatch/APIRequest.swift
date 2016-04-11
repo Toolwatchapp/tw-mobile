@@ -15,10 +15,9 @@ class APIRequest{
     private var url:String
     private var parameters:[String: String]
     private var valuesToModify:[String:String]
-    private var model:SyncronizableModel!
-    private var callback : ((SyncronizableModel, Int)-> Void)?
+    private var callback : ((JSON, Int)-> Void)?
     private var requestCreated:Double
-    private let baseUrl:String = "https://tw-prepod-pr-126.herokuapp.com/api/"
+    private let baseUrl:String = "http://192.168.0.105/api/"
     
     private static var apiKey:String!
     
@@ -33,12 +32,11 @@ class APIRequest{
      
      - returns: <#return value description#>
      */
-    init(httpMethod:Alamofire.Method, url:String, model:SyncronizableModel! = nil, parameters:[String: String] = [String: String](),
+    init(httpMethod:Alamofire.Method, url:String, parameters:[String: String] = [String: String](),
         valuesToModify:[String:String] = [String: String]()){
             
             self.httpMethod = httpMethod
             self.url = baseUrl+url
-            self.model = model
             self.parameters = parameters
             
             if(APIRequest.apiKey != nil){
@@ -47,19 +45,6 @@ class APIRequest{
             
             self.valuesToModify = valuesToModify
             self.requestCreated = NSDate().timeIntervalSince1970
-    }
-    
-    /**
-     Adds a key to change in the model
-     
-     - parameter key:   <#key description#>
-     - parameter value: <#value description#>
-     
-     - returns: <#return value description#>
-     */
-    func addChangeValue(key:String, value:String) -> APIRequest{
-        valuesToModify[key] = value
-        return self
     }
     
     /**
@@ -76,7 +61,7 @@ class APIRequest{
         return self
     }
     
-    func callback(callback: (SyncronizableModel, Int)-> Void) -> APIRequest{
+    func callback(callback: (JSON, Int)-> Void) -> APIRequest{
         self.callback = callback;
         return self;
     }
@@ -107,49 +92,38 @@ class APIRequest{
      */
     private func executeQuery(){
         
+        print("=====DEBUG======")
+        print(self.httpMethod)
+        print(self.url)
+        print(self.parameters)
+        print("=====RESULT====")
+        
+        var json:JSON! = nil
+        
         Alamofire.request(self.httpMethod, self.url, parameters: self.parameters).validate().responseJSON {
             
-            response in switch response.result {
+            response in response.result
+            
+            if let value = response.result.value {
+                json = JSON(value)
                 
-            case .Success:
-                self.updateModel(response)
-                
-            case .Failure(let error):
-                print(error)
-                
+                if let apiKey = json["key"].string{
+                    APIRequest.apiKey = apiKey;
+                }
             }
+            
             
             let returnValue = (response.response?.statusCode)!
+            
             print(returnValue)
+            if(json != nil){
+                print(json);
+            }
+            print("===========")
             
             if(self.callback != nil){
-                self.callback!(self.model, returnValue)
+                self.callback!(json, returnValue);
             }
-        }
-    }
-    
-    /**
-     Updates the given Syncable Model
-     
-     - parameter response: <#response description#>
-     */
-    private func updateModel(response: Response<AnyObject, NSError>) -> Void {
-        if let value = response.result.value {
-            let json = JSON(value)
-            
-            if let apiKey = json["key"].string{
-                APIRequest.apiKey = apiKey;
-            }
-            
-            self.model.externalId = json["id"].intValue
-            self.model.lastSync = NSDate().timeIntervalSince1970
-            
-            for(key, value) in self.valuesToModify{
-                
-                self.model.setValue(json[value].object, forKey: key)
-            }
-            print("JSON: \(json)")
-            
         }
     }
     

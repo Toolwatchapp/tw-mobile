@@ -11,13 +11,17 @@ import UIKit
 /// Controller for the add watch view
 class AddWatchViewController: UITableViewWithHeader {
     
-    @IBOutlet weak var brand: UITextField!
-    @IBOutlet weak var model: UITextField!
+    @IBOutlet weak var brand: AutoCompleteTextField!
+    @IBOutlet weak var model: AutoCompleteTextField!
     @IBOutlet weak var caliber: UITextField!
     @IBOutlet weak var yearOfPurchase: UITextField!
     @IBOutlet weak var serial: UITextField!
     @IBOutlet weak var addWatchButton: UIButton!
+    @IBOutlet weak var brandCell: UITableViewCell!
+    @IBOutlet weak var modelCell: UITableViewCell!
     var watch: Watch!
+    private var matchingBrandsDir:[String] = [];
+    private var selectedBrandDirIndex:Int = -1;
     
     /**
      Override didLaod so we can create the header
@@ -29,6 +33,65 @@ class AddWatchViewController: UITableViewWithHeader {
         
         super.createHeader("header-watch", title: "", subtitle: "Add a watch",
             btnArt: "back-btn", btnAction: "backBtnClicked:", rightButton: false)
+        
+        initAutocompleteLabel(brand)
+        initAutocompleteLabel(model)
+        
+        brand.onTextChange = {text in
+            if !text.isEmpty{
+                
+                self.selectedBrandDirIndex = -1
+                
+                API.getBrands(text, callback: {
+                    
+                    (matchingBrands:[String], matchingBrandsDir:[String]) in
+                    self.brand.autoCompleteStrings = matchingBrands
+                    self.matchingBrandsDir = matchingBrandsDir;
+                    self.brandCell.frame.size.height = self.view.frame.size.height * (40/5/100) + CGFloat(35 * matchingBrands.count)
+                })
+                
+            }
+        }
+        
+        brand.onSelect = {text, indexpath in
+            self.selectedBrandDirIndex = indexpath.row
+            self.brandCell.frame.size.height = self.view.frame.size.height * (40/5/100)
+        }
+        
+        model.onTextChange = {text in
+            if !text.isEmpty && self.selectedBrandDirIndex != -1{
+                
+                API.getModels(self.matchingBrandsDir[self.selectedBrandDirIndex], partialModel: text, callback: {
+                    (matchingModels:[String]) in
+                    self.model.autoCompleteStrings = matchingModels
+                    self.modelCell.frame.size.height = self.view.frame.size.height * (40/5/100) + CGFloat(35 * matchingModels.count)
+                })
+            }
+        }
+        
+        model.onSelect = {text, indexpath in
+            self.modelCell.frame.size.height = self.view.frame.size.height * (40/5/100)
+        }
+
+    }
+    
+    /**
+     Initialisation of Autocomplete button
+     
+     - parameter label: <#label description#>
+     
+     - returns: <#return value description#>
+     */
+    private func initAutocompleteLabel(label:AutoCompleteTextField){
+        label.autoCompleteCellHeight = 35.0
+        label.maximumAutoCompleteCount = 20
+        label.hidesWhenSelected = true
+        label.hidesWhenEmpty = true
+        label.enableAttributedText = true
+        var attributes = [String:AnyObject]()
+        attributes[NSForegroundColorAttributeName] = UIColor.blackColor()
+        attributes[NSFontAttributeName] = UIFont(name: "HelveticaNeue-Bold", size: 12.0)
+        label.autoCompleteAttributes = attributes
     }
     
     /**
@@ -79,6 +142,7 @@ class AddWatchViewController: UITableViewWithHeader {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SaveWatch" {
             watch = Watch(brand: brand.text!, model: model.text!, yearOfPurchase: yearOfPurchase.text!, serial: serial.text!, caliber: caliber.text!)
+            
         }
     }
 

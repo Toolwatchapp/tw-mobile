@@ -11,7 +11,7 @@ import Foundation
 /**
 *  A simple datastructure for watches that handles saving via NSCoding
 */
-class Watch: SyncronizableModel, NSCoding {
+class Watch: NSObject, NSCoding {
     
     /// Core attributes
     var id: Int
@@ -67,7 +67,7 @@ class Watch: SyncronizableModel, NSCoding {
      - returns: A new watch
      */
     init(id: Int, brand: String, model: String, yearOfPurchase: String, serial: String,
-        caliber: String, status: Int, measures: [Measure]){
+        caliber: String, status:Int, measures: [Measure]){
         
             self.id = id
             self.brand = brand
@@ -192,6 +192,7 @@ class Watch: SyncronizableModel, NSCoding {
         
         self.init(id: id, brand: brand, model: model, yearOfPurchase: year, serial: serial,
             caliber: caliber, status: status, measures: measures)
+        
     }
 
     

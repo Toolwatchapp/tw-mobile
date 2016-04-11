@@ -142,9 +142,16 @@ class MeasureViewController: UITableViewWithHeader {
         //This was measure 2/2, display the result screen
         if(watch.currentStatus() == Watch.Status.ACCURACY_MEASURE){
             
-            //Notify in one month
-            notification.alertBody = "Let's start a new measure for your " + self.watch.brand + " " + self.watch.model + "!"
-            notification.fireDate = NSDate().dateByAddingTimeInterval(30*24*60*60) // 1 month
+            //Add the accuracyMeasure
+            API.newAccuracyMeasure((watch.measures.last?.id)!,
+                userTime: clickedDate.timeIntervalSince1970,
+                referenceTime: offsetedDate.timeIntervalSince1970,
+                callback: {
+                    (success:Bool) in
+                    //Notify in one month
+                    notification.alertBody = "Let's start a new measure for your " + self.watch.brand + " " + self.watch.model + "!"
+                    notification.fireDate = NSDate().dateByAddingTimeInterval(30*24*60*60) // 1 month
+                });
 
             //Show the result screen
             let resultView =  self.storyboard?.instantiateViewControllerWithIdentifier("ResultID") as! UINavigationController
@@ -154,9 +161,19 @@ class MeasureViewController: UITableViewWithHeader {
             
         //This was measure 1/1 go back to the watch list
         }else{
-            //Notify in 12 hours
-            notification.alertBody = "It's time to the check your " + self.watch.brand + " " + self.watch.model + " acuracy !"
-            notification.fireDate = NSDate().dateByAddingTimeInterval(12*60*60) // 12 hours
+            
+            //Add the first measure
+            API.newMeasure(watch.id,
+                userTime: clickedDate.timeIntervalSince1970,
+                referenceTime: offsetedDate.timeIntervalSince1970,
+                callback: {
+                    (success:Bool, externalId:Int) in
+                    //Notify in 12 hours
+                    notification.alertBody = "It's time to the check your " + self.watch.brand + " " + self.watch.model + " acuracy !"
+                    notification.fireDate = NSDate().dateByAddingTimeInterval(12*60*60) // 12 hours
+                    self.watch.measures.last?.id = externalId;
+
+            });
             
             //Show the watch screen
             WatchesViewController.needRefresh = true;

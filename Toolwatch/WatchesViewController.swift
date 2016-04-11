@@ -11,7 +11,7 @@ import UIKit
 /// Dashboard controller
 class WatchesViewController: UITableViewWithHeader {
     
-    var watches:[Watch] = [Watch]()
+    static var watches:[Watch] = [Watch]()
     var selectedCell: WatchCell!
     
     static var needRefresh:Bool = false
@@ -26,13 +26,13 @@ class WatchesViewController: UITableViewWithHeader {
         super.createHeader("header-dashboard", title: "Measures", subtitle: "Add or start a measure",
             btnArt: "add-btn", btnAction: "addWatch:", rightButton: true)
         
-        if let savedWatches = loadWatches() {
-            print("loading")
-            watches = savedWatches
-        } else {
-            // Load the sample data.
-            watches = watchesData
-        }
+//        if let savedWatches = loadWatches() {
+//            print("loading")
+//            watches = savedWatches
+//        } else {
+//            // Load the sample data.
+//            watches = watchesData
+//        }
     }
     
     /**
@@ -84,7 +84,7 @@ class WatchesViewController: UITableViewWithHeader {
      */
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return watches.count
+        return WatchesViewController.watches.count
     }
     
     /**
@@ -100,7 +100,7 @@ class WatchesViewController: UITableViewWithHeader {
         let cell = tableView.dequeueReusableCellWithIdentifier("WatchCell", forIndexPath: indexPath)
             as! WatchCell
         
-        let watch = watches[indexPath.row] as Watch
+        let watch = WatchesViewController.watches[indexPath.row] as Watch
         cell.watch = watch
         cell.detailCallback = self.detailCallback;
         cell.measureCallback = self.measureCallback;
@@ -148,12 +148,19 @@ class WatchesViewController: UITableViewWithHeader {
             
             //Add the new watch to the watches array
             if let watch = addWatchViewController.watch {
-                watches.append(watch)
+                
+                API.saveWatch(watch, callback: {(success:Bool, externalId:Int) in
+                
+                    WatchesViewController.watches[WatchesViewController.watches.indexOf(watch)!].id = externalId
+                    self.saveWatches();
+                
+                });
+                
+                WatchesViewController.watches.append(watch)
                 
                 //update the tableView
-                let indexPath = NSIndexPath(forRow: watches.count-1, inSection: 0)
+                let indexPath = NSIndexPath(forRow: WatchesViewController.watches.count-1, inSection: 0)
                 tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                self.saveWatches()
             }
         }
     }
@@ -176,9 +183,16 @@ class WatchesViewController: UITableViewWithHeader {
      */
     @IBAction func deleteWatch(segue:UIStoryboardSegue) {
         
-        self.watches.removeAtIndex(self.selectedCell.indexPath.item)
+
+        
+        API.deleteWatch(WatchesViewController.watches[self.selectedCell.indexPath.item], callback: {
+            (success:Bool) in
+            self.saveWatches();
+        });
+        
+        WatchesViewController.watches.removeAtIndex(self.selectedCell.indexPath.item)
         self.tableView.deleteRowsAtIndexPaths([self.selectedCell.indexPath], withRowAnimation: .Automatic)
-        self.saveWatches()
+ 
     }
     
     /**
@@ -187,6 +201,11 @@ class WatchesViewController: UITableViewWithHeader {
      - parameter segue: the triggered segue
      */
     @IBAction func editWatch(segue:UIStoryboardSegue) {
+        
+        API.updateWatch(WatchesViewController.watches[self.selectedCell.indexPath.item], callback: {
+            (success:Bool) in
+            self.saveWatches();
+        });
 
         self.tableView.reloadRowsAtIndexPaths([self.selectedCell.indexPath], withRowAnimation: .Automatic)
         self.saveWatches()
@@ -198,7 +217,7 @@ class WatchesViewController: UITableViewWithHeader {
     Persists watch
     */
     func saveWatches(){
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(self.watches, toFile: Watch.ArchiveURL.path!)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(WatchesViewController.watches, toFile: Watch.ArchiveURL.path!)
         print("Saving...")
         if !isSuccessfulSave {
             print("Failed to save watches...")
