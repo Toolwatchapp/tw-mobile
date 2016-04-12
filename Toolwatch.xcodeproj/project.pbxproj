@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C32535651CBD91E400AF79C3 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32535641CBD91E400AF79C3 /* Utils.swift */; };
 		C3405A3B1C6B9A6F00512049 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3405A3A1C6B9A6F00512049 /* AppDelegate.swift */; };
 		C3405A3D1C6B9A6F00512049 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3405A3C1C6B9A6F00512049 /* ViewController.swift */; };
 		C3405A401C6B9A6F00512049 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3405A3E1C6B9A6F00512049 /* Main.storyboard */; };
@@ -134,6 +135,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C32535641CBD91E400AF79C3 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C3405A371C6B9A6F00512049 /* Toolwatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Toolwatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3405A3A1C6B9A6F00512049 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3405A3C1C6B9A6F00512049 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				C3405A411C6B9A6F00512049 /* Assets.xcassets */,
 				C3405A461C6B9A6F00512049 /* Info.plist */,
 				C3CB4DD31C6BC8EC00B5BAE8 /* SampleData.swift */,
+				C32535641CBD91E400AF79C3 /* Utils.swift */,
 			);
 			path = Toolwatch;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				C3405A3D1C6B9A6F00512049 /* ViewController.swift in Sources */,
 				C3CB4DD41C6BC8EC00B5BAE8 /* SampleData.swift in Sources */,
 				C3E0ED6E1C7FD3C000AD68F8 /* LoginViewController.swift in Sources */,
+				C32535651CBD91E400AF79C3 /* Utils.swift in Sources */,
 				C3405A3B1C6B9A6F00512049 /* AppDelegate.swift in Sources */,
 				C3E0ED031C7FB69F00AD68F8 /* SwiftyJSON.swift in Sources */,
 				C3E59D941C7D0A560081B711 /* ResultViewController.swift in Sources */,

@@ -20,8 +20,8 @@ class Watch: NSObject, NSCoding {
     var yearOfPurchase: String
     var serial: String
     var caliber: String
-    var status: Int
     var measures: [Measure]
+    var historySize:Int
     
     /// Persistence related attribute
     static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
@@ -47,8 +47,8 @@ class Watch: NSObject, NSCoding {
             self.yearOfPurchase = yearOfPurchase
             self.serial = serial
             self.caliber = caliber
-            self.status = Status.NEVER_MEASURED
-            self.id = Int(NSDate().timeIntervalSince1970)
+            self.id = -Int(NSDate().timeIntervalSince1970)
+            self.historySize = 0
             self.measures = [Measure]()
     }
     
@@ -67,7 +67,7 @@ class Watch: NSObject, NSCoding {
      - returns: A new watch
      */
     init(id: Int, brand: String, model: String, yearOfPurchase: String, serial: String,
-        caliber: String, status:Int, measures: [Measure]){
+        caliber: String, historySize:Int, measures: [Measure]){
         
             self.id = id
             self.brand = brand
@@ -75,8 +75,8 @@ class Watch: NSObject, NSCoding {
             self.yearOfPurchase = yearOfPurchase
             self.serial = serial
             self.caliber = caliber
-            self.status = status
             self.measures = measures
+            self.historySize = historySize
     }
     
     /**
@@ -86,15 +86,13 @@ class Watch: NSObject, NSCoding {
      - parameter referenceTime: referenceTime in seconds since 1970
      */
     func addMeasure(userTime:Double, referenceTime:Double){
-        switch self.status {
+        switch self.getStatus() {
             
         case Status.NEVER_MEASURED, Status.ACCURACY_MEASURE:
             measures.append(Measure(measureTime: userTime, measureReferenceTime: referenceTime))
-            self.status = Status.WAITING_LIMIT
             break
         case Status.FIRST_MEASURE:
             measures.last!.addAccuracyMeasure(userTime, accuracyReferenceTime: referenceTime)
-            self.status = Status.ACCURACY_MEASURE
             break
         default:
             print("Something went wrong")
@@ -106,12 +104,12 @@ class Watch: NSObject, NSCoding {
      
      - returns: the accuracy or an empty Double if we don't have any accuracy
      */
-    func accuracy() -> Double{
+    func accuracy() -> Float!{
         
-        if(status == Status.ACCURACY_MEASURE){
-            return measures.last!.accuracy();
+        if(!self.measures.isEmpty){
+            return (self.measures.last?.getAccuracy())!
         }
-        return Double()
+        return nil
     }
 
     /**
@@ -119,15 +117,25 @@ class Watch: NSObject, NSCoding {
      
      - returns: Watch.Status enum
      */
-    func currentStatus() -> Int{
+    func getStatus() -> Float{
         
-        if(self.status == Status.FIRST_MEASURE &&
-            (NSDate().timeIntervalSince1970-measures.last!.measureReferenceTime)/3600 > 12){
+        if(self.measures.isEmpty){
+            
+            return Status.NEVER_MEASURED
+            
+        }else if((NSDate().timeIntervalSince1970-measures.last!.measureReferenceTime)/3600 > 12
+            && measures.last!.status < Status.ACCURACY_MEASURE){
                 
-            self.status = Status.FIRST_MEASURE
-        }
+            return Status.FIRST_MEASURE
         
-        return self.status
+        }else if((NSDate().timeIntervalSince1970-measures.last!.measureReferenceTime)/3600 < 12
+            && measures.last!.status < Status.ACCURACY_MEASURE){
+            
+            return Status.WAITING_LIMIT
+        }else{
+            
+            return Status.ACCURACY_MEASURE
+        }
     }
 
     /**
@@ -148,10 +156,10 @@ class Watch: NSObject, NSCoding {
      - ACCURACY_MEASURE: We are at the 2/2 state
      */
     struct Status {
-        static let NEVER_MEASURED:Int = 0
-        static let FIRST_MEASURE:Int = 1
-        static let WAITING_LIMIT:Int = 2
-        static let ACCURACY_MEASURE:Int = 3
+        static let NEVER_MEASURED:Float = 0
+        static let FIRST_MEASURE:Float = 1
+        static let WAITING_LIMIT:Float = 1.5
+        static let ACCURACY_MEASURE:Float = 2
     }
     
     // MARK: NSCoding
@@ -168,8 +176,8 @@ class Watch: NSObject, NSCoding {
         aCoder.encodeObject(self.yearOfPurchase, forKey: "WATCH_YEAR")
         aCoder.encodeObject(self.serial, forKey: "WATCH_SERIAL")
         aCoder.encodeObject(self.caliber, forKey: "WATCH_CALIBER")
-        aCoder.encodeInteger(self.status, forKey: "WATCH_STATUS")
         aCoder.encodeObject(self.measures, forKey: "WATCH_MEASURES")
+        aCoder.encodeInteger(self.historySize, forKey: "WATCH_HISTORY");
         
     }
     
@@ -188,10 +196,10 @@ class Watch: NSObject, NSCoding {
         let serial = aDecoder.decodeObjectForKey("WATCH_SERIAL") as! String
         let caliber = aDecoder.decodeObjectForKey("WATCH_CALIBER") as! String
         let measures = aDecoder.decodeObjectForKey("WATCH_MEASURES") as! [Measure]
-        let status = aDecoder.decodeIntegerForKey( "WATCH_STATUS" )
+        let historySize = aDecoder.decodeIntegerForKey("WATCH_HISTORY")
         
         self.init(id: id, brand: brand, model: model, yearOfPurchase: year, serial: serial,
-            caliber: caliber, status: status, measures: measures)
+            caliber: caliber, historySize: historySize, measures: measures)
         
     }
 

@@ -11,29 +11,37 @@ import Foundation
 /// Representes a couple of measure
 class Measure : NSObject, NSCoding{
     
-    var id: Int
-    var measureUserTime: Double
-    var measureReferenceTime: Double
-    var accuracyUserTime: Double!
-    var accuracyReferenceTime: Double!
+     var id: Int
+     var measureUserTime: Double
+     var measureReferenceTime: Double
+     var accuracyUserTime: Double!
+     var accuracyReferenceTime: Double!
+     var accuracy:Float=Float.infinity
+     var age:Float=0
+     var status:Float = Watch.Status.FIRST_MEASURE
     
     /**
      Default constructor for measure coming from the API
      
-     - parameter id:
-     - parameter measureTime:
-     - parameter measureReferenceTime:
-     - parameter accuracyTime:
-     - parameter accuracyReferenceTime:
+     - parameter id:                    <#id description#>
+     - parameter measureUserTime:       <#measureUserTime description#>
+     - parameter measureReferenceTime:  <#measureReferenceTime description#>
+     - parameter accuracyTime:          <#accuracyTime description#>
+     - parameter accuracyReferenceTime: <#accuracyReferenceTime description#>
+     - parameter accuracy:              <#accuracy description#>
+     - parameter accuracyAge:           <#accuracyAge description#>
+     - parameter status:                <#status description#>
      
-     - returns: new Measure
+     - returns: <#return value description#>
      */
-    init(id: Int, measureTime: Double, measureReferenceTime:Double,  accuracyTime: Double, accuracyReferenceTime: Double){
-        self.id = id
-        self.measureReferenceTime = measureReferenceTime
-        self.measureUserTime = measureTime
-        self.accuracyUserTime = accuracyTime
-        self.accuracyReferenceTime = accuracyReferenceTime
+    init(id: Int, measureUserTime: Double, measureReferenceTime: Double, accuracyTime: Double, accuracyReferenceTime: Double,
+        accuracy: Float, accuracyAge: Float, status: Float){
+            self.id = id
+            self.measureUserTime = measureUserTime
+            self.measureReferenceTime = measureReferenceTime
+            self.accuracy = accuracy
+            self.age = accuracyAge
+            self.status = status
     }
     
     /**
@@ -45,7 +53,7 @@ class Measure : NSObject, NSCoding{
      - returns: A new measure with timestamp as id
      */
     init(measureTime: Double, measureReferenceTime:Double){
-        self.id = Int(NSDate().timeIntervalSince1970)
+        self.id = -Int(NSDate().timeIntervalSince1970)
         self.measureReferenceTime = measureReferenceTime
         self.measureUserTime = measureTime
     }
@@ -56,6 +64,7 @@ class Measure : NSObject, NSCoding{
      - parameter measureTime:          1/2 userTime  in seconds since 1970
      - parameter measureReferenceTime: 1/2 refTime in seconds since 1970
      
+     - returns: A new measure
      */
     init(id:Int, measureTime: Double, measureReferenceTime:Double){
         self.id = id
@@ -74,12 +83,20 @@ class Measure : NSObject, NSCoding{
         
         self.accuracyUserTime = accuracyTime
         self.accuracyReferenceTime = accuracyReferenceTime
-    }
-    
-    func accuracy() -> Double{
+        self.status = Watch.Status.ACCURACY_MEASURE
         let userDelta = self.accuracyUserTime-self.measureUserTime
         let refDelta = self.accuracyReferenceTime-self.measureReferenceTime
-        return round(((refDelta*86400/userDelta)-86400)*100)/100
+        self.accuracy = Float(round(((refDelta*86400/userDelta)-86400)*100)/100.0)
+    }
+    
+    /**
+     Returns measure accuracy
+     
+     - returns: Float
+     */
+    func getAccuracy() -> Float{
+        
+        return self.accuracy;
     }
     
     // MARK: NSCoding
@@ -95,7 +112,9 @@ class Measure : NSObject, NSCoding{
         aCoder.encodeObject(self.measureReferenceTime, forKey: "MEASURE_REFERENCE_TIME")
         aCoder.encodeObject(self.accuracyUserTime, forKey: "MEASURE_ACCURACY_USER_TIME")
         aCoder.encodeObject(self.accuracyReferenceTime, forKey: "MEASURE_ACCURACY_REFERENCE_TIME")
-        
+        aCoder.encodeFloat(self.age, forKey: "MEASURE_AGE")
+        aCoder.encodeFloat(self.accuracy, forKey: "MEASURE_ACCURACY")
+        aCoder.encodeFloat(self.status, forKey: "MEASURE_STATUS")
     }
     
     /**
@@ -111,12 +130,13 @@ class Measure : NSObject, NSCoding{
         let measureReferenceTime = aDecoder.decodeObjectForKey("MEASURE_REFERENCE_TIME") as? Double
         let accuracyUserTime = aDecoder.decodeObjectForKey("MEASURE_ACCURACY_USER_TIME") as? Double
         let accuracyReferenceTime = aDecoder.decodeObjectForKey("MEASURE_ACCURACY_REFERENCE_TIME") as? Double
-        
-        if(accuracyUserTime == nil && accuracyReferenceTime == nil){
-            self.init(id: id, measureTime: measureUserTime!,measureReferenceTime: measureReferenceTime!)
-        }else{
-            self.init(id: id, measureTime: measureUserTime!, measureReferenceTime:measureReferenceTime!,  accuracyTime: accuracyUserTime!, accuracyReferenceTime: accuracyReferenceTime!)
-        }
+        let age = aDecoder.decodeFloatForKey("MEASURE_AGE")
+        let accuracy = aDecoder.decodeFloatForKey("MEASURE_ACCURACY")
+        let status = aDecoder.decodeFloatForKey("MEASURE_STATUS")
+
+        self.init(id: id, measureUserTime: measureUserTime!, measureReferenceTime:measureReferenceTime!,
+            accuracyTime: accuracyUserTime!, accuracyReferenceTime: accuracyReferenceTime!,
+            accuracy:accuracy, accuracyAge:age, status:status)
         
     }
     

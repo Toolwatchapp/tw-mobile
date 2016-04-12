@@ -151,17 +151,16 @@ public class API{
                     
                     for rawMeasure in rawWatch["measures"].arrayValue{
                         
-                        if(rawMeasure.string != "null"){
-                            measures.append(Measure(
-                                id: rawMeasure["id"].int!,
-                                measureTime: rawMeasure["measureUserTime"].double!,
-                                measureReferenceTime: rawMeasure["measureReferenceTime"].double!,
-                                accuracyTime: rawMeasure["accuracyUserTime"].double!,
-                                accuracyReferenceTime: rawMeasure["accuracyReferenceTime"].double!,
-                                accuracy: rawMeasure["accuracy"].float!,
-                                accuracyAge: rawMeasure["accuracyAge"].float!,
-                                status: rawMeasure["statusId"]))
-                        }
+
+                        measures.append(Measure(
+                            id: rawMeasure["id"].int!,
+                            measureUserTime: rawMeasure["measureUserTime"].double!,
+                            measureReferenceTime: rawMeasure["measureReferenceTime"].double!,
+                            accuracyTime: rawMeasure["accuracyUserTime"].double!,
+                            accuracyReferenceTime: rawMeasure["accuracyReferenceTime"].double!,
+                            accuracy: rawMeasure["accuracy"].float!,
+                            accuracyAge: rawMeasure["accuracyAge"].float!,
+                            status: rawMeasure["statusId"].float!))
                         
                     }
                     
@@ -171,7 +170,7 @@ public class API{
                         yearOfPurchase: String(rawWatch["yearOfBuy"].int!),
                         serial: rawWatch["serial"].string!,
                         caliber: rawWatch["caliber"].string!,
-                        status:0,
+                        historySize: rawWatch["historySize"].int!,
                         measures:measures)
                     )
                 }

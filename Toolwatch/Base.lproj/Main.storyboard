@@ -148,17 +148,18 @@
         <scene sceneID="vf4-H0-hLC">
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="YJQ-Zx-yXk" customClass="WatchesViewController" customModule="Toolwatch" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="59" sectionHeaderHeight="28" sectionFooterHeight="28" id="FTb-4W-SK2">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="109" sectionHeaderHeight="28" sectionFooterHeight="28" id="FTb-4W-SK2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="-20" maxX="0.0" maxY="0.0"/>
+                        <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="WatchCell" rowHeight="70" id="qJ7-0g-FLs" customClass="WatchCell" customModule="Toolwatch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="WatchCell" rowHeight="109" id="qJ7-0g-FLs" customClass="WatchCell" customModule="Toolwatch" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="109"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qJ7-0g-FLs" id="dvm-Qp-oek">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="109"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rolex - Submariner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1b-6H-ldr">
@@ -167,22 +168,33 @@
                                             <color key="textColor" red="0.20000000000000001" green="0.19607843137254902" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submariner" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jk8-cr-38p">
+                                            <rect key="frame" x="14" y="41" width="169" height="28"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
+                                            <color key="textColor" red="0.20000000000000001" green="0.1960784314" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+3.2 seconds per day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFT-ou-mxy">
-                                            <rect key="frame" x="14" y="41" width="133" height="20"/>
+                                            <rect key="frame" x="14" y="68" width="133" height="20"/>
                                             <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="Jk8-cr-38p" firstAttribute="centerY" secondItem="dvm-Qp-oek" secondAttribute="centerY" id="0tr-Tf-edS"/>
+                                        <constraint firstItem="Jk8-cr-38p" firstAttribute="trailing" secondItem="a1b-6H-ldr" secondAttribute="trailing" id="1AE-ms-v8q"/>
                                         <constraint firstItem="a1b-6H-ldr" firstAttribute="top" secondItem="dvm-Qp-oek" secondAttribute="topMargin" constant="6" id="AeK-xh-YeI"/>
                                         <constraint firstItem="a1b-6H-ldr" firstAttribute="leading" secondItem="dvm-Qp-oek" secondAttribute="leadingMargin" constant="6" id="Pky-bo-fkA"/>
                                         <constraint firstItem="AFT-ou-mxy" firstAttribute="leading" secondItem="dvm-Qp-oek" secondAttribute="leadingMargin" constant="6" id="ZUA-Vw-m7g"/>
-                                        <constraint firstItem="AFT-ou-mxy" firstAttribute="top" secondItem="dvm-Qp-oek" secondAttribute="topMargin" constant="33" id="pis-mN-ACv"/>
+                                        <constraint firstItem="AFT-ou-mxy" firstAttribute="top" secondItem="dvm-Qp-oek" secondAttribute="topMargin" constant="60" id="pis-mN-ACv"/>
+                                        <constraint firstItem="Jk8-cr-38p" firstAttribute="leading" secondItem="AFT-ou-mxy" secondAttribute="leading" id="rKp-BQ-tLa"/>
+                                        <constraint firstItem="Jk8-cr-38p" firstAttribute="top" secondItem="dvm-Qp-oek" secondAttribute="topMargin" constant="33" id="sEg-ig-tgG"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="accuracyLabel" destination="AFT-ou-mxy" id="QTj-uw-hvz"/>
+                                    <outlet property="modelLabel" destination="Jk8-cr-38p" id="evy-gY-tEJ"/>
                                     <outlet property="watchLabel" destination="a1b-6H-ldr" id="WqR-4a-0AV"/>
                                 </connections>
                             </tableViewCell>

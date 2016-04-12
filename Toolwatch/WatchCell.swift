@@ -13,11 +13,13 @@ class WatchCell: UITableViewCell {
     
     @IBOutlet weak var watchLabel: UILabel!
     @IBOutlet weak var accuracyLabel: UILabel!
+    @IBOutlet weak var modelLabel: UILabel!
     
     /// Constructor for the custom cell
     var watch: Watch! {
         didSet {
-            watchLabel.text = watch.brand + " " + watch.model
+            watchLabel.text = watch.brand
+            modelLabel.text = watch.model
             accuracyLabel.text = self.accuracyLabelText()
             self.createCtaButton()
             self.createDetailButton()
@@ -37,7 +39,7 @@ class WatchCell: UITableViewCell {
     private func createDetailButton() {
         let image = UIImage(named: "right-icon") as UIImage?
         let button   = UIButton(type: UIButtonType.Custom) as UIButton
-        button.frame = CGRectMake((self.frame.width - 50), 25, 30, 30)
+        button.frame = CGRectMake((self.frame.width - 50), 40, 30, 30)
         button.setImage(image, forState: .Normal)
         button.addTarget(self, action: "detailBtnClicked", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -57,7 +59,7 @@ class WatchCell: UITableViewCell {
         
         var label = String()
         
-        switch watch.currentStatus() {
+        switch watch.getStatus() {
             
         case Watch.Status.NEVER_MEASURED, Watch.Status.FIRST_MEASURE:
             label = "Pending measurement"
@@ -97,7 +99,7 @@ class WatchCell: UITableViewCell {
         
         let ctaButton   = UIButton(type: UIButtonType.System) as UIButton
         
-        ctaButton.frame = CGRectMake((self.frame.width - 180), 25, 120, 30)
+        ctaButton.frame = CGRectMake((self.frame.width - 180), 40, 120, 30)
         ctaButton.backgroundColor = UIColor(red: 77/255, green: 119/255, blue: 167/255, alpha: 1)
         ctaButton.addTarget(self, action: "measureBtnClicked", forControlEvents: UIControlEvents.TouchUpInside)
         ctaButton.layer.cornerRadius = 5;
@@ -105,7 +107,7 @@ class WatchCell: UITableViewCell {
         ctaButton.titleLabel!.font =  UIFont(name: "Avenir-Light", size: 15)
         ctaButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         
-        switch watch.currentStatus() {
+        switch watch.getStatus() {
             
         case Watch.Status.NEVER_MEASURED, Watch.Status.ACCURACY_MEASURE:
             ctaButton.setTitle("Measure me", forState: UIControlState.Normal)

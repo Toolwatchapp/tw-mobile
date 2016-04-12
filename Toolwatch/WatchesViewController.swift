@@ -23,7 +23,7 @@ class WatchesViewController: UITableViewWithHeader {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        super.createHeader("header-dashboard", title: "Measures", subtitle: "Add or start a measure",
+        super.createHeader("header-dashboard", title: "Measures", subtitle: "ADD OR START A NEW MEASURE",
             btnArt: "add-btn", btnAction: "addWatch:", rightButton: true)
         
 //        if let savedWatches = loadWatches() {
@@ -105,7 +105,31 @@ class WatchesViewController: UITableViewWithHeader {
         cell.detailCallback = self.detailCallback;
         cell.measureCallback = self.measureCallback;
         cell.indexPath = indexPath
+        
+        let border = CALayer()
+        let width = CGFloat(1)
+        border.borderColor = UIColor(red: CGFloat(243) / 255, green: CGFloat(243) / 255, blue: CGFloat(244) / 255, alpha: CGFloat(1)).CGColor
+        border.frame = CGRect(x: 0, y: cell.frame.size.height - width, width:  cell.frame.size.width, height: cell.frame.size.height)
+        
+        border.borderWidth = width
+        cell.layer.addSublayer(border)
+        cell.layer.masksToBounds = true
+        
+        
         return cell
+    }
+    
+    /**
+     Defines custom height for each rows
+     
+     - parameter tableView:
+     - parameter indexPath:
+     
+     - returns: the heigh of a row
+     */
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        return CGFloat(110)
     }
     
     /**

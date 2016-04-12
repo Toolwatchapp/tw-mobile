@@ -141,7 +141,7 @@ class AddWatchViewController: UITableViewWithHeader {
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SaveWatch" {
-            watch = Watch(brand: brand.text!, model: model.text!, yearOfPurchase: yearOfPurchase.text!, serial: serial.text!, caliber: caliber.text!)
+            watch = Watch(brand: brand.text!.trim(), model: model.text!.trim(), yearOfPurchase: yearOfPurchase.text!, serial: serial.text!, caliber: caliber.text!)
             
         }
     }

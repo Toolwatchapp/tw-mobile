@@ -19,9 +19,6 @@ class ResultViewController: UITableViewWithHeader {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.watch = Watch(id: 2, brand: "Rolex", model: "submariner", yearOfPurchase: "2015", serial: "074", caliber: "aaa", status: Watch.Status.ACCURACY_MEASURE,
-            measures: [Measure(id:-1, measureTime: 1438375950, measureReferenceTime: 1438375950, accuracyTime: 1438635156, accuracyReferenceTime: 1438635150)])
-        
         measureButton.layer.cornerRadius = 5;
         
         super.createHeader(

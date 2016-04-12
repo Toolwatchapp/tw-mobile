@@ -81,7 +81,7 @@ class UITableViewWithHeader: UITableViewController {
         headerView.sendSubviewToBack(headerImageView);
         
         headerView.addSubview(self.createLabel(title, postion: (headerImageView.frame.size.height/2)-20, font: "Avenir-Light",  size: 35))
-        headerView.addSubview(self.createLabel(subtitle, postion: (headerImageView.frame.size.height/2)+5, font: "Avenir-Light",  size: 15))
+        headerView.addSubview(self.createLabel(subtitle, postion: (headerImageView.frame.size.height/2)+10, font: "Avenir-Light",  size: 12))
         
         return headerView
 
@@ -129,7 +129,6 @@ class UITableViewWithHeader: UITableViewController {
         label.textAlignment = NSTextAlignment.Center
         label.text = labelText
         label.textColor = 	UIColor.whiteColor()
-        label.shadowColor = UIColor.whiteColor()
         label.font = UIFont(name: font, size: CGFloat(size))
         label.numberOfLines = 0;
         return label

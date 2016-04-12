@@ -140,7 +140,7 @@ class MeasureViewController: UITableViewWithHeader {
         notification.category = "TODO_CATEGORY"
         
         //This was measure 2/2, display the result screen
-        if(watch.currentStatus() == Watch.Status.ACCURACY_MEASURE){
+        if(watch.getStatus() == Watch.Status.ACCURACY_MEASURE){
             
             //Add the accuracyMeasure
             API.newAccuracyMeasure((watch.measures.last?.id)!,

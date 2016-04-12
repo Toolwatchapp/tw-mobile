@@ -14,10 +14,9 @@ class APIRequest{
     private var httpMethod:Alamofire.Method
     private var url:String
     private var parameters:[String: String]
-    private var valuesToModify:[String:String]
     private var callback : ((JSON, Int)-> Void)?
     private var requestCreated:Double
-    private let baseUrl:String = "http://192.168.0.105/api/"
+    private let baseUrl:String = "http://192.168.0.107/api/"
     
     private static var apiKey:String!
     
@@ -32,8 +31,7 @@ class APIRequest{
      
      - returns: <#return value description#>
      */
-    init(httpMethod:Alamofire.Method, url:String, parameters:[String: String] = [String: String](),
-        valuesToModify:[String:String] = [String: String]()){
+    init(httpMethod:Alamofire.Method, url:String, parameters:[String: String] = [String: String]()){
             
             self.httpMethod = httpMethod
             self.url = baseUrl+url
@@ -42,8 +40,6 @@ class APIRequest{
             if(APIRequest.apiKey != nil){
                 self.parameters["X-API-KEY"] = APIRequest.apiKey
             }
-            
-            self.valuesToModify = valuesToModify
             self.requestCreated = NSDate().timeIntervalSince1970
     }
     
