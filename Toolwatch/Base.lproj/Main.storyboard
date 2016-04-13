@@ -142,7 +142,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVf-R2-uzZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1442.5" y="-572.5"/>
+            <point key="canvasLocation" x="1442.5" y="-588.5"/>
         </scene>
         <!--Watches View Controller-->
         <scene sceneID="vf4-H0-hLC">
@@ -209,7 +209,36 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ugz-Jr-Yxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1956.5" y="-572.5"/>
+            <point key="canvasLocation" x="2084.5" y="-588.5"/>
+        </scene>
+        <!--Help View Controller-->
+        <scene sceneID="90i-Gv-d5x">
+            <objects>
+                <tableViewController id="rNS-pI-BQp" customClass="HelpViewController" customModule="Toolwatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="eny-Ku-nFj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Q8w-fg-pCp">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q8w-fg-pCp" id="B3G-QQ-wf8">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="rNS-pI-BQp" id="eLm-DB-dBb"/>
+                            <outlet property="delegate" destination="rNS-pI-BQp" id="5u1-gi-Yqp"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="nEr-gD-n8s"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B14-qY-64a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2084.5" y="166.5"/>
         </scene>
         <!--Result View Controller-->
         <scene sceneID="MZe-KI-SgY">
@@ -310,7 +339,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GJF-Zq-yIt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="hly-j5-2ao" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3840.5" y="-1332.5"/>
+            <point key="canvasLocation" x="4020.5" y="-1388.5"/>
         </scene>
         <!--Measure View Controller-->
         <scene sceneID="kot-Qt-I8c">
@@ -431,7 +460,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C5W-be-Xbs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2911.5" y="-1332.5"/>
+            <point key="canvasLocation" x="3091.5" y="-1388.5"/>
         </scene>
         <!--Add Watch View Controller-->
         <scene sceneID="DIU-5I-74s">
@@ -681,34 +710,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ac6-sw-jzk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4t8-uo-xI0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2906.5" y="-572.5"/>
-        </scene>
-        <!--Item 2-->
-        <scene sceneID="n2r-T6-e7b">
-            <objects>
-                <viewController id="eyT-6c-pfO" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1I0-Yg-VVw"/>
-                        <viewControllerLayoutGuide type="bottom" id="vZN-NP-RPR"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="diF-bH-PEq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="adadawd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Of6-ga-mTa">
-                                <rect key="frame" x="178" y="212" width="70" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="QuL-UR-Aa8"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BN3-dl-Ozq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1364.5" y="782.5"/>
+            <point key="canvasLocation" x="3086.5" y="-588.5"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="ddT-E8-En7">
@@ -1019,7 +1021,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="LTm-cc-w5B" kind="relationship" relationship="viewControllers" id="dnE-R2-3Mj"/>
-                        <segue destination="eyT-6c-pfO" kind="relationship" relationship="viewControllers" id="VfM-Al-UkD"/>
+                        <segue destination="eUJ-iN-Rbf" kind="relationship" relationship="viewControllers" id="7UJ-c0-UFR"/>
+                        <segue destination="BLM-YE-YKY" kind="relationship" relationship="viewControllers" id="dfY-YT-Ofc"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hcQ-Hi-Heq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1043,7 +1046,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CfG-fX-p9H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2434.5" y="-572.5"/>
+            <point key="canvasLocation" x="2614.5" y="-588.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LW5-PX-AEX">
@@ -1062,7 +1065,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S69-Af-9CV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2434.5" y="-1332.5"/>
+            <point key="canvasLocation" x="2614.5" y="-1388.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tgB-Ts-c89">
@@ -1085,7 +1088,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z8b-NA-Z2A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3368.5" y="-1332.5"/>
+            <point key="canvasLocation" x="3548.5" y="-1388.5"/>
         </scene>
         <!--Edit Watch View Controller-->
         <scene sceneID="5Iv-Bv-Sn7">
@@ -1339,7 +1342,7 @@
                 <exit id="nUi-H3-hjS" userLabel="Exit" sceneMemberID="exit"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yYC-Ah-cDU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2911.5" y="206.5"/>
+            <point key="canvasLocation" x="3091.5" y="182.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Q3E-ZK-OGI">
@@ -1583,7 +1586,199 @@
                     </cells>
                 </tableViewSection>
             </objects>
-            <point key="canvasLocation" x="2434.5" y="198.5"/>
+            <point key="canvasLocation" x="2614.5" y="174.5"/>
+        </scene>
+        <!--Time View Controller-->
+        <scene sceneID="29S-rJ-SoS">
+            <objects>
+                <viewController id="mLm-u3-VHD" customClass="TimeViewController" customModule="Toolwatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TU1-bC-7OR"/>
+                        <viewControllerLayoutGuide type="bottom" id="bnx-dd-oZH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K9x-eH-Gf8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="header-image" translatesAutoresizingMaskIntoConstraints="NO" id="rUB-OJ-C1W">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="204"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Woc-Xm-2wB">
+                                <rect key="frame" x="0.0" y="201" width="375" height="417"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7n3-Fr-bYb">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lqZ-Yn-uzo">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="UTC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbQ-yM-t1r">
+                                                        <rect key="frame" x="40" y="45" width="110" height="21"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="11"/>
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cj8-y4-Syu">
+                                                        <rect key="frame" x="187" y="0.0" width="1" height="79"/>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NEXT LEAP YEAR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xkp-EV-SCE">
+                                                        <rect key="frame" x="201" y="45" width="110" height="21"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="11"/>
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2016" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mf9-Ut-NWl">
+                                                        <rect key="frame" x="201" y="17" width="82" height="32"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="L" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aF3-jQ-eDd">
+                                                        <rect key="frame" x="302" y="32" width="13" height="20"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLA-Rg-VWo">
+                                                        <rect key="frame" x="354" y="29" width="13" height="26"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aE-cp-VN7">
+                                                        <rect key="frame" x="326" y="6" width="13" height="26"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4Z-Gt-hMP">
+                                                        <rect key="frame" x="328" y="53" width="13" height="26"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:59 PM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l80-N6-Xr4">
+                                                        <rect key="frame" x="44" y="17" width="103" height="32"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="blh-qV-5xt">
+                                                        <rect key="frame" x="276" y="0.0" width="35" height="22"/>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="moon-phase-image" translatesAutoresizingMaskIntoConstraints="NO" id="lKE-wf-N6h">
+                                        <rect key="frame" x="79" y="279" width="217" height="115"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="watch-image" translatesAutoresizingMaskIntoConstraints="NO" id="wWv-Tf-4Kd">
+                                        <rect key="frame" x="-38" y="97" width="451" height="305"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hours-hand" translatesAutoresizingMaskIntoConstraints="NO" id="0wR-e6-whl">
+                                        <rect key="frame" x="83" y="193" width="210" height="113"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="minute-hand" translatesAutoresizingMaskIntoConstraints="NO" id="AuD-Cj-7T2">
+                                        <rect key="frame" x="68" y="184" width="239" height="129"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="second-hand" translatesAutoresizingMaskIntoConstraints="NO" id="SAO-Xg-hgr">
+                                        <rect key="frame" x="-34" y="142" width="443" height="215"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" name="windowFrameColor" catalog="System" colorSpace="catalog"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="11:59" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rr-tl-nSi">
+                                <rect key="frame" x="87" y="89" width="201" height="81"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="71"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8r-qL-9fJ">
+                                <rect key="frame" x="304" y="97" width="46" height="33"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bl6-mn-82v">
+                                <rect key="frame" x="304" y="128" width="46" height="35"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50.6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZf-kC-Tsr">
+                                <rect key="frame" x="20" y="118" width="59" height="24"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZQK-U6-E5M"/>
+                    <connections>
+                        <outlet property="AMLabel" destination="B8r-qL-9fJ" id="6er-eG-Ri1"/>
+                        <outlet property="PMLabel" destination="bl6-mn-82v" id="j2z-H8-frj"/>
+                        <outlet property="UTCHoursMinutes" destination="l80-N6-Xr4" id="hpm-Dh-Zen"/>
+                        <outlet property="hoursHand" destination="0wR-e6-whl" id="vcr-cU-XuY"/>
+                        <outlet property="hoursMinutesLabel" destination="8rr-tl-nSi" id="tcY-1v-idu"/>
+                        <outlet property="leapYearIndicator" destination="blh-qV-5xt" id="RYA-no-OYV"/>
+                        <outlet property="leapYearLabel" destination="mf9-Ut-NWl" id="jxN-sz-rLN"/>
+                        <outlet property="minutesHand" destination="AuD-Cj-7T2" id="a68-9b-h2V"/>
+                        <outlet property="moonPhases" destination="lKE-wf-N6h" id="gYk-iS-1ds"/>
+                        <outlet property="secondsHand" destination="SAO-Xg-hgr" id="kfh-Yp-6HX"/>
+                        <outlet property="secondsLabel" destination="OZf-kC-Tsr" id="I40-co-pz0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oNH-et-6jW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2783.5" y="966.5"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="dLx-KG-pmk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="eUJ-iN-Rbf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="BUx-Ty-MDW"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vOC-rN-Zcg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rNS-pI-BQp" kind="relationship" relationship="rootViewController" id="3rr-uu-sgS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VYl-1m-Ms5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1442.5" y="166.5"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="xEs-5H-DFP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="BLM-YE-YKY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="BeL-Us-NfF"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fai-Ue-Tim">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="809-ED-jsp">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="mLm-u3-VHD" kind="relationship" relationship="rootViewController" id="T5n-o7-dc8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Aw-l0-ZaG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1972" y="967"/>
         </scene>
     </scenes>
     <resources>
@@ -1591,9 +1786,15 @@
         <image name="facebook-btn-1" width="75" height="31"/>
         <image name="facebook-image" width="19" height="19"/>
         <image name="header-art-image" width="249" height="133"/>
+        <image name="header-image" width="249" height="144"/>
+        <image name="hours-hand" width="304" height="232"/>
         <image name="insta-btn" width="75" height="31"/>
         <image name="logo-image" width="58" height="11"/>
+        <image name="minute-hand" width="494" height="144"/>
+        <image name="moon-phase-image" width="111" height="111"/>
         <image name="register-btn" width="110" height="32"/>
+        <image name="second-hand" width="288" height="414"/>
         <image name="twitter-btn" width="75" height="31"/>
+        <image name="watch-image" width="199" height="199"/>
     </resources>
 </document>

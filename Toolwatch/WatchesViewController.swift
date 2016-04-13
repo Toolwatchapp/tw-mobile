@@ -26,6 +26,9 @@ class WatchesViewController: UITableViewWithHeader {
         super.createHeader("header-dashboard", title: "Measures", subtitle: "ADD OR START A NEW MEASURE",
             btnArt: "add-btn", btnAction: "addWatch:", rightButton: true)
         
+        tabBarItem = UITabBarItem(title: "Measures", image: UIImage(named: "measure-image"), tag: 0)
+        
+        
 //        if let savedWatches = loadWatches() {
 //            print("loading")
 //            watches = savedWatches

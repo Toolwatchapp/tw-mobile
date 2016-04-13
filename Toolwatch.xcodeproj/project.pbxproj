@@ -15,6 +15,8 @@
 		C3405A451C6B9A6F00512049 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3405A431C6B9A6F00512049 /* LaunchScreen.storyboard */; };
 		C3405A501C6B9A6F00512049 /* ToolwatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3405A4F1C6B9A6F00512049 /* ToolwatchTests.swift */; };
 		C3405A5B1C6B9A7000512049 /* ToolwatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3405A5A1C6B9A7000512049 /* ToolwatchUITests.swift */; };
+		C36C68DD1CBDA89200753C01 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36C68DC1CBDA89200753C01 /* HelpViewController.swift */; };
+		C36C68E41CBDA96A00753C01 /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36C68E31CBDA96A00753C01 /* TimeViewController.swift */; };
 		C39FF6921C77830B008EF0FE /* AddWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39FF6911C77830B008EF0FE /* AddWatchViewController.swift */; };
 		C39FF6991C77B5EF008EF0FE /* MeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39FF6981C77B5EF008EF0FE /* MeasureViewController.swift */; };
 		C3AE4FAF1C7B4D46000C0F30 /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AE4FAE1C7B4D46000C0F30 /* Measure.swift */; };
@@ -149,6 +151,8 @@
 		C3405A561C6B9A7000512049 /* ToolwatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToolwatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3405A5A1C6B9A7000512049 /* ToolwatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolwatchUITests.swift; sourceTree = "<group>"; };
 		C3405A5C1C6B9A7000512049 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C36C68DC1CBDA89200753C01 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		C36C68E31CBDA96A00753C01 /* TimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
 		C39FF6911C77830B008EF0FE /* AddWatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWatchViewController.swift; sourceTree = "<group>"; };
 		C39FF6981C77B5EF008EF0FE /* MeasureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureViewController.swift; sourceTree = "<group>"; };
 		C3AE4FAE1C7B4D46000C0F30 /* Measure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
@@ -273,6 +277,8 @@
 				C3E0ED001C7E08E700AD68F8 /* EditWatchViewController.swift */,
 				C3E0ED6D1C7FD3C000AD68F8 /* LoginViewController.swift */,
 				C3E0ED741CB7E2CD00AD68F8 /* RegisterViewController.swift */,
+				C36C68DC1CBDA89200753C01 /* HelpViewController.swift */,
+				C36C68E31CBDA96A00753C01 /* TimeViewController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -518,6 +524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3E0ED011C7E08E700AD68F8 /* EditWatchViewController.swift in Sources */,
+				C36C68E41CBDA96A00753C01 /* TimeViewController.swift in Sources */,
 				C3E0ED731CB7250D00AD68F8 /* API.swift in Sources */,
 				C3CB4DD01C6BC56600B5BAE8 /* WatchesViewController.swift in Sources */,
 				C3FF3ACB1C7519B60039B1E5 /* UITableViewWithHeader.swift in Sources */,
@@ -528,6 +535,7 @@
 				C3E0EDA11CBBE93000AD68F8 /* AutoCompleteTextField.swift in Sources */,
 				C39FF6921C77830B008EF0FE /* AddWatchViewController.swift in Sources */,
 				C3E0ED6A1C7FC4AE00AD68F8 /* Reach.swift in Sources */,
+				C36C68DD1CBDA89200753C01 /* HelpViewController.swift in Sources */,
 				C3E0ED751CB7E2CD00AD68F8 /* RegisterViewController.swift in Sources */,
 				C3E0ED711CB6F06F00AD68F8 /* HTTPCode.swift in Sources */,
 				C3E0ED501C7FB94400AD68F8 /* APIRequest.swift in Sources */,
