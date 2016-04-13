@@ -32,6 +32,9 @@ class TimeViewController: UIViewController {
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("setTime"), userInfo: nil, repeats: true)
 
         super.viewDidAppear(animated)
+        
+        print(findPhase(60*60*24, targetPhase: 15)); // Next Full Moon
+        print(findPhase(-60*60*24, targetPhase: 0)); // Previous New Moon
     }
     
     func setTime(){
@@ -71,6 +74,49 @@ class TimeViewController: UIViewController {
         
         rotateImage(moonPhases, angle: -moonPhasePercent()*0.279)
         
+    }
+    
+    private func findPhase(jumpingTime:Double, targetPhase:Double)->NSDate{
+        
+        var date = NSDate().dateByAddingTimeInterval(-jumpingTime)
+        var year = 0.0
+        var day = 0.0
+        var month = 0.0
+        
+        
+        repeat{
+            
+            date = date.dateByAddingTimeInterval(jumpingTime)
+            
+            let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+            let components = calendar?.components([.Day, .Year, .Month], fromDate: date)
+            day = Double(components!.day)
+            month = Double(components!.month)
+            year = Double(components!.year)
+            
+            
+        }while(conwayMoonPhase(year, month: month, day: day) != targetPhase)
+        
+        return date;
+    }
+    
+    /**
+     http://www.ben-daglish.net/moon.shtml
+     
+     - parameter year:  <#year description#>
+     - parameter month: <#month description#>
+     - parameter day:   <#day description#>
+     */
+    private func conwayMoonPhase(year:Double, month:Double, day:Double)->Double
+    {
+        var r:Double = year % 100;
+        r %= 19;
+        if (r>9){ r -= 19;}
+        r = ((r * 11.0) % 30) + month + day;
+        if (month<3){r += 2;}
+        r -= ((year<2000) ? 4 : 8.3)
+        r = floor(r+0.5)%30;
+        return (r < 0) ? r+30 : r;
     }
     
     private func moonPhasePercent() -> Double{
