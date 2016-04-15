@@ -10,7 +10,7 @@
 - [x] Result
 - [ ] Login
 - [ ] Signup
-- [ ] Time
+- [x] Time
 - [ ] Help
 
 ### Functionalities
