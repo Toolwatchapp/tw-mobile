@@ -10,7 +10,7 @@
 - [x] Result
 - [ ] Login
 - [ ] Signup
-- [ ] Time
+- [x] Time
 - [ ] Help
 
 ### Functionalities
@@ -26,3 +26,4 @@
 - [ ] Remote notification
 - [ ] Social share
 - [ ] Measures curves
+- [ ] #1
