@@ -16,7 +16,7 @@ class APIRequest{
     private var parameters:[String: String]
     private var callback : ((JSON, Int)-> Void)?
     private var requestCreated:Double
-    private let baseUrl:String = "http://192.168.0.107/api/"
+    private let baseUrl:String = "https://toolwatch.io/api/"
     
     private static var apiKey:String!
     

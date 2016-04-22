@@ -17,11 +17,22 @@ class TimeViewController: UIViewController {
     @IBOutlet weak var secondsLabel: UILabel!
     @IBOutlet weak var UTCHoursMinutes: UILabel!
     @IBOutlet weak var leapYearLabel: UILabel!
-    @IBOutlet weak var leapYearIndicator: UIView!
     @IBOutlet weak var secondsHand: UIImageView!
     @IBOutlet weak var hoursHand: UIImageView!
     @IBOutlet weak var minutesHand: UIImageView!
     @IBOutlet weak var moonPhases: UIImageView!
+    @IBOutlet weak var leftMoonMonth: UILabel!
+    @IBOutlet weak var rightMoonMonth: UILabel!
+    @IBOutlet weak var leftMoonDay: UILabel!
+    @IBOutlet weak var rightMoonDay: UILabel!
+    @IBOutlet weak var inClockMonth: UILabel!
+    @IBOutlet weak var inClockDay: UILabel!
+    let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+    
+    @IBOutlet weak var isThreeYearLeapYear: UILabel!
+    @IBOutlet weak var isTwoYearLeapYearLabel: UILabel!
+    @IBOutlet weak var isLeapYearLabel: UILabel!
+    @IBOutlet weak var isOneYearLeapYear: UILabel!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -33,12 +44,90 @@ class TimeViewController: UIViewController {
 
         super.viewDidAppear(animated)
         
-        print(findPhase(60*60*24, targetPhase: 15)); // Next Full Moon
-        print(findPhase(-60*60*24, targetPhase: 0)); // Previous New Moon
+        setSlowMovingParts();
     }
     
+    /**
+     Initialisizes components moving less once per day
+     */
+    func setSlowMovingParts(){
+        setMoon(leftMoonMonth, day: leftMoonDay, date: findPhase(-60*60*24, targetPhase: 0))
+        setMoon(rightMoonMonth, day: rightMoonDay, date: findPhase(60*60*24, targetPhase: 15))
+        setInClockTime();
+    }
+    
+    /**
+     Hilights the right leap year indicator given the current year
+     
+     - parameter year: <#year description#>
+     */
+    func setLeapYear(year:Int){
+        
+        var movingYear = year
+        let labels:[UILabel] = [isLeapYearLabel, isOneYearLeapYear, isTwoYearLeapYearLabel, isThreeYearLeapYear]
+        
+        while(!isLeapYear(movingYear)){
+            movingYear++
+        }
+        
+        leapYearLabel.text = String(movingYear)
+        labels[movingYear-year].textColor = UIColor.blackColor()
+    }
+    
+    /**
+     Determines is a year is leap or not
+     
+     - parameter year: <#year description#>
+     
+     - returns: <#return value description#>
+     */
+    func isLeapYear(year:Int) -> Bool{
+        if ((year % 4 == 0) && (year % 100 != 0))
+            || (year % 400 == 0){
+                return true
+        }
+        return false
+    }
+    
+    /**
+     Sets the inclock times
+     */
+    func setInClockTime(){
+        let components = calendar?.components([.Weekday, .Day, .Month, .Year], fromDate: NSDate())
+        let monthNumber = components?.month
+        let dateFormatter: NSDateFormatter = NSDateFormatter()
+        let months = dateFormatter.shortMonthSymbols
+        let weekDayNumber = components?.weekday
+        let dayNumber = components?.day
+        let days = dateFormatter.shortWeekdaySymbols
+        inClockMonth.text = months[monthNumber!-1].uppercaseString
+        inClockDay.text = days[weekDayNumber!-1].uppercaseString + " " + String(dayNumber!)
+        setLeapYear((components?.year)!)
+    }
+    
+    /**
+     Set month and day below a given moon and date
+     
+     - parameter month: <#month description#>
+     - parameter day:   <#day description#>
+     - parameter date:  <#date description#>
+     */
+    func setMoon(month:UILabel, day:UILabel, date:NSDate){
+        
+        let components = calendar?.components([.Day, .Month], fromDate: date)
+        let monthNumber = components?.month
+        let dateFormatter: NSDateFormatter = NSDateFormatter()
+        let months = dateFormatter.shortMonthSymbols
+        let dayNumber = components?.day
+        month.text = months[monthNumber!-1].uppercaseString
+        day.text = String(dayNumber!)
+    }
+    
+    /**
+     Move all moving parts (hands, seconds, and so on)
+     */
     func setTime(){
-        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+        
         let components = calendar?.components([.Hour, .Minute, .Second, .Nanosecond], fromDate: NSDate())
         var hour = components!.hour
         let minutes = components!.minute
@@ -64,18 +153,27 @@ class TimeViewController: UIViewController {
         UTCHoursMinutes.text = dateFormatter.stringFromDate(date)
         
         //1.95  being the position of the hour hand at design time
-        rotateImage(hoursHand, angle: Double((((Double(hour)-1.95)*M_PI/6.0)) + (Double(minutes)*M_PI/(6.0*60.0)) + (Double(seconds)*M_PI/(360.0*60.0) )))
+        rotateView(hoursHand, angle: Double((((Double(hour)-1.95)*M_PI/6.0)) + (Double(minutes)*M_PI/(6.0*60.0)) + (Double(seconds)*M_PI/(360.0*60.0) )))
         
         //47.5 being the position of the minute hand at design time
-        rotateImage(minutesHand, angle: Double(((Double(minutes)-47.5)*M_PI/30.0) + (Double(seconds) * M_PI/(30.0*60.0) )))
+        rotateView(minutesHand, angle: Double(((Double(minutes)-47.5)*M_PI/30.0) + (Double(seconds) * M_PI/(30.0*60.0) )))
         
         //36 being the position of the second hand at design time
-        rotateImage(secondsHand, angle: Double((Double(seconds-36)+Double(milliSeconds)/1000.0))*M_PI/Double(30.0))
+        rotateView(secondsHand, angle: Double((Double(seconds-36)+Double(milliSeconds)/1000.0))*M_PI/Double(30.0))
         
-        rotateImage(moonPhases, angle: -moonPhasePercent()*0.279)
+        rotateView(moonPhases, angle: -moonPhasePercent()*0.279)
         
     }
     
+    /**
+     Finds at which date a given moon phase [0-29] will occur. 
+     Seeks the calendar by jumpingTime jumps
+     
+     - parameter jumpingTime: <#jumpingTime description#>
+     - parameter targetPhase: <#targetPhase description#>
+     
+     - returns: <#return value description#>
+     */
     private func findPhase(jumpingTime:Double, targetPhase:Double)->NSDate{
         
         var date = NSDate().dateByAddingTimeInterval(-jumpingTime)
@@ -83,12 +181,10 @@ class TimeViewController: UIViewController {
         var day = 0.0
         var month = 0.0
         
-        
         repeat{
             
             date = date.dateByAddingTimeInterval(jumpingTime)
             
-            let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
             let components = calendar?.components([.Day, .Year, .Month], fromDate: date)
             day = Double(components!.day)
             month = Double(components!.month)
@@ -102,6 +198,8 @@ class TimeViewController: UIViewController {
     
     /**
      http://www.ben-daglish.net/moon.shtml
+     
+     Returns 0 to 29 (0 = full moon, 15 = new moon)
      
      - parameter year:  <#year description#>
      - parameter month: <#month description#>
@@ -119,6 +217,11 @@ class TimeViewController: UIViewController {
         return (r < 0) ? r+30 : r;
     }
     
+    /**
+     Computes the percentage of the moon orbits
+     
+     - returns: <#return value description#>
+     */
     private func moonPhasePercent() -> Double{
         let synodic = 29.53058867
         let msPerDay = 86400000.0
@@ -140,12 +243,18 @@ class TimeViewController: UIViewController {
         return phase
     }
     
-    private func rotateImage(hand:UIImageView, angle:Double){
+    /**
+     Utility function to rotate image to a given angle
+     
+     - parameter hand:  <#hand description#>
+     - parameter angle: <#angle description#>
+     */
+    private func rotateView(view:UIView, angle:Double, anchor:CGPoint = CGPointMake(0.5, 0.5)){
         
-        
+        view.layer.anchorPoint = anchor
         UIView.animateWithDuration(0.1, animations: {
             
-            hand.transform = CGAffineTransformMakeRotation(CGFloat(angle))
+            view.transform = CGAffineTransformMakeRotation(CGFloat(angle))
         })
 
     }
