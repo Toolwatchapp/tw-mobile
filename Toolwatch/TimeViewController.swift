@@ -27,6 +27,10 @@ class TimeViewController: UIViewController {
     @IBOutlet weak var rightMoonDay: UILabel!
     @IBOutlet weak var inClockMonth: UILabel!
     @IBOutlet weak var inClockDay: UILabel!
+    @IBOutlet weak var watchImage: UIImageView!
+    @IBOutlet weak var detailsView: UIView!
+    @IBOutlet weak var utcDetailsView: UIView!
+    @IBOutlet weak var watchView: UIView!
     let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
     
     @IBOutlet weak var isThreeYearLeapYear: UILabel!
@@ -34,18 +38,76 @@ class TimeViewController: UIViewController {
     @IBOutlet weak var isLeapYearLabel: UILabel!
     @IBOutlet weak var isOneYearLeapYear: UILabel!
     
+    @IBOutlet weak var dialTimeView: UIView!
+    
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         tabBarItem = UITabBarItem(title: "Time", image: UIImage(named: "clock-image"), tag: 1)
     }
     
     override func viewDidAppear(animated: Bool) {
-        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("setTime"), userInfo: nil, repeats: true)
-
+        
         super.viewDidAppear(animated)
+        setSizes();
+        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("setTime"), userInfo: nil, repeats: true)
         
         setSlowMovingParts();
     }
+    
+    func setSizes(){
+        
+       // self.utcDetailsView.setWidth(self.view.frame.width * 0.5);
+       // self.detailsView.setWidth(self.view.frame.width);
+        
+        
+        
+        self.hoursMinutesLabel.font = self.hoursMinutesLabel.font.fontWithSize(self.view.frame.width/5);
+        self.hoursMinutesLabel.centerIn(dialTimeView.frame);
+        
+        self.secondsLabel.font = self.secondsLabel.font.fontWithSize(self.view.frame.width/12);
+        self.secondsLabel.centerIn(dialTimeView.frame);
+        self.secondsLabel.setX(10);
+        
+        self.AMLabel.font = self.AMLabel.font.fontWithSize(self.view.frame.width/12);
+        self.AMLabel.centerIn(dialTimeView.frame);
+        self.AMLabel.setX(dialTimeView.frame.width - self.AMLabel.frame.width - 10);
+        self.AMLabel.setY(self.AMLabel.frame.origin.y - 15);
+        
+        self.PMLabel.font = self.PMLabel.font.fontWithSize(self.view.frame.width/12);
+        self.PMLabel.centerIn(dialTimeView.frame);
+        self.PMLabel.setX(dialTimeView.frame.width - self.PMLabel.frame.width - 10);
+        self.PMLabel.setY(self.PMLabel.frame.origin.y + 15);
+        
+        self.detailsView.setHeight(self.view.frame.height*0.08);
+        
+        
+        self.watchImage.setWidth(self.view.frame.width * 0.8);
+        self.watchImage.centerIn(self.watchView.frame);
+        
+        self.secondsHand.setHeight(self.watchImage.frame.height * 0.60);
+        self.secondsHand.centerIn(self.watchView.frame);
+        
+        self.minutesHand.setHeight(self.watchImage.frame.height * 0.2);
+        self.minutesHand.centerIn(self.watchView.frame);
+        
+        self.hoursHand.setHeight(self.watchImage.frame.height * 0.25);
+        self.hoursHand.centerIn(self.watchView.frame);
+        
+        self.moonPhases.setWidth(self.watchImage.frame.width/2.65)
+        self.moonPhases.centerIn(self.watchView.frame);
+        self.moonPhases.setY(self.moonPhases.frame.origin.y + self.moonPhases.frame.width/1.35)
+        
+        self.inClockMonth.setHeight(self.watchImage.frame.height * 0.05)
+        self.inClockMonth.centerIn(self.watchView.frame);
+        self.inClockMonth.setX(self.inClockMonth.frame.origin.x - self.moonPhases.frame.width/1.35)
+        
+        self.inClockDay.setHeight(self.watchImage.frame.height * 0.05)
+        self.inClockDay.centerIn(self.watchView.frame);
+        self.inClockDay.setX(self.inClockDay.frame.origin.x + self.inClockDay.frame.width/1.1)
+    }
+    
+    
     
     /**
      Initialisizes components moving less once per day

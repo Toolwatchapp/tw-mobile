@@ -8,7 +8,8 @@
 
 import UIKit
 
-class UITableViewWithHeader: UITableViewController {
+class UITableViewWithHeader: UITableViewController,  UITextFieldDelegate {
+
     
     /**
      Create a classical header with two titles and no buttons
@@ -132,6 +133,11 @@ class UITableViewWithHeader: UITableViewController {
         label.font = UIFont(name: font, size: CGFloat(size))
         label.numberOfLines = 0;
         return label
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 
 }

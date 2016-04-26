@@ -117,8 +117,11 @@ class APIRequest{
             }
             print("===========")
             
-            if(self.callback != nil){
+
+            if(self.callback != nil && json != nil){
                 self.callback!(json, returnValue);
+            }else{
+                self.callback!(nil, returnValue);
             }
         }
     }

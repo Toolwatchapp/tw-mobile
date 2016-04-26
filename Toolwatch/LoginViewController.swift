@@ -7,17 +7,49 @@
 //
 
 import UIKit
-class LoginViewController: UIViewController {
+class LoginViewController: UITableViewWithHeader{
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loginButton.layer.cornerRadius = 5;
+        super.createHeader("header-dashboard", title: "", subtitle: "THE MOST CONVENIENT WAY TO MEASURE THE \n  ACCURACY OF YOUR MECHANICAL WATCH");
+    }
+    
+    /**
+     Defines custom height for each rows
+     
+     - parameter tableView:
+     - parameter indexPath:
+     
+     - returns: the heigh of a row
+     */
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        //30% is taken by the header
+        //25% for the email/pw
+        //20% for the login button
+        //20% for the register
+        
+        //5% border from the header
+        if(indexPath.item == 1){
+            return self.view.frame.size.height * (5/100);
+        }else if (indexPath.item < 5){
+            
+            if(indexPath.item % 2 == 1){
+                return self.view.frame.size.height * (4/100);
+            }else {
+                return self.view.frame.size.height * (8/100);
+            }
+        }else if (indexPath.item == 5){
+            return self.view.frame.size.height * (15/100)
+        }else{
+            return self.view.frame.size.height * (10/100)
+        }
+        
     }
 
 
