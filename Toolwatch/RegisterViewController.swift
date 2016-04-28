@@ -45,6 +45,7 @@ class RegisterViewController: UITableViewWithHeader {
             self.country = foundCountry;
             print(self.country);
         }
+        self.tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
         
         //Set default values for optional variables
 //        email.text = "";
@@ -119,16 +120,16 @@ class RegisterViewController: UITableViewWithHeader {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         //Even number are labels
-        if(indexPath.item % 2 == 0 && indexPath.item != 13){
+        if(indexPath.item % 2 == 0 && indexPath.item != 12){
             return self.view.frame.size.height * (20/5/100)
             
             //Odd numbers are input
-        }else if(indexPath.item != 13){
+        }else if(indexPath.item != 12){
             return self.view.frame.size.height * (40/5/100)
             
             //The validate button
         }else{
-            return self.view.frame.size.height * 0.2
+            return self.view.frame.size.height * 0.1
         }
     }
     

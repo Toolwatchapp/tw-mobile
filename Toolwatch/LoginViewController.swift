@@ -17,6 +17,7 @@ class LoginViewController: UITableViewWithHeader{
         super.viewDidLoad()
         
         super.createHeader("header-dashboard", title: "", subtitle: "THE MOST CONVENIENT WAY TO MEASURE THE \n  ACCURACY OF YOUR MECHANICAL WATCH");
+        self.tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
     }
     
     /**
@@ -34,6 +35,8 @@ class LoginViewController: UITableViewWithHeader{
         //20% for the login button
         //20% for the register
         
+        print(indexPath.item)
+        
         //5% border from the header
         if(indexPath.item == 1){
             return self.view.frame.size.height * (5/100);
@@ -47,14 +50,14 @@ class LoginViewController: UITableViewWithHeader{
         }else if (indexPath.item == 5){
             return self.view.frame.size.height * (15/100)
         }else{
-            return self.view.frame.size.height * (10/100)
+            return self.view.frame.size.height * (15/100)
         }
         
     }
 
 
     @IBAction func loginPressed(sender: AnyObject) {
-        
+        self.activityIndicator.startAnimating()
         API.login(email.text!, password: password.text!, callback: {
            
             (result:Bool) in
@@ -81,7 +84,7 @@ class LoginViewController: UITableViewWithHeader{
             }
         });
      
-        self.activityIndicator.startAnimating()
+        
         
     }
     

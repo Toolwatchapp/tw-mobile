@@ -33,6 +33,7 @@ class TimeViewController: UIViewController {
     @IBOutlet weak var watchView: UIView!
     let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
     
+    @IBOutlet weak var clearMoonPhase: UIImageView!
     @IBOutlet weak var isThreeYearLeapYear: UILabel!
     @IBOutlet weak var isTwoYearLeapYearLabel: UILabel!
     @IBOutlet weak var isLeapYearLabel: UILabel!
@@ -105,6 +106,9 @@ class TimeViewController: UIViewController {
         self.inClockDay.setHeight(self.watchImage.frame.height * 0.05)
         self.inClockDay.centerIn(self.watchView.frame);
         self.inClockDay.setX(self.inClockDay.frame.origin.x + self.inClockDay.frame.width/1.1)
+        self.clearMoonPhase.setX(self.view.frame.width-self.clearMoonPhase.frame.width/2-25)
+        self.rightMoonDay.setX(self.clearMoonPhase.frame.origin.x-5)
+        self.rightMoonMonth.setX(self.clearMoonPhase.frame.origin.x-5)
     }
     
     
