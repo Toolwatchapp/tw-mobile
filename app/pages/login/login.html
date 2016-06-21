@@ -1,0 +1,68 @@
+<head>
+  <logo>
+    <logo-bg>
+    </logo-bg>
+  </logo>
+  <h1>{{ 'slogan' | translate:{value: param} }}</h1>
+</head>
+
+<form 
+  [ngFormModel] = "loginForm"
+  (ngSubmit)="onSubmit(loginForm.value)"
+>     
+
+
+      <!-- GENERAL ERROR MESSAGES -->
+      <div  class="form-group">
+        <div class="error-message" [hidden]="!error">
+            {{ 'error' | translate:{value: param} }}
+        </div>
+      </div>
+      <!-- END GENERAL ERROR MESSAGES -->
+
+      <!-- EMAIL GROUP -->
+      <div  class="group"
+      [ngClass]="{ 'has-error' : !email.valid && submitAttempt || credientials}"
+      >
+
+       
+        <em *ngIf="!email.valid && submitAttempt">
+          {{ 'email-required' | translate:{value: param} }}
+        </em>
+        <input 
+          id="email" 
+          type="text" 
+          ngControl="email"
+          required 
+        >
+        <span class="highlight"></span>
+        <span class="bar"></span>
+         <label>
+          {{ 'email' | translate:{value: param} }}
+        </label>
+      </div>
+      <!-- END EMAIL GROUP -->
+
+      <!-- PASSWORD GROUP -->
+      <div class="group"
+      [ngClass]="{ 'has-error' : !password.valid && submitAttempt || credientials}">
+        <em *ngIf="!password.valid && submitAttempt">
+          {{ 'password-required' | translate:{value: param} }}
+        </em>
+        <input 
+          type="password" 
+          ngControl="password"
+          required
+        >     
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="password">
+          {{ 'password' | translate:{value: param} }}
+        </label>
+      </div>
+      <!-- END PASSWORD GROUP -->
+      <div class="form-group">
+        <button md-raised-button color="primary" type="submit"> {{ 'login' | translate:{value: param} }}</button>
+      </div>
+</form>
+

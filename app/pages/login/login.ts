@@ -7,13 +7,18 @@ import {Http, HTTP_PROVIDERS, Headers}  from '@angular/http';
 
 
 @Component({
-	templateUrl: 'build/pages/hello-ionic/hello-ionic.html',
+	templateUrl: 'build/pages/login/login.html',
+	// styleUrls: ['build/pages/login/login.css'],
 	pipes: [TranslatePipe],
-	providers: [TwAPIService, HTTP_PROVIDERS],
+	providers: [TwAPIService, HTTP_PROVIDERS, LoginComponent],
 })
 export class LogInPage extends LoginComponent {
 	constructor(translate: TranslateService,
 		twapi: TwAPIService, builder: FormBuilder) {
 		super(translate, twapi, builder);
+
+		this.userLogged.subscribe(
+			event => console.log("logged", event)
+		);
 	}
 }
