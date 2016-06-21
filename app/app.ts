@@ -1,9 +1,11 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ViewChild, provide} from '@angular/core';
 import {ionicBootstrap, Platform, MenuController, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {HelloIonicPage} from './pages/hello-ionic/hello-ionic';
+import {LogInPage} from './pages/login/login';
 import {ListPage} from './pages/list/list';
-
+import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
+import {HTTP_PROVIDERS, Http} from '@angular/http';
 
 @Component({
   templateUrl: 'build/app.html'
@@ -12,7 +14,7 @@ class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage: any = HelloIonicPage;
+  rootPage: any = LogInPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
@@ -44,4 +46,11 @@ class MyApp {
   }
 }
 
-ionicBootstrap(MyApp);
+ionicBootstrap(MyApp, [
+  HTTP_PROVIDERS,
+  provide(TranslateLoader, {
+    useFactory: (http: Http) => new TranslateStaticLoader(http, 'build/assets/i18n', '.json'),
+    deps: [Http]
+  }),
+  // use TranslateService here, and not TRANSLATE_PROVIDERS (which will define a default TranslateStaticLoader)
+  TranslateService]);
