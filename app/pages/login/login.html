@@ -10,8 +10,6 @@
   [ngFormModel] = "loginForm"
   (ngSubmit)="onSubmit(loginForm.value)"
 >     
-
-
       <!-- GENERAL ERROR MESSAGES -->
       <div  class="form-group">
         <div class="error-message" [hidden]="!error">
@@ -34,6 +32,7 @@
           type="text" 
           ngControl="email"
           required 
+          value="mathieu.nayrolles@gmail.com"
         >
         <span class="highlight"></span>
         <span class="bar"></span>
@@ -53,6 +52,7 @@
           type="password" 
           ngControl="password"
           required
+          value="qwerty"
         >     
         <span class="highlight"></span>
         <span class="bar"></span>
@@ -62,7 +62,7 @@
       </div>
       <!-- END PASSWORD GROUP -->
       <div class="form-group">
-        <button md-raised-button color="primary" type="submit"> {{ 'login' | translate:{value: param} }}</button>
+        <button toggle md-raised-button color="primary" type="submit"> {{ 'login' | translate:{value: param} }}</button>
       </div>
 </form>
 

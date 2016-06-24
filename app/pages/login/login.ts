@@ -1,24 +1,29 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+import {Nav, Loading, NavController} from 'ionic-angular';
 import {LoginComponent} from 'tw-common/dist/app/directives/login/login.component';
 import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, Validators}  from '@angular/common';
 import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 import {Http, HTTP_PROVIDERS, Headers}  from '@angular/http';
+import {DashboardPage} from '../dashboard/dashboard';
+
 
 
 @Component({
 	templateUrl: 'build/pages/login/login.html',
-	// styleUrls: ['build/pages/login/login.css'],
 	pipes: [TranslatePipe],
-	providers: [TwAPIService, HTTP_PROVIDERS, LoginComponent],
+	providers: [TwAPIService, HTTP_PROVIDERS],
 })
 export class LogInPage extends LoginComponent {
-	constructor(translate: TranslateService,
+
+	constructor(private nav: NavController, translate: TranslateService,
 		twapi: TwAPIService, builder: FormBuilder) {
 		super(translate, twapi, builder);
 
+	
 		this.userLogged.subscribe(
-			event => console.log("logged", event)
+			event => this.nav.setRoot(DashboardPage)
 		);
 	}
+
 }
