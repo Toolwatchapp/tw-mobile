@@ -1,11 +1,13 @@
 import {Component, ViewChild, provide} from '@angular/core';
-import {ionicBootstrap, Platform, MenuController, Nav} from 'ionic-angular';
+import {ionicBootstrap, Platform, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {HelloIonicPage} from './pages/hello-ionic/hello-ionic';
 import {LogInPage} from './pages/login/login';
 import {ListPage} from './pages/list/list';
 import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 import {HTTP_PROVIDERS, Http} from '@angular/http';
+import {DashboardPage} from './pages/dashboard/dashboard';
+
 
 @Component({
   templateUrl: 'build/app.html'
@@ -14,20 +16,19 @@ class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage: any = LogInPage;
+  rootPage: any = DashboardPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
-    private platform: Platform,
-    private menu: MenuController
+    private platform: Platform
   ) {
-    this.initializeApp();
+    // this.initializeApp();
 
-    // set our app's pages
-    this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'My First List', component: ListPage }
-    ];
+    // // set our app's pages
+    // this.pages = [
+    //   { title: 'Hello Ionic', component: HelloIonicPage },
+    //   { title: 'My First List', component: ListPage }
+    // ];
   }
 
   initializeApp() {
@@ -38,12 +39,6 @@ class MyApp {
     });
   }
 
-  openPage(page) {
-    // close the menu when clicking a link from the menu
-    this.menu.close();
-    // navigate to the new page if it is not the current page
-    this.nav.setRoot(page.component);
-  }
 }
 
 ionicBootstrap(MyApp, [
