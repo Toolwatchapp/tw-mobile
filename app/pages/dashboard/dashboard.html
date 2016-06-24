@@ -1,0 +1,41 @@
+
+
+<head>
+  <logo>
+    <logo-bg>
+    </logo-bg>
+  </logo>
+  <h1>{{ 'slogan' | translate:{value: param} }}</h1>
+</head>
+
+<ion-content>
+  <ion-list *ngIf="user" [virtualScroll]="user.watches">
+    <ion-item-sliding *virtualItem="let watch">
+      <ion-item >
+        <h2>{{ watch.brand }} • {{ watch.name }} </h2>
+        <p>Hayao Miyazaki • 1988</p>
+      <button item-right>View</button>
+      </ion-item>
+      <ion-item-options side="left">
+        <button (click)="deleteWatch(watch)" danger>
+          <ion-icon  name="ios-trash-outline"></ion-icon>
+        </button>
+        <button secondary>
+          <ion-icon name="ios-build-outline"></ion-icon>
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button (click)="deleteWatch(watch)" danger>
+          <ion-icon  name="ios-trash-outline"></ion-icon>
+        </button>
+        <button secondary>
+          <ion-icon name="ios-build-outline"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
+
+
+
+<footer-nav></footer-nav>
