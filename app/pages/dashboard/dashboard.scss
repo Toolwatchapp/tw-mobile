@@ -1,50 +1,11 @@
 .dashboard-page{
-	background-color:white;
+	background-color:transparent;
 
-	head{
-		background-image: url('../assets/images/hands.png'), linear-gradient(180deg, #4d77a7 100%, white 100%);
-		background-repeat: no-repeat;
-		background-size: cover;
-		height: 30%;
-		display: block;
-		top:0px;
-		z-index: 10;
-
-		logo{
-			display: block;
-			height: 25%;
-			top:0px;
-			background: url('../assets/images/logo.png') center no-repeat;
-			background-size: 25%;
-
-			logo-bg{
-				background-color: white;
-				height: 100%;
-				width: 100%;
-				display: block;
-				opacity: 0.15;
-				box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
-			}
-		}
-
-		h1{
-			margin-top: 17%;
-			color:white;
-			text-transform: uppercase;
-			text-align: center;
-			width: 90%;
-			margin-left: 5%;
-			font-size: 10px;
-			line-height: 20px;
-			letter-spacing: 1px;
-		}
-	}
 
 	ion-content{
+		top:30%;
 		height: 60%;
 		z-index: 0;
-	}
-
-	
+	}	
 	
 }
