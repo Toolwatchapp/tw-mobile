@@ -36,10 +36,9 @@ footer-nav{
 
 	.menu {
 		z-index: 10;
-		bottom: -11%;
+		bottom: 8%;
 		height: 30%;
 		width: 100%;
-		margin: 0 auto 100px;
 		position: absolute;
 		transform: translateZ(0);
 	}
@@ -47,7 +46,7 @@ footer-nav{
 	.menu-wrapper {
 		position: absolute;
 		left: 50%;
-		bottom: 10px;
+		bottom: 0%;
 	}
 
 	.menu-toggle-button,

@@ -1,6 +1,10 @@
 import 'gsap';
 import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, ViewChild, Input} from '@angular/core';
+import {Nav, Loading, NavController} from 'ionic-angular';
+import {WatchPage} from '../watch/watch';
+import {User} from 'tw-common/dist/app/models/user.model';
+
 
 
 declare var TimelineMax: any;
@@ -15,6 +19,9 @@ declare var Elastic: any;
 })
 export class Footer {
 
+	@Input()
+	user:User;
+
 	tl = new TimelineMax();
 	qt = new Quint();
 	menuItemNum: number = 3;
@@ -25,7 +32,7 @@ export class Footer {
 	menuOpened = false;
 	myIcon: "md-add" | "ios-arrow-down-outline" = "md-add";
 
-	constructor(private elementRef: ElementRef, private translate: TranslateService){
+	constructor(private nav: NavController, private elementRef: ElementRef, private translate: TranslateService) {
 
 	}
 
@@ -34,8 +41,14 @@ export class Footer {
 
 		this.myIcon = (this.menuOpened) ? "ios-arrow-down-outline" : "md-add";
 
-
 		this.menuOpened ? this.openMenu() : this.closeMenu();
+	}
+
+	onNewWatch(){
+		this.nav.push(WatchPage, {
+			user:this.user
+		});
+		this.toggleMenu();
 	}
 
 	openMenu() {
