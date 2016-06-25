@@ -6,6 +6,7 @@ import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 import {Http, HTTP_PROVIDERS, Headers}  from '@angular/http';
 import {DashboardPage} from '../dashboard/dashboard';
+import {Header} from '../header/header';
 
 
 
@@ -13,8 +14,11 @@ import {DashboardPage} from '../dashboard/dashboard';
 	templateUrl: 'build/pages/login/login.html',
 	pipes: [TranslatePipe],
 	providers: [TwAPIService, HTTP_PROVIDERS],
+	directives: [Header]
 })
 export class LogInPage extends LoginComponent {
+
+
 
 	constructor(private nav: NavController, translate: TranslateService,
 		twapi: TwAPIService, builder: FormBuilder) {
