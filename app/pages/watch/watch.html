@@ -1,0 +1,175 @@
+
+<header-nav [back]="true"></header-nav>
+
+<ion-content>
+
+  <form 
+  [ngFormModel] = "watchForm"
+>     
+      <!-- GENERAL ERROR MESSAGES -->
+      <div class="error-message" [hidden]="!error">
+            {{ 'error' | translate:{value: param} }}
+      </div>
+        <!-- END GENERAL ERROR MESSAGES -->
+
+      <!-- BRAND GROUP -->
+      <div  class="group"
+      [ngClass]="{ 'has-error' : !brand.valid && submitAttempt }"
+      >
+
+          <em *ngIf="!brand.valid && submitAttempt">
+            {{ 'brand-required' | translate:{value: param} }}
+          </em>
+          <input 
+            id="brand" 
+            type="text" 
+            class="form-control" 
+            ngControl="brand"
+            [(ngModel)]=watchModel.brand 
+            (keyup)=filterBrand(watchModel.brand)
+            required 
+          >
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label for="brand">
+            {{ 'brand' | translate:{value: param} }}
+          </label>
+
+          <div class="suggestions" *ngIf="filteredBrandList.length > 0">
+            <ul *ngFor="let brand of filteredBrandList">
+              <li>
+                <a (click)="selectBrand(brand.name)">{{ brand.name }}</a>
+                <img src="/build/assets/ico_watches/{{ brand.icon }}"/>
+              </li>
+            </ul>
+          </div>
+      </div>
+      <!-- END BRAND GROUP -->
+
+      <!-- MODEL GROUP -->
+      <div  class="group"
+      [ngClass]="{ 'has-error' : !model.valid && submitAttempt }"
+      >
+          <input 
+            id="model" 
+            type="text" 
+            class="form-control" 
+            ngControl="model"
+            [(ngModel)]=watchModel.name 
+            (keyup)=filterModel(watchModel.name)
+            required
+          >
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label for="model">
+            {{ 'model' | translate:{value: param} }}
+          </label>
+          <div class="suggestions" *ngIf="filteredModelList.length > 0">
+            <ul *ngFor="let model of filteredModelList">
+              <li>
+                <a (click)="selectModel(model)">{{ model }}</a>
+              </li>
+            </ul>
+          </div>
+      </div>
+      <!-- END MODEL GROUP -->
+
+      <!-- Caliber GROUP -->
+      <div  class="group"
+      [ngClass]="{ 'has-error' : !caliber.valid && submitAttempt }"
+      >
+          <input 
+            id="caliber" 
+            type="text" 
+            class="form-control" 
+            ngControl="caliber"
+            [(ngModel)]=watchModel.caliber 
+            required
+          >
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label for="caliber">
+            {{ 'caliber' | translate:{value: param} }}
+          </label>
+      </div>
+      <!-- END Caliber GROUP -->
+
+      <!-- YEAR GROUP -->
+      <div  class="group"
+      [ngClass]="{ 'has-error' : !year.valid && submitAttempt }"
+      >
+          <em *ngIf="!year.valid && submitAttempt">
+            {{ 'year-required' | translate:{value: param} }}
+          </em>
+          <input 
+            id="year" 
+            type="text" 
+            class="form-control" 
+            ngControl="year"
+            [(ngModel)]=watchModel.year 
+            required
+          >
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label for="year">
+            {{ 'year' | translate:{value: param} }}
+          </label>
+      </div>
+      <!-- YEAR Caliber GROUP -->
+
+      <!-- Serial GROUP -->
+      <div  class="group"
+      [ngClass]="{ 'has-error' : !serial.valid && submitAttempt }"
+      >
+          <input 
+            id="serial" 
+            type="text" 
+            class="form-control" 
+            ngControl="serial"
+            [(ngModel)]=watchModel.serial 
+            required
+          >
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label for="serial">
+            {{ 'serial' | translate:{value: param} }}
+          </label>
+      </div>
+      <!-- Serial Caliber GROUP -->
+
+      <div  class="group">
+
+        <div [hidden]="watchModel.id!==null">
+          <button
+          md-raised-button 
+          (click)="onSubmit()"
+          color="primary" type="submit"> 
+          {{ 'add-watch' | translate:{value: param} }}
+          </button>
+        </div>
+      
+
+
+      <div [hidden]="watchModel.id===null">
+          <button
+          md-raised-button color="accent" type="submit"
+          (click)="onSubmit()"
+          > 
+          {{ 'update-watch' | translate:{value: param} }}
+          </button>
+
+          <button danger
+          (click)="onDelete()"> 
+          {{ 'delete-watch' | translate:{value: param} }}
+          </button>
+        </div>
+
+        </div>
+
+  </form>
+
+</ion-content>
+
+
+
+<footer-nav></footer-nav>
