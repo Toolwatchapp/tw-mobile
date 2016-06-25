@@ -1,0 +1,63 @@
+top-nav{
+		background-image: url('../assets/images/hands.png'), linear-gradient(180deg, #4d77a7 75%, white 76%);
+		background-repeat: no-repeat;
+		background-size: cover;
+		height: 40%;
+		display: block;
+		top:0px;
+		z-index: 0;
+		position: absolute;
+
+
+
+		logo{
+			display: block;
+			height: 25%;
+			top:0px;
+			background: url('../assets/images/logo.png') center no-repeat;
+			background-size: 25%;
+
+
+
+			logo-bg{
+				background-color: white;
+				height: 100%;
+				width: 100%;
+				display: block;
+				opacity: 0.15;
+				box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+			}
+
+		}
+
+		h1{
+			margin-top: 17%;
+			color:white;
+			text-transform: uppercase;
+			text-align: center;
+			width: 90%;
+			margin-left: 5%;
+			font-size: 2vh;
+			line-height: 3vh;
+			letter-spacing: 0.1vh;
+		}
+}
+
+.header.ion-ios-chatbubbles, 
+.header.ion-md-arrow-back,{
+	z-index: 50;
+	color:white;
+	position: absolute;
+	display: block;
+	top:3%;
+	font-size: 5vh;
+}
+
+
+.header.left{
+	left:5%;
+}
+
+.header.right{
+	right: 5%;
+}
