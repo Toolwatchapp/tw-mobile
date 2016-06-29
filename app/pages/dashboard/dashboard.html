@@ -14,15 +14,15 @@
 
         <p 
         *ngIf="watch.status !== WatchStatus.NeverMeasured 
-        && watch.next !== WatchAction.Waiting">
+        && watch.next == WatchAction.Measure
+        && watch.historySize >= 1">
           {{ watch.currentMeasure().accuracy }} {{ 'spd' | translate:{value: param} }}
         </p>
 
         <p 
-        *ngIf="watch.status !== WatchStatus.NeverMeasured 
-        && watch.next === WatchAction.Waiting">
+        *ngIf="watch.next === WatchAction.Waiting">
           {{ 'waiting' | translate:{value: param} }}
-          {{ watch.currentMeasure().accuracy }} 
+          {{ watch.waiting }} 
           {{ 'hours' | translate:{value: param} }}
         </p>
 
@@ -57,4 +57,4 @@
 
 
 
-<footer-nav [user]="user"></footer-nav>
+<footer-nav  [user]="user"></footer-nav>

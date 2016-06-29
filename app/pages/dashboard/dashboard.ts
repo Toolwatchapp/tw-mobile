@@ -1,5 +1,5 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {Alert, Nav, Loading, NavController, ActionSheet} from 'ionic-angular';
+import {Component, ElementRef, EventEmitter, ViewChild} from '@angular/core';
+import {Alert, Nav, Loading, NavController, NavParams, ActionSheet} from 'ionic-angular';
 import {LoginComponent} from 'tw-common/dist/app/directives/login/login.component';
 import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 import {Watch, WatchStatus, WatchAction} from 'tw-common/dist/app/models/watch.model';
@@ -7,7 +7,6 @@ import {MeasureStatus} from 'tw-common/dist/app/models/measure.model';
 import {User} from 'tw-common/dist/app/models/user.model';
 import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 import {Http, HTTP_PROVIDERS, Headers}  from '@angular/http';
-import {ListPage} from '../list/list';
 import {Footer} from '../footer/footer';
 import {WatchPage} from '../watch/watch';
 import {Header} from '../header/header';
@@ -24,14 +23,14 @@ import 'gsap';
 })
 export class DashboardPage {
 
-
 	user:User;
 	WatchStatus = WatchStatus;
 	MeasureStatus = MeasureStatus;
 	WatchAction = WatchAction;
+	public static userChanged = new EventEmitter();
 	
 
-	constructor(private nav: NavController, private translate: TranslateService,
+	constructor(private nav: NavController, private navParams: NavParams,  private translate: TranslateService,
 		private twapi: TwAPIService, private elementRef: ElementRef) {
 
 		var userLang = navigator.language.split('-')[0];
@@ -39,16 +38,32 @@ export class DashboardPage {
 		translate.setDefaultLang('en');
 		translate.use(userLang);
 
-		this.twapi.login("mathieu.nayrolles@gmail.com", "qwerty").then(
-			res => {
-				this.user = res;
-				console.log(this.user);
-
-				for (var i = 0; i < this.user.watches.length; i++) {
-					console.log(this.user.watches[i]);
-				}
-			}  
+		DashboardPage.userChanged.subscribe(
+			user => {
+				this.user = user;
+				console.log("user", this.user);
+			}
 		);
+
+		this.user = this.navParams.get('user');
+
+		this.twapi.accurateTime();
+
+		// this.twapi.login("mathieu.nayrolles@gmail.com", "qwerty").then(
+		// 	res => {
+		// 		this.user = res;
+		// 		console.log(this.user);
+
+		// 		for (var i = 0; i < this.user.watches.length; i++) {
+		// 			console.log(this.user.watches[i]);
+		// 			for (var y = 0; y < this.user.watches[i].measures.length; y++) {
+		// 				console.log(this.user.watches[i].measures[y].status == 8);
+
+		// 				console.log(this.user.watches[i].measures[y]);
+		// 			}
+		// 		}
+		// 	}  
+		// );
 	}
 
 	updateWatch(watch:Watch){

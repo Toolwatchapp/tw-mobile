@@ -1,11 +1,21 @@
 import 'gsap';
 import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 import {Component, ElementRef, ViewChild, Input} from '@angular/core';
-import {Nav, Loading, NavController} from 'ionic-angular';
+import {Alert, Nav, Loading, NavParams, NavController} from 'ionic-angular';
 import {WatchPage} from '../watch/watch';
+import {TipsPage} from '../tips/tips';
+import {TimePage} from '../time/time';
 import {User} from 'tw-common/dist/app/models/user.model';
+import {Watch} from 'tw-common/dist/app/models/watch.model';
+import {Header}  from '../header/header';
+import {MeasurePage}  from '../measure/measure';
+import {AboutPage}  from '../about/about';
+import {DashboardPage}  from '../dashboard/dashboard';
+import { HTTP_PROVIDERS }  from '@angular/http';
+declare var window;
 
 
+import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 
 declare var TimelineMax: any;
 declare var Quint: any;
@@ -49,6 +59,64 @@ export class Footer {
 			user:this.user
 		});
 		this.toggleMenu();
+	}
+
+	onDashboard(){
+		this.nav.setRoot(DashboardPage, {
+			user:this.user
+		});
+	}
+
+	onAbout(){
+		this.nav.push(AboutPage, {
+			user:this.user
+		});
+	}
+
+	onNewMeasure(){
+
+		this.toggleMenu();
+
+		if(this.user.watches.length > 0){
+			let alert = Alert.create();
+		    alert.setTitle(this.translate.instant('select-measure'));
+
+		    for (var i = 0; i < this.user.watches.length; i++) {
+		    	
+		    	alert.addInput({
+			      type: 'radio',
+			      label: this.user.watches[i].brand + " " + this.user.watches[i].name,
+			      value: this.user.watches[i].id.toString()
+			    });
+		    }
+
+		    alert.addButton(this.translate.instant('cancel'));
+		    alert.addButton({
+		      text: this.translate.instant('ok'),
+		      handler: data => {
+
+		      	let selectedWatch:Watch;
+		      	for (var i = 0; i < this.user.watches.length; i++) {
+
+					console.log("data", data);
+		      		if(this.user.watches[i].id.toString() == data){
+		      			selectedWatch = this.user.watches[i];
+		      			console.log("sw", selectedWatch);
+		      			break;
+		      		}
+		      	}
+		      	this.nav.push(MeasurePage, {
+					watch: selectedWatch,
+					user: this.user
+				});
+		      }
+		    });
+
+		    this.nav.present(alert);
+		}else{
+			this.onNewWatch();
+		}
+		
 	}
 
 	openMenu() {
@@ -100,6 +168,27 @@ export class Footer {
 				});
 			});
 
+	}
+
+	onTime(){
+		this.nav.push(TimePage);
+	}
+
+	onTips(){
+		this.nav.push(TipsPage, {
+			user: this.user
+		});
+	}
+
+	onShare(){
+		if(window.plugins.socialsharing) {
+            window.plugins.socialsharing.share(
+            	null,
+            	null, 
+            	null, 
+            	"https://toolwatch.io"
+            );
+        }
 	}
 
 	closeMenu() {

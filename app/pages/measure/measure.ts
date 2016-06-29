@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, forwardRef, ViewChild} from '@angular/core';
 import {Alert, Nav, Loading, NavController, NavParams} from 'ionic-angular';
 import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 import {Watch, WatchStatus, WatchAction} from 'tw-common/dist/app/models/watch.model';
@@ -10,13 +10,17 @@ import {Http, HTTP_PROVIDERS, Headers}  from '@angular/http';
 import {DashboardPage} from '../dashboard/dashboard';
 import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, Validators}  from '@angular/common';
 import {Header}  from '../header/header';
+import {Footer} from '../footer/footer';
+
 import 'gsap';
+
+declare var window;
 
 @Component({
 	templateUrl: 'build/pages/measure/measure.html',
 	pipes: [TranslatePipe],
 	providers: [TwAPIService, HTTP_PROVIDERS],
-	directives: [Header]
+	directives: [Header, forwardRef(() => Footer)]
 })
 export class MeasurePage {
 	
@@ -27,43 +31,75 @@ export class MeasurePage {
 	referenceTime:Date;
 	accuracy:number;
 	percentage:number;
+	accuracyText:string;
+	percentilText:string;
 	step = 0;
+	loading = Loading.create({
+		content: this.translate.instant('sync'),
+		dismissOnPageChange: false
+	});
 
 	constructor(private nav: NavController, private navParams: NavParams, 
-		private translate: TranslateService,
+		private translate: TranslateService, private elementRef: ElementRef, 
 		private twapi: TwAPIService) {
 
 		this.user = this.navParams.get('user');
 		this.watch = this.navParams.get('watch');
 	}
 
+	share() {
+
+        if(window.plugins.socialsharing) {
+            window.plugins.socialsharing.share(
+            	this.translate.instant('share-text').replace('{X}', this.percentage),
+            	null, 
+            	null, 
+            	"https://toolwatch.io"
+            );
+        }
+	}
+
 	validate(){
+
+		console.log(this.watch.next, WatchAction.Measure);
 		if (this.watch.next === WatchAction.Measure) {
 
 			this.twapi.upsertMeasure(
 				this.watch, 
-				new Measure(null, this.referenceTime.getTime(), this.offsetedDate.getTime())
+				new Measure(null, this.referenceTime.getTime()/1000, this.offsetedDate.getTime()/1000)
 			).then(
 				watch => {
 					this.watch = watch;
 					this.watch.next = WatchAction.Waiting;
 					this.watch.currentMeasure().accuracy = 12;
+					this.user.upsertWatch(this.watch);
 					this.step = 2;
 				}
 			);
 		}else{
 			this.watch.currentMeasure().addAccuracyMeasure(
-				this.offsetedDate.getTime(), this.referenceTime.getTime()
+				this.offsetedDate.getTime()/1000, this.referenceTime.getTime()/1000
 			);
 
 			this.twapi.upsertMeasure(
 				this.watch,
-				new Measure(null, this.referenceTime.getTime(), this.offsetedDate.getTime())
+				this.watch.currentMeasure()
 			).then(
 				watch => {
 					this.watch = watch;
 					this.accuracy = watch.currentMeasure().accuracy;
 					this.percentage = watch.currentMeasure().percentile;
+
+					this.accuracyText = this.translate.instant('accuracy-result')
+						.replace("{watch}", this.watch.brand + " " + this.watch.next)
+						.replace("{x}", this.accuracy);
+
+					this.percentilText = this.translate.instant('percentil-result')
+						.replace("{x}", this.percentage);
+
+					this.user.upsertWatch(this.watch);
+					DashboardPage.userChanged.emit(this.user);
+
 					this.step = 3;
 				}
 			);
@@ -73,9 +109,8 @@ export class MeasurePage {
 	leave(){
 
 		this.user.upsertWatch(this.watch);
-		this.nav.pop({
-			user:this.user
-		});
+		DashboardPage.userChanged.emit(this.user);
+		this.nav.pop();
 	}
 
 	measure(){
@@ -100,19 +135,19 @@ export class MeasurePage {
 
 		let times = 10;
 		let completed = 0;
-		let text = this.translate.instant('sync');
-		let loading = Loading.create({
-			content: text
-		});
 
-		this.nav.present(loading);
+		this.nav.present(this.loading);
 
 		this.twapi.accurateTime(function(){
 			completed++;
-			loading.setContent(text + "(" + completed/10*100 + "%)");
+			console.log("completed", completed);
+			this.loading.setContent(this.translate.instant('sync') + "(" + completed/10*100 + "%)");
 		}).then(
 			res => {
-				loading.dismiss();
+				setTimeout(()=>{
+			      this.loading.dismiss()
+			   	});
+				
 				let d = res;
 				let seconds = d.getSeconds();
 				let offsetSeconds = 0;

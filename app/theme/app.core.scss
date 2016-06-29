@@ -7,10 +7,6 @@
 // By default each design mode includes these shared imports.
 // App Shared Sass variables belong in app.variables.scss.
 
-@import "../pages/hello-ionic/hello-ionic";
-
-@import "../pages/item-details/item-details";
-
 @import "../pages/login/login";
 
 @import "../pages/dashboard/dashboard";
@@ -22,6 +18,15 @@
 @import "../pages/header/header";
 
 @import "../pages/measure/measure";
+
+@import "../pages/tips/tips";
+
+@import "../pages/time/time";
+
+@import "../pages/about/about";
+
+
+
 
 
 

@@ -17,18 +17,31 @@ footer-nav{
 			margin-top: 2%;
 			height: 90%;
 
-			ion-icon{
-				width: 100%;
-				height: 70%;
-				text-align: center;
-				font-size: 38px;
-			}
+			
 
 			.tab-label{
 				float:left;
 				width: 100%;
+				margin-top: -20%;
+				z-index: 10;
 				font-size: 10px;
 				text-align: center;
+			}
+
+			.button-icon-only{
+				margin-top: 0;
+				padding-left: 5%;
+				background-color: transparent;
+			}
+
+			button{
+				ion-icon{
+					width: 100%;
+					height: 70%;
+					text-align: center;
+					padding-left: 3%;
+					font-size: 5vh;
+				}
 			}
 		}
 	}
@@ -37,7 +50,7 @@ footer-nav{
 	.menu {
 		z-index: 10;
 		bottom: 8%;
-		height: 30%;
+		height: 10%;
 		width: 100%;
 		position: absolute;
 		transform: translateZ(0);

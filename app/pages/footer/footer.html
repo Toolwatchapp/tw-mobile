@@ -1,9 +1,34 @@
 <tab>
-    <sub-tab><ion-icon name="ios-analytics-outline"></ion-icon><span class="tab-label">Dashboard</span></sub-tab>
-    <sub-tab><ion-icon name="ios-time-outline"></ion-icon><span class="tab-label">Time</span></sub-tab>
+    <sub-tab>
+      <button (click)="onDashboard()">
+       <ion-icon name="ios-analytics-outline"></ion-icon>
+      </button>
+      <span class="tab-label">Dashboard</span>
+    </sub-tab>
+    
+    <sub-tab>
+      <button (click)="onTime()">
+        <ion-icon name="ios-time-outline"></ion-icon>
+      </button>
+      <span class="tab-label">Time</span>
+    </sub-tab>
+
     <sub-tab></sub-tab>
-    <sub-tab><ion-icon name="ios-bulb-outline"></ion-icon><span class="tab-label">Watch Tips</span></sub-tab>
-    <sub-tab><ion-icon name="ios-information-circle-outline"></ion-icon><span class="tab-label">About</span></sub-tab>
+
+    <sub-tab>
+      <button (click)="onTips()">
+       <ion-icon name="ios-bulb-outline"></ion-icon>
+      </button>
+      <span class="tab-label">Watch Tips</span>
+    </sub-tab>
+
+    <sub-tab>
+      <button (click)="onAbout()">
+       <ion-icon name="ios-information-circle-outline"></ion-icon>
+      </button>
+      <span class="tab-label">About</span>
+    </sub-tab>
+
 </tab>
 
  <div class="menu">
@@ -17,14 +42,13 @@
         <div class="menu-item-bounce"></div>
       </li>
       <li class="menu-item">
-        <button class="menu-item-button">
+        <button (click)="onNewMeasure()" class="menu-item-button">
           <ion-icon class="menu-item-icon icon icon-box" name="ios-stopwatch-outline"></ion-icon>
-          <!-- <i class="menu-item-icon icon icon-box fa fa-tachometer"></i> -->
         </button>
         <div class="menu-item-bounce"></div>
       </li>
       <li class="menu-item"> 
-        <button class="menu-item-button">
+        <button (click)="onShare()" class="menu-item-button">
           <ion-icon style="margin-left:-10px;" class="menu-item-icon icon icon-trash" name="md-heart"></ion-icon>
            <i class="menu-item-icon icon icon-trash"></i>
         </button>

@@ -37,9 +37,10 @@ export class WatchPage extends WatchComponent {
 
 
 		this.watchSaved.subscribe(
-			user => this.nav.pop({
-				user: user
-			})
+			user => {
+				DashboardPage.userChanged.emit(user);
+				this.nav.pop();
+			}
 		);
 	}
 

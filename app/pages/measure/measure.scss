@@ -23,7 +23,7 @@
 		} 
 
 		.top{
-			margin-top: 15%;
+			margin-top: 5%;
 			border-top-left-radius: 2em;
 			border-top-right-radius: 2em;
 		}
@@ -49,6 +49,48 @@
 		}
 	}
 
+	.hourslimit{
+		width: 90%;
+		margin-left: 5%;
+		margin-top: 1%;
+
+		p{
+			padding:5%;
+			font-size: 3vh;
+			text-align: center;
+
+		}
+
+		button{
+			width: 100%;
+		}
+	}
+
+	.result{
+		text-align: center;
+		margin-top: 1%;
+		width: 90%;
+		margin-left: 5%;
+
+		p.result, p.percentil{
+			margin-top: 10%;
+			font-size: 4vh;
+		}
+
+		h2{
+			font-size: 4vh;
+		}
+
+		button{
+			width: 100%;
+		}
+
+		.percentil{
+			font-style: italic;
+		}
+
+	}
+
 	.confirm{
 		width: 90%;
 		margin-left: 5%;
@@ -65,7 +107,7 @@
 		}
 
 		p{
-			font-size: 3vh;
+			font-size: 2.5vh;
 		}
 
 		h1{

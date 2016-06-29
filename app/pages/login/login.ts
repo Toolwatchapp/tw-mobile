@@ -26,7 +26,9 @@ export class LogInPage extends LoginComponent {
 
 	
 		this.userLogged.subscribe(
-			event => this.nav.setRoot(DashboardPage)
+			user => this.nav.setRoot(DashboardPage, {
+				user:user
+			})
 		);
 	}
 

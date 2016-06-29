@@ -1,0 +1,267 @@
+.time-page{
+
+	background-color: white;
+
+	ion-content{
+		height: 60%;
+		top:10%;
+		width: 100%;
+
+		.anolog_clock{
+			border-top: 1px #40628a solid;
+			height: 25%;
+			margin-bottom: 5%;
+			background-color: #4d77a7;
+
+			.seconds-analog, .period{
+				padding-top: 6%;
+				width: 20%;
+				display: block;
+				float: left;
+				color:white;
+			}
+
+			.seconds-analog{
+				text-align: right;
+				padding-right: 0%;
+
+				.seconds-count{
+					font-size: 4vh;
+				}
+
+			}
+
+			.innactive{
+				color:#7092b8;
+			}
+
+			.period span{
+				width: 100%;
+				display: block;
+				font-size: 3.5vh;
+				padding-left:0%;
+				text-align: left;
+			}
+
+			.hours-analog{
+				text-align: center;
+				width: 60%;
+				color:white;
+				float: left;
+				font-size: 12vh;
+			}
+
+			.atomic-sync{
+				width: 100%;
+				text-align: center;
+				color:white;
+				display: block;
+				float: left;
+			}
+
+			.details{
+				margin-top: 3%;
+				background-color: white;
+				width: 100%;
+				border-top:1px #40628a solid;
+				border-bottom: 1px solid #b8b8b8;
+				float: left;
+
+				.leap-year{
+					float: left;
+					width: 50%;
+					.year, .leap-year-label{
+						width: 100%;
+						float:left;
+						display:block;
+						text-align: center;
+					}
+
+					.year{
+						font-size: 4vh;
+						font-weight: normal;
+						color:black
+					}
+
+					.leap-year-label{
+						color:#808080;
+					}
+				}
+
+				.utc{
+					float: left;
+					width: 50%;
+					border-right: 1px #b8b8b8 solid;
+
+					.hours-utc, .utc-label{
+						width: 100%;
+						float:left;
+						display:block;
+						text-align: center;
+					}
+
+					.hours-utc{
+						font-size: 4vh;
+						font-weight: normal;
+						color:black
+					}
+
+					.utc-label{
+						color:#808080;
+					}
+				}
+			}	
+		}
+	}
+
+	.clock {
+	  margin: auto;
+	  border-radius: 50%;
+	  background: #4d77a7 url(../assets/images/clock-face-bg.png) no-repeat center;
+	  background-size: 98%;
+	  height: 45%;
+	  position: relative;
+	  width: 80%;
+	}
+
+	.logo{
+	  top: 20%;
+	  position: absolute;
+	  width: 32%;
+	  height: 10%;
+	  left: 33%;
+	  background: url(../assets/images/white-logo.png) no-repeat center;
+	  background-size: 100%;
+	}
+
+	.date{
+	  background-color: #21446f;
+	  height: 20px;
+	  font-family: 'Nunito', sans-serif;
+	  position: absolute;
+	  top: 47.5%;
+	  color: #c5c5c5;
+	  text-transform: uppercase;
+	}
+
+	.month{
+	  width: 40px;
+	  left: 15%;
+	  padding-left: 2%;
+	}
+
+	.day{
+	  width: 45px;
+	  right: 15%;
+	  padding-right: 1%;
+	  padding-left: 2%;
+	}
+
+	.clock:after {
+	  background: white;
+	  border-radius: 50%;
+	  content: "";
+	  position: absolute;
+	  left: 50%;
+	  top: 50%;
+	  transform: translate(-50%, -50%);
+	  width: 3%;
+	  height: 3%;
+	  z-index: 10;
+	  -webkit-box-shadow: 5px 5px 5px -1px rgba(0,0,0,0.75);
+	  -moz-box-shadow: 5px 5px 5px -1px rgba(0,0,0,0.75);
+	  box-shadow: 5px 5px 5px -1px rgba(0,0,0,0.75);
+	}
+
+	.minutes-container, .hours-container, .seconds-container {
+	  position: absolute;
+	  top: 0;
+	  right: 0;
+	  bottom: 0;
+	  left: 0;
+	}
+
+	@keyframes rotate {
+	  100% {
+	    transform: rotateZ(360deg);
+	  }
+	}
+
+	.hours-container {
+	  animation: rotate 43200s infinite linear;
+	}
+	.minutes-container {
+	  animation: rotate 3600s infinite linear;
+	}
+	.seconds-container {
+	  animation: rotate 60s infinite linear;
+	}
+
+	.hours {
+	  background: white;
+	  height: 30%;
+	  left: 48.75%;
+	  position: absolute;
+	  top: 30%;
+	  transform-origin: 50% 70%;
+	  width: 2.5%;
+	  -webkit-box-shadow: 5px 0px 5px -1px rgba(0,0,0,0.75);
+	  -moz-box-shadow: 5px 0px 5px -1px rgba(0,0,0,0.75);
+	  box-shadow: 5px 0px 5px -1px rgba(0,0,0,0.75);
+	}
+
+	.minutes {
+	  background: white;
+	  height: 50%;
+	  left: 49%;
+	  position: absolute;
+	  top: 10%;
+	  transform-origin: 50% 80%;
+	  width: 2%;
+	  -webkit-box-shadow: 5px 0px 5px -1px rgba(0,0,0,0.75);
+	  -moz-box-shadow: 5px 0px 5px -1px rgba(0,0,0,0.75);
+	  box-shadow: 5px 0px 5px -1px rgba(0,0,0,0.75);
+	}
+
+	.seconds {
+	  background: white;
+	  height: 45%;
+	  left: 49.5%;
+	  position: absolute;
+	  top: 14%;
+	  transform-origin: 50% 80%;
+	  width: 1%;
+	  z-index: 8;
+	  -webkit-box-shadow: 5px 0px 5px -1px rgba(0,0,0,0.75);
+	  -moz-box-shadow: 5px 0px 5px -1px rgba(0,0,0,0.75);
+	  box-shadow: 5px 0px 5px -1px rgba(0,0,0,0.75);
+	}
+
+	.moon-mask{
+	  width: 100%;
+	  height: 100%;
+	  z-index: 1;
+	  position: absolute;
+	  top:2%;
+	  background: url(../assets/images/clock-cadran.png) no-repeat center;
+	  background-size: 100%;
+	}
+
+	.moon-disque{
+	  width: 100%;
+	  height: 100%;
+	  position: absolute;
+	  top:0%;
+	  background: url(../assets/images/clock-disque.png) no-repeat center;
+	  background-size: cover;
+	}
+
+	.moon-phase-container{
+	  width: 20%;
+	  height: 20%;
+	  left: 40%;
+	  top: 65%;
+	  z-index: 0;
+	  position: absolute;
+	}
+}

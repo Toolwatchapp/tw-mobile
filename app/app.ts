@@ -1,9 +1,7 @@
 import {Component, ViewChild, provide} from '@angular/core';
 import {ionicBootstrap, Platform, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-import {HelloIonicPage} from './pages/hello-ionic/hello-ionic';
 import {LogInPage} from './pages/login/login';
-import {ListPage} from './pages/list/list';
 import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 import {HTTP_PROVIDERS, Http} from '@angular/http';
 import {DashboardPage} from './pages/dashboard/dashboard';
@@ -16,7 +14,7 @@ class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage: any = DashboardPage;
+  rootPage: any = LogInPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
