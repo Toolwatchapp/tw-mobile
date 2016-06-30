@@ -1,5 +1,6 @@
 <header-nav></header-nav>
 
+<ion-content>
 <form 
   [ngFormModel] = "loginForm"
   (ngSubmit)="onSubmit(loginForm.value)"
@@ -26,7 +27,6 @@
           type="text" 
           ngControl="email"
           required 
-          value="mathieu.nayrolles@gmail.com"
         >
         <span class="highlight"></span>
         <span class="bar"></span>
@@ -46,7 +46,6 @@
           type="password" 
           ngControl="password"
           required
-          value="qwerty"
         >     
         <span class="highlight"></span>
         <span class="bar"></span>
@@ -56,7 +55,16 @@
       </div>
       <!-- END PASSWORD GROUP -->
       <div class="form-group">
-        <button toggle md-raised-button color="primary" type="submit"> {{ 'login' | translate:{value: param} }}</button>
+        <button id="login" toggle md-raised-button color="primary" type="submit"> {{ 'login' | translate:{value: param} }}</button>
       </div>
 </form>
+        <button id="login-fb" toggle md-raised-button color="primary">
+          <ion-icon name="logo-facebook"></ion-icon>
+           {{ 'facebook-login' | translate:{value: param} }}
+        </button>
+        <button (click)="onSignup()" id="register" toggle md-raised-button color="primary">
+           {{ 'email-register' | translate:{value: param} }}
+        </button>
+
+</ion-content>
 

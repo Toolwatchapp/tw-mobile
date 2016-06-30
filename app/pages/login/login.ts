@@ -7,7 +7,8 @@ import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, T
 import {Http, HTTP_PROVIDERS, Headers}  from '@angular/http';
 import {DashboardPage} from '../dashboard/dashboard';
 import {Header} from '../header/header';
-
+import {SignupPage} from '../signup/signup';
+import {Facebook} from 'ionic-native';
 
 
 @Component({
@@ -30,6 +31,15 @@ export class LogInPage extends LoginComponent {
 				user:user
 			})
 		);
+
+
+	}
+
+	onSignup(){
+		this.nav.push(SignupPage, {
+			email:this.email.value,
+			password:this.password.value
+		});
 	}
 
 }

@@ -1,12 +1,39 @@
-.log-in-page{
+.signup-page{
+	overflow-y: scroll;
+}
 
-	background-color:white;
+.log-in-page, .signup-page{
+
+	background-color:transparent !important;
+
+	ion-content{
+		top:40%;
+	}
 
 	.group { 
 	  position:relative; 
 	  margin-top:10%; 
 	  width: 80%;
 	  margin-left: 10%;
+	}
+
+	#login{
+		margin-top: 10%;
+	}
+
+	#login-fb{
+		margin-top: -2%;
+	}
+
+	#login-fb, #register{
+		width: 80%;
+		margin-left: 11%;
+		text-align: center;
+		.ion-logo-facebook{
+			position: absolute;
+			left:5%;
+			top:30%;
+		}
 	}
 
 	input               {
