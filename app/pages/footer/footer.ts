@@ -12,6 +12,7 @@ import {MeasurePage}  from '../measure/measure';
 import {AboutPage}  from '../about/about';
 import {DashboardPage}  from '../dashboard/dashboard';
 import { HTTP_PROVIDERS }  from '@angular/http';
+import {SocialSharing} from 'ionic-native';
 declare var window;
 
 
@@ -181,14 +182,12 @@ export class Footer {
 	}
 
 	onShare(){
-		if(window.plugins.socialsharing) {
-            window.plugins.socialsharing.share(
-            	null,
-            	null, 
-            	null, 
-            	"https://toolwatch.io"
-            );
-        }
+		SocialSharing.share(
+			this.translate.instant('generic-share'),
+            'Toolwatch', 
+            null, 
+            "https://toolwatch.io"
+		);
 	}
 
 	closeMenu() {

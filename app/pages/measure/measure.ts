@@ -11,6 +11,7 @@ import {DashboardPage} from '../dashboard/dashboard';
 import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, Validators}  from '@angular/common';
 import {Header}  from '../header/header';
 import {Footer} from '../footer/footer';
+import {SocialSharing} from 'ionic-native';
 
 import 'gsap';
 
@@ -49,14 +50,12 @@ export class MeasurePage {
 
 	share() {
 
-        if(window.plugins.socialsharing) {
-            window.plugins.socialsharing.share(
-            	this.translate.instant('share-text').replace('{X}', this.percentage),
-            	null, 
-            	null, 
-            	"https://toolwatch.io"
-            );
-        }
+		SocialSharing.share(
+			this.translate.instant('share-text').replace('{X}', this.percentage),
+            'Toolwatch', 
+            null, 
+            "https://toolwatch.io"
+		);
 	}
 
 	validate(){
