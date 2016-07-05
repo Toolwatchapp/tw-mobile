@@ -40,6 +40,6 @@
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [],
-  "name": "tw-ionic",
-  "description": "tw-ionic: An Ionic project"
+  "name": "Toolwatch",
+  "description": "Measure the precision of your mechanical watches"
 }

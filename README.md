@@ -6,16 +6,16 @@ Mobile Apps
 - [x] Dashboard
 - [x] Add Watch
 - [x] Edit / Delete watch
-- [ ] Result
+- [x] Result
 - [x] Login
-- [ ] Signup
-- [ ] Time
+- [x] Signup
+- [x] Time
 
 ### Functionalities
 
 - [x] List watches
 - [x] Add/edit/delete watches
 - [x] Login (email)
-- [ ] Signup (email)
+- [x] Signup (email)
 - [ ] Login fb
-- [ ] Social share
+- [x] Social share

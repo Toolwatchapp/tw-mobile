@@ -49,21 +49,21 @@ export class DashboardPage {
 
 		this.twapi.accurateTime();
 
-		// this.twapi.login("mathieu.nayrolles@gmail.com", "qwerty").then(
-		// 	res => {
-		// 		this.user = res;
-		// 		console.log(this.user);
+		this.twapi.login("mathieu@toolwatch.io", "qwerty").then(
+			res => {
+				this.user = res;
+				console.log(this.user);
 
-		// 		for (var i = 0; i < this.user.watches.length; i++) {
-		// 			console.log(this.user.watches[i]);
-		// 			for (var y = 0; y < this.user.watches[i].measures.length; y++) {
-		// 				console.log(this.user.watches[i].measures[y].status == 8);
+				for (var i = 0; i < this.user.watches.length; i++) {
+					console.log(this.user.watches[i]);
+					for (var y = 0; y < this.user.watches[i].measures.length; y++) {
+						console.log(this.user.watches[i].measures[y].status == 8);
 
-		// 				console.log(this.user.watches[i].measures[y]);
-		// 			}
-		// 		}
-		// 	}  
-		// );
+						console.log(this.user.watches[i].measures[y]);
+					}
+				}
+			}  
+		);
 	}
 
 	updateWatch(watch:Watch){

@@ -1,6 +1,10 @@
 .about-page{
 	background-color: white;
 	ion-content{
+
+		scroll-content{
+			height: 60%;
+		}
 		height: 50%;
 		top:30%;
 		width: 90%;

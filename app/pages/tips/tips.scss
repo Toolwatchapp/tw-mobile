@@ -1,7 +1,10 @@
 .tips-page{
 	background-color: white;
 	ion-content{
-		height: 60%;
+		scroll-content{
+			height: 60%;
+		}
+		height: 55%;
 		top:30%;
 		width: 90%;
 		margin-left: 5%;

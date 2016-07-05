@@ -19,23 +19,35 @@ import {Facebook} from 'ionic-native';
 })
 export class LogInPage extends LoginComponent {
 
-
+	laoding:Loading;
 
 	constructor(private nav: NavController, translate: TranslateService,
 		twapi: TwAPIService, builder: FormBuilder) {
 		super(translate, twapi, builder);
 
-	
+
+		translate.get('logging-in').subscribe(
+			sentence => this.laoding = Loading.create({
+					content: sentence
+				}
+			)
+		);
+
 		this.userLogged.subscribe(
 			user => this.nav.setRoot(DashboardPage, {
 				user:user
 			})
 		);
 
-
 	}
 
+	// onSubmit(user:{email:string, password:string}){
+	// 	super.onSubmit(user);
+	// 	this.laoding.dismiss();
+	// }
+
 	onSignup(){
+
 		this.nav.push(SignupPage, {
 			email:this.email.value,
 			password:this.password.value

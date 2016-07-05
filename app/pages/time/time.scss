@@ -60,6 +60,7 @@
 			}
 
 			.details{
+				font-size: 2.5vh;
 				margin-top: 3%;
 				background-color: white;
 				width: 100%;
@@ -116,12 +117,13 @@
 
 	.clock {
 	  margin: auto;
+	  margin-top: 8%;
 	  border-radius: 50%;
-	  background: #4d77a7 url(../assets/images/clock-face-bg.png) no-repeat center;
-	  background-size: 98%;
+	  background: url(../assets/images/clock-face-bg.png) no-repeat center;
+	  background-size: contain;
 	  height: 45%;
 	  position: relative;
-	  width: 80%;
+	  width: 90%;
 	}
 
 	.logo{
@@ -135,6 +137,8 @@
 	}
 
 	.date{
+	  padding-top: 2%;
+	  font-size: 1.8vh;
 	  background-color: #21446f;
 	  height: 20px;
 	  font-family: 'Nunito', sans-serif;
@@ -147,7 +151,7 @@
 	.month{
 	  width: 40px;
 	  left: 15%;
-	  padding-left: 2%;
+	  padding-left: 4%;
 	}
 
 	.day{
@@ -242,7 +246,7 @@
 	  height: 100%;
 	  z-index: 1;
 	  position: absolute;
-	  top:2%;
+	  top:6%;
 	  background: url(../assets/images/clock-cadran.png) no-repeat center;
 	  background-size: 100%;
 	}
@@ -253,7 +257,7 @@
 	  position: absolute;
 	  top:0%;
 	  background: url(../assets/images/clock-disque.png) no-repeat center;
-	  background-size: cover;
+	  background-size: contain;
 	}
 
 	.moon-phase-container{

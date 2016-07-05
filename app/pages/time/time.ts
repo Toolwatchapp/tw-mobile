@@ -8,6 +8,7 @@ import {Header}  from '../header/header';
 import {ClockComponent} from 'tw-common/dist/app/directives/clock/clock.component';
 import {MoonPhases} from './moon/moon-phases';
 import {Footer} from '../footer/footer';
+import {User} from 'tw-common/dist/app/models/user.model';
 
 
 @Component({
@@ -23,6 +24,8 @@ export class TimePage extends ClockComponent{
 	Math:any = Math;
 	interval:number = 100;
 	offset:number;
+	user:User;
+	background:string = "time-background";
 
 	constructor(elementRef: ElementRef, private nav: NavController, private navParams: NavParams,
 		private twapi: TwAPIService, private translate: TranslateService) {
@@ -43,6 +46,8 @@ export class TimePage extends ClockComponent{
 			}, 
 			this.interval, this.interval, this
 		);
+
+		this.user = this.navParams.get('user');
 	}
 
 	addZero(i:number):string {

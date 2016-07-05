@@ -19,6 +19,8 @@ import 'gsap';
 })
 export class WatchPage extends WatchComponent {
 	
+	background:string = "addWatch-background";
+	slogan:string ="add-new-watch";
 
 	constructor(private nav: NavController, private navParams: NavParams, 
 		translate: TranslateService,
@@ -33,6 +35,7 @@ export class WatchPage extends WatchComponent {
 		let receivedWatch:Watch = this.navParams.get('watch');
 		if (receivedWatch !== undefined){
 			this.watchModel = receivedWatch;
+			this.slogan = "edit-watch";
 		}
 
 

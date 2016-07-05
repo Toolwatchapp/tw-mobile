@@ -172,7 +172,9 @@ export class Footer {
 	}
 
 	onTime(){
-		this.nav.push(TimePage);
+		this.nav.push(TimePage, {
+			user:this.user
+		});
 	}
 
 	onTips(){

@@ -25,9 +25,13 @@ export class Header {
 	chat: boolean = false;
 	@Input()
 	back:boolean = false;
+	@Input()
+	topBg:string = "handBg";
 
 	constructor(private nav: NavController, private elementRef: ElementRef) {
 
+		console.log(this.topBg);
+		console.log(this.slogan);
 	}
 
 	onBack(){

@@ -1,5 +1,9 @@
 footer-nav{
 
+	.button-icon-only, .button-icon-left{
+		box-shadow: none;
+	}
+
 	tab{
 		z-index: 10;
 		color:white;
@@ -22,19 +26,23 @@ footer-nav{
 			.tab-label{
 				float:left;
 				width: 100%;
-				margin-top: -20%;
+				margin-top: -15%;
+				margin-left: 2%;
 				z-index: 10;
-				font-size: 10px;
+				font-size: 1.5vh;
 				text-align: center;
 			}
 
 			.button-icon-only{
 				margin-top: 0;
-				padding-left: 5%;
+				-webkit-transition: none;
+                transition: none;
 				background-color: transparent;
+				box-shadow: none;
 			}
 
 			button{
+
 				ion-icon{
 					width: 100%;
 					height: 70%;
@@ -42,6 +50,10 @@ footer-nav{
 					padding-left: 3%;
 					font-size: 5vh;
 				}
+
+				width: 100%;
+				-webkit-transition: none;
+                transition: none;
 			}
 		}
 	}

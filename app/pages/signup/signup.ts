@@ -21,6 +21,9 @@ import {Header} from '../header/header';
 })
 export class SignupPage extends SignupComponent{
 
+  background:string = "account-background";
+  slogan:string = "signin-slogan";
+
   constructor(private nav: NavController, private navParams: NavParams, translate: TranslateService, 
      twapi: TwAPIService,  builder: FormBuilder) {
 
