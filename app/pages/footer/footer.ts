@@ -122,53 +122,52 @@ export class Footer {
 
 	openMenu() {
 
-		this.elementRef.nativeElement.querySelectorAll(".menu-item")
-			.forEach(function(element: any, index: number) {
+		let elements:any[] = this.elementRef.nativeElement.querySelectorAll(".menu-item");
 
-				var delay: number = index * 0.08;
+		for (var i = 0; i < elements.length; i++) {
+			var delay: number = i * 0.08;
 
-				var bounce = element.querySelectorAll(".menu-item-bounce");
-				var TweenMax = new TimelineMax();
+			var bounce = elements[i].querySelectorAll(".menu-item-bounce");
+			var TweenMax = new TimelineMax();
 
-				var Quad = new Quint();
-				// var Elastic = new Elastic();
-				var disance = 90;
+			var Quad = new Quint();
+			// var Elastic = new Elastic();
+			var disance = 90;
 
-				TweenMax.fromTo(bounce, 0.1, {
-					transformOrigin: "50% 50%"
-				}, {
-						delay: delay,
-						scaleX: 0.8,
-						scaleY: 1.2,
-						force3D: true,
-						ease: Quad.easeInOut,
-						onComplete: function() {
-							TweenMax.to(bounce, 0.15, {
-								// scaleX:1.2,
-								scaleY: 0.7,
-								force3D: true,
-								ease: Quad.easeInOut,
-								onComplete: function() {
-									TweenMax.to(bounce, 0, {
-										scaleX: 1.65,
-										scaleY: 1.65,
-										force3D: true,
-										ease: Elastic.easeOut,
-										easeParams: [1.1, 0.12]
-									})
-								}
-							})
-						}
-					});
-
-				TweenMax.to(element.querySelectorAll(".menu-item-button"), 0.1, {
+			TweenMax.fromTo(bounce, 0.1, {
+				transformOrigin: "50% 50%"
+			}, {
 					delay: delay,
-					y: disance,
+					scaleX: 0.8,
+					scaleY: 1.2,
 					force3D: true,
-					ease: Quint.easeInOut
+					ease: Quad.easeInOut,
+					onComplete: function() {
+						TweenMax.to(bounce, 0.15, {
+							// scaleX:1.2,
+							scaleY: 0.7,
+							force3D: true,
+							ease: Quad.easeInOut,
+							onComplete: function() {
+								TweenMax.to(bounce, 0, {
+									scaleX: 1.65,
+									scaleY: 1.65,
+									force3D: true,
+									ease: Elastic.easeOut,
+									easeParams: [1.1, 0.12]
+								})
+							}
+						})
+					}
 				});
-			});
 
+			TweenMax.to(elements[i].querySelectorAll(".menu-item-button"), 0.1, {
+				delay: delay,
+				y: disance,
+				force3D: true,
+				ease: Quint.easeInOut
+			});
+		}
 	}
 
 	onTime(){
@@ -194,71 +193,71 @@ export class Footer {
 
 	closeMenu() {
 
-		this.elementRef.nativeElement.querySelectorAll(".menu-item")
-			.forEach(function(element: any, index: number) {
+		let elements:any[] = this.elementRef.nativeElement.querySelectorAll(".menu-item");
 
-				var delay: number = index * 0.08;
+		for (var i = 0; i < elements.length; i++) {
+			var delay: number = i * 0.08;
 
-				var bounce = element.querySelectorAll(".menu-item-bounce");
-				var TweenMax = new TimelineMax();
-				var Quad = new Quint();
-				// var Elastic = new Elastic();
-				var disance = 90;
+			var bounce = elements[i].querySelectorAll(".menu-item-bounce");
+			var TweenMax = new TimelineMax();
+			var Quad = new Quint();
+			// var Elastic = new Elastic();
+			var disance = 90;
 
-				TweenMax.fromTo(bounce, 0.1, {
-					transformOrigin: "50% 50%"
-				}, {
-						delay: delay,
-						scaleX: 1,
-						scaleY: 0.8,
-						force3D: true,
-						ease: Quad.easeInOut,
-						onComplete: function() {
-							TweenMax.to(bounce, 0.15, {
-								// scaleX:1.2,
-								scaleY: 1.2,
-								force3D: true,
-								ease: Quad.easeInOut,
-								onComplete: function() {
-									TweenMax.to(bounce, 3, {
-										// scaleX:1,
-										scaleY: 1,
-										force3D: true,
-										ease: Elastic.easeOut,
-										easeParams: [1.1, 0.12]
-									})
-								}
-							})
-						}
-					});
-
-
-				TweenMax.to(element.querySelectorAll(".menu-item-button"), 0.1, {
+			TweenMax.fromTo(bounce, 0.1, {
+				transformOrigin: "50% 50%"
+			}, {
 					delay: delay,
-					y: 0,
+					scaleX: 1,
+					scaleY: 0.8,
 					force3D: true,
-					ease: Quint.easeIn
+					ease: Quad.easeInOut,
+					onComplete: function() {
+						TweenMax.to(bounce, 0.15, {
+							// scaleX:1.2,
+							scaleY: 1.2,
+							force3D: true,
+							ease: Quad.easeInOut,
+							onComplete: function() {
+								TweenMax.to(bounce, 3, {
+									// scaleX:1,
+									scaleY: 1,
+									force3D: true,
+									ease: Elastic.easeOut,
+									easeParams: [1.1, 0.12]
+								})
+							}
+						})
+					}
 				});
+
+
+			TweenMax.to(elements[i].querySelectorAll(".menu-item-button"), 0.1, {
+				delay: delay,
+				y: 0,
+				force3D: true,
+				ease: Quint.easeIn
 			});
+		}
 	}
 
 
 	ngAfterViewInit() {
-		this.elementRef.nativeElement.querySelectorAll(
-			'.menu-item'
-		).forEach(function(element: any, index: number) {
 
+		let elements:any[] = this.elementRef.nativeElement.querySelectorAll(".menu-item");
+
+		for (var i = 0; i < elements.length; i++) {
 			let startingAngle: number = 180 + (-120 / 2);
 			let slice: number = 120 / (3 - 1);
 
 
-			let angle = startingAngle + (slice * index);
+			let angle = startingAngle + (slice * i);
 
-			element.style.transform = "rotate(" + (angle) + "deg)";
+			elements[i].style.transform = "rotate(" + (angle) + "deg)";
 
-			element.querySelector(".menu-item-icon")
+			elements[i].querySelector(".menu-item-icon")
 				.style.transform = "rotate(" + (-angle) + "deg)";
-		});
+		}
 	}
 
 }
