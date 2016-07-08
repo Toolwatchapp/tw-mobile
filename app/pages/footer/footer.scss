@@ -94,6 +94,8 @@ footer-nav{
 		position: absolute;
 		top: 0;
 		left: 0;
+		display: block;
+
 	}
 
 	.menu-item-icon{
@@ -115,7 +117,6 @@ footer-nav{
 	}
 
 	.plus-icon{
-		// transform:rotate(90deg);
 		margin-top: 0px;
 		margin-left: -9px;
 	}
