@@ -5,7 +5,7 @@ import {LogInPage} from './pages/login/login';
 import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 import {HTTP_PROVIDERS, Http} from '@angular/http';
 import {DashboardPage} from './pages/dashboard/dashboard';
-
+import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 
 @Component({
   templateUrl: 'build/app.html'
@@ -20,13 +20,6 @@ class MyApp {
   constructor(
     private platform: Platform
   ) {
-    // this.initializeApp();
-
-    // // set our app's pages
-    // this.pages = [
-    //   { title: 'Hello Ionic', component: HelloIonicPage },
-    //   { title: 'My First List', component: ListPage }
-    // ];
   }
 
   initializeApp() {
@@ -40,6 +33,7 @@ class MyApp {
 }
 
 ionicBootstrap(MyApp, [
+  TwAPIService,
   HTTP_PROVIDERS,
   provide(TranslateLoader, {
     useFactory: (http: Http) => new TranslateStaticLoader(http, 'build/assets/i18n', '.json'),

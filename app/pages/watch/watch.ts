@@ -14,7 +14,6 @@ import 'gsap';
 @Component({
 	templateUrl: 'build/pages/watch/watch.html',
 	pipes: [TranslatePipe],
-	providers: [TwAPIService, HTTP_PROVIDERS],
 	directives: [Header]
 })
 export class WatchPage extends WatchComponent {

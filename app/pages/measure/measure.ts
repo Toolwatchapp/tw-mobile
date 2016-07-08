@@ -20,7 +20,6 @@ declare var window;
 @Component({
 	templateUrl: 'build/pages/measure/measure.html',
 	pipes: [TranslatePipe],
-	providers: [TwAPIService, HTTP_PROVIDERS],
 	directives: [Header, forwardRef(() => Footer)]
 })
 export class MeasurePage {

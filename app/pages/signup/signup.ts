@@ -16,7 +16,6 @@ import {Header} from '../header/header';
 @Component({
   templateUrl: 'build/pages/signup/signup.html',
   pipes: [TranslatePipe],
-  providers: [TwAPIService, HTTP_PROVIDERS],
   directives: [Header]
 })
 export class SignupPage extends SignupComponent{
@@ -29,16 +28,16 @@ export class SignupPage extends SignupComponent{
 
   	super(translate, twapi, builder);
 
-	(<Control>this.signupForm.controls['email'])
+	  (<Control>this.signupForm.controls['email'])
 		.updateValue(this.navParams.get('email'));
 
-	(<Control>this.signupForm.controls['password'])
+	  (<Control>this.signupForm.controls['password'])
 		.updateValue(this.navParams.get('password'));
 
-	this.userLogged.subscribe(
-		user => this.nav.setRoot(DashboardPage, {
-			user:user
-		})
-	);
+  	this.userLogged.subscribe(
+  		user => this.nav.setRoot(DashboardPage, {
+  			user:user
+  		})
+  	);
   }
 }

@@ -14,7 +14,6 @@ import {Facebook} from 'ionic-native';
 @Component({
 	templateUrl: 'build/pages/login/login.html',
 	pipes: [TranslatePipe],
-	providers: [TwAPIService, HTTP_PROVIDERS],
 	directives: [Header]
 })
 export class LogInPage extends LoginComponent {

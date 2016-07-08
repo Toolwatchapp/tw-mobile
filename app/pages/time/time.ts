@@ -14,7 +14,6 @@ import {User} from 'tw-common/dist/app/models/user.model';
 @Component({
 	templateUrl: 'build/pages/time/time.html',
 	pipes: [TranslatePipe],
-	providers: [TwAPIService, HTTP_PROVIDERS],
 	directives: [forwardRef(() => Footer), Header, MoonPhases]
 })
 export class TimePage extends ClockComponent{

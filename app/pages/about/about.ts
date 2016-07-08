@@ -10,7 +10,6 @@ import {Footer} from '../footer/footer';
 @Component({
 	templateUrl: 'build/pages/about/about.html',
 	pipes: [TranslatePipe],
-	providers: [TwAPIService, HTTP_PROVIDERS],
 	directives: [forwardRef(() => Footer), Header]
 })
 export class AboutPage {

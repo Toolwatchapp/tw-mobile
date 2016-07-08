@@ -18,7 +18,6 @@ import 'gsap';
 @Component({
 	templateUrl: 'build/pages/dashboard/dashboard.html',
 	pipes: [TranslatePipe],
-	providers: [TwAPIService, HTTP_PROVIDERS],
 	directives: [Footer, Header]
 })
 export class DashboardPage {
@@ -33,10 +32,8 @@ export class DashboardPage {
 	constructor(private nav: NavController, private navParams: NavParams,  private translate: TranslateService,
 		private twapi: TwAPIService, private elementRef: ElementRef) {
 
-		var userLang = navigator.language.split('-')[0];
-		userLang = /(fr|en)/gi.test(userLang) ? userLang : 'en';
 		translate.setDefaultLang('en');
-		translate.use(userLang);
+		translate.use('en');
 
 		DashboardPage.userChanged.subscribe(
 			user => {
@@ -46,24 +43,6 @@ export class DashboardPage {
 		);
 
 		this.user = this.navParams.get('user');
-
-		this.twapi.accurateTime();
-
-		this.twapi.login("mathieu@toolwatch.io", "qwerty").then(
-			res => {
-				this.user = res;
-				console.log(this.user);
-
-				for (var i = 0; i < this.user.watches.length; i++) {
-					console.log(this.user.watches[i]);
-					for (var y = 0; y < this.user.watches[i].measures.length; y++) {
-						console.log(this.user.watches[i].measures[y].status == 8);
-
-						console.log(this.user.watches[i].measures[y]);
-					}
-				}
-			}  
-		);
 	}
 
 	updateWatch(watch:Watch){
