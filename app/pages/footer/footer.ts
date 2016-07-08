@@ -96,20 +96,26 @@ export class Footer {
 		      text: this.translate.instant('ok'),
 		      handler: data => {
 
-		      	let selectedWatch:Watch;
-		      	for (var i = 0; i < this.user.watches.length; i++) {
+		      	if(data !== undefined){
+		      		let selectedWatch:Watch;
+			      	for (var i = 0; i < this.user.watches.length; i++) {
 
-					console.log("data", data);
-		      		if(this.user.watches[i].id.toString() == data){
-		      			selectedWatch = this.user.watches[i];
-		      			console.log("sw", selectedWatch);
-		      			break;
-		      		}
+						console.log("data", data);
+			      		if(this.user.watches[i].id.toString() == data){
+			      			selectedWatch = this.user.watches[i];
+			      			console.log("sw", selectedWatch);
+			      			break;
+			      		}
+			      	}
+
+			      	this.nav.push(MeasurePage, {
+						watch: selectedWatch,
+						user: this.user
+					});
+		      	}else{
+
+		      		alert.dismiss();
 		      	}
-		      	this.nav.push(MeasurePage, {
-					watch: selectedWatch,
-					user: this.user
-				});
 		      }
 		    });
 
