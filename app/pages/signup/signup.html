@@ -2,13 +2,17 @@
 
 <ion-content>
 <form 
+  [ngClass]="{ 'has-error' : emailTaken || error }"
   [ngFormModel] = "signupForm"
-  (ngSubmit)="onSubmit(loginForm.value)"
+  (ngSubmit)="onSubmit(signupForm.value)"
 >     
       <!-- GENERAL ERROR MESSAGES -->
       <div  class="form-group">
         <div class="error-message" [hidden]="!error">
             {{ 'error' | translate:{value: param} }}
+        </div>
+        <div class="error-message" [hidden]="!emailTaken">
+            {{ 'email-taken' | translate:{value: param} }}
         </div>
       </div>
       <!-- END GENERAL ERROR MESSAGES -->
@@ -81,7 +85,7 @@
         </em>
         <input 
           type="password" 
-          ngControl="password"
+          ngControl="passwordRepeat"
           required
         >     
         <span class="highlight"></span>

@@ -33,17 +33,25 @@ export class LogInPage extends LoginComponent {
 		);
 
 		this.userLogged.subscribe(
-			user => this.nav.setRoot(DashboardPage, {
-				user:user
-			})
+			user => {
+				this.laoding.dismiss();
+				this.nav.setRoot(DashboardPage, {
+					user:user
+				})
+			}
+		);
+
+		this.loginAttempt.subscribe(
+			attempt => {
+				if(attempt === true){
+					this.nav.present(this.laoding);
+				}else{
+					this.laoding.dismiss();
+				}
+			}
 		);
 
 	}
-
-	// onSubmit(user:{email:string, password:string}){
-	// 	super.onSubmit(user);
-	// 	this.laoding.dismiss();
-	// }
 
 	onSignup(){
 
