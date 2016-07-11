@@ -6,12 +6,6 @@ import {WatchPage} from '../watch/watch';
 import {User} from 'tw-common/dist/app/models/user.model';
 
 
-
-declare var TimelineMax: any;
-declare var Quint: any;
-declare var Quad: any;
-declare var Elastic: any;
-
 @Component({
 	templateUrl: 'build/pages/header/header.html',
 	pipes: [TranslatePipe],
