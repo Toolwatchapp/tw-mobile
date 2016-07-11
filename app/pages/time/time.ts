@@ -25,14 +25,29 @@ export class TimePage extends ClockComponent{
 	offset:number;
 	user:User;
 	background:string = "time-background";
+	loading = Loading.create({
+		content: this.translate.instant('sync'),
+		dismissOnPageChange: false
+	});
 
 	constructor(elementRef: ElementRef, private nav: NavController, private navParams: NavParams,
 		private twapi: TwAPIService, private translate: TranslateService) {
 
 		super(elementRef);
 
-		this.twapi.accurateTime().then(
+		let times = 10;
+		let completed = 0;
+		this.twapi.accurateTime(function(){
+			completed++;
+			console.log("completed", completed);
+			this.loading.setContent(this.translate.instant('sync') + "(" + completed/10*100 + "%)");
+		}).then(
 			date => {
+
+				setTimeout(()=>{
+			      this.loading.dismiss()
+			   	});
+
 				this.date = date;
 				this.initLocalClocks();
 				this.offset = this.twapi.getOffsetTime();

@@ -20,6 +20,9 @@ class MyApp {
   constructor(
     private platform: Platform
   ) {
+    document.addEventListener('resume', () => {
+       TwAPIService.resetTime();
+    });
   }
 
   initializeApp() {
