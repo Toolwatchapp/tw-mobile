@@ -6,7 +6,7 @@ import {WatchPage} from '../watch/watch';
 import {TipsPage} from '../tips/tips';
 import {TimePage} from '../time/time';
 import {User} from 'tw-common/dist/app/models/user.model';
-import {Watch} from 'tw-common/dist/app/models/watch.model';
+import {Watch, WatchAction} from 'tw-common/dist/app/models/watch.model';
 import {Header}  from '../header/header';
 import {MeasurePage}  from '../measure/measure';
 import {AboutPage}  from '../about/about';
@@ -83,12 +83,15 @@ export class Footer {
 		    alert.setTitle(this.translate.instant('select-measure'));
 
 		    for (var i = 0; i < this.user.watches.length; i++) {
-		    	
-		    	alert.addInput({
-			      type: 'radio',
-			      label: this.user.watches[i].brand + " " + this.user.watches[i].name,
-			      value: this.user.watches[i].id.toString()
-			    });
+
+		    	if(this.user.watches[i].next !== WatchAction.Waiting){
+		    		alert.addInput({
+				      type: 'radio',
+				      label: this.user.watches[i].brand + " " + this.user.watches[i].name,
+				      value: this.user.watches[i].id.toString()
+				    });
+		    	}
+
 		    }
 
 		    alert.addButton(this.translate.instant('cancel'));
