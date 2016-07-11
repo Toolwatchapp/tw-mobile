@@ -46,5 +46,28 @@ export class WatchPage extends WatchComponent {
 		);
 	}
 
+	onDelete(){
+		let alert = Alert.create({
+		title: this.translate.instant('delete-watch-alert'),
+		message: this.translate.instant('delete-watch-confirm') + this.watchModel.brand + " " +  this.watchModel.name + "?",
+		buttons: 
+			[
+				{
+					text: this.translate.instant('cancel'),
+					role: 'cancel',
+					handler: () => {
+						console.log('Cancel clicked');
+					}
+				},
+				{
+					text: this.translate.instant('confirm'),
+					handler: () => {
 
+						super.onDelete();
+					}
+				}
+			]
+		});
+		this.nav.present(alert);
+	}
 }
