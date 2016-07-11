@@ -122,4 +122,14 @@ export class DashboardPage {
 		this.nav.present(alert);
 	}
 
+	onRefresh(refresher) {
+
+		this.twapi.getWatches().then(
+			res => {
+				this.user.watches = res;
+				refresher.complete();
+			}
+		)
+	}
+
 }

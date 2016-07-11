@@ -1,58 +1,68 @@
 <header-nav></header-nav>
 
 <ion-content>
-  <ion-list *ngIf="user" >
-    <ion-item-sliding *ngFor="let watch of user.watches">
 
-      <ion-item>
-        <h2>{{ watch.brand }}</h2>
-        <h3>{{ watch.name }}</h3>
+<ion-refresher (ionRefresh)="onRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="{{ 'refresh-info' | translate:{value: param} }}"
+      refreshingSpinner="circles"
+      refreshingText="{{ 'refreshing' | translate:{value: param} }}">
+      </ion-refresher-content>
+    </ion-refresher>
 
-        <p *ngIf="watch.status === WatchStatus.NeverMeasured">
-          {{ 'never-measured' | translate:{value: param} }}
-        </p>
+      <ion-list *ngIf="user" >
+        <ion-item-sliding *ngFor="let watch of user.watches">
 
-        <p 
-        *ngIf="watch.status !== WatchStatus.NeverMeasured 
-        && watch.next == WatchAction.Measure
-        && watch.historySize >= 1">
-          {{ watch.currentMeasure().accuracy }} {{ 'spd' | translate:{value: param} }}
-        </p>
+          <ion-item>
+            <h2>{{ watch.brand }}</h2>
+            <h3>{{ watch.name }}</h3>
 
-        <p 
-        *ngIf="watch.next === WatchAction.Waiting">
-          {{ 'waiting' | translate:{value: param} }}
-          {{ watch.waiting }} 
-          {{ 'hours' | translate:{value: param} }}
-        </p>
+            <p *ngIf="watch.status === WatchStatus.NeverMeasured">
+              {{ 'never-measured' | translate:{value: param} }}
+            </p>
+
+            <p 
+            *ngIf="watch.status !== WatchStatus.NeverMeasured 
+            && watch.next == WatchAction.Measure
+            && watch.historySize >= 1">
+              {{ watch.currentMeasure().accuracy }} {{ 'spd' | translate:{value: param} }}
+            </p>
+
+            <p 
+            *ngIf="watch.next === WatchAction.Waiting">
+              {{ 'waiting' | translate:{value: param} }}
+              {{ watch.waiting }} 
+              {{ 'hours' | translate:{value: param} }}
+            </p>
 
 
-      <button secondary (click)="measureWatch(watch)" *ngIf="watch.next === WatchAction.Measure" item-right>
-        {{ 'new-measure' | translate:{value: param} }}
-      </button>
-      <button secondary (click)="measureWatch(watch)" *ngIf="watch.next === WatchAction.Accuracy" item-right>
-        {{ 'check-accuracy' | translate:{value: param} }}
-      </button>
+          <button secondary (click)="measureWatch(watch)" *ngIf="watch.next === WatchAction.Measure" item-right>
+            {{ 'new-measure' | translate:{value: param} }}
+          </button>
+          <button secondary (click)="measureWatch(watch)" *ngIf="watch.next === WatchAction.Accuracy" item-right>
+            {{ 'check-accuracy' | translate:{value: param} }}
+          </button>
 
-      </ion-item>
-      <ion-item-options side="left">
-        <button (click)="deleteWatch(watch)" danger>
-          <ion-icon  name="ios-trash-outline"></ion-icon>
-        </button>
-        <button (click)="updateWatch(watch)" secondary>
-          <ion-icon name="ios-build-outline"></ion-icon>
-        </button>
-      </ion-item-options>
-      <ion-item-options side="right">
-        <button (click)="deleteWatch(watch)" danger>
-          <ion-icon  name="ios-trash-outline"></ion-icon>
-        </button>
-        <button (click)="updateWatch(watch)" secondary>
-          <ion-icon name="ios-build-outline"></ion-icon>
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+          </ion-item>
+          <ion-item-options side="left">
+            <button (click)="deleteWatch(watch)" danger>
+              <ion-icon  name="ios-trash-outline"></ion-icon>
+            </button>
+            <button (click)="updateWatch(watch)" secondary>
+              <ion-icon name="ios-build-outline"></ion-icon>
+            </button>
+          </ion-item-options>
+          <ion-item-options side="right">
+            <button (click)="deleteWatch(watch)" danger>
+              <ion-icon  name="ios-trash-outline"></ion-icon>
+            </button>
+            <button (click)="updateWatch(watch)" secondary>
+              <ion-icon name="ios-build-outline"></ion-icon>
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
 </ion-content>
 
 
