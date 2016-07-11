@@ -21,6 +21,7 @@
             {{ 'brand-required' | translate:{value: param} }}
           </em>
           <input 
+            [ngClass]="{'was-filled': watchModel.brand}"
             id="brand" 
             type="text" 
             class="form-control" 
@@ -51,6 +52,7 @@
       [ngClass]="{ 'has-error' : !model.valid && submitAttempt }"
       >
           <input 
+            [ngClass]="{'was-filled': watchModel.name}"
             id="model" 
             type="text" 
             class="form-control" 
@@ -79,6 +81,7 @@
       [ngClass]="{ 'has-error' : !caliber.valid && submitAttempt }"
       >
           <input 
+            [ngClass]="{'was-filled': watchModel.caliber}"
             id="caliber" 
             type="text" 
             class="form-control" 
@@ -102,6 +105,7 @@
             {{ 'year-required' | translate:{value: param} }}
           </em>
           <input 
+            [ngClass]="{'was-filled': watchModel.year}"
             id="year" 
             type="text" 
             class="form-control" 
@@ -127,7 +131,7 @@
             class="form-control" 
             ngControl="serial"
             [(ngModel)]=watchModel.serial 
-            
+            [ngClass]="{'was-filled': watchModel.serial}"
           >
           <span class="highlight"></span>
           <span class="bar"></span>
