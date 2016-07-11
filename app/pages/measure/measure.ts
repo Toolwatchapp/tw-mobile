@@ -89,7 +89,7 @@ export class MeasurePage {
 					this.percentage = watch.currentMeasure().percentile;
 
 					this.accuracyText = this.translate.instant('accuracy-result')
-						.replace("{watch}", this.watch.brand + " " + this.watch.next)
+						.replace("{watch}", this.watch.brand + " " + this.watch.name)
 						.replace("{x}", this.accuracy);
 
 					this.percentilText = this.translate.instant('percentil-result')
