@@ -49,7 +49,10 @@
 	}
 
 	/* active state */
-	input:focus ~ label, input:valid.ng-dirty ~ label        {
+	input:focus ~ label, 
+	input:valid.ng-dirty ~ label,
+	input:valid.was-filled ~ label
+	        {
 	  top:-20px;
 	  font-size:14px;
 	  color:#5264AE;
