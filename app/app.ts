@@ -21,6 +21,7 @@ class MyApp {
     private platform: Platform
   ) {
     document.addEventListener('resume', () => {
+      console.log("resummmmeeeed");
        TwAPIService.resetTime();
     });
   }

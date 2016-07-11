@@ -35,8 +35,23 @@ export class TimePage extends ClockComponent{
 
 		super(elementRef);
 
+		setInterval(
+			function(interval:number, me:TimePage):void{
+				me.date = new Date(me.date.getTime() + interval);
+			}, 
+			this.interval, this.interval, this
+		);
+
+		this.user = this.navParams.get('user');
+	}
+
+	ngAfterViewInit() {
+
 		let times = 10;
 		let completed = 0;
+
+		this.nav.present(this.loading);
+		
 		this.twapi.accurateTime(function(){
 			completed++;
 			console.log("completed", completed);
@@ -53,15 +68,6 @@ export class TimePage extends ClockComponent{
 				this.offset = this.twapi.getOffsetTime();
 			}
 		);
-
-		setInterval(
-			function(interval:number, me:TimePage):void{
-				me.date = new Date(me.date.getTime() + interval);
-			}, 
-			this.interval, this.interval, this
-		);
-
-		this.user = this.navParams.get('user');
 	}
 
 	addZero(i:number):string {
