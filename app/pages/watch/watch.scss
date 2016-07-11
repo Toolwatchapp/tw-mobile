@@ -137,7 +137,28 @@
 		}
 	}
 
+	ul{
+		text-decoration: none;
+		width: 100%;
+		height: 20%;
+		overflow-y: hidden;
+		list-style-type: none;
+		li{
+			height: 30px;
 
-	
+			a{
+				color:black;
+			}
+
+			img{
+				height: 25px;
+
+				float: right;
+				margin-right: 10%;
+			}
+		}
+	}
+
+
 	
 }

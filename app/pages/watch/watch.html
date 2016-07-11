@@ -36,8 +36,8 @@
           </label>
 
           <div class="suggestions" *ngIf="filteredBrandList.length > 0">
-            <ul *ngFor="let brand of filteredBrandList">
-              <li>
+            <ul>
+              <li *ngFor="let brand of filteredBrandList">
                 <a (click)="selectBrand(brand.name)">{{ brand.name }}</a>
                 <img src="/build/assets/ico_watches/{{ brand.icon }}"/>
               </li>
@@ -65,8 +65,8 @@
             {{ 'model' | translate:{value: param} }}
           </label>
           <div class="suggestions" *ngIf="filteredModelList.length > 0">
-            <ul *ngFor="let model of filteredModelList">
-              <li>
+            <ul>
+              <li *ngFor="let model of filteredModelList">
                 <a (click)="selectModel(model)">{{ model }}</a>
               </li>
             </ul>
