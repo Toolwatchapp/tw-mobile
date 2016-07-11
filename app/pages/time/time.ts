@@ -47,16 +47,9 @@ export class TimePage extends ClockComponent{
 
 	ngAfterViewInit() {
 
-		let times = 10;
-		let completed = 0;
-
 		this.nav.present(this.loading);
 		
-		this.twapi.accurateTime(function(){
-			completed++;
-			console.log("completed", completed);
-			this.loading.setContent(this.translate.instant('sync') + "(" + completed/10*100 + "%)");
-		}).then(
+		this.twapi.accurateTime().then(
 			date => {
 
 				setTimeout(()=>{
