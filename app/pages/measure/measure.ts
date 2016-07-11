@@ -69,7 +69,7 @@ export class MeasurePage {
 				watch => {
 					this.watch = watch;
 					this.watch.next = WatchAction.Waiting;
-					this.watch.currentMeasure().accuracy = 12;
+					this.watch.waiting = 12;
 					this.user.upsertWatch(this.watch);
 					this.step = 2;
 				}
