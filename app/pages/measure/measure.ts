@@ -12,6 +12,7 @@ import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, Validators}  from '
 import {Header}  from '../header/header';
 import {Footer} from '../footer/footer';
 import {SocialSharing} from 'ionic-native';
+import {GAService} from 'tw-common/dist/app/services/ga.service';
 
 import 'gsap';
 
@@ -43,11 +44,15 @@ export class MeasurePage {
 		private translate: TranslateService, private elementRef: ElementRef, 
 		private twapi: TwAPIService) {
 
+        GAService.screenview("MEASURE");
+
 		this.user = this.navParams.get('user');
 		this.watch = this.navParams.get('watch');
 	}
 
 	share() {
+
+        GAService.event("CTA", "SHARE", "MEASURE");
 
 		SocialSharing.share(
 			this.translate.instant('share-text').replace('{X}', this.percentage),
@@ -72,6 +77,8 @@ export class MeasurePage {
 					this.watch.waiting = 12;
 					this.user.upsertWatch(this.watch);
 					this.step = 2;
+        			GAService.event("API", "MEASURE", "FIRST");
+
 				}
 			);
 		}else{
@@ -97,6 +104,8 @@ export class MeasurePage {
 
 					this.user.upsertWatch(this.watch);
 					DashboardPage.userChanged.emit(this.user);
+        			GAService.event("API", "MEASURE", "SECOND");
+
 
 					this.step = 3;
 				}

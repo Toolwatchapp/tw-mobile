@@ -11,6 +11,7 @@ import {Footer} from '../footer/footer';
 import {WatchPage} from '../watch/watch';
 import {Header} from '../header/header';
 import {MeasurePage} from '../measure/measure';
+import {GAService} from 'tw-common/dist/app/services/ga.service';
 
 import 'gsap';
 
@@ -31,6 +32,8 @@ export class DashboardPage {
 
 	constructor(private nav: NavController, private navParams: NavParams,  private translate: TranslateService,
 		private twapi: TwAPIService, private elementRef: ElementRef) {
+
+        GAService.screenview("DASHBOARD");
 
 		translate.setDefaultLang('en');
 		translate.use('en');
@@ -62,6 +65,8 @@ export class DashboardPage {
 	}
 
 	share(){
+
+        GAService.event("CTA", "SHARE", "DASHBOARD");
 
 		let actionSheet = ActionSheet.create({
 			title: 'Modify your album',

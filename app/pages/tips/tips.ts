@@ -6,6 +6,8 @@ import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, T
 import { HTTP_PROVIDERS }  from '@angular/http';
 import {Header}  from '../header/header';
 import {Footer} from '../footer/footer';
+import {GAService} from 'tw-common/dist/app/services/ga.service';
+
 
 @Component({
 	templateUrl: 'build/pages/tips/tips.html',
@@ -23,6 +25,7 @@ export class TipsPage {
 		private twapi: TwAPIService, private translate: TranslateService) {
 
 		this.user = this.navParams.get('user');
+    	GAService.screenview("TIPS");
 
 
 		this.twapi.getBlogPosts().then(

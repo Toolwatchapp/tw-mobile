@@ -9,7 +9,7 @@ import {DashboardPage} from '../dashboard/dashboard';
 import {Header} from '../header/header';
 import {SignupPage} from '../signup/signup';
 import {Facebook} from 'ionic-native';
-
+import {GAService} from 'tw-common/dist/app/services/ga.service';
 
 @Component({
 	templateUrl: 'build/pages/login/login.html',
@@ -24,7 +24,8 @@ export class LogInPage extends LoginComponent {
 		twapi: TwAPIService, builder: FormBuilder) {
 		super(translate, twapi, builder);
 
-
+		GAService.screenview("LOGIN");
+		
 		translate.get('logging-in').subscribe(
 			sentence => this.laoding = Loading.create({
 					content: sentence

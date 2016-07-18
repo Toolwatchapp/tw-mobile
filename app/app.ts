@@ -6,6 +6,7 @@ import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, T
 import {HTTP_PROVIDERS, Http} from '@angular/http';
 import {DashboardPage} from './pages/dashboard/dashboard';
 import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
+import {GAService} from 'tw-common/dist/app/services/ga.service';
 
 @Component({
   templateUrl: 'build/app.html'
@@ -23,6 +24,12 @@ class MyApp {
     document.addEventListener('resume', () => {
       TwAPIService.resetTime();
     });
+    GAService.appVersion = "0.0.5";
+    if(platform.is('ios')){
+     GAService.appName = "ios";
+    }else{
+     GAService.appName = "android";
+    }
   }
 
   initializeApp() {

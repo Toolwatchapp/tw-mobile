@@ -6,6 +6,8 @@ import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, T
 import { HTTP_PROVIDERS }  from '@angular/http';
 import {Header}  from '../header/header';
 import {Footer} from '../footer/footer';
+import {GAService} from 'tw-common/dist/app/services/ga.service';
+
 
 @Component({
 	templateUrl: 'build/pages/about/about.html',
@@ -18,6 +20,8 @@ export class AboutPage {
 
 	constructor(private nav: NavController, private navParams: NavParams,
 		private twapi: TwAPIService, private translate: TranslateService) {
+
+        GAService.screenview("ABOUT");
 
 		this.user = this.navParams.get('user');
 

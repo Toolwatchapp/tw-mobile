@@ -9,7 +9,7 @@ import {ClockComponent} from 'tw-common/dist/app/directives/clock/clock.componen
 import {MoonPhases} from './moon/moon-phases';
 import {Footer} from '../footer/footer';
 import {User} from 'tw-common/dist/app/models/user.model';
-
+import {GAService} from 'tw-common/dist/app/services/ga.service';
 
 @Component({
 	templateUrl: 'build/pages/time/time.html',
@@ -34,6 +34,8 @@ export class TimePage extends ClockComponent{
 		private twapi: TwAPIService, private translate: TranslateService) {
 
 		super(elementRef);
+
+    	GAService.screenview("TIME");
 
 		setInterval(
 			function(interval:number, me:TimePage):void{

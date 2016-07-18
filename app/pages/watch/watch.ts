@@ -9,6 +9,8 @@ import {Http, HTTP_PROVIDERS, Headers}  from '@angular/http';
 import {DashboardPage} from '../dashboard/dashboard';
 import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, Validators}  from '@angular/common';
 import {Header}  from '../header/header';
+import {GAService} from 'tw-common/dist/app/services/ga.service';
+
 import 'gsap';
 
 @Component({
@@ -26,6 +28,8 @@ export class WatchPage extends WatchComponent {
 		twapi: TwAPIService, builder: FormBuilder) {
 
 		super(translate, twapi, builder);
+
+    	GAService.screenview("WATCH");
 
 		TwAPIService.assetsUrl = "build/assets";
 
