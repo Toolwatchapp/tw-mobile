@@ -25,7 +25,7 @@ export class LogInPage extends LoginComponent {
 		super(translate, twapi, builder);
 
 		GAService.screenview("LOGIN");
-		
+
 		translate.get('logging-in').subscribe(
 			sentence => this.laoding = Loading.create({
 					content: sentence
@@ -46,12 +46,15 @@ export class LogInPage extends LoginComponent {
 			attempt => {
 				if(attempt === true){
 					this.nav.present(this.laoding);
-				}else{
-					this.laoding.dismiss();
 				}
 			}
 		);
 
+		this.loginError.subscribe(
+			error => {
+				this.laoding.dismiss();
+			}
+		);
 	}
 
 	onSignup(){
