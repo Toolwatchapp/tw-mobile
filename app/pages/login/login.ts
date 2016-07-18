@@ -46,13 +46,9 @@ export class LogInPage extends LoginComponent {
 			attempt => {
 				if(attempt === true){
 					this.nav.present(this.laoding);
+				}else{
+					this.laoding.dismiss();
 				}
-			}
-		);
-
-		this.loginError.subscribe(
-			error => {
-				this.laoding.dismiss();
 			}
 		);
 	}
