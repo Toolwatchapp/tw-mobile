@@ -76,6 +76,8 @@ export class TimePage extends ClockComponent{
 	addSign(i:number):string{
 		if(i >= 0){
 			return "+" + i;
+		}else{
+			return i.toString();
 		}
 	}
 
