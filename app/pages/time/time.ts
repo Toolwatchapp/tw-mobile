@@ -37,11 +37,10 @@ export class TimePage extends ClockComponent{
 
     	GAService.screenview("TIME");
 
-		setInterval(
-			function(interval:number, me:TimePage):void{
-				me.date = new Date(me.date.getTime() + interval);
+		setInterval(()=>{
+				this.date = new Date(this.date.getTime() + this.interval);
 			}, 
-			this.interval, this.interval, this
+			this.interval
 		);
 
 		this.user = this.navParams.get('user');
