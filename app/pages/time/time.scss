@@ -137,8 +137,6 @@
 	}
 
 	.date{
-	  padding-top: 2%;
-	  font-size: 1.8vh;
 	  background-color: #21446f;
 	  height: 3.5vh;
 	  font-family: 'Nunito', sans-serif;
@@ -146,19 +144,29 @@
 	  top: 46.5%;
 	  color: #c5c5c5;
 	  text-transform: uppercase;
+
+	  p{
+	  	padding: 0;
+	  	margin:0;
+	  	padding-top:10%;
+	  	color:#c5c5c5;
+	  	display:block;
+	  	width:100%;
+	  	height:100%;
+	  	text-align:center;
+	  	vertical-align:50%;
+	  	font-size:90%;
+	  }
 	}
 
 	.month{
 	  width: 8vh;
 	  left: 20%;
-	  padding-left: 5%;
 	}
 
 	.day{
 	  width: 8vh;
 	  right: 20%;
-	  padding-right: 1%;
-	  padding-left: 2%;
 	}
 
 	.clock:after {
