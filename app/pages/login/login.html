@@ -7,6 +7,9 @@
 >     
       <!-- GENERAL ERROR MESSAGES -->
       <div  class="form-group">
+        <div class="error-message" [hidden]="!credientials">
+          {{ 'credentials' | translate:{value: param} }}
+        </div>
         <div class="error-message" [hidden]="!error">
             {{ 'error' | translate:{value: param} }}
         </div>

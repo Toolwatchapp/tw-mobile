@@ -44,6 +44,7 @@ export class LogInPage extends LoginComponent {
 
 		this.loginAttempt.subscribe(
 			attempt => {
+
 				if(attempt === true){
 					this.nav.present(this.laoding);
 				}else{
