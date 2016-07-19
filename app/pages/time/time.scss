@@ -196,22 +196,6 @@
 	  left: 0;
 	}
 
-	@keyframes rotate {
-	  100% {
-	    transform: rotateZ(360deg);
-	  }
-	}
-
-	.hours-container {
-	  animation: rotate 43200s infinite linear;
-	}
-	.minutes-container {
-	  animation: rotate 3600s infinite linear;
-	}
-	.seconds-container {
-	  animation: rotate 60s infinite linear;
-	}
-
 	.hours {
 	  background: white;
 	  height: 30%;

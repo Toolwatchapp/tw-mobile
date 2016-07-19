@@ -39,6 +39,7 @@ export class TimePage extends ClockComponent{
 
 		setInterval(()=>{
 				this.date = new Date(this.date.getTime() + this.interval);
+				this.initLocalClocks();
 			}, 
 			this.interval
 		);
