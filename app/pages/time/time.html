@@ -7,7 +7,7 @@
   
   <div class="seconds-analog">
     <span class="seconds-count">
-      {{addZero(date.getSeconds())}}.{{Math.round(date.getMilliseconds() / 100)}}
+      {{addZero(date.getSeconds())}}.{{Math.floor(date.getMilliseconds() / 100)}}
       </span>
     <span class="offset innactive">
       {{addSign(Math.round(offset/1000*100)/100)}}
