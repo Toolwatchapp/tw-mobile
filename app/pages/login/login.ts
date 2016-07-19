@@ -47,7 +47,9 @@ export class LogInPage extends LoginComponent {
 				if(attempt === true){
 					this.nav.present(this.laoding);
 				}else{
-					this.laoding.dismiss();
+					setTimeout(()=>{
+						this.laoding.dismiss();
+					}, 1000);
 				}
 			}
 		);
