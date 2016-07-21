@@ -1,5 +1,5 @@
 import {Component, ElementRef, EventEmitter, ViewChild} from '@angular/core';
-import {Alert, Nav, Loading, NavController, NavParams, ActionSheet} from 'ionic-angular';
+import {Alert, Nav, Loading, NavController, NavParams, ActionSheet, ItemSliding} from 'ionic-angular';
 import {LoginComponent} from 'tw-common/dist/app/directives/login/login.component';
 import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 import {Watch, WatchStatus, WatchAction} from 'tw-common/dist/app/models/watch.model';
@@ -48,11 +48,12 @@ export class DashboardPage {
 		this.user = this.navParams.get('user');
 	}
 
-	updateWatch(watch:Watch){
+	updateWatch(watch:Watch, slidingItem: ItemSliding){
 		this.nav.push(WatchPage, {
 			watch: watch,
 			user: this.user
 		});
+		slidingItem.close();
 	}
 
 	measureWatch(watch: Watch){
@@ -61,7 +62,6 @@ export class DashboardPage {
 			watch: watch,
 			user: this.user
 		});
-
 	}
 
 	share(){
@@ -95,7 +95,7 @@ export class DashboardPage {
 		
 	}
 
-	deleteWatch(watch:Watch){
+	deleteWatch(watch:Watch, slidingItem: ItemSliding){
 
 
 		let alert = Alert.create({
@@ -106,6 +106,7 @@ export class DashboardPage {
 					text: this.translate.instant('cancel'),
 					role: 'cancel',
 					handler: () => {
+						slidingItem.close();
 						console.log('Cancel clicked');
 					}
 				},

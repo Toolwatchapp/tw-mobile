@@ -12,7 +12,7 @@
     </ion-refresher>
 
       <ion-list *ngIf="user" >
-        <ion-item-sliding *ngFor="let watch of user.watches">
+        <ion-item-sliding #slidingItem *ngFor="let watch of user.watches">
 
           <ion-item>
             <h2>{{ watch.brand }}</h2>
@@ -46,12 +46,12 @@
 
           </ion-item>
           <ion-item-options side="left">
-            <button (click)="deleteWatch(watch)" danger>
+            <button (click)="deleteWatch(watch, slidingItem)" danger>
               <ion-icon  name="ios-trash-outline"></ion-icon>
             </button>
           </ion-item-options>
           <ion-item-options side="right">
-            <button (click)="updateWatch(watch)" secondary>
+            <button (click)="updateWatch(watch, slidingItem)" secondary>
               <ion-icon name="ios-build-outline"></ion-icon>
             </button>
           </ion-item-options>
