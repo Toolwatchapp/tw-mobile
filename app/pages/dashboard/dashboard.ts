@@ -95,6 +95,12 @@ export class DashboardPage {
 		
 	}
 
+	newWatch(){
+		this.nav.push(WatchPage, {
+			user:this.user
+		});
+	}
+
 	deleteWatch(watch:Watch, slidingItem: ItemSliding){
 
 

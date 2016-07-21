@@ -12,5 +12,20 @@
         height: 60%;
         overflow-y:scroll;
     }
+
+    .no-watch{
+        width: 70%;
+        margin-left: 15%;
+        margin-top: 20%;
+        h1{
+            text-align: justify;
+            font-size: 4vh;
+        }
+
+        button{
+            margin-top:10%;
+            width:100%;
+        }
+    }
 	
 }

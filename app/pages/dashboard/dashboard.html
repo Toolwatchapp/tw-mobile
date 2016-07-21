@@ -2,7 +2,15 @@
 
 <ion-content>
 
-<ion-refresher (ionRefresh)="onRefresh($event)">
+ 
+<div *ngIf="user && user.watches.length == 0" class="no-watch">
+  <h1>{{ 'no-watch' | translate:{value: param} }}</h1>
+   <button secondary (click)="newWatch()">
+      {{ 'new-watch' | translate:{value: param} }}
+  </button>
+</div>
+
+<ion-refresher  *ngIf="user && user.watches.length != 0"  (ionRefresh)="onRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
       pullingText="{{ 'refresh-info' | translate:{value: param} }}"
@@ -11,7 +19,7 @@
       </ion-refresher-content>
     </ion-refresher>
 
-      <ion-list *ngIf="user" >
+      <ion-list  *ngIf="user && user.watches.length != 0" >
         <ion-item-sliding #slidingItem *ngFor="let watch of user.watches">
 
           <ion-item>
