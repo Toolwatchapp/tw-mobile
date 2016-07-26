@@ -7,23 +7,26 @@
 	}
 
 	.measure{
+
+
 		.top, .bottom{
 			padding: 3%;
-			width: 90%;
+			width: 80%;
 			word-wrap: break-word;
 			height: auto;
 			text-align: center;
 			font-size: 2.5vh;
 			margin:0;
-			margin-left:5%;
+			margin-left:10%;
 			text-transform: uppercase;
 			background: #4d77a7;
 			color:white;
 			z-index:9;
+			box-shadow: none;
 		} 
 
 		.top{
-			margin-top: 5%;
+			margin-top: 15%;
 			border-top-left-radius: 2em;
 			border-top-right-radius: 2em;
 		}
@@ -35,15 +38,16 @@
 		}
 
 		button{
+			box-shadow: none;
 			z-index: 0;
 			border-radius: 0;
 			margin:0;
 			padding: 0;
-			height: 35%;
-			width: 90%;
-			margin-left: 5%;
+			height: 25%;
+			width: 80%;
+			margin-left: 10%;
 			background: url('../assets/images/stepnew.png') #4d77a7;
-			background-size: cover;
+			background-size: contain;
 			background-repeat: no-repeat;
 			background-position: center;
 		}
