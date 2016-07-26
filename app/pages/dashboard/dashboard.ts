@@ -12,13 +12,11 @@ import {WatchPage} from '../watch/watch';
 import {Header} from '../header/header';
 import {MeasurePage} from '../measure/measure';
 import {GAService} from 'tw-common/dist/app/services/ga.service';
-
-import 'gsap';
-
+import {ArethmeticSign} from 'tw-common/dist/app/pipes/arethmetic-sign.pipe';
 
 @Component({
 	templateUrl: 'build/pages/dashboard/dashboard.html',
-	pipes: [TranslatePipe],
+	pipes: [TranslatePipe, ArethmeticSign],
 	directives: [Footer, Header]
 })
 export class DashboardPage {

@@ -10,10 +10,12 @@ import {MoonPhases} from './moon/moon-phases';
 import {Footer} from '../footer/footer';
 import {User} from 'tw-common/dist/app/models/user.model';
 import {GAService} from 'tw-common/dist/app/services/ga.service';
+import {LeadingZero} from 'tw-common/dist/app/pipes/leading-zero.pipe';
+import {ArethmeticSign} from 'tw-common/dist/app/pipes/arethmetic-sign.pipe';
 
 @Component({
 	templateUrl: 'build/pages/time/time.html',
-	pipes: [TranslatePipe],
+	pipes: [TranslatePipe, LeadingZero, ArethmeticSign],
 	directives: [forwardRef(() => Footer), Header, MoonPhases]
 })
 export class TimePage extends ClockComponent{

@@ -7,15 +7,15 @@
   
   <div class="seconds-analog">
     <span class="seconds-count">
-      {{addZero(date.getSeconds())}}.{{Math.floor(date.getMilliseconds() / 100)}}
+      {{ date.getSeconds() | leadingZero }}.{{Math.floor(date.getMilliseconds() / 100)}}
       </span>
     <span class="offset innactive">
-      {{addSign(Math.round(offset/1000*100)/100)}}
+      {{Math.round(offset/1000*100)/100 | arethmeticSign}}
     </span>
   </div>
 
   <div class="hours-analog">
-    {{addZero(date.getHours())}}:{{addZero(date.getMinutes())}}
+    {{date.getHours() | leadingZero}}:{{date.getMinutes() | leadingZero}}
   </div>
 
   <div class="period">
@@ -31,7 +31,7 @@
      
      <div class="utc">
        <span class="hours-utc">
-        {{ addZero(date.getUTCHours()) }}:{{ addZero(date.getUTCMinutes()) }}
+        {{ date.getUTCHours() | leadingZero }}:{{ date.getUTCMinutes() | leadingZero }}
        </span>
        <span class="utc-label">UTC</span>
      </div>

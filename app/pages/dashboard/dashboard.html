@@ -34,7 +34,7 @@
             *ngIf="watch.status !== WatchStatus.NeverMeasured 
             && watch.next == WatchAction.Measure
             && watch.historySize >= 1">
-              {{ watch.currentMeasure().accuracy }} {{ 'spd' | translate:{value: param} }}
+              {{ watch.currentMeasure().accuracy |  arethmeticSign}} {{ 'spd' | translate:{value: param} }}
             </p>
 
             <p 
