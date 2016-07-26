@@ -4,6 +4,7 @@ import {Component, ElementRef, ViewChild, Input} from '@angular/core';
 import {Nav, Loading, NavController} from 'ionic-angular';
 import {WatchPage} from '../watch/watch';
 import {User} from 'tw-common/dist/app/models/user.model';
+import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class Header {
 	@Input()
 	slogan:string = "slogan";
 	@Input()
-	chat: boolean = false;
+	chat: boolean = true;
 	@Input()
 	back:boolean = false;
 	@Input()
@@ -34,6 +35,7 @@ export class Header {
 	}
 
 	onChat(){
+		TwAPIService.resetTime();
 		console.log("chat");
 	}
 }
