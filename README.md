@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/Toolwatchapp/tw-mobile/badges/gpa.svg)](https://codeclimate.com/github/Toolwatchapp/tw-mobile)
+
 # toolwatchapp-mobile
 Mobile Apps
 
