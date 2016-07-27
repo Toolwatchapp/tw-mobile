@@ -7,6 +7,7 @@ import {HTTP_PROVIDERS, Http} from '@angular/http';
 import {DashboardPage} from './pages/dashboard/dashboard';
 import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 import {GAService} from 'tw-common/dist/app/services/ga.service';
+import { NativeStorage } from 'ionic-native';
 
 @Component({
   templateUrl: 'build/app.html'
@@ -19,11 +20,32 @@ class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(
-    private platform: Platform
+    private platform: Platform, private twapi:TwAPIService
   ) {
     document.addEventListener('resume', () => {
+
+      NativeStorage.getItem('tw-api')
+      .then(
+        data => 
+        {
+          console.log(data);
+
+          this.twapi.getUser(data.key).then(
+            res=>{
+              DashboardPage.userChanged.emit(res);
+            },
+            err=>{
+              console.log(err);
+            }
+          )
+        },
+        error => console.error(error)
+      );
+
       TwAPIService.resetTime();
     });
+
+
     GAService.appVersion = "0.0.5";
     if(platform.is('ios')){
      GAService.appName = "ios";
