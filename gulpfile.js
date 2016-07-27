@@ -26,18 +26,17 @@ gulp.task('bump', function () {
     /// 3. gulp bump --type major       : bumps 1.0.0 
     ///    gulp bump --type minor       : bumps 0.1.0
     ///    gulp bump --type patch       : bumps 0.0.2
-    ///    gulp bump --type prerelease  : bumps 0.0.1-2
     /// </summary>
 
     var type = args.type;
     var version = args.version;
 
     if(type === undefined){
-      type = "prerelease";
+      type = "patch";
     }
 
     var oldVer = getPackageJson().version;
-    var newVer = semver.inc(oldVer, type);
+    var newVer = semver.inc(oldVer, type).replace('-', '.');
 
     gulp.src(['app/pages/header/header.html'])
       .pipe(replace(oldVer, newVer))

@@ -17,7 +17,7 @@ export class Header {
 	@Input()
 	slogan:string = "slogan";
 	@Input()
-	chat: boolean = true;
+	chat: boolean = false;
 	@Input()
 	back:boolean = false;
 	@Input()
