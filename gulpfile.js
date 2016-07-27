@@ -2,8 +2,62 @@ var gulp = require('gulp'),
     gulpWatch = require('gulp-watch'),
     del = require('del'),
     runSequence = require('run-sequence'),
-    argv = process.argv;
+    argv = process.argv,
+    bump = require('gulp-bump'),
+    args = require('yargs').argv,
+    replace = require('gulp-replace'),
+    fs = require('fs'),
+    semver = require('semver');
 
+
+
+var getPackageJson = function () {
+  return JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+};
+
+gulp.task('bump', function () {
+    /// <summary>
+    /// It bumps revisions
+    /// Usage:
+    /// 1. gulp bump : bumps the package.json and bower.json to the next minor revision.
+    ///   i.e. from 0.1.1 to 0.1.2
+    /// 2. gulp bump --version 1.1.1 : bumps/sets the package.json and bower.json to the 
+    ///    specified revision.
+    /// 3. gulp bump --type major       : bumps 1.0.0 
+    ///    gulp bump --type minor       : bumps 0.1.0
+    ///    gulp bump --type patch       : bumps 0.0.2
+    ///    gulp bump --type prerelease  : bumps 0.0.1-2
+    /// </summary>
+
+    var type = args.type;
+    var version = args.version;
+
+    if(type === undefined){
+      type = "prerelease";
+    }
+
+    var oldVer = getPackageJson().version;
+    var newVer = semver.inc(oldVer, type);
+
+    gulp.src(['app/pages/header/header.html'])
+      .pipe(replace(oldVer, newVer))
+      .pipe(gulp.dest('app/pages/header'));
+
+    gulp.src(['config.xml'])
+      .pipe(replace(
+        'oolwatch" version="'+oldVer+'"', 
+        'oolwatch" version="'+newVer+'"'))
+      .pipe(gulp.dest('.'));
+
+    var options = {};
+    options.type = type;
+    options.version = newVer;
+
+    gulp.src(['package.json'])
+        .pipe(bump(options))
+        .pipe(gulp.dest('.'));
+
+});
 
 /**
  * Ionic hooks
@@ -37,7 +91,7 @@ var isRelease = argv.indexOf('--release') > -1;
 
 gulp.task('watch', ['clean'], function(done){
   runSequence(
-    ['sass', 'html', 'fonts', 'scripts', 'assets', 'externalFonts'],
+    ['sass', 'html', 'fonts', 'scripts', 'assets', 'externalFonts', 'bump'],
     function(){
       gulpWatch('app/**/*.scss', function(){ gulp.start('sass'); });
       gulpWatch('app/**/*.html', function(){ gulp.start('html'); });
@@ -48,7 +102,7 @@ gulp.task('watch', ['clean'], function(done){
 
 gulp.task('build', ['clean'], function(done){
   runSequence(
-    ['sass', 'html', 'fonts', 'scripts', 'assets', 'externalFonts'],
+    ['sass', 'html', 'fonts', 'scripts', 'assets', 'externalFonts', 'bump'],
     function(){
       buildBrowserify({
         minify: isRelease,

@@ -22,6 +22,8 @@
   "devDependencies": {
     "del": "2.2.0",
     "gulp": "3.9.1",
+    "gulp-bump": "^2.2.0",
+    "gulp-replace": "^0.5.4",
     "gulp-watch": "4.3.5",
     "ionic-gulp-browserify-typescript": "^1.1.0",
     "ionic-gulp-fonts-copy": "^1.0.0",
@@ -41,5 +43,6 @@
   ],
   "cordovaPlatforms": [],
   "name": "Toolwatch",
+  "version": "0.0.7-19",
   "description": "Measure the precision of your mechanical watches"
 }
