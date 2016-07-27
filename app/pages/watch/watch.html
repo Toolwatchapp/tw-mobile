@@ -105,12 +105,12 @@
             {{ 'year-required' | translate:{value: param} }}
           </em>
           <input 
-            [ngClass]="{'was-filled': watchModel.year}"
+            [ngClass]="{'was-filled': watchModel.yearOfBuy}"
             id="year" 
             type="text" 
             class="form-control" 
             ngControl="year"
-            [(ngModel)]=watchModel.year 
+            [(ngModel)]=watchModel.yearOfBuy 
             
           >
           <span class="highlight"></span>
@@ -173,7 +173,3 @@
   </form>
 
 </ion-content>
-
-
-
-<footer-nav></footer-nav>

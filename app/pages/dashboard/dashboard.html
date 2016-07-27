@@ -45,10 +45,10 @@
             </p>
 
 
-          <button secondary (click)="measureWatch(watch)" *ngIf="watch.next === WatchAction.Measure" item-right>
+          <button secondary (click)="measureWatch(watch, slidingItem)" *ngIf="watch.next === WatchAction.Measure" item-right>
             {{ 'new-measure' | translate:{value: param} }}
           </button>
-          <button secondary (click)="measureWatch(watch)" *ngIf="watch.next === WatchAction.Accuracy" item-right>
+          <button secondary (click)="measureWatch(watch, slidingItem)" *ngIf="watch.next === WatchAction.Accuracy" item-right>
             {{ 'check-accuracy' | translate:{value: param} }}
           </button>
 

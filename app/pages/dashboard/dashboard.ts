@@ -47,6 +47,7 @@ export class DashboardPage {
 	}
 
 	updateWatch(watch:Watch, slidingItem: ItemSliding){
+		console.log(watch);
 		this.nav.push(WatchPage, {
 			watch: watch,
 			user: this.user
