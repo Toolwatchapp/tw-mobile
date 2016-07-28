@@ -47,6 +47,10 @@ export class TimePage extends ClockComponent{
 		);
 
 		this.user = this.navParams.get('user');
+
+		document.addEventListener('resume', () => {
+			this.ngAfterViewInit();
+		});
 	}
 
 	ngAfterViewInit() {
