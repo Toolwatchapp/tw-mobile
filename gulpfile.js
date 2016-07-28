@@ -42,6 +42,10 @@ gulp.task('bump', function () {
       .pipe(replace(oldVer, newVer))
       .pipe(gulp.dest('app/pages/header'));
 
+    gulp.src(['app/pages/app.ts'])
+      .pipe(replace(oldVer, newVer))
+      .pipe(gulp.dest('app/pages'));
+
     gulp.src(['config.xml'])
       .pipe(replace(
         'oolwatch" version="'+oldVer+'"', 
