@@ -19,7 +19,7 @@
       </ion-refresher-content>
     </ion-refresher>
 
-      <ion-list  *ngIf="user && user.watches.length != 0" >
+      <ion-list id="dash-list" *ngIf="user && user.watches.length != 0">
         <ion-item-sliding #slidingItem *ngFor="let watch of user.watches">
 
           <ion-item>

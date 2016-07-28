@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter} from '@angular/core';
 import {Alert, Nav, Loading, NavController, NavParams, ActionSheet, ItemSliding} from 'ionic-angular';
 import {LoginComponent} from 'tw-common/dist/app/directives/login/login.component';
 import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
@@ -20,7 +20,7 @@ import {ArethmeticSign} from 'tw-common/dist/app/pipes/arethmetic-sign.pipe';
 	directives: [Footer, Header]
 })
 export class DashboardPage {
-
+	
 	user:User;
 	WatchStatus = WatchStatus;
 	MeasureStatus = MeasureStatus;
@@ -39,11 +39,16 @@ export class DashboardPage {
 		DashboardPage.userChanged.subscribe(
 			user => {
 				this.user = user;
+				this.resetScroll();
 				console.log("user", this.user);
 			}
 		);
 
 		this.user = this.navParams.get('user');
+	}
+
+	resetScroll(){
+		this.elementRef.nativeElement.querySelector('#dash-list').scrollTop = 0;
 	}
 
 	updateWatch(watch:Watch, slidingItem: ItemSliding){
@@ -138,6 +143,7 @@ export class DashboardPage {
 		this.twapi.getWatches().then(
 			res => {
 				this.user.watches = res;
+				this.resetScroll();
 				refresher.complete();
 			}
 		)
