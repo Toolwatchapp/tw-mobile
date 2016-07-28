@@ -43,6 +43,6 @@
   ],
   "cordovaPlatforms": [],
   "name": "Toolwatch",
-  "version": "0.6.24",
+  "version": "0.6.25",
   "description": "Measure the precision of your mechanical watches"
 }
