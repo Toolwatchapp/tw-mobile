@@ -46,7 +46,7 @@ class MyApp {
     });
 
 
-    GAService.appVersion = "0.0.5";
+    GAService.appVersion = "0.6.25";
     if(platform.is('ios')){
      GAService.appName = "ios";
     }else{
