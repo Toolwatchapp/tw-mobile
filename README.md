@@ -6,6 +6,7 @@
 [![devDependency Status][david-dev-badge]][david-dev-badge-url]
 
 
+
 # toolwatchapp-mobile
 Mobile Apps
 
@@ -28,6 +29,7 @@ Mobile Apps
 - [ ] Login fb
 - [x] Social share
 
+[![Throughput Graph](https://graphs.waffle.io/Toolwatchapp/tw-mobile/throughput.svg)](https://waffle.io/Toolwatchapp/tw-mobile/metrics/throughput)
 
 [code-climate-badge]: https://codeclimate.com/github/Toolwatchapp/tw-mobile/badges/gpa.svg
 [code-climate-url]: https://codeclimate.com/github/Toolwatchapp/tw-mobile
