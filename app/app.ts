@@ -1,5 +1,5 @@
 import {Component, ViewChild, provide} from '@angular/core';
-import {ionicBootstrap, Platform, Nav} from 'ionic-angular';
+import {ionicBootstrap, Platform, Nav, LocalStorage} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {LogInPage} from './pages/login/login';
 import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
@@ -36,6 +36,7 @@ class MyApp {
             },
             err=>{
               console.log(err);
+              NativeStorage.remove('tw-api');
             }
           )
         },

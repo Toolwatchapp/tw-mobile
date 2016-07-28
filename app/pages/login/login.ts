@@ -50,6 +50,7 @@ export class LogInPage extends LoginComponent {
 		  		},
 		  		err=>{
 		  			this.laoding.dismiss();
+		  			NativeStorage.remove('tw-api');
 		  			this.error = true;
 		  		}
 		  	)
