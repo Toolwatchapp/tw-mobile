@@ -9,6 +9,9 @@ import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 import {GAService} from 'tw-common/dist/app/services/ga.service';
 import { NativeStorage } from 'ionic-native';
 
+import { Wove } from 'aspect.js/dist/lib/aspect';
+
+@Wove()
 @Component({
   templateUrl: 'build/app.html'
 })
@@ -53,10 +56,14 @@ class MyApp {
     }else{
      GAService.appName = "android";
     }
+    this.initializeApp();
   }
 
   initializeApp() {
+    console.error("aa");
     this.platform.ready().then(() => {
+      console.error("bb");
+
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
