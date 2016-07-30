@@ -8,6 +8,7 @@ import {DashboardPage} from './pages/dashboard/dashboard';
 import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 import {GAService} from 'tw-common/dist/app/services/ga.service';
 import { NativeStorage } from 'ionic-native';
+import {User} from 'tw-common/dist/app/models/user.model';
 
 import { Wove } from 'aspect.js/dist/lib/aspect';
 
@@ -19,50 +20,78 @@ class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage: any = LogInPage;
+  rootPage: any;
   pages: Array<{title: string, component: any}>;
 
   constructor(
     private platform: Platform, private twapi:TwAPIService
   ) {
+
+    this.initOnResume();
+    this.initializeApp();
+    this.initializeGA();
+  }
+
+  private initOnResume(){
     document.addEventListener('resume', () => {
 
-      NativeStorage.getItem('tw-api')
-      .then(
-        data => 
-        {
-          console.log(data);
-
-          this.twapi.getUser(data.key).then(
-            res=>{
-              DashboardPage.userChanged.emit(res);
-            },
-            err=>{
-              console.log(err);
-              NativeStorage.remove('tw-api');
-            }
-          )
-        },
-        error => console.error(error)
+      this.fetchUser().then(
+        user => DashboardPage.userChanged.emit(user)
       );
-
+      
       TwAPIService.resetTime();
     });
+  }
 
+  private fetchUser():Promise<User>{
 
+    return this.fetchAPIKey().then(
+       key => {
+         if(key !== "cordova_not_available"){
+           return this.twapi.getUser(key).then(
+            user => user,
+            err => {console.log("removing", key); NativeStorage.remove('tw-api')}
+          )
+         }else{
+           console.log("removing", key); 
+           NativeStorage.remove('tw-api')
+           return undefined;
+         } 
+       }
+    );
+  }
+
+  private fetchAPIKey():Promise<string>{
+    return NativeStorage.getItem('tw-api')
+      .then(
+        data => data.key,
+        error => error
+      );
+  }
+  
+  private initializeGA(){
     GAService.appVersion = "0.6.25";
-    if(platform.is('ios')){
+    if(this.platform.is('ios')){
      GAService.appName = "ios";
     }else{
      GAService.appName = "android";
     }
-    this.initializeApp();
   }
 
-  initializeApp() {
-    console.error("aa");
+  private initializeApp() {
     this.platform.ready().then(() => {
-      console.error("bb");
+
+      this.fetchUser()
+      .then(
+        user => {
+          if(user !== undefined){
+            this.rootPage = DashboardPage;
+            DashboardPage.userChanged.emit(user);
+          }else{
+            this.rootPage = LogInPage;
+          }
+        }
+      ).catch((error)=>console.log(error))
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
