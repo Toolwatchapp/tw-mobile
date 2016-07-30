@@ -13,7 +13,9 @@ import {Header} from '../header/header';
 import {MeasurePage} from '../measure/measure';
 import {GAService} from 'tw-common/dist/app/services/ga.service';
 import {ArethmeticSign} from 'tw-common/dist/app/pipes/arethmetic-sign.pipe';
+import { Wove } from 'aspect.js/dist/lib/aspect';
 
+@Wove()
 @Component({
 	templateUrl: 'build/pages/dashboard/dashboard.html',
 	pipes: [TranslatePipe, ArethmeticSign],

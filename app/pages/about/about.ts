@@ -8,7 +8,9 @@ import {Header}  from '../header/header';
 import {Footer} from '../footer/footer';
 import {GAService} from 'tw-common/dist/app/services/ga.service';
 
+import { Wove } from 'aspect.js/dist/lib/aspect';
 
+@Wove()
 @Component({
 	templateUrl: 'build/pages/about/about.html',
 	pipes: [TranslatePipe],

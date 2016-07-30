@@ -16,6 +16,7 @@ import {SocialSharing} from 'ionic-native';
 declare var window;
 
 
+import { Wove } from 'aspect.js/dist/lib/aspect';
 import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 
 declare var TimelineMax: any;
@@ -23,6 +24,7 @@ declare var Quint: any;
 declare var Quad: any;
 declare var Elastic: any;
 
+@Wove()
 @Component({
 	templateUrl: 'build/pages/footer/footer.html',
 	pipes: [TranslatePipe],

@@ -13,11 +13,13 @@ import {Header}  from '../header/header';
 import {Footer} from '../footer/footer';
 import {SocialSharing} from 'ionic-native';
 import {GAService} from 'tw-common/dist/app/services/ga.service';
+import { Wove } from 'aspect.js/dist/lib/aspect';
 
 import 'gsap';
 
 declare var window;
 
+@Wove()
 @Component({
 	templateUrl: 'build/pages/measure/measure.html',
 	pipes: [TranslatePipe],

@@ -6,7 +6,9 @@ import {WatchPage} from '../watch/watch';
 import {User} from 'tw-common/dist/app/models/user.model';
 import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 
+import { Wove } from 'aspect.js/dist/lib/aspect';
 
+@Wove()
 @Component({
 	templateUrl: 'build/pages/header/header.html',
 	pipes: [TranslatePipe],
