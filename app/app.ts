@@ -18,10 +18,7 @@ import { Wove } from 'aspect.js/dist/lib/aspect';
 })
 class MyApp {
   @ViewChild(Nav) nav: Nav;
-
-  // make HelloIonicPage the root (or first) page
   rootPage: any;
-  pages: Array<{title: string, component: any}>;
 
   constructor(
     private platform: Platform, private twapi:TwAPIService
@@ -68,7 +65,7 @@ class MyApp {
         error => error
       );
   }
-  
+
   private initializeGA(){
     GAService.appVersion = "0.6.25";
     if(this.platform.is('ios')){
