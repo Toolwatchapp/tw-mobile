@@ -1,5 +1,5 @@
 import {Component, ViewChild, provide} from '@angular/core';
-import {ionicBootstrap, Platform, Nav, LocalStorage} from 'ionic-angular';
+import {ionicBootstrap, Platform, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {LogInPage} from './pages/login/login';
 import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
@@ -21,8 +21,7 @@ class MyApp {
   rootPage: any;
 
   constructor(
-    private platform: Platform, private twapi:TwAPIService
-  ) {
+    private platform: Platform, private twapi:TwAPIService) {
 
     this.initOnResume();
     this.initializeApp();
@@ -34,7 +33,6 @@ class MyApp {
 
       this.fetchUser().then(
         user => {
-          this.rootPage = DashboardPage;
           DashboardPage.userChanged.emit(user)
         }
       );
@@ -84,14 +82,15 @@ class MyApp {
       this.fetchUser()
       .then(
         user => {
+          console.error(user);
           if(user !== undefined){
             this.rootPage = DashboardPage;
-            DashboardPage.userChanged.emit(user);
+            setTimeout(()=> DashboardPage.userChanged.emit(user), 1000);
           }else{
             this.rootPage = LogInPage;
           }
         }
-      ).catch((error)=>console.log(error))
+      ).catch((error)=>{this.rootPage = LogInPage; console.log(error)})
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

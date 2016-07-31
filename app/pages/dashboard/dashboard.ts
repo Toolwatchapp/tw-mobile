@@ -46,6 +46,8 @@ export class DashboardPage {
 			}
 		);
 
+		console.error("Dashboard page", this.navParams.get('user'));
+
 		this.user = this.navParams.get('user');
 	}
 
