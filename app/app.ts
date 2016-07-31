@@ -68,7 +68,7 @@ class MyApp {
   }
 
   private initializeGA(){
-    GAService.appVersion = "0.6.62";
+    GAService.appVersion = "0.6.78";
     if(this.platform.is('ios')){
      GAService.appName = "ios";
     }else{

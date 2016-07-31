@@ -5,7 +5,8 @@
  
 <div *ngIf="user && user.watches.length == 0" class="no-watch">
   <h1>{{ 'no-watch' | translate:{value: param} }}</h1>
-   <button secondary (click)="newWatch()">
+  <p>{{ 'no-watch-sub' | translate:{value: param} }}</p>
+  <button primary (click)="newWatch()">
       {{ 'new-watch' | translate:{value: param} }}
   </button>
 </div>
