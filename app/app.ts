@@ -33,7 +33,10 @@ class MyApp {
     document.addEventListener('resume', () => {
 
       this.fetchUser().then(
-        user => DashboardPage.userChanged.emit(user)
+        user => {
+          this.rootPage = DashboardPage;
+          DashboardPage.userChanged.emit(user)
+        }
       );
       
       TwAPIService.resetTime();
