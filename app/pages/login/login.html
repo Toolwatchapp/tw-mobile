@@ -2,7 +2,7 @@
 
 <ion-content>
 <form 
-  [ngFormModel] = "loginForm"
+  #loginForm = "ngForm"
   (ngSubmit)="onSubmit(loginForm.value)"
 >     
       <!-- GENERAL ERROR MESSAGES -->

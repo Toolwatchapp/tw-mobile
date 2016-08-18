@@ -1,4 +1,5 @@
 import {Component, ViewChild, provide} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import {ionicBootstrap, Platform, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {LogInPage} from './pages/login/login';
@@ -9,6 +10,8 @@ import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 import {GAService} from 'tw-common/dist/app/services/ga.service';
 import { NativeStorage } from 'ionic-native';
 import {User} from 'tw-common/dist/app/models/user.model';
+import { FormsModule, disableDeprecatedForms, provideForms } from '@angular/forms';
+
 
 import { Wove } from 'aspect.js/dist/lib/aspect';
 
@@ -100,9 +103,13 @@ class MyApp {
 
 }
 
+
+
 ionicBootstrap(MyApp, [
   TwAPIService,
   HTTP_PROVIDERS,
+  disableDeprecatedForms(), 
+  provideForms(),
   provide(TranslateLoader, {
     useFactory: (http: Http) => new TranslateStaticLoader(http, 'build/assets/i18n', '.json'),
     deps: [Http]

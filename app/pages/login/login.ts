@@ -1,7 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {Nav, Loading, NavController} from 'ionic-angular';
 import {LoginComponent} from 'tw-common/dist/app/directives/login/login.component';
-import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, Validators}  from '@angular/common';
 import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 import {Http, HTTP_PROVIDERS, Headers}  from '@angular/http';
@@ -13,8 +12,14 @@ import {GAService} from 'tw-common/dist/app/services/ga.service';
 import { NativeStorage } from 'ionic-native';
 import { Wove } from 'aspect.js/dist/lib/aspect';
 
+import {  
+  FORM_DIRECTIVES,  
+  REACTIVE_FORM_DIRECTIVES,  
+  FormBuilder,  
+  FormGroup  
+} from '@angular/forms';
 
-@Wove()
+// @Wove()
 @Component({
 	templateUrl: 'build/pages/login/login.html',
 	pipes: [TranslatePipe],
@@ -22,7 +27,7 @@ import { Wove } from 'aspect.js/dist/lib/aspect';
 })
 export class LogInPage extends LoginComponent {
 
-	laoding:Loading;
+	laoding:Loading; 
 
 	constructor(private nav: NavController, translate: TranslateService,
 		twapi: TwAPIService, builder: FormBuilder) {
