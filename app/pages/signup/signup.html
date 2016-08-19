@@ -3,7 +3,7 @@
 <ion-content>
 <form 
   [ngClass]="{ 'has-error' : emailTaken || error }"
-  [ngFormModel] = "signupForm"
+  [formGroup] = "signupForm"
   (ngSubmit)="onSubmit(signupForm.value)"
 >     
       <!-- GENERAL ERROR MESSAGES -->
@@ -19,17 +19,17 @@
 
       <!-- EMAIL GROUP -->
       <div  class="group"
-      [ngClass]="{ 'has-error' : !email.valid && submitAttempt || credientials}"
+      [ngClass]="{ 'has-error' : !signupForm.controls.email.valid && submitAttempt || credientials}"
       >
 
        
-        <em *ngIf="!email.valid && submitAttempt">
+        <em *ngIf="!signupForm.controls.email.valid && submitAttempt">
           {{ 'email-required' | translate:{value: param} }}
         </em>
         <input 
           id="email" 
           type="email" 
-          ngControl="email"
+          formControlName="email"
           autocapitalize="off" autocorrect="off"
           required 
         >
@@ -40,17 +40,17 @@
         </label>
       </div>
       <div  class="group"
-      [ngClass]="{ 'has-error' : !emailRepeat.valid && submitAttempt || credientials}"
+      [ngClass]="{ 'has-error' : !signupForm.controls.emailRepeat.valid && submitAttempt || credientials}"
       >
 
        
-        <em *ngIf="!emailRepeat.valid && submitAttempt">
+        <em *ngIf="!signupForm.controls.emailRepeat.valid && submitAttempt">
           {{ 'email-required' | translate:{value: param} }}
         </em>
         <input 
           id="emailRepeat" 
           type="email" 
-          ngControl="emailRepeat"
+          formControlName="emailRepeat"
           utocapitalize="off" autocorrect="off"
           required 
         >
@@ -64,13 +64,13 @@
 
       <!-- PASSWORD GROUP -->
       <div class="group"
-      [ngClass]="{ 'has-error' : !password.valid && submitAttempt || credientials}">
-        <em *ngIf="!password.valid && submitAttempt">
+      [ngClass]="{ 'has-error' : !signupForm.controls.password.valid && submitAttempt || credientials}">
+        <em *ngIf="!signupForm.controls.password.valid && submitAttempt">
           {{ 'password-required' | translate:{value: param} }}
         </em>
         <input 
           type="password" 
-          ngControl="password"
+          formControlName="password"
           required
         >     
         <span class="highlight"></span>
@@ -81,13 +81,13 @@
       </div>
 
       <div class="group"
-      [ngClass]="{ 'has-error' : !passwordRepeat.valid && submitAttempt || credientials}">
-        <em *ngIf="!passwordRepeat.valid && submitAttempt">
+      [ngClass]="{ 'has-error' : !signupForm.controls.passwordRepeat.valid && submitAttempt || credientials}">
+        <em *ngIf="!signupForm.controls.passwordRepeat.valid && submitAttempt">
           {{ 'password-required' | translate:{value: param} }}
         </em>
         <input 
           type="password" 
-          ngControl="passwordRepeat"
+          formControlName="passwordRepeat"
           required
         >     
         <span class="highlight"></span>
@@ -99,10 +99,10 @@
       <!-- END PASSWORD GROUP -->
 
       <div class="group"
-      [ngClass]="{ 'has-error' : !firstName.valid && submitAttempt || credientials}">
+      [ngClass]="{ 'has-error' : !signupForm.controls.firstName.valid && submitAttempt || credientials}">
         <input 
           type="text" 
-          ngControl="firstName"
+          formControlName="firstName"
           required
         >     
         <span class="highlight"></span>
@@ -113,10 +113,10 @@
       </div>
 
       <div class="group"
-      [ngClass]="{ 'has-error' : !lastName.valid && submitAttempt || credientials}">
+      [ngClass]="{ 'has-error' : !signupForm.controls.lastName.valid && submitAttempt || credientials}">
         <input 
           type="text" 
-          ngControl="lastName"
+          formControlName="lastName"
           required
         >     
         <span class="highlight"></span>
