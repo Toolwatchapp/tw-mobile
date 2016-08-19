@@ -72,8 +72,10 @@ export class LogInPage extends LoginComponent{
 	 */
 	private onLoggingAttempt(attempt:boolean){
 		if(attempt === true){
-			
-			console.log(true);
+			/**
+			 * We can't present a loader twice. Seams like dismiss() destroys it.
+			 * @see https://github.com/Toolwatchapp/tw-mobile/issues/41
+			 */
 			this.laoding = this.loadingController.create({content: this.loadindSentence})
 			this.laoding.present();
 		}else{

@@ -1,11 +1,10 @@
 import {NavController, NavParams} from 'ionic-angular';
 
 import { Component } from '@angular/core';
-import {FormBuilder, Control}  from '@angular/common';
 
 import {DashboardPage} from '../dashboard/dashboard';
 import {Header} from '../header/header';
-
+import { FormBuilder, FormControl } from '@angular/forms';
 import {
   SignupComponent,
   TwAPIService,
@@ -38,10 +37,10 @@ export class SignupPage extends SignupComponent{
 
     GAService.screenview("SIGNUP");
 
-	  (<Control>this.signupForm.controls['email'])
+	  (<FormControl>this.signupForm.controls['email'])
 		.updateValue(this.navParams.get('email'));
 
-	  (<Control>this.signupForm.controls['password'])
+	  (<FormControl>this.signupForm.controls['password'])
 		.updateValue(this.navParams.get('password'));
 
   	this.userLogged.subscribe(
