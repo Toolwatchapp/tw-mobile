@@ -1,17 +1,21 @@
+import {Loading, NavController, LoadingController, NavParams} from 'ionic-angular';
+
 import {Component, ElementRef, forwardRef} from '@angular/core';
-import {Nav, Loading, NavController, NavParams} from 'ionic-angular';
-import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
-import {BlogPost} from 'tw-common/dist/app/models/blog-post.model';
-import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
-import { HTTP_PROVIDERS }  from '@angular/http';
-import {Header}  from '../header/header';
-import {ClockComponent} from 'tw-common/dist/app/directives/clock/clock.component';
-import {MoonPhases} from './moon/moon-phases';
+
 import {Footer} from '../footer/footer';
-import {User} from 'tw-common/dist/app/models/user.model';
-import {GAService} from 'tw-common/dist/app/services/ga.service';
-import {LeadingZero} from 'tw-common/dist/app/pipes/leading-zero.pipe';
-import {ArethmeticSign} from 'tw-common/dist/app/pipes/arethmetic-sign.pipe';
+import {Header}  from '../header/header';
+import { MoonPhases } from './moon/moon-phases'
+
+import {
+	TwAPIService,
+	ClockComponent,
+	User,
+	GAService,
+	LeadingZero,
+	ArethmeticSign
+} from 'tw-common/dist/app';
+
+import {TranslateService, TranslatePipe} from 'ng2-translate/ng2-translate';
 
 @Component({
 	templateUrl: 'build/pages/time/time.html',
@@ -27,15 +31,25 @@ export class TimePage extends ClockComponent{
 	offset:number;
 	user:User;
 	background:string = "time-background";
-	loading = Loading.create({
-		content: this.translate.instant('sync'),
-		dismissOnPageChange: false
-	});
+	loading:Loading; 
 
-	constructor(elementRef: ElementRef, private nav: NavController, private navParams: NavParams,
-		private twapi: TwAPIService, private translate: TranslateService) {
+	constructor(
+		//own injection
+		private nav: NavController, 
+		private navParams: NavParams,
+		private twapi: TwAPIService, 
+		private translate: TranslateService,
+		private loadingController: LoadingController,
+		//injection for ClockComponent
+		elementRef: ElementRef
+	) {
 
 		super(elementRef);
+
+		this.loading = this.loadingController.create({
+			content: this.translate.instant('sync'),
+			dismissOnPageChange: false
+		});
 
     	GAService.screenview("TIME");
 
@@ -55,7 +69,7 @@ export class TimePage extends ClockComponent{
 
 	ngAfterViewInit() {
 
-		this.nav.present(this.loading);
+		this.loading.present();
 		
 		this.twapi.accurateTime().then(
 			date => {
@@ -70,23 +84,5 @@ export class TimePage extends ClockComponent{
 			}
 		);
 	}
-
-	addZero(i:number):string {
-	    if (i < 10) {
-	        return "0" + i;
-	    }else{
-	    	return i.toString();
-	    }
-	}
-
-	addSign(i:number):string{
-		if(i >= 0){
-			return "+" + i;
-		}else{
-			return i.toString();
-		}
-	}
-
-
 
 }

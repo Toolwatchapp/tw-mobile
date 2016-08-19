@@ -1,15 +1,14 @@
-import {Component, forwardRef} from '@angular/core';
-import {Nav, Loading, NavController, NavParams} from 'ionic-angular';
-import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
-import {BlogPost} from 'tw-common/dist/app/models/blog-post.model';
-import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
-import { HTTP_PROVIDERS }  from '@angular/http';
-import {Header}  from '../header/header';
-import {Footer} from '../footer/footer';
-import {GAService} from 'tw-common/dist/app/services/ga.service';
-import { Wove } from 'aspect.js/dist/lib/aspect';
+import {Loading, LoadingController, NavController, NavParams} from 'ionic-angular';
 
-@Wove()
+import {Component, forwardRef} from '@angular/core';
+
+import {TwAPIService, BlogPost, GAService} from 'tw-common/dist/app';
+
+import {Header}  from '../header/header';
+import {Footer} from '../footer/footer';;
+
+import {TranslateService, TranslatePipe} from 'ng2-translate/ng2-translate';
+
 @Component({
 	templateUrl: 'build/pages/tips/tips.html',
 	pipes: [TranslatePipe],
@@ -19,15 +18,21 @@ export class TipsPage {
 
 	user:any;
 	posts:BlogPost[];
-	laoding:Loading = Loading.create();
+	laoding:Loading;
 	
 
-	constructor(private nav: NavController, private navParams: NavParams,
-		private twapi: TwAPIService, private translate: TranslateService) {
+	constructor(
+		private nav: NavController, 
+		private navParams: NavParams,
+		private twapi: TwAPIService, 
+		private translate: TranslateService,
+		private loadingController: LoadingController
+	) {
 
 		this.user = this.navParams.get('user');
     	GAService.screenview("TIPS");
 
+    	this.laoding = this.loadingController.create();
 
 		this.twapi.getBlogPosts().then(
 			posts => {
@@ -39,8 +44,6 @@ export class TipsPage {
 
 	ngAfterViewInit() {
 
-		this.nav.present(this.laoding);
+		this.laoding.present();
 	}
-
-
 }

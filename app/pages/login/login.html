@@ -2,7 +2,8 @@
 
 <ion-content>
 <form 
-  #loginForm = "ngForm"
+  novalidate
+  [formGroup]="loginForm"
   (ngSubmit)="onSubmit(loginForm.value)"
 >     
       <!-- GENERAL ERROR MESSAGES -->
@@ -18,17 +19,17 @@
 
       <!-- EMAIL GROUP -->
       <div  class="group"
-      [ngClass]="{ 'has-error' : !email.valid && submitAttempt || credientials}"
+      [ngClass]="{ 'has-error' : !loginForm.controls.email.valid && submitAttempt || credientials}"
       >
-
        
-        <em *ngIf="!email.valid && submitAttempt">
+        <em *ngIf="!loginForm.controls.email.valid && submitAttempt">
           {{ 'email-required' | translate:{value: param} }}
         </em>
         <input 
+          class="form-control"
           id="email" 
           type="email" 
-          ngControl="email"
+          formControlName="email"
           autocapitalize="off" autocorrect="off"
           required 
         >
@@ -42,13 +43,13 @@
 
       <!-- PASSWORD GROUP -->
       <div class="group"
-      [ngClass]="{ 'has-error' : !password.valid && submitAttempt || credientials}">
-        <em *ngIf="!password.valid && submitAttempt">
+      [ngClass]="{ 'has-error' : !loginForm.controls.password.valid && submitAttempt || credientials}">
+        <em *ngIf="!loginForm.controls.password.valid && submitAttempt">
           {{ 'password-required' | translate:{value: param} }}
         </em>
         <input 
           type="password" 
-          ngControl="password"
+          formControlName="password"
           required
         >     
         <span class="highlight"></span>

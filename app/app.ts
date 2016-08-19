@@ -1,5 +1,4 @@
 import {Component, ViewChild, provide} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import {ionicBootstrap, Platform, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {LogInPage} from './pages/login/login';
@@ -10,12 +9,8 @@ import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 import {GAService} from 'tw-common/dist/app/services/ga.service';
 import { NativeStorage } from 'ionic-native';
 import {User} from 'tw-common/dist/app/models/user.model';
-import { FormsModule, disableDeprecatedForms, provideForms } from '@angular/forms';
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
-
-import { Wove } from 'aspect.js/dist/lib/aspect';
-
-@Wove()
 @Component({
   templateUrl: 'build/app.html'
 })
@@ -85,8 +80,9 @@ class MyApp {
       this.fetchUser()
       .then(
         user => {
-          console.error(user);
           if(user !== undefined){
+
+            console.error(user);
             this.rootPage = DashboardPage;
             setTimeout(()=> DashboardPage.userChanged.emit(user), 1000);
           }else{
@@ -106,13 +102,14 @@ class MyApp {
 
 
 ionicBootstrap(MyApp, [
+  disableDeprecatedForms(), // disable deprecated forms
+  provideForms(), // enable new forms module
   TwAPIService,
   HTTP_PROVIDERS,
-  disableDeprecatedForms(), 
-  provideForms(),
-  provide(TranslateLoader, {
+  { 
+    provide: TranslateLoader,
     useFactory: (http: Http) => new TranslateStaticLoader(http, 'build/assets/i18n', '.json'),
     deps: [Http]
-  }),
+  },
   // use TranslateService here, and not TRANSLATE_PROVIDERS (which will define a default TranslateStaticLoader)
   TranslateService]);

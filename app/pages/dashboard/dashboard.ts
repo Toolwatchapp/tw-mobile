@@ -1,21 +1,43 @@
-import {Component, ElementRef, EventEmitter} from '@angular/core';
-import {Alert, Nav, Loading, NavController, NavParams, ActionSheet, ItemSliding} from 'ionic-angular';
-import {LoginComponent} from 'tw-common/dist/app/directives/login/login.component';
-import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
-import {Watch, WatchStatus, WatchAction} from 'tw-common/dist/app/models/watch.model';
-import {MeasureStatus} from 'tw-common/dist/app/models/measure.model';
-import {User} from 'tw-common/dist/app/models/user.model';
-import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
-import {Http, HTTP_PROVIDERS, Headers}  from '@angular/http';
+import {
+	Alert,
+	Loading,
+	NavController,
+	NavParams,
+	ActionSheet,
+	ItemSliding,
+	ActionSheetController,
+	AlertController
+} from 'ionic-angular';
+
+import {
+	Component, 
+	ElementRef, 
+	EventEmitter
+} from '@angular/core';'@angular/http';
+
 import {Footer} from '../footer/footer';
 import {WatchPage} from '../watch/watch';
 import {Header} from '../header/header';
 import {MeasurePage} from '../measure/measure';
-import {GAService} from 'tw-common/dist/app/services/ga.service';
-import {ArethmeticSign} from 'tw-common/dist/app/pipes/arethmetic-sign.pipe';
-import { Wove } from 'aspect.js/dist/lib/aspect';
 
-@Wove()
+import {
+	LoginComponent,
+	TwAPIService,
+	Watch,
+	WatchStatus,
+	WatchAction,
+	MeasureStatus,
+	GAService,
+	ArethmeticSign,
+	User
+} from 'tw-common/dist/app';
+
+import {
+	TranslateService,
+	TranslatePipe
+} from 'ng2-translate/ng2-translate';
+
+
 @Component({
 	templateUrl: 'build/pages/dashboard/dashboard.html',
 	pipes: [TranslatePipe, ArethmeticSign],
@@ -29,9 +51,15 @@ export class DashboardPage {
 	WatchAction = WatchAction;
 	public static userChanged = new EventEmitter();
 	
-
-	constructor(private nav: NavController, private navParams: NavParams,  private translate: TranslateService,
-		private twapi: TwAPIService, private elementRef: ElementRef) {
+	constructor(
+		private nav: NavController,
+		private navParams: NavParams,
+		private translate: TranslateService,
+		private twapi: TwAPIService,
+		private elementRef: ElementRef, 
+		private alertController: AlertController,
+		private actionSheetController: ActionSheetController
+	) {
 
         GAService.screenview("DASHBOARD");
 
@@ -76,7 +104,7 @@ export class DashboardPage {
 
         GAService.event("CTA", "SHARE", "DASHBOARD");
 
-		let actionSheet = ActionSheet.create({
+		let actionSheet = this.actionSheetController.create({
 			title: 'Modify your album',
 			buttons: [
 				{
@@ -99,8 +127,7 @@ export class DashboardPage {
 				}
 			]
 		});
-		this.nav.present(actionSheet);
-		
+		actionSheet.present();
 	}
 
 	newWatch(){
@@ -112,7 +139,7 @@ export class DashboardPage {
 	deleteWatch(watch:Watch, slidingItem: ItemSliding){
 
 
-		let alert = Alert.create({
+		let alert = this.alertController.create({
 			title: this.translate.instant('delete-watch-alert'),
 			message: this.translate.instant('delete-watch-confirm') + watch.brand + " " + watch.name + "?",
 			buttons: [
@@ -139,7 +166,7 @@ export class DashboardPage {
 				}
 			]
 		});
-		this.nav.present(alert);
+		alert.present();
 	}
 
 	onRefresh(refresher) {

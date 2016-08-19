@@ -1,20 +1,19 @@
+import {NavController, NavParams} from 'ionic-angular';
+
 import { Component } from '@angular/core';
-import {Nav, Loading, NavController, NavParams} from 'ionic-angular';
-import {SignupComponent} from 'tw-common/dist/app/directives/signup/signup.component';
-import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, Validators}  from '@angular/common';
-import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
-import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
+import {FormBuilder, Control}  from '@angular/common';
+
 import {DashboardPage} from '../dashboard/dashboard';
-import {Http, HTTP_PROVIDERS, Headers}  from '@angular/http';
 import {Header} from '../header/header';
-import {GAService} from 'tw-common/dist/app/services/ga.service';
 
-/*
-  Generated class for the SignupPage page.
+import {
+  SignupComponent,
+  TwAPIService,
+  GAService
+} from 'tw-common/dist/app';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+import {TranslateService, TranslatePipe} from 'ng2-translate/ng2-translate';
+
 @Component({
   templateUrl: 'build/pages/signup/signup.html',
   pipes: [TranslatePipe],
@@ -25,13 +24,19 @@ export class SignupPage extends SignupComponent{
   background:string = "account-background";
   slogan:string = "signin-slogan";
 
-  constructor(private nav: NavController, private navParams: NavParams, translate: TranslateService, 
-     twapi: TwAPIService,  builder: FormBuilder) {
+  constructor(
+    //Own injection
+    private nav: NavController, 
+    private navParams: NavParams, 
+    //injection for SignupComponent
+    translate: TranslateService, 
+    twapi: TwAPIService,  
+    builder: FormBuilder
+  ) {
 
   	super(translate, twapi, builder);
 
     GAService.screenview("SIGNUP");
-
 
 	  (<Control>this.signupForm.controls['email'])
 		.updateValue(this.navParams.get('email'));

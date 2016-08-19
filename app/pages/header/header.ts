@@ -1,14 +1,12 @@
-import 'gsap';
-import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
-import {Component, ElementRef, ViewChild, Input} from '@angular/core';
 import {Nav, Loading, NavController} from 'ionic-angular';
+import {Component, ElementRef, ViewChild, Input} from '@angular/core';
+
 import {WatchPage} from '../watch/watch';
-import {User} from 'tw-common/dist/app/models/user.model';
-import {TwAPIService} from 'tw-common/dist/app/services/twapi.service';
 
-import { Wove } from 'aspect.js/dist/lib/aspect';
+import {User, TwAPIService} from 'tw-common/dist/app';
 
-@Wove()
+import {TranslatePipe} from 'ng2-translate/ng2-translate';
+
 @Component({
 	templateUrl: 'build/pages/header/header.html',
 	pipes: [TranslatePipe],
@@ -25,11 +23,10 @@ export class Header {
 	@Input()
 	topBg:string = "handBg";
 
-	constructor(private nav: NavController, private elementRef: ElementRef) {
-
-		console.log(this.topBg);
-		console.log(this.slogan);
-	}
+	constructor(
+		private nav: NavController, 
+		private elementRef: ElementRef
+	) { }
 
 	onBack(){
 		this.nav.pop();
