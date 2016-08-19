@@ -74,8 +74,6 @@ export class DashboardPage {
 			}
 		);
 
-		console.error("Dashboard page", this.navParams.get('user'));
-
 		this.user = this.navParams.get('user');
 	}
 
@@ -173,6 +171,7 @@ export class DashboardPage {
 
 		this.twapi.getWatches().then(
 			res => {
+				console.log(res);
 				this.user.watches = res;
 				this.resetScroll();
 				refresher.complete();
