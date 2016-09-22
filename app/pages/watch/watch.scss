@@ -3,7 +3,6 @@
 
 	ion-content{
 		top:30%;
-		height: 300px;
 		z-index: 0;
 		overflow: scroll !important;
 	}
@@ -24,6 +23,7 @@
 		width: 100%;
 	}
 
+	
 	input               {
 	  font-size:18px;
 	  padding:10px 10px 10px 5px;
@@ -49,10 +49,7 @@
 	}
 
 	/* active state */
-	input:focus ~ label, 
-	input:valid.ng-dirty ~ label,
-	input:valid.was-filled ~ label
-	        {
+	input:focus ~ label, input:valid ~ label        {
 	  top:-20px;
 	  font-size:14px;
 	  color:#5264AE;

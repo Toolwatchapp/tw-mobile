@@ -1,0 +1,7 @@
+<div class="form-group">
+  <div *ngFor="let error of errors"
+  		class="error-message" 
+  		[hidden]="!error.flag">
+    {{ error.label | translate:{value: param} }}
+  </div>
+</div>

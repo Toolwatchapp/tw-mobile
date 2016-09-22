@@ -1,0 +1,25 @@
+
+<div  class="group"
+  [ngClass]="{ 'has-error' : !control.valid && submitAttempt }"
+>
+    <em *ngIf="!control.valid && submitAttempt">
+      {{ errorLabel | translate:{value: param} }}
+    </em>
+
+    <input #input_field
+      [attr.autocapitalize] = "autoCapitalize ? 'on' : 'off'"
+      [attr.autocorrect]    = "autoCorrect ? 'on' : 'off'"
+      [attr.autocomplete]   = "autoComplete ? 'on' : 'off'"
+      [attr.spellcheck]     = "spellCheck ? 'on' : 'off'"
+      class                 = "form-control" 
+      id                    = "{{id}}" 
+      type                  = "{{type}}" 
+      [formControl]         = "control" 
+      (keyup) = "update.emit(input_field.value)"
+    >
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label htmlFor="{{id}}">
+      {{ label | translate:{value: param} }}
+    </label>
+</div>

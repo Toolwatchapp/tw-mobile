@@ -1,75 +1,49 @@
 <header-nav></header-nav>
 
 <ion-content>
-<form 
-  novalidate
-  [formGroup]="loginForm"
-  (ngSubmit)="onSubmit(loginForm.value)"
->     
-      <!-- GENERAL ERROR MESSAGES -->
-      <div  class="form-group">
-        <div class="error-message" [hidden]="!credientials">
-          {{ 'credentials' | translate:{value: param} }}
-        </div>
-        <div class="error-message" [hidden]="!error">
-            {{ 'error' | translate:{value: param} }}
-        </div>
-      </div>
-      <!-- END GENERAL ERROR MESSAGES -->
+  <form 
+    novalidate
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit(loginForm.value)"
+  >         
 
-      <!-- EMAIL GROUP -->
-      <div  class="group"
-      [ngClass]="{ 'has-error' : !loginForm.controls.email.valid && submitAttempt || credientials}"
-      >
-       
-        <em *ngIf="!loginForm.controls.email.valid && submitAttempt">
-          {{ 'email-required' | translate:{value: param} }}
-        </em>
-        <input 
-          class="form-control"
-          id="email" 
-          type="email" 
-          formControlName="email"
-          autocapitalize="off" autocorrect="off"
-          required 
-        >
-        <span class="highlight"></span>
-        <span class="bar"></span>
-         <label>
-          {{ 'email' | translate:{value: param} }}
-        </label>
-      </div>
-      <!-- END EMAIL GROUP -->
+    <!-- <pre>{{loginForm.value | json}}</pre> -->
 
-      <!-- PASSWORD GROUP -->
-      <div class="group"
-      [ngClass]="{ 'has-error' : !loginForm.controls.password.valid && submitAttempt || credientials}">
-        <em *ngIf="!loginForm.controls.password.valid && submitAttempt">
-          {{ 'password-required' | translate:{value: param} }}
-        </em>
-        <input 
-          type="password" 
-          formControlName="password"
-          required
-        >     
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label for="password">
-          {{ 'password' | translate:{value: param} }}
-        </label>
-      </div>
-      <!-- END PASSWORD GROUP -->
-      <div class="form-group">
-        <button id="login" toggle md-raised-button color="primary" type="submit"> {{ 'login' | translate:{value: param} }}</button>
-      </div>
-</form>
-        <button id="login-fb" toggle md-raised-button color="primary" disabled>
-          <ion-icon name="logo-facebook"></ion-icon>
-           {{ 'facebook-login' | translate:{value: param} }}
-        </button>
-        <button  (click)="onSignup()" id="register" toggle md-raised-button color="primary">
-           {{ 'email-register' | translate:{value: param} }}
-        </button>
+    <mobile-error [errors] = "errors"></mobile-error>
+
+    <mobile-input 
+      [id]             = "'email'"
+      [control]        = "loginForm.controls.email" 
+      [errorLabel]     = "'email-required'"
+      [submitAttempt]  = "submitAttempt"
+      [autoCapitalize] = false
+      [autoCorrect]    = false
+      [spellCheck]     = false
+    >
+    </mobile-input>
+
+    <mobile-input 
+      [id]            = "'password'"
+      [type]          = "'password'"
+      [control]       = "loginForm.controls.password" 
+      [errorLabel]    = "'password-required'"
+      [submitAttempt] = "submitAttempt"
+    >
+    </mobile-input>
+
+    <div class="form-group">
+      <button id="login" toggle md-raised-button color="primary" type="submit"> {{ 'login' | translate:{value: param} }}</button>
+    </div>
+  </form>
+
+  <button id="login-fb" toggle md-raised-button color="primary" disabled>
+    <ion-icon name="logo-facebook"></ion-icon>
+     {{ 'facebook-login' | translate:{value: param} }}
+  </button>
+  
+  <button  (click)="onSignup()" id="register" toggle md-raised-button color="primary">
+     {{ 'email-register' | translate:{value: param} }}
+  </button>
 
 </ion-content>
 

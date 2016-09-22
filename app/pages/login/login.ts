@@ -8,6 +8,10 @@ import {DashboardPage} from '../dashboard/dashboard';
 import {Header} from '../header/header';
 import {SignupPage} from '../signup/signup';
 
+import {MobileInput} from '../../components/mobile-input/mobile-input';
+import {MobileError} from '../../components/mobile-error/mobile-error';
+
+
 import {
 	LoginComponent,
 	TwAPIService, 
@@ -20,18 +24,22 @@ import {TranslateService, TranslatePipe} from 'ng2-translate/ng2-translate';
 @Component({
 	templateUrl: 'build/pages/login/login.html',
 	pipes: [TranslatePipe],
-	directives: [Header]
+	directives: [Header, MobileInput, MobileError]
 })
 export class LogInPage extends LoginComponent{
 
 	laoding:Loading; 
 	loadindSentence:string;
+	errors = [
+		{flag:this.credientials, label:"credientials"}, 
+		{flag:this.error, label:"error"}
+	];
 
-	constructor(
+	constructor(	
 		//Own injections
 		private nav: NavController, 
 		private loadingController: LoadingController, 
-		//Injections for LoginComponent
+		//Injections for LoginComponent	
 		translate: TranslateService,
 		twapi: TwAPIService, 
 		builder: FormBuilder
@@ -52,6 +60,11 @@ export class LogInPage extends LoginComponent{
 		this.loginAttempt.subscribe(
 			attempt => this.onLoggingAttempt(attempt)
 		);
+	}
+
+	ngAfterViewInit(){
+		
+		// this.onSubmit(this.loginForm.value);
 	}
 
 	/**

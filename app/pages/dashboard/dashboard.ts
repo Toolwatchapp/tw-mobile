@@ -69,7 +69,9 @@ export class DashboardPage {
 		DashboardPage.userChanged.subscribe(
 			user => {
 				this.user = user;
-				this.resetScroll();
+				if(user.watches.length > 1){
+					this.resetScroll();
+				}
 				console.log("user", this.user);
 			}
 		);
