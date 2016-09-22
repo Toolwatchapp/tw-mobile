@@ -2,8 +2,8 @@ import {Loading, NavController, LoadingController, NavParams} from 'ionic-angula
 
 import {Component, ElementRef, forwardRef} from '@angular/core';
 
-import {Footer} from '../footer/footer';
-import {Header}  from '../header/header';
+import {Footer} from '../../components/footer/footer';
+import {Header}  from '../../components/header/header';
 import { MoonPhases } from './moon/moon-phases'
 
 import {
@@ -32,6 +32,7 @@ export class TimePage extends ClockComponent{
 	user:User;
 	background:string = "time-background";
 	loading:Loading; 
+	twelveHoursFormat:boolean = true;
 
 	constructor(
 		//own injection

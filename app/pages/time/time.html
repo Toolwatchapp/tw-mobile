@@ -14,11 +14,11 @@
     </span>
   </div>
 
-  <div class="hours-analog">
-    {{date.getHours() | leadingZero}}:{{date.getMinutes() | leadingZero}}
+  <div (click)="twelveHoursFormat=!twelveHoursFormat" class="hours-analog">
+    {{ (twelveHoursFormat) ? ((date.getHours() + 11) % 12 + 1) : date.getHours() | leadingZero}}:{{date.getMinutes() | leadingZero}}
   </div>
 
-  <div class="period">
+  <div *ngIf="twelveHoursFormat" class="period">
     <span [class.innactive]="date.getHours() > 12" class="am">AM</span>
     <span [class.innactive]="date.getHours() <= 12" class="pm">PM</span>
   </div>
