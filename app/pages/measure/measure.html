@@ -4,25 +4,42 @@
 <ion-content class="measure" *ngIf="step === 0">
 
 
-  <h3 class="top">{{ 'measure-instructions-part-1' | translate:{value: param} }}</h3>
-  <button (click)="measure()" class="sync-button" primary> </button>
-  <h3 class="bottom">{{ 'measure-instructions-part-2' | translate:{value: param} }}</h3>
+  <h3 class="top">{{ 'measure-instructions-part-1' | translate:{value: param} }} {{ 'measure-instructions-part-2' | translate:{value: param} }}</h3>
+
+  <div [class.active]="active" class="main-button" (click)="measure()">
+    <button  class="sync-button" primary> 
+    </button>
+  </div>
 
 </ion-content>
 
 <ion-content class="confirm" *ngIf="step === 1">
+
   <h2>{{ 'sync-confirm' | translate:{value: param} }}:</h2>
-  <h1>{{ offsetedDateString }}</h1>
+  <h1>
+        <ion-datetime displayFormat="HH:mm:00" pickerFormat="HH:mm" [(ngModel)]="offsetedDateString"></ion-datetime>
+  </h1>
 
-  <button class="confirm-action" (click)="validate()" primary>{{ 'sync-confirm-action' | translate:{value: param} }}</button>
+  <button (click)="validate()" class="round" secondary>
 
-  <p>{{ 'plus-minus-explain' | translate:{value: param} }}</p>
+    <ion-spinner *ngIf="waitingApi"></ion-spinner>
+    <ion-icon *ngIf="!waitingApi" ios="md-checkmark" md="md-checkmark"></ion-icon>  
+  </button>  
 
-  <button class="left" (click)="retrieveMinute()" primary>{{ 'minus-minute' | translate:{value: param} }}</button>
-  <button class="right" (click)="addMinute()" primary>{{ 'plus-minute' | translate:{value: param} }}</button>
+  <button (click)="alert()" class="round">
+    <ion-icon ios="md-help" md="md-help"></ion-icon>  
+  </button>
+
 </ion-content>
 
 <ion-content class="hourslimit" *ngIf="step === 2">
+
+  <h1>{{ 'well-done' | translate:{value: param} }}</h1>
+
+  <div id="h5">
+     <ion-img id="image-h5" [src]="highFiveSrc"></ion-img>
+  </div>
+
   <p>
     {{ '12-hours-explain' | translate:{value: param} }}
   </p>
@@ -42,5 +59,3 @@
     {{ 'back-dashboard' | translate:{value: param} }}
   </button>
 </ion-content>
-
-<footer-nav [user]="user"></footer-nav>

@@ -1,18 +1,21 @@
 import {
 	Alert,
+	AlertController,
 	Nav,
 	Loading,
 	LoadingController,
 	NavController,
-	NavParams
+	NavParams,
+	ModalController
 } from 'ionic-angular';
 import {SocialSharing} from 'ionic-native';
 
 import {Component, ElementRef, forwardRef} from '@angular/core';
 
-import {Header}  from '../header/header';
-import {Footer} from '../footer/footer';
 import {DashboardPage} from '../dashboard/dashboard';
+
+import {Header}  from '../../components/header/header';
+import {Footer} from '../../components/footer/footer';
 
 import {
 	User, 
@@ -48,18 +51,25 @@ export class MeasurePage {
 	step = 0;
 	loading:Loading;
 
+	//css variables
+	active:boolean = false;
+	highFiveSrc= "../build/assets/images/h5.png";
+	waitingApi = false;
+
 	constructor(
 		private nav: NavController, 
 		private navParams: NavParams, 
 		private translate: TranslateService, 
 		private elementRef: ElementRef, 
 		private twapi: TwAPIService,
-		private loadingController: LoadingController
+		private loadingController: LoadingController,
+		private alertCtrl: AlertController,
+		private modalCtrl: ModalController
 	) {
 
         GAService.screenview("MEASURE");
 
-        this.loadingController.create({
+        this.loading = this.loadingController.create({
 			content: this.translate.instant('sync'),
 			dismissOnPageChange: false
 		});
@@ -84,9 +94,31 @@ export class MeasurePage {
 	}
 
 	/**
+	 * Provides explanation
+	 */
+	alert(){
+		let alert = this.alertCtrl.create({
+	      title: this.translate.instant('something-wrong'),
+	      subTitle: this.translate.instant('something-wrong-explain'),
+	      buttons: ['OK']
+	    });
+	    alert.present();
+	}
+
+	/**
 	 * On main CTA click
 	 */
 	validate(){
+
+		this.waitingApi = true;
+
+		//User fiddled with the date picker
+		if(this.offsetedDateString != this.constructoffsetedDateString()){
+
+			let splittedString: string[] = this.offsetedDateString.split(":");
+			this.offsetedDate.setHours(Number(splittedString[0]));
+			this.offsetedDate.setMinutes(Number(splittedString[1]));
+		}
 
 		if (this.watch.next === WatchAction.Measure) {
 
@@ -97,6 +129,7 @@ export class MeasurePage {
 				watch => this.baseMeasure(watch)
 			);
 		}else{
+
 			this.watch.currentMeasure().addAccuracyMeasure(
 				this.offsetedDate.getTime()/1000, this.referenceTime.getTime()/1000
 			);
@@ -125,9 +158,14 @@ export class MeasurePage {
 	 */
 	measure(){
 
-		this.step = 1;
+		this.active = true;
+
+		setTimeout(() => this.step = 1, 1000);
+		
 		this.twapi.accurateTime().then(
-			time => this.referenceTime = time
+			time => {
+				this.referenceTime = time;
+			}
 		);
 	}
 
@@ -184,6 +222,15 @@ export class MeasurePage {
 	 * @param {Watch} watch
 	 */
 	private baseMeasure(watch:Watch){
+
+		setTimeout(() => {
+			console.log("in");
+			this.highFiveSrc = "../build/assets/images/h5.gif"
+			setTimeout(() => {
+				console.log("in2");
+				this.highFiveSrc = "../build/assets/images/h5.png"
+			}, 2000);
+		}, 1000);
 		this.watch = watch;
 		this.watch.next = WatchAction.Waiting;
 		this.watch.waiting = 12;
