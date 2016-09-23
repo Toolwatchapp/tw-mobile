@@ -13,11 +13,12 @@ import {
 	Component, 
 	ElementRef, 
 	EventEmitter
-} from '@angular/core';'@angular/http';
+} from '@angular/core';
 
-import {Footer} from '../footer/footer';
+import {Footer} from '../../components/footer/footer';
+import {Header} from '../../components/header/header';
+
 import {WatchPage} from '../watch/watch';
-import {Header} from '../header/header';
 import {MeasurePage} from '../measure/measure';
 
 import {
