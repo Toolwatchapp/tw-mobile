@@ -15,13 +15,13 @@ import {
 	Input
 } from '@angular/core';
 
-import {WatchPage} from '../watch/watch';
-import {TipsPage} from '../tips/tips';
-import {TimePage} from '../time/time';
+import {WatchPage} from '../../pages/watch/watch';
+import {TipsPage} from '../../pages/tips/tips';
+import {TimePage} from '../../pages/time/time';
+import {MeasurePage}  from '../../pages/measure/measure';
+import {AboutPage}  from '../../pages/about/about';
+import {DashboardPage}  from '../../pages/dashboard/dashboard';
 import {Header}  from '../header/header';
-import {MeasurePage}  from '../measure/measure';
-import {AboutPage}  from '../about/about';
-import {DashboardPage}  from '../dashboard/dashboard';
 
 import {
 	User, 
@@ -44,7 +44,7 @@ declare var Elastic: any;
 declare var window;
 
 @Component({
-	templateUrl: 'build/pages/footer/footer.html',
+	templateUrl: 'build/components/footer/footer.html',
 	pipes: [TranslatePipe],
 	selector: "footer-nav"
 })
@@ -136,8 +136,6 @@ export class Footer {
 	openMenu() {
 
 		let elements: any[] = this.elementRef.nativeElement.querySelectorAll(".menu-item");
-
-		console.log(elements);
 
 		for (var i = 0; i < elements.length; i++) {
 			var delay: number = i * 0.08;

@@ -12,8 +12,8 @@ import {
 
 import { HTTP_PROVIDERS }  from '@angular/http';
 
-import {Header}  from '../header/header';
-import {Footer} from '../footer/footer';
+import {Header}  from '../../components/header/header';
+import {Footer} from '../../components/footer/footer';
 
 import {
     TwAPIService, 

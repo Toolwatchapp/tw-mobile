@@ -15,7 +15,7 @@
   </div>
 
   <div (click)="twelveHoursFormat=!twelveHoursFormat" class="hours-analog">
-    {{ (twelveHoursFormat) ? ((date.getHours() + 11) % 12 + 1) : date.getHours() | leadingZero}}:{{date.getMinutes() | leadingZero}}
+    {{ ((twelveHoursFormat) ? ((date.getHours() + 11) % 12 + 1) : date.getHours()) | leadingZero}}:{{date.getMinutes() | leadingZero}}
   </div>
 
   <div *ngIf="twelveHoursFormat" class="period">
@@ -37,8 +37,8 @@
      </div>
 
      <div class="leap-year">
-       <span class="year">2016</span>
-       <span class="leap-year-label">{{ 'leap-year' | translate:{value: param} }}</span>
+       <span class="year">{{nextLeap}}</span>
+       <span class="leap-year-label">{{ (isLeapYear(date.getFullYear()) ?  'is-leap-year' : 'leap-year') | translate:{value: param} }}</span>
      </div>
    </div>
 

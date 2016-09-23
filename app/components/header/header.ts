@@ -1,14 +1,12 @@
 import {Nav, Loading, NavController} from 'ionic-angular';
 import {Component, ElementRef, ViewChild, Input} from '@angular/core';
 
-import {WatchPage} from '../watch/watch';
-
 import {User, TwAPIService} from 'tw-common/dist/app';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 @Component({
-	templateUrl: 'build/pages/header/header.html',
+	templateUrl: 'build/components/header/header.html',
 	pipes: [TranslatePipe],
 	selector: "header-nav"
 })
