@@ -12,7 +12,7 @@ import {
 } from 'tw-common/dist/app';
 
 import {DashboardPage} from '../dashboard/dashboard';
-import {Header}  from '../header/header';
+import {Header}  from '../../components/header/header';
 
 import {MobileInput} from '../../components/mobile-input/mobile-input';
 import {MobileError} from '../../components/mobile-error/mobile-error';
