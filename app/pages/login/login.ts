@@ -5,12 +5,12 @@ import {Component} from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 
 import {DashboardPage} from '../dashboard/dashboard';
-import {Header} from '../header/header';
+
 import {SignupPage} from '../signup/signup';
 
 import {MobileInput} from '../../components/mobile-input/mobile-input';
 import {MobileError} from '../../components/mobile-error/mobile-error';
-
+import {Header} from '../../components/header/header';
 
 import {
 	LoginComponent,

@@ -4,8 +4,8 @@ import {Component, forwardRef} from '@angular/core';
 
 import {TwAPIService, BlogPost, GAService} from 'tw-common/dist/app';
 
-import {Header}  from '../header/header';
-import {Footer} from '../footer/footer';;
+import {Header}  from '../../components/header/header';
+import {Footer} from '../../components/footer/footer';
 
 import {TranslateService, TranslatePipe} from 'ng2-translate/ng2-translate';
 

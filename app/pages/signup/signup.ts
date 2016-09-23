@@ -3,7 +3,7 @@ import {NavController, NavParams} from 'ionic-angular';
 import { Component } from '@angular/core';
 
 import {DashboardPage} from '../dashboard/dashboard';
-import {Header} from '../header/header';
+import {Header} from '../../components/header/header';
 import { FormBuilder, FormControl } from '@angular/forms';
 import {
   SignupComponent,
