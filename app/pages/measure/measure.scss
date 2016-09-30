@@ -158,26 +158,73 @@
 	}
 
 	.result{
-		text-align: center;
-		margin-top: 1%;
-		width: 90%;
-		margin-left: 5%;
 
-		p.result, p.percentil{
-			margin-top: 10%;
-			font-size: 3.5vh;
+
+
+		h1{
+			font-size:8em;
+			color:#4d77a7;
+			font-weight:bolder;
+			text-align:center;
+			margin:0;
+			padding: 0;
+			margin-left:-0.5em;
 		}
 
-		h2{
-			font-size: 4vh;
+		span.spd, span.watch-name{
+			display:block;
+			width:100%;
+			text-align:center;
+			text-transform:uppercase;
+			font-weight:bold;
+		}
+
+		span.watch-name{
+			margin-top:5%;
+			font-size:2em;
+			text-transform:capitalize;
+		}
+
+		span.spd{
+			margin-top:-2%;
+			color:#a8a8a8;
+		}
+
+		.stats{
+			width:33%;
+			float:left;
+			text-align:center;
+			margin-top:7%;
+			.stats-number{
+				font-size:1.5em;
+				font-weight:bold;
+				margin: 0.2em;
+			}
+
+			ion-icon{
+				font-size:2em;
+				color:#4d77a7
+			}
+
+			.stats-label{
+				text-transform:uppercase;
+				font-size:0.8em;
+				color:#a8a8a8;
+			}
 		}
 
 		button{
-			width: 100%;
+			font-size:3em;
+			margin-top:10%;
+			margin-left:35vw;
+			width: 30vw;
+			height: 30vw;
+			border-radius: 65%;
 		}
 
-		.percentil{
-			font-style: italic;
+		.middle{
+			border-left:1px solid #ececec;
+			border-right:1px solid #ececec;
 		}
 
 	}

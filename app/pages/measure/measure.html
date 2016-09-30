@@ -49,13 +49,31 @@
 </ion-content>
 
 <ion-content class="result" *ngIf="step === 3">
-  <p class="result">
-      {{ accuracyText }}
-      <span class="percentil"> {{ percentilText }}</span>
-  </p>
 
-  <button primary (click)="share()"> {{ 'share-action' | translate:{value: param} }} </button>
-  <button (click)="leave()" class="sync-button" primary>
-    {{ 'back-dashboard' | translate:{value: param} }}
+  <span class='watch-name'>{{ watch.brand + " " + watch.name }}</span>
+  <h1>{{accuracy | arethmeticSign }}</h1> 
+  <span class='spd'>{{ 'spd' | translate:{value: param} }}</span>
+  
+
+  <div class="stats">
+      <ion-icon ios="md-stopwatch" md="md-stopwatch"></ion-icon>  
+      <p class="stats-number">{{ watch.historySize }}</p>
+      <span class="stats-label">{{'total-measures'  | translate:{value: param} }}</span>
+  </div>
+
+  <div class="stats middle">
+      <ion-icon ios="md-podium" md="md-podium"></ion-icon>  
+      <p class="stats-number">{{ watch.average(3) }}</p>
+      <span class="stats-label">{{'average-spd-3'  | translate:{value: param} }}</span>
+  </div>
+
+  <div class="stats">
+      <ion-icon ios="md-globe" md="md-globe"></ion-icon>  
+      <p class="stats-number">{{percentage}}%</p>
+      <span class="stats-label">{{'accuracy-percentil' | translate:{value: param} }}</span>
+  </div>
+
+  <button primary (click)="share()"> 
+     <ion-icon ios="ios-send-outline" md="ios-send-outline"></ion-icon>
   </button>
 </ion-content>

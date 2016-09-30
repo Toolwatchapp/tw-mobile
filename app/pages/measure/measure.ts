@@ -25,7 +25,8 @@ import {
 	WatchStatus, 
 	WatchAction, 
 	Measure, 
-	WatchComponent
+	WatchComponent,
+	ArethmeticSign
 } from 'tw-common/dist/app';
 
 import {TranslateService, TranslatePipe} from 'ng2-translate/ng2-translate';
@@ -34,7 +35,7 @@ declare var window;
 
 @Component({
 	templateUrl: 'build/pages/measure/measure.html',
-	pipes: [TranslatePipe],
+	pipes: [TranslatePipe, ArethmeticSign],
 	directives: [Header, forwardRef(() => Footer)]
 })
 export class MeasurePage {
@@ -247,13 +248,6 @@ export class MeasurePage {
 		this.watch = watch;
 		this.accuracy = watch.currentMeasure().accuracy;
 		this.percentage = watch.currentMeasure().percentile;
-
-		this.accuracyText = this.translate.instant('accuracy-result')
-			.replace("{watch}", this.watch.brand + " " + this.watch.name)
-			.replace("{x}", this.accuracy);
-
-		this.percentilText = this.translate.instant('percentil-result')
-			.replace("{x}", this.percentage);
 
 		this.user.upsertWatch(this.watch);
 		DashboardPage.userChanged.emit(this.user);
