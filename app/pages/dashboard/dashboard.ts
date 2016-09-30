@@ -20,7 +20,7 @@ import {Header} from '../../components/header/header';
 
 import {WatchPage} from '../watch/watch';
 import {MeasurePage} from '../measure/measure';
-
+declare var Math;
 import {
 	LoginComponent,
 	TwAPIService,
@@ -51,6 +51,8 @@ export class DashboardPage {
 	MeasureStatus = MeasureStatus;
 	WatchAction = WatchAction;
 	public static userChanged = new EventEmitter();
+	static cachedBackgrounds = [];
+	backgrounds = [];
 	
 	constructor(
 		private nav: NavController,
@@ -70,6 +72,7 @@ export class DashboardPage {
 		DashboardPage.userChanged.subscribe(
 			user => {
 				this.user = user;
+				this.genBackgrounds();
 				if(user.watches.length > 1){
 					this.resetScroll();
 				}
@@ -78,6 +81,7 @@ export class DashboardPage {
 		);
 
 		this.user = this.navParams.get('user');
+		this.genBackgrounds();
 	}
 
 	resetScroll(){
@@ -101,34 +105,41 @@ export class DashboardPage {
 		});
 	}
 
-	share(){
+	warning(watch:Watch){
 
-        GAService.event("CTA", "SHARE", "DASHBOARD");
+		let text = this.translate.instant('accuracy-age-warning')
+		+watch.lastCompleteMeasure().accuracyAge + this.translate.instant('accuracy-age-warning-contd');
+			
+		let alert = this.alertController.create({
+	      title: this.translate.instant('accuracy-age-title'),
+	      subTitle: text,
+	      buttons: ['OK']
+	    });
+	    alert.present();
+		
+	}
 
-		let actionSheet = this.actionSheetController.create({
-			title: 'Modify your album',
-			buttons: [
-				{
-					text: 'Destructive',
-					role: 'destructive',
-					handler: () => {
-						console.log('Destructive clicked');
-					}
-				}, {
-					text: 'Archive',
-					handler: () => {
-						console.log('Archive clicked');
-					}
-				}, {
-					text: 'Cancel',
-					role: 'cancel',
-					handler: () => {
-						console.log('Cancel clicked');
-					}
-				}
-			]
-		});
-		actionSheet.present();
+	error(watch:Watch){
+
+		var text = this.translate.instant('below-average');
+
+		if(watch.lastCompleteMeasure().accuracy < -10){
+			text += this.translate.instant('below-average-20-10');
+		}else if(watch.lastCompleteMeasure().accuracy < 10){
+			text += this.translate.instant('below-average-10-25');
+		}else{
+			text += this.translate.instant('below-average-25');
+		}
+
+		text += this.translate.instant('servicing');
+			
+		let alert = this.alertController.create({
+		  title: this.translate.instant('below-average-title'),
+	      subTitle: text,
+	      buttons: ['OK']
+	    });
+	    alert.present();
+		
 	}
 
 	newWatch(){
@@ -170,12 +181,47 @@ export class DashboardPage {
 		alert.present();
 	}
 
+	genBackgrounds(){
+
+		TwAPIService.assetsUrl = "build/assets";
+
+		for (var i = this.user.watches.length - 1; i >= 0; i--) {
+
+
+			//Only computes the unknown ones
+			if(DashboardPage.cachedBackgrounds[this.user.watches[i].id] === undefined){
+
+				DashboardPage.cachedBackgrounds[this.user.watches[i].id] = {
+					image: "",
+					color: "transparent",
+					bgColor: ""
+				};
+
+				this.twapi.getLikelyBrands(this.user.watches[i]).then(
+				brands => {
+
+						if(brands.proposals.length > 0 && brands.proposals[0].confidence > 85){
+							DashboardPage.cachedBackgrounds[brands.watch.id].image = "url('build/assets/ico_watches/" + 
+								brands.proposals[0].logo + "')";
+						}else{
+							DashboardPage.cachedBackgrounds[brands.watch.id].bgColor = "color-"+brands.watch.initials.charAt(0).toLowerCase();
+							DashboardPage.cachedBackgrounds[brands.watch.id].color = "white";
+						}
+					}
+				);
+			}
+		}
+
+		this.backgrounds = DashboardPage.cachedBackgrounds;
+	}
+
 	onRefresh(refresher) {
 
 		this.twapi.getWatches().then(
 			res => {
 				console.log(res);
 				this.user.watches = res;
+				this.genBackgrounds();
 				this.resetScroll();
 				refresher.complete();
 			}

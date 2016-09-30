@@ -1,8 +1,8 @@
 .dashboard-page{
-	background-color:transparent;
 
 
 	ion-content{
+        background-color:white;
 		top:30%;
 		height: 60%;
 		z-index: 0;
@@ -34,5 +34,198 @@
             width:100%;
         }
     }
+
+    ion-item-sliding{
+        width: 95%;
+    }
+
+    .circle-info{
+        width: 14vw;
+        height: 14vw;
+        float:left;
+        border-radius: 50%;
+        background-size: contain;
+        background-position:center;
+    }
+
+
+    #brand-container{
+        background-size: contain;
+        background-repeat:no-repeat;
+        width: 17vw;
+        height: 17vw;
+        float:left;
+    }
+
+    #brand{
+        padding-top:3vw;
+        text-align:center;
+        text-transform:uppercase;
+        font-size: 7vw;
+        margin-left:0.9vw;
+        margin-top:1.6vw;
+        display:block;
+        background-color:white;
+    }
+
+
+    #accuracy{
+        position:absolute;
+        width:30%;
+        float:right;
+        color:#3B5B7F;
+        display:block;
+        font-size: 2.5em;
+        font-style: italic;
+        top:15%;
+        right:0.0em;
+        span{
+            width:100%;
+            display:block;
+            text-align:right;
+
+            button{
+                text-align:center;
+                height:4em;
+            }
+        }
+
+        #spd{
+            margin-top: -0.5em;
+                width:95%;
+                font-size:0.3em;
+                color:#a8a8a8;
+        }
+
+        // float:right;
+    }
+
+    .item-inner{
+        padding-right:0px !important;
+        border-bottom: 2px solid #d3d3d3 !important;
+    }
+
+    ion-label{
+        margin-right:0px !important;
+
+    }
+
+    #right-action{
+        padding-top:4%;
+        height:17vw;
+        padding-left:20%;
+    }
+
+    h2{
+        width:70%;
+        font-size:1.2em;
+        color:#2a2a2c;
+    }
+
+    h3{
+        width:70%;
+
+        color:#b1b1b3;
+    }
+
+    .item-stats{
+        width:100%;
+        left:0;
+        display:block;
+        height:5%;
+
+                button{
+            float:right;
+            margin:0;
+            margin-top:5%;
+            margin-left:2%;
+            width:37%;
+        }
+
+    }
+
+    .stats{
+        width:30%;
+        float:left;
+        text-align:center;
+        margin-top:5%;
+
+
+
+        .stats-number{
+            font-size:1em;
+            margin: 0.2em;
+            color:#a8a8a8;
+        }
+
+        ion-icon{
+            margin-left:0.5em;
+            font-size:1em;
+            color:#a8a8a8;
+        }
+
+        .stats-label{
+            text-transform:uppercase;
+            font-size:0.5em;
+            display:none;
+            color:#a8a8a8;
+        }
+    }
+
+    .middle{
+        border-left:1px solid #ececec;
+    }
+
+    .color-a{background-color:#d4e25f !important;}
+    .color-b{background-color:#b1d563 !important;}
+    .color-c{background-color:#88cb6a !important;}
+    .color-d{background-color:#5fc46e !important;}
+    .color-e{background-color:#63c792 !important;}
+    .color-f{background-color:#41bed9 !important;}
+    .color-g{background-color:#4ba7d5 !important;}
+    .color-h{background-color:#4491c9 !important;}
+    .color-i{background-color:#5679b8 !important;}
+    .color-j{background-color:#5c69b0 !important;}
+    .color-k{background-color:#6f65ae !important;}
+    .color-l{background-color:#8e64ac !important;}
+    .color-m{background-color:#b567ad !important;}
+    .color-n{background-color:#d74aa3 !important;}
+    .color-o{background-color:#ee5081 !important;}
+    .color-p{background-color:#f15b5a !important;}
+    .color-q{background-color:#f3785b !important;}
+    .color-r{background-color:#f69559 !important;}
+    .color-s{background-color:#f9a759 !important;}
+    .color-t{background-color:#fbb559 !important;}
+    .color-u{background-color:#fdc753 !important;}
+    .color-v{background-color:#fddb58 !important;}
+    .color-w{background-color:#fbee4f !important;}
+    .color-x{background-color:#f7f159 !important;}
+    .color-y{background-color:#bfbfbf !important;}
+    .color-z{background-color:#808080 !important;}
+
+    .warning-bg{
+        color: #FFCC00;
+        // background-color: #fcf8e3 !important;
+        border-color: #faebcc;
+        ion-icon{
+            font-size:2.5em;
+            line-height: 0.55;
+        }
+        
+    }
+
+    .warning-bg-txt{
+        color: #9F6000;
+    }
+
+    .error-bg{
+        color: #a94442;
+        border-color: #ebccd1;
+         ion-icon{
+            font-size:2.5em;
+            line-height: 0.55;
+        }
+    }
+
 	
 }

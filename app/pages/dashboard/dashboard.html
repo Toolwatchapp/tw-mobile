@@ -12,6 +12,7 @@
 </div>
 
 <ion-refresher  *ngIf="user && user.watches.length != 0"  (ionRefresh)="onRefresh($event)">
+
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
       pullingText="{{ 'refresh-info' | translate:{value: param} }}"
@@ -21,43 +22,88 @@
     </ion-refresher>
 
       <ion-list id="dash-list" *ngIf="user && user.watches.length != 0">
+
+
         <ion-item-sliding #slidingItem *ngFor="let watch of user.watches">
 
           <ion-item>
-            <h2>{{ watch.brand }}</h2>
-            <h3>{{ watch.name }}</h3>
 
-            <p *ngIf="watch.status === WatchStatus.NeverMeasured">
-              {{ 'never-measured' | translate:{value: param} }}
-            </p>
-
-            <p 
-            *ngIf="watch.status !== WatchStatus.NeverMeasured 
-            && watch.next == WatchAction.Measure
-            && watch.historySize >= 1">
-              {{ watch.currentMeasure().accuracy |  arethmeticSign}} {{ 'spd' | translate:{value: param} }}
-            </p>
-
-            <p 
-            *ngIf="watch.next === WatchAction.Waiting">
-              {{ 'waiting' | translate:{value: param} }}
-              {{ watch.waiting }} 
-              {{ 'hours' | translate:{value: param} }}
-            </p>
+            
+            <div id="brand-container" >        
+            
+              <div *ngIf="watch.lastCompleteMeasure() == null || (watch.lastCompleteMeasure().renewed == false && watch.lastCompleteMeasure().serviced == false) " id="brand" class="circle-info"
+              [ngClass]="[backgrounds[watch.id].bgColor]"
+              [ngStyle]="{'background-image': backgrounds[watch.id].image}"
+              >
+                  <span style="color:white" *ngIf="backgrounds[watch.id].image == ''">{{ watch.initials }}</span>
+              </div>
 
 
-          <button secondary (click)="measureWatch(watch, slidingItem)" *ngIf="watch.next === WatchAction.Measure" item-right>
-            {{ 'new-measure' | translate:{value: param} }}
-          </button>
-          <button secondary (click)="measureWatch(watch, slidingItem)" *ngIf="watch.next === WatchAction.Accuracy" item-right>
-            {{ 'check-accuracy' | translate:{value: param} }}
-          </button>
+              <div (click)="warning(watch)" *ngIf="watch.lastCompleteMeasure() != null && watch.lastCompleteMeasure().renewed == true && watch.lastCompleteMeasure().serviced == false> 30" id="brand" class="circle-info warning-bg"
+              >
+                <ion-icon ios="md-warning" md="md-warning"></ion-icon>
+              </div>
+
+              <div (click)="error(watch)" *ngIf="watch.lastCompleteMeasure() != null && watch.lastCompleteMeasure().serviced" id="brand" class="circle-info error-bg"
+              >
+                <ion-icon ios="md-alert" md="md-alert"></ion-icon>
+              </div>
+            </div>
+
+            <div id="right-action">
+
+              <h2>{{ watch.brand }}</h2>
+              <h3>{{ watch.name }}</h3>
+              
+
+              <div id="accuracy">
+                <span  *ngIf="watch.status !== WatchStatus.NeverMeasured && watch.lastCompleteMeasure() !== null">
+                  {{ watch.lastCompleteMeasure().accuracy |  arethmeticSign}}
+                  <span id="spd">{{'spd-short' | translate:{value: param} }}
+                  </span>
+                </span>
+              </div>
+
+            </div>
+
+
+
+            <div class="item-stats">
+              
+                <div class="stats">
+                   
+                  <p class="stats-number"> {{ watch.historySize }}<ion-icon ios="md-stopwatch" md="md-stopwatch"></ion-icon></p>
+                </div>
+
+                <div class="stats middle">
+                    
+                    <p class="stats-number" *ngIf="watch.status !== WatchStatus.NeverMeasured
+                    && watch.lastCompleteMeasure() !== null">{{ watch.lastCompleteMeasure().percentile}}%<ion-icon ios="md-globe" md="md-globe"></ion-icon></p>
+                    <p class="stats-number" *ngIf="watch.lastCompleteMeasure() == null">0.0%<ion-icon ios="md-globe" md="md-globe"></ion-icon></p>
+                 </div>
+
+              <button class="stats" secondary (click)="measureWatch(watch, slidingItem)" *ngIf="watch.next === WatchAction.Measure" item-right>
+                {{ 'new-measure' | translate:{value: param} }}
+              </button>
+              <button class="stats" secondary (click)="measureWatch(watch, slidingItem)" *ngIf="watch.next === WatchAction.Accuracy" item-right>
+                {{ 'check-accuracy' | translate:{value: param} }}
+              </button>
+              <button class="stats" disabled *ngIf="watch.next === WatchAction.Waiting" item-right>
+                {{ 'waiting' | translate:{value: param} }}
+                {{ watch.waiting }} 
+                {{ 'hours' | translate:{value: param} }}
+              </button>
+
+            </div>
+
+
 
           </ion-item>
           <ion-item-options side="left">
             <button (click)="deleteWatch(watch, slidingItem)" danger>
               <ion-icon  name="ios-trash-outline"></ion-icon>
             </button>
+
           </ion-item-options>
           <ion-item-options side="right">
             <button (click)="updateWatch(watch, slidingItem)" secondary>
