@@ -1,0 +1,62 @@
+<div id="tab">
+    <div class='sub-tab'>
+      <button (click)="onDashboard()"  ion-button icon-only>
+       <ion-icon name="ios-analytics-outline"></ion-icon>
+      </button>
+      <span class="tab-label">Dashboard</span>
+    </div>
+    
+    <div class='sub-tab'>
+      <button (click)="onTime()"  ion-button icon-only>
+        <ion-icon name="ios-time-outline"></ion-icon>
+      </button>
+      <span class="tab-label">Time</span>
+    </div>
+
+    <div class='sub-tab'></div>
+
+    <div class='sub-tab'>
+      <button (click)="onTips()"  ion-button icon-only>
+       <ion-icon name="ios-bulb-outline"></ion-icon>
+      </button>
+      <span class="tab-label">Watch Tips</span>
+    </div>
+
+    <div class='sub-tab'>
+      <button (click)="onAbout()"  ion-button icon-only>
+       <ion-icon name="ios-information-circle-outline"></ion-icon>
+      </button>
+      <span class="tab-label">About</span>
+    </div>
+
+</div>
+
+ <div class="menu">
+  <div class="menu-wrapper">
+    <ul class="menu-items">
+      <li class="menu-item">
+        <button  (click)="onNewWatch()" class="menu-item-button" ion-button icon-only>
+          <ion-icon class="menu-item-icon icon icon-reply" name="md-watch"></ion-icon>
+          <!-- <i class="menu-item-icon icon icon-reply fa fa-clock-o"></i> -->
+        </button>
+        <div class="menu-item-bounce"></div>
+      </li>
+      <li class="menu-item">
+        <button (click)="onNewMeasure()" class="menu-item-button"  ion-button icon-only>
+          <ion-icon class="menu-item-icon icon icon-box" name="ios-stopwatch-outline"></ion-icon>
+        </button>
+        <div class="menu-item-bounce"></div>
+      </li>
+      <li class="menu-item"> 
+        <button (click)="onShare()" class="menu-item-button"  ion-button icon-only>
+          <ion-icon style="margin-left:-10px;" class="menu-item-icon icon icon-trash" name="md-heart"></ion-icon>
+           <i class="menu-item-icon icon icon-trash"></i>
+        </button>
+        <div class="menu-item-bounce"></div>
+      </li>
+    </ul>
+    <button (click)="toggleMenu()" class="menu-toggle-button main-button"  ion-button icon-only>
+        <ion-icon class="menu-toggle-icon plus-icon" [name]="myIcon"></ion-icon>
+    </button>
+  </div>
+</div>

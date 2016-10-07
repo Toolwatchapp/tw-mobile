@@ -1,12 +1,6 @@
 {
-  "name": "Toolwatch",
-  "app_id": "7d78873d",
+  "name": "tw-mobile-2rc0",
+  "app_id": "",
   "v2": true,
-  "typescript": true,
-  "proxies": [
-    {
-      "path": "/api/",
-      "proxyUrl": "https://toolwatch.io/api/"
-    }  
-  ]
+  "typescript": true
 }
