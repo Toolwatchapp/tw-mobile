@@ -7,7 +7,7 @@
     (ngSubmit)="onSubmit(loginForm.value)"
   >         
 
-    <!-- <pre>{{loginForm.value | json}}</pre> -->
+    <pre>{{loginForm.value | json}}</pre>
 
     <mobile-error [errors] = "errors"></mobile-error>
 
@@ -32,7 +32,7 @@
     </mobile-input>
 
     <div class="form-group">
-      <button id="login" toggle md-raised-button color="primary" type="submit"> {{ 'login' | translate }}</button>
+      <button ion-button id="login" toggle md-raised-button color="primary" type="submit"> {{ 'login' | translate }}</button>
     </div>
   </form>
 
@@ -41,7 +41,7 @@
      {{ 'facebook-login' | translate }}
   </button>
   
-  <button  (click)="onSignup()" id="register" toggle md-raised-button color="primary">
+  <button ion-button (click)="onSignup()" id="register" toggle md-raised-button color="primary">
      {{ 'email-register' | translate }}
   </button>
 
