@@ -1,12 +1,11 @@
-ion-app{
 
 
-	ion-content{
+	ion-content#dashboard{
         background-color:white;
 		top:30%;
 		height: 60%;
 		z-index: 0;
-	}	
+	}
 
     ion-list{
         overflow-y:scroll;
@@ -227,5 +226,3 @@ ion-app{
         }
     }
 
-	
-}
