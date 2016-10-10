@@ -172,7 +172,7 @@ export class DashboardPage {
 
 	genBackgrounds(){
 
-		TwAPIService.assetsUrl = "build/assets";
+		TwAPIService.assetsUrl = "assets/watches";
 
 		for (var i = this.user.watches.length - 1; i >= 0; i--) {
 
@@ -186,18 +186,21 @@ export class DashboardPage {
 					bgColor: ""
 				};
 
-				this.twapi.getLikelyBrands(this.user.watches[i]).then(
-				brands => {
+				DashboardPage.cachedBackgrounds[this.user.watches[i].id].bgColor = "color-"+this.user.watches[i].initials.charAt(0).toLowerCase();
+				DashboardPage.cachedBackgrounds[this.user.watches[i].id].color = "white"; 
 
-						if(brands.proposals.length > 0 && brands.proposals[0].confidence > 85){
-							DashboardPage.cachedBackgrounds[brands.watch.id].image = "url('build/assets/ico_watches/" + 
-								brands.proposals[0].logo + "')";
-						}else{
-							DashboardPage.cachedBackgrounds[brands.watch.id].bgColor = "color-"+brands.watch.initials.charAt(0).toLowerCase();
-							DashboardPage.cachedBackgrounds[brands.watch.id].color = "white";
-						}
-					}
-				);
+				// this.twapi.getLikelyBrands(this.user.watches[i]).then(
+				// brands => {
+
+				// 		if(brands.proposals.length > 0 && brands.proposals[0].confidence > 85){
+				// 			DashboardPage.cachedBackgrounds[brands.watch.id].image = "url('assets/watches/logo_watches/" + 
+				// 				brands.proposals[0].logo + "')";
+				// 		}else{
+				// 			DashboardPage.cachedBackgrounds[brands.watch.id].bgColor = "color-"+brands.watch.initials.charAt(0).toLowerCase();
+				// 			DashboardPage.cachedBackgrounds[brands.watch.id].color = "white"; 
+				// 		}
+				// 	}
+				// );
 			}
 		}
 
