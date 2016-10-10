@@ -27,7 +27,7 @@ import {
 import {
 	TranslateService
 } from 'ng2-translate/ng2-translate';
-// import 'gsap';
+import 'gsap';
 
 
 declare var TimelineMax: any;
