@@ -42,6 +42,9 @@ export class LogInPage extends LoginComponent{
 
 		super(translate, twapi, builder);
 
+		console.log(this.loginForm);
+		console.log(this.loginForm.controls.password._parent);
+
 		GAService.screenview("LOGIN");
 
 		translate.get('logging-in').subscribe(

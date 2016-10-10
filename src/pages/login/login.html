@@ -6,9 +6,6 @@
     [formGroup]="loginForm"
     (ngSubmit)="onSubmit(loginForm.value)"
   >         
-
-    <pre>{{loginForm.value | json}}</pre>
-
     <mobile-error [errors] = "errors"></mobile-error>
 
     <mobile-input 
