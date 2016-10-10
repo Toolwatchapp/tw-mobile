@@ -35,7 +35,6 @@
     }
 
     ion-item-sliding{
-        width: 95%;
     }
 
     .circle-info{
@@ -77,8 +76,9 @@
         font-size: 2.5em;
         font-style: italic;
         top:15%;
-        right:0.0em;
+        right:4%;
         span{
+            overflow:hidden;
             width:100%;
             display:block;
             text-align:right;
@@ -119,10 +119,12 @@
         width:70%;
         font-size:1.2em;
         color:#2a2a2c;
+        overflow: hidden;
     }
 
     h3{
         width:70%;
+        overflow: hidden;
 
         color:#b1b1b3;
     }
@@ -133,18 +135,19 @@
         display:block;
         height:5%;
 
-                button{
+        button{
             float:right;
-            margin:0;
-            margin-top:5%;
-            margin-left:2%;
-            width:37%;
+            margin:0 !important;
+            margin-top:5% !important;
+            margin-left:2% !important;
+            margin-right:4% !important;
+            width:37% !important;
         }
 
     }
 
     .stats{
-        width:30%;
+        width:28%;
         float:left;
         text-align:center;
         margin-top:5%;

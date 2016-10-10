@@ -188,19 +188,6 @@ export class DashboardPage {
 
 				DashboardPage.cachedBackgrounds[this.user.watches[i].id].bgColor = "color-"+this.user.watches[i].initials.charAt(0).toLowerCase();
 				DashboardPage.cachedBackgrounds[this.user.watches[i].id].color = "white"; 
-
-				// this.twapi.getLikelyBrands(this.user.watches[i]).then(
-				// brands => {
-
-				// 		if(brands.proposals.length > 0 && brands.proposals[0].confidence > 85){
-				// 			DashboardPage.cachedBackgrounds[brands.watch.id].image = "url('assets/watches/logo_watches/" + 
-				// 				brands.proposals[0].logo + "')";
-				// 		}else{
-				// 			DashboardPage.cachedBackgrounds[brands.watch.id].bgColor = "color-"+brands.watch.initials.charAt(0).toLowerCase();
-				// 			DashboardPage.cachedBackgrounds[brands.watch.id].color = "white"; 
-				// 		}
-				// 	}
-				// );
 			}
 		}
 
@@ -211,7 +198,6 @@ export class DashboardPage {
 
 		this.twapi.getWatches().then(
 			res => {
-				console.log(res);
 				this.user.watches = res;
 				this.genBackgrounds();
 				this.resetScroll();
