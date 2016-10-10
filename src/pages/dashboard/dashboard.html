@@ -82,13 +82,13 @@
                     <p class="stats-number" *ngIf="watch.lastCompleteMeasure() == null">0.0%<ion-icon ios="md-globe" md="md-globe"></ion-icon></p>
                  </div>
 
-              <button class="stats" color="secondary" (click)="measureWatch(watch, slidingItem)" *ngIf="watch.next === WatchAction.Measure" item-right>
+              <button ion-button class="stats" color="secondary" (click)="measureWatch(watch, slidingItem)" *ngIf="watch.next === WatchAction.Measure" item-right>
                 {{ 'new-measure' | translate }}
               </button>
-              <button class="stats" color="secondary" (click)="measureWatch(watch, slidingItem)" *ngIf="watch.next === WatchAction.Accuracy" item-right>
+              <button ion-button class="stats" color="secondary" (click)="measureWatch(watch, slidingItem)" *ngIf="watch.next === WatchAction.Accuracy" item-right>
                 {{ 'check-accuracy' | translate }}
               </button>
-              <button class="stats" disabled *ngIf="watch.next === WatchAction.Waiting" item-right>
+              <button ion-button class="stats" disabled *ngIf="watch.next === WatchAction.Waiting" item-right>
                 {{ 'waiting' | translate }}
                 {{ watch.waiting }} 
                 {{ 'hours' | translate }}
