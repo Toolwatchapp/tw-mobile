@@ -1,11 +1,9 @@
-watch-page{
+ion-content#watch{
 	background-color:white;
-
-	ion-content{
-		top:30%;
+	top:30%;
 		z-index: 0;
 		overflow: scroll !important;
-	}
+
 
 	.group { 
 	  position:relative; 

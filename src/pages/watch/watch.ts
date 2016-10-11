@@ -40,7 +40,7 @@ export class WatchPage extends WatchComponent {
 
     	GAService.screenview("WATCH");
 
-		TwAPIService.assetsUrl = "build/assets";
+		TwAPIService.assetsUrl = "assets/watches";
 
 		this.user = this.navParams.get('user');
 
@@ -60,6 +60,7 @@ export class WatchPage extends WatchComponent {
 
 			this.watchModel = receivedWatch;
 			this.slogan = "edit-watch";
+			this.initForm();
 		}	
 	}
 
