@@ -46,13 +46,6 @@ export class TimePage extends ClockComponent{
 
     	GAService.screenview("TIME");
 
-		setInterval(()=>{
-				this.date = new Date(this.date.getTime() + this.interval);
-				this.initLocalClocks();
-			}, 
-			this.interval
-		);
-
 		this.user = this.navParams.get('user');
 
 		document.addEventListener('resume', () => {
@@ -66,6 +59,13 @@ export class TimePage extends ClockComponent{
 		
 		this.twapi.accurateTime().then(
 			date => {
+
+				setInterval(()=>{
+						this.date = new Date(this.date.getTime() + this.interval);
+						this.initLocalClocks();
+					}, 
+					this.interval
+				);
 
 				setTimeout(()=>{
 			      this.loading.dismiss()

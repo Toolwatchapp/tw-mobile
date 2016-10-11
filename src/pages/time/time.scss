@@ -152,11 +152,14 @@ ion-content#time{
 	.month{
 	  width: 10vh;
 	  left: 20%;
+	  padding-left:0% !important;
 	}
 
 	.day{
+	  padding-top:0.3%;
 	  width: 10vh;
 	  right: 20%;
+	  padding-left:0% !important;
 	}
 
 	p.aperture{
