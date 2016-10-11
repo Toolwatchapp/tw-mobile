@@ -1,8 +1,8 @@
-time-page{
+ion-content#time{
 
 	background-color: white;
 
-	ion-content{
+	
 		height: 80%;
 		top:10%;
 		width: 100%;
@@ -113,13 +113,13 @@ time-page{
 				}
 			}	
 		}
-	}
+	
 
 	.clock {
 	  margin: auto;
 	  margin-top: 15%;
 	  border-radius: 50%;
-	  background: url(../assets/images/clock-face-bg.png) no-repeat center;
+	  background: url(/assets/images/clock-face-bg.png) no-repeat center;
 	  background-size: contain;
 	  height: 60%;
 	  position: relative;
@@ -132,7 +132,7 @@ time-page{
 	  width: 32%;
 	  height: 10%;
 	  left: 33%;
-	  background: url(../assets/images/white-logo.png) no-repeat center;
+	  background: url(/assets/images/white-logo.png) no-repeat center;
 	  background-size: 100%;
 	}
 
