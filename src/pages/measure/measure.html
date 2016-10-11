@@ -1,7 +1,7 @@
 
 <header-nav [back]="true"></header-nav>
 
-<ion-content class="measure" *ngIf="step === 0">
+<ion-content id="measure" class="measure" *ngIf="step === 0">
 
 
   <h3 class="top">{{ 'measure-instructions-part-1' | translate }} {{ 'measure-instructions-part-2' | translate }}</h3>
@@ -13,14 +13,14 @@
 
 </ion-content>
 
-<ion-content class="confirm" *ngIf="step === 1">
+<ion-content id="measure" class="confirm" *ngIf="step === 1">
 
   <h2>{{ 'sync-confirm' | translate }}:</h2>
   <h1>
         <ion-datetime displayFormat="HH:mm:00" pickerFormat="HH:mm" [(ngModel)]="offsetedDateString"></ion-datetime>
   </h1>
 
-  <button (click)="validate()" class="round" color="secondary">
+  <button ion-button  (click)="validate()" class="round" color="secondary">
 
     <ion-spinner *ngIf="waitingApi"></ion-spinner>
     <ion-icon *ngIf="!waitingApi" ios="md-checkmark" md="md-checkmark"></ion-icon>  
@@ -32,7 +32,7 @@
 
 </ion-content>
 
-<ion-content class="hourslimit" *ngIf="step === 2">
+<ion-content id="measure" class="hourslimit" *ngIf="step === 2">
 
   <h1>{{ 'well-done' | translate }}</h1>
 
@@ -43,12 +43,12 @@
   <p>
     {{ '12-hours-explain' | translate }}
   </p>
-  <button (click)="leave()" class="sync-button" color="primary">
+  <button  ion-button  (click)="leave()" class="sync-button" color="primary">
     {{ 'back-dashboard' | translate }}
   </button>
 </ion-content>
 
-<ion-content class="result" *ngIf="step === 3">
+<ion-content id="measure" class="result" *ngIf="step === 3">
 
   <span class='watch-name'>{{ watch.brand + " " + watch.name }}</span>
   <h1>{{accuracy | arethmeticSign }}</h1> 

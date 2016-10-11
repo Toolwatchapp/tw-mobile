@@ -1,13 +1,13 @@
-measure-page{
+ion-content#measure{
 	background-color: white;
 	overflow: hidden;
 
-	ion-content{
+	
 		top:30%;
 		height:70%;
-	}
+	
 
-	.measure{
+	&.measure{
 		flex-wrap: wrap;
 		display: flex;
 		padding-left: 15vw;
@@ -72,7 +72,7 @@ measure-page{
 
 	}
 
-	.confirm{
+	&.confirm{
 		h2{
 			padding-top:5%;
 			padding-left:5%;
@@ -113,7 +113,7 @@ measure-page{
 
 	}
 
-	.hourslimit{
+	&.hourslimit{
 
 		#h5{
 			height:40%;
@@ -157,7 +157,7 @@ measure-page{
 		// }
 	}
 
-	.result{
+	&.result{
 
 
 
