@@ -1,3 +1,146 @@
-signup {
+ion-content#signup{
+
+	top:30%;
+	overflow-y: scroll !important;
+
+	.group { 
+	  position:relative; 
+	  margin-top:10%; 
+	  width: 80%;
+	  margin-left: 10%;
+	}
+
+	#login{
+		margin-top: 10%;
+	}
+
+	#login-fb{
+		margin-top: -2%;
+	}
+
+	#login-fb, #register{
+		width: 80%;
+		margin-left: 11%;
+		text-align: center;
+		.ion-logo-facebook{
+			position: absolute;
+			left:5%;
+			top:30%;
+		}
+	}
+
+	input               {
+	  font-size:18px;
+	  padding:10px 10px 10px 5px;
+	  display:block;
+	  width:100%;
+	  border:none;
+	  border-bottom:1px solid #757575;
+	}
+	input:focus         { outline:none; }
+
+	/* LABEL ======================================= */
+	label                {
+	  color:#999; 
+	  font-size:18px;
+	  font-weight:normal;
+	  position:absolute;
+	  pointer-events:none;
+	  left:5px;
+	  top:10px;
+	  transition:0.2s ease all; 
+	  -moz-transition:0.2s ease all; 
+	  -webkit-transition:0.2s ease all;
+	}
+
+	/* active state */
+	input:focus ~ label, input:valid ~ label        {
+	  top:-20px;
+	  font-size:14px;
+	  color:#5264AE;
+	}
+
+	/* BOTTOM BARS ================================= */
+	.bar    { position:relative; display:block; width:100%; }
+	.bar:before, .bar:after     {
+	  content:'';
+	  height:2px; 
+	  width:0;
+	  bottom:1px; 
+	  position:absolute;
+	  background:#5264AE; 
+	  transition:0.2s ease all; 
+	  -moz-transition:0.2s ease all; 
+	  -webkit-transition:0.2s ease all;
+	}
+	.bar:before {
+	  left:50%;
+	}
+	.bar:after {
+	  right:50%; 
+	}
+
+	/* active state */
+	input:focus ~ .bar:before, input:focus ~ .bar:after {
+	  width:50%;
+	}
+
+	/* HIGHLIGHTER ================================== */
+	.highlight {
+	  position:absolute;
+	  height:60%; 
+	  width:100px; 
+	  top:25%; 
+	  left:0;
+	  pointer-events:none;
+	  opacity:0.5;
+	}
+
+	/* active state */
+	input:focus ~ .highlight {
+	  animation:inputHighlighter 0.3s ease;
+	}
+
+
+	@keyframes inputHighlighter {
+	    from { background:#4d77a7; }
+	  to    { width:0; background:transparent; }
+	}
+
+	.has-error{
+		animation:shake 0.5s ease;
+	}
+
+	@keyframes shake {
+	    8%, 41% {
+	        transform: translateX(-10px);
+	    }
+	    25%, 58% {
+	        transform: translateX(10px);
+	    }
+	    75% {
+	        transform: translateX(-5px);
+	    }
+	    92% {
+	        transform: translateX(5px);
+	    }
+	    0%, 100% {
+	        transform: translateX(0);
+	    }
+	}
+
+
+	.form-group{
+		margin-bottom: 10px;
+		width: 80%;
+		margin-left: 10%;
+		button{
+			width: 100%;
+		}
+		.error_message{
+			color:red;
+		}
+	}
+
 
 }

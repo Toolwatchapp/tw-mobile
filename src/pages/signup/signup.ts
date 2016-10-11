@@ -34,12 +34,6 @@ export class SignupPage extends SignupComponent{
 
     GAService.screenview("SIGNUP");
 
-	 //  (<FormControl>this.signupForm.controls['email'])
-		// .updateValue(this.navParams.get('email'));
-
-	 //  (<FormControl>this.signupForm.controls['password'])
-		// .updateValue(this.navParams.get('password'));
-
   	this.userLogged.subscribe(
   		user => this.nav.setRoot(DashboardPage, {
   			user:user
