@@ -2,13 +2,10 @@ signup-page{
 	overflow-y: scroll;
 }
 
-ion-app{
+ion-content#login{
 
-	background-color:transparent !important;
-
-	ion-content{
-		top:40%;
-	}
+	top:40%;
+	
 
 	.group { 
 	  position:relative; 
