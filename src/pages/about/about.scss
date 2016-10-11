@@ -1,17 +1,16 @@
-about-page{
-	background-color: white;
-	ion-content{
-
-		scroll-content{
-			height: 60%;
-		}
-		height: 50%;
+ion-content#about{
+		
+		background-color: white;
+		height: 60%;
 		top:30%;
-		width: 90%;
-		margin-left: 5%;
-		margin-top: 1%;
+		width: 100%;
 
-		h2{
+		.scroll-content{
+			padding:5%;
+		}
+
+		h1{
+			padding-left:2%;
 			width: 100%;
 			font-weight: bolder;
 			font-size: 3.5vh;
@@ -20,6 +19,7 @@ about-page{
 		}
 
 		p{
+			text-align:justify;
 			width: 100%;
 			font-size: 2.5vh;
 		}
@@ -33,5 +33,5 @@ about-page{
 			width: 100%;
 			text-align: center;
 		}
-	}
+	
 }
