@@ -18,6 +18,8 @@ export class MyApp {
   constructor(platform: Platform) {
     platform.ready().then(() => {
 
+      this.initOnResume();
+
       this.fetchUser()
       .then(
         user => {
