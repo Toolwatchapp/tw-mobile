@@ -82,15 +82,9 @@ import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-tra
     SignupPage,
     TimePage,
     TipsPage,
-    WatchPage,
-    ClockComponent,
-    MoonPhasesComponent,
-    LoginComponent,
-    SignupComponent,
-    WatchComponent
+    WatchPage
   ],
-  providers: [TwAPIService, GAService],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  providers: [TwAPIService, GAService]
 })
 export class AppModule {}
 
