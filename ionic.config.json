@@ -7,6 +7,6 @@
     {
       "path": "/api/",
       "proxyUrl": "https://toolwatch.io/api/"
-    }  
+    }
   ]
 }
