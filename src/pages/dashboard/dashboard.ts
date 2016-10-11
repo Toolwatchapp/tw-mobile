@@ -159,10 +159,8 @@ export class DashboardPage {
 						this.twapi.deleteWatch(this.user, watch).then(
 							res => {
 								this.user = res;
-								console.log("Deletion");
 							}
 						);
-						console.log('Deletion clicked');
 					}
 				}
 			]
@@ -177,18 +175,15 @@ export class DashboardPage {
 		for (var i = this.user.watches.length - 1; i >= 0; i--) {
 
 
-			//Only computes the unknown ones
-			if(DashboardPage.cachedBackgrounds[this.user.watches[i].id] === undefined){
+			DashboardPage.cachedBackgrounds[this.user.watches[i].id] = {
+				image: "",
+				color: "transparent",
+				bgColor: ""
+			};
 
-				DashboardPage.cachedBackgrounds[this.user.watches[i].id] = {
-					image: "",
-					color: "transparent",
-					bgColor: ""
-				};
-
-				DashboardPage.cachedBackgrounds[this.user.watches[i].id].bgColor = "color-"+this.user.watches[i].initials.charAt(0).toLowerCase();
-				DashboardPage.cachedBackgrounds[this.user.watches[i].id].color = "white"; 
-			}
+			DashboardPage.cachedBackgrounds[this.user.watches[i].id].bgColor = "color-"+this.user.watches[i].initials.charAt(0).toLowerCase();
+			DashboardPage.cachedBackgrounds[this.user.watches[i].id].color = "white"; 
+			
 		}
 
 		this.backgrounds = DashboardPage.cachedBackgrounds;
