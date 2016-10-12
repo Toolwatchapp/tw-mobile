@@ -1,5 +1,5 @@
 import {Loading, LoadingController, NavController} from 'ionic-angular';
-import {NativeStorage} from 'ionic-native';
+import { NativeStorage, Facebook } from 'ionic-native';
 
 import {Component} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
@@ -63,6 +63,30 @@ export class LogInPage extends LoginComponent{
 	ngAfterViewInit(){
 		
 		// this.onSubmit(this.loginForm.value);
+	}
+
+	onFbSignup(){
+
+		Facebook.browserInit(807383452677000);
+		Facebook.login(["public_profile", "email"]).then(
+			facebookLoginResponse => {
+				this.onFbSubmit(
+					{
+					    email: facebookLoginResponse.email, 
+					    id: facebookLoginResponse.userID,
+					    last_name: facebookLoginResponse.last_name, 
+					    firstname: facebookLoginResponse.firstname, 
+					    timezone: facebookLoginResponse.timezone, 
+					    country: facebookLoginResponse.country
+					}
+				)
+			}, 
+			error => {
+				console.log(error);
+			}
+		);
+
+
 	}
 
 	/**

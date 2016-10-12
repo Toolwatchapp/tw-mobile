@@ -33,7 +33,7 @@
     </div>
   </form>
 
-  <button id="login-fb" toggle md-raised-button color="primary" disabled ion-button icon-left>
+  <button (click)="onFbSignup()" id="login-fb" toggle md-raised-button color="primary"  ion-button icon-left>
     <ion-icon name="logo-facebook"></ion-icon>
      {{ 'facebook-login' | translate }}
   </button>
