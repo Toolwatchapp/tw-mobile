@@ -4,7 +4,7 @@
   "homepage": "https://toolwatch.io/",
   "private": true,
   "scripts": {
-    "build": "ionic-app-scripts build",
+    "build": "ionic-app-scripts build --dev",
     "watch": "ionic-app-scripts watch",
     "serve:before": "watch",
     "emulate:before": "build",
@@ -33,5 +33,6 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard"
   ],
+  "version": "0.7.51",
   "cordovaPlatforms": []
 }
