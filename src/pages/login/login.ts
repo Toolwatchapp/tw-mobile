@@ -67,23 +67,38 @@ export class LogInPage extends LoginComponent{
 
 	onFbSignup(){
 
+
 		Facebook.browserInit(807383452677000);
+
 		Facebook.login(["public_profile", "email"]).then(
 			facebookLoginResponse => {
+
 				console.log(facebookLoginResponse);
-				this.onFbSubmit(
-					{
-					    email: facebookLoginResponse.email, 
-					    id: facebookLoginResponse.userID,
-					    last_name: facebookLoginResponse.last_name, 
-					    firstname: facebookLoginResponse.firstname, 
-					    timezone: facebookLoginResponse.timezone, 
-					    country: facebookLoginResponse.country
+
+				Facebook.api("/me", ["public_profile", "email"]).then(
+					fbUser => {
+
+						console.log(fbUser);
+
+						this.onFbSubmit(
+							{
+							    email: fbUser.email, 
+							    id: facebookLoginResponse.userID,
+							    last_name: fbUser.last_name, 
+							    firstname: fbUser.firstname, 
+							    timezone: fbUser.timezone, 
+							    country: fbUser.country
+							}
+						);
+
+					},
+					error => {
+						console.log('error1', error);
 					}
 				)
 			}, 
 			error => {
-				console.log(error);
+				console.log('error2', error);
 			}
 		);
 
