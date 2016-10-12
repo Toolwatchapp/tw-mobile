@@ -58,7 +58,7 @@ export class WatchPage extends WatchComponent {
 		console.log(this.navParams.get('watch'));
 		if (receivedWatch !== undefined){
 
-			this.watchModel = receivedWatch;
+			this.watchModel = receivedWatch.clone();
 			this.slogan = "edit-watch";
 			this.initForm();
 		}	

@@ -7,8 +7,9 @@
     [formGroup]="watchForm"
     (ngSubmit)="onSubmit()"
   >     
-
-    <!-- <pre>{{watchForm.value | json}}</pre> -->
+<!-- 
+    <pre>{{watchForm.value | json}}</pre>
+    <pre>{{watchModel | json}}</pre> -->
 
     <mobile-error [errors] = "errors"></mobile-error>
 
@@ -18,7 +19,9 @@
       [errorLabel]    = "'brand-required'"
       [submitAttempt] = "submitAttempt"
       [autoComplete]  = false
-      (update)        = filterBrand($event)
+      [model]         = true
+      [(value)]       = "watchModel.brand"
+      (valueChange)   = filterBrand($event)
     >
     </mobile-input>
 
@@ -36,7 +39,9 @@
       [label]         = "'model'"
       [control]       = "watchForm.controls.name" 
       [submitAttempt] = "submitAttempt"
-      (update)        = filterModel($event)
+      [model]         = true
+      [(value)]       = "watchModel.name"
+      (valueChange)   = filterModel($event)
     >
     </mobile-input>
     <div class="suggestions" *ngIf="filteredModelList.length > 0">
@@ -51,21 +56,27 @@
       [id]             = "'caliber'"
       [control]        = "watchForm.controls.caliber" 
       [submitAttempt]  = "submitAttempt"
+      [model]         = true
+      [(value)]       = "watchModel.caliber"
     >
     </mobile-input>
 
     <mobile-input 
-      [id]             = "'year'"
-      [control]        = "watchForm.controls.year" 
-      [submitAttempt]  = "submitAttempt"
-      [errorLabel]     = "'year-required'"
+      [id]            = "'year'"
+      [control]       = "watchForm.controls.year" 
+      [submitAttempt] = "submitAttempt"
+      [errorLabel]    = "'year-required'"
+      [model]         = true
+      [(value)]       = "watchModel.yearOfBuy"
     >
     </mobile-input>
 
     <mobile-input 
-      [id]             = "'serial'"
-      [control]        = "watchForm.controls.serial" 
-      [submitAttempt]  = "submitAttempt"
+      [id]            = "'serial'"
+      [control]       = "watchForm.controls.serial" 
+      [submitAttempt] = "submitAttempt"
+      [model]         = true
+      [(value)]       = "watchModel.serial"
     >
     </mobile-input>
 

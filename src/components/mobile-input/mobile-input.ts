@@ -21,7 +21,7 @@ export class MobileInput {
 	@Input()
 	control        : FormControl;
 	@Input()
-	model          : any = null;
+	model          : boolean = false;
 	@Input()
 	type           : string = "text";
 	@Input()
@@ -40,9 +40,11 @@ export class MobileInput {
 	autoComplete   : boolean = true;
 	@Input()
 	spellCheck     : boolean = true;
-	
+
+	@Input()
+	value: string = "";
 	@Output()
-	update         = new EventEmitter();
+	valueChange = new EventEmitter();
 
 	constructor() {
 	    

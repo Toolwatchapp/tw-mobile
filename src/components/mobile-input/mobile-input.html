@@ -6,8 +6,8 @@
       {{ errorLabel | translate:{value: param} }}
     </em>
 
-    <input #input_field
-      *ngIf="model === null"
+    <input
+      *ngIf                 = "model === false"
       [attr.autocapitalize] = "autoCapitalize ? 'on' : 'off'"
       [attr.autocorrect]    = "autoCorrect ? 'on' : 'off'"
       [attr.autocomplete]   = "autoComplete ? 'on' : 'off'"
@@ -16,10 +16,11 @@
       id                    = "{{id}}" 
       type                  = "{{type}}" 
       [formControl]         = "control" 
-      (keyup) = "update.emit(input_field.value)"
+      (keyup)               = "valueChange.emit($event)"
     > 
-    <input #input_field
-      *ngIf="model !== null"
+
+    <input
+      *ngIf                 = "model === true"
       [attr.autocapitalize] = "autoCapitalize ? 'on' : 'off'"
       [attr.autocorrect]    = "autoCorrect ? 'on' : 'off'"
       [attr.autocomplete]   = "autoComplete ? 'on' : 'off'"
@@ -28,9 +29,10 @@
       id                    = "{{id}}" 
       type                  = "{{type}}" 
       [formControl]         = "control" 
-      (keyup) = "update.emit(input_field.value)"
-      [(ngModel)] = "model"
+      [(ngModel)]           ="value"
+      (ngModelChange)       = "valueChange.emit($event);"
     > 
+
     <span class="highlight"></span>
     <span class="bar"></span>
     <label htmlFor="{{id}}">
