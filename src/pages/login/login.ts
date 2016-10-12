@@ -70,6 +70,7 @@ export class LogInPage extends LoginComponent{
 		Facebook.browserInit(807383452677000);
 		Facebook.login(["public_profile", "email"]).then(
 			facebookLoginResponse => {
+				console.log(facebookLoginResponse);
 				this.onFbSubmit(
 					{
 					    email: facebookLoginResponse.email, 
