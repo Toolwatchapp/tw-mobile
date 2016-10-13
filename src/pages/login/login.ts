@@ -42,8 +42,6 @@ export class LogInPage extends LoginComponent{
 
 		super(translate, twapi, builder);
 
-		console.log(this.loginForm);
-		console.log(this.loginForm.controls.password._parent);
 
 		GAService.screenview("LOGIN");
 
@@ -73,19 +71,19 @@ export class LogInPage extends LoginComponent{
 		Facebook.login(["public_profile", "email"]).then(
 			facebookLoginResponse => {
 
-				console.log(facebookLoginResponse);
+				console.log("1", facebookLoginResponse);
 
-				Facebook.api("/me", ["public_profile", "email"]).then(
+				Facebook.api("me/?fields=id,email,last_name,first_name", ["public_profile", "email"]).then(
 					fbUser => {
 
-						console.log(fbUser);
+						console.log("2", fbUser);
 
 						this.onFbSubmit(
 							{
 							    email: fbUser.email, 
-							    id: facebookLoginResponse.userID,
+							    id: fbUser.id,
 							    last_name: fbUser.last_name, 
-							    firstname: fbUser.firstname, 
+							    firstname: fbUser.first_name, 
 							    timezone: fbUser.timezone, 
 							    country: fbUser.country
 							}
