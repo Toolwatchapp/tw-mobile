@@ -58,25 +58,24 @@ export class LogInPage extends LoginComponent{
 		);
 	}
 
-	ngAfterViewInit(){
-		
-		// this.onSubmit(this.loginForm.value);
-	}
-
+	/**
+	 * Login user using facebook
+	 */
 	onFbSignup(){
-
 
 		Facebook.browserInit(807383452677000);
 
+		//Login call for authentifications
 		Facebook.login(["public_profile", "email"]).then(
+			
+			//Login success
 			facebookLoginResponse => {
 
-				console.log("1", facebookLoginResponse);
-
+				//Fetch user infos using the graph API
 				Facebook.api("me/?fields=id,email,last_name,first_name", ["public_profile", "email"]).then(
+					
+					//Graph API call success
 					fbUser => {
-
-						console.log("2", fbUser);
 
 						this.onFbSubmit(
 							{
@@ -90,13 +89,17 @@ export class LogInPage extends LoginComponent{
 						);
 
 					},
+					//FB Graph API error
+					//Can arise on connection lost or API change
 					error => {
-						console.log('error1', error);
+						this.error = true;
 					}
 				)
 			}, 
+			//Fb Login Error
+			//Can arise if the user doesn't gro through with the FB auth.
 			error => {
-				console.log('error2', error);
+				this.error = true;
 			}
 		);
 
