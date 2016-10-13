@@ -2,11 +2,8 @@
 <div  class="group"
   [ngClass]="{ 'has-error' : !control.valid && submitAttempt }"
 >
-    <em *ngIf="!control.valid && submitAttempt">
-      {{ errorLabel | translate:{value: param} }}
-    </em>
 
-    <input
+    <input #input_field
       *ngIf                 = "model === false"
       [attr.autocapitalize] = "autoCapitalize ? 'on' : 'off'"
       [attr.autocorrect]    = "autoCorrect ? 'on' : 'off'"
@@ -17,6 +14,7 @@
       type                  = "{{type}}" 
       [formControl]         = "control" 
       (keyup)               = "valueChange.emit($event)"
+      [ngClass]             = "{'ng-not-empty': (input_field.value || 0 !== input_field.value.length)}"
     > 
 
     <input
@@ -29,8 +27,9 @@
       id                    = "{{id}}" 
       type                  = "{{type}}" 
       [formControl]         = "control" 
-      [(ngModel)]           ="value"
+      [(ngModel)]           = "value"
       (ngModelChange)       = "valueChange.emit($event);"
+      [ngClass]             = "{'ng-not-empty': (value || 0 !== value.length)}"
     > 
 
     <span class="highlight"></span>
@@ -38,4 +37,9 @@
     <label htmlFor="{{id}}">
       {{ label | translate:{value: param} }}
     </label>
+
+        <em *ngIf="!control.valid && submitAttempt">
+      {{ errorLabel | translate:{value: param} }}
+    </em>
+
 </div>

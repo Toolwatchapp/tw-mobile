@@ -25,10 +25,6 @@ export class LogInPage extends LoginComponent{
 
 	laoding:Loading; 
 	loadindSentence:string;
-	errors = [
-		{flag:this.credientials, label:"credientials"}, 
-		{flag:this.error, label:"error"}
-	];
 
 	constructor(	
 		//Own injections
@@ -54,7 +50,7 @@ export class LogInPage extends LoginComponent{
 		);
 
 		this.loginAttempt.subscribe(
-			attempt => this.onLoggingAttempt(attempt)
+			attempt =>  this.onLoggingAttempt(attempt)
 		);
 	}
 
