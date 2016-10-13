@@ -10,6 +10,10 @@ mobile-input{
 	}
 	input:focus         { outline:none; }
 
+	input.ng-invalid.ng-dirty.ng-not-empty{
+	  border-bottom:1px solid red;
+	}
+
 	/* LABEL ======================================= */
 	label    {
 	  color:#999; 
@@ -113,5 +117,9 @@ mobile-input{
 		button{
 			width: 100%;
 		}
+	}
+
+	em{
+		position:absolute;
 	}
 }

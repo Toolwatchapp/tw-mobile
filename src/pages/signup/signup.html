@@ -1,136 +1,79 @@
 <header-nav [slogan]="slogan" [topBg]="background" [back]="true"></header-nav>
 
 <ion-content id="signup">
-<form 
-  [ngClass]="{ 'has-error' : emailTaken || error }"
-  [formGroup] = "signupForm"
-  (ngSubmit)="onSubmit(signupForm.value)"
-  style="overflow-y: scroll; height: 200%;" 
->     
-      <!-- GENERAL ERROR MESSAGES -->
-      <div  class="form-group">
-        <div class="error-message" [hidden]="!error">
-            {{ 'error' | translate }}
-        </div>
-        <div class="error-message" [hidden]="!emailTaken">
-            {{ 'email-taken' | translate }}
-        </div>
-      </div>
-      <!-- END GENERAL ERROR MESSAGES -->
+  <form 
+    [formGroup] = "signupForm"
+    (ngSubmit)="onSubmit(signupForm.value)"
+  >     
 
-      <!-- EMAIL GROUP -->
-      <div  class="group"
-      [ngClass]="{ 'has-error' : !signupForm.controls.email.valid && submitAttempt || credientials}"
-      >
+    <mobile-error [errors] = "errors"></mobile-error>
 
-       
-        <em *ngIf="!signupForm.controls.email.valid && submitAttempt">
-          {{ 'email-required' | translate }}
-        </em>
-        <input 
-          id="email" 
-          type="email" 
-          formControlName="email"
-          autocapitalize="off" autocorrect="off"
-          required 
-        >
-        <span class="highlight"></span>
-        <span class="bar"></span>
-         <label>
-          {{ 'email' | translate }}
-        </label>
-      </div>
-      <div  class="group"
-      [ngClass]="{ 'has-error' : !signupForm.controls.emailRepeat.valid && submitAttempt || credientials}"
-      >
+    <mobile-input 
+      [id]             = "'email'"
+      [control]        = "signupForm.controls.email" 
+      [errorLabel]     = "'email-required'"
+      [submitAttempt]  = "submitAttempt"
+      [autoCapitalize] = false
+      [autoCorrect]    = false
+      [spellCheck]     = false
+    >
+    </mobile-input>
 
-       
-        <em *ngIf="!signupForm.controls.emailRepeat.valid && submitAttempt">
-          {{ 'email-required' | translate }}
-        </em>
-        <input 
-          id="emailRepeat" 
-          type="email" 
-          formControlName="emailRepeat"
-          utocapitalize="off" autocorrect="off"
-          required 
-        >
-        <span class="highlight"></span>
-        <span class="bar"></span>
-         <label>
-          {{ 'email-repeat' | translate }}
-        </label>
-      </div>
-      <!-- END EMAIL GROUP -->
+    <mobile-input 
+      [id]             = "'email-repeat'"
+      [control]        = "signupForm.controls.emailRepeat" 
+      [errorLabel]     = "'email-match'"
+      [submitAttempt]  = "submitAttempt"
+      [autoCapitalize] = false
+      [autoCorrect]    = false
+      [spellCheck]     = false
+    >
+    </mobile-input>
 
-      <!-- PASSWORD GROUP -->
-      <div class="group"
-      [ngClass]="{ 'has-error' : !signupForm.controls.password.valid && submitAttempt || credientials}">
-        <em *ngIf="!signupForm.controls.password.valid && submitAttempt">
-          {{ 'password-required' | translate }}
-        </em>
-        <input 
-          type="password" 
-          formControlName="password"
-          required
-        >     
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label for="password">
-          {{ 'password' | translate }}
-        </label>
-      </div>
+    <mobile-input 
+      [id]            = "'password'"
+      [type]          = "'password'"
+      [control]        = "signupForm.controls.password" 
+      [errorLabel]     = "'password-required'"
+      [submitAttempt]  = "submitAttempt"
+      [autoCapitalize] = false
+      [autoCorrect]    = false
+      [spellCheck]     = false
+    >
+    </mobile-input>
 
-      <div class="group"
-      [ngClass]="{ 'has-error' : !signupForm.controls.passwordRepeat.valid && submitAttempt || credientials}">
-        <em *ngIf="!signupForm.controls.passwordRepeat.valid && submitAttempt">
-          {{ 'password-required' | translate }}
-        </em>
-        <input 
-          type="password" 
-          formControlName="passwordRepeat"
-          required
-        >     
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label>
-          {{ 'password-repeat' | translate }}
-        </label>
-      </div>
-      <!-- END PASSWORD GROUP -->
+    <mobile-input 
+      [id]            = "'password-repeat'"
+      [type]          = "'password'"
+      [control]        = "signupForm.controls.passwordRepeat" 
+      [errorLabel]     = "'password-match'"
+      [submitAttempt]  = "submitAttempt"
+      [autoCapitalize] = false
+      [autoCorrect]    = false
+      [spellCheck]     = false
+    >
+    </mobile-input>
 
-      <div class="group"
-      [ngClass]="{ 'has-error' : !signupForm.controls.firstName.valid && submitAttempt || credientials}">
-        <input 
-          type="text" 
-          formControlName="firstName"
-          required
-        >     
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label>
-          {{ 'firstName' | translate }}
-        </label>
-      </div>
+    <mobile-input 
+      [id]            = "'firstName'"
+      [control]        = "signupForm.controls.firstName" 
+      [submitAttempt]  = "submitAttempt"
+    >
+    </mobile-input>
 
-      <div class="group"
-      [ngClass]="{ 'has-error' : !signupForm.controls.lastName.valid && submitAttempt || credientials}">
-        <input 
-          type="text" 
-          formControlName="lastName"
-          required
-        >     
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label>
-          {{ 'lastName' | translate }}
-        </label>
-      </div>
+    <mobile-input 
+      [id]            = "'lastName'"
+      [control]        = "signupForm.controls.lastName" 
+      [submitAttempt]  = "submitAttempt"
+    >
+    </mobile-input>
 
-      <div class="form-group">
-        <button ion-button id="login" toggle md-raised-button color="primary" type="submit"> {{ 'signup' | translate }}</button>
-      </div>
-</form>
+    <div class="form-group">
+      <button ion-button id="login" toggle md-raised-button color="primary" type="submit">
+      {{ 'signup' | translate }}
+      </button>
+    </div>
+  </form>
 
 </ion-content>
 

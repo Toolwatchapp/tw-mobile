@@ -38,7 +38,7 @@
       {{ label | translate:{value: param} }}
     </label>
 
-        <em *ngIf="!control.valid && submitAttempt">
+    <em *ngIf="!control.valid && submitAttempt">
       {{ errorLabel | translate:{value: param} }}
     </em>
 

@@ -1,4 +1,4 @@
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, Loading, LoadingController} from 'ionic-angular';
 
 import { Component } from '@angular/core';
 
@@ -19,11 +19,14 @@ export class SignupPage extends SignupComponent{
 
   background:string = "account-background";
   slogan:string = "signin-slogan";
+  laoding:Loading; 
+
 
   constructor(
     //Own injection
     private nav: NavController, 
     private navParams: NavParams, 
+    private loadingController: LoadingController,
     //injection for SignupComponent
     translate: TranslateService, 
     twapi: TwAPIService,  
@@ -39,5 +42,24 @@ export class SignupPage extends SignupComponent{
   			user:user
   		})
   	);
+
+    this.signupAttempt.subscribe(
+      attempt => {
+        if(attempt === true){
+
+          translate.get('signin-loading').subscribe(
+            sentence => {
+              this.laoding = this.loadingController.create({content: sentence})
+              this.laoding.present();
+            }
+          );
+          
+        }else{
+          setTimeout(()=>{
+            this.laoding.dismiss();
+          }, 1000);
+        }
+      }
+    )
   }
 }
