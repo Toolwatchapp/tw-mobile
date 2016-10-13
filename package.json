@@ -33,6 +33,6 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard"
   ],
-  "version": "0.7.51",
+  "version": "0.7.52",
   "cordovaPlatforms": []
 }
