@@ -1,7 +1,5 @@
 
 [![Code Climate][code-climate-badge]][code-climate-url]
-[![Codacy][codacy-badge]][codacy-url]
-<!--- [![Build Status][travis-badge]][travis-badge-url] -->
 [![Dependency Status][david-badge]][david-badge-url]
 [![devDependency Status][david-dev-badge]][david-dev-badge-url]
 
