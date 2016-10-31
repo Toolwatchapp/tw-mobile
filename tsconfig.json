@@ -13,7 +13,9 @@
     "target": "es5"
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/share/e2e/",
+    "src/share/**/*.spec.ts"
   ],
   "compileOnSave": false,
   "atom": {
