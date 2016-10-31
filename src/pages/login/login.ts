@@ -24,7 +24,7 @@ import {TranslateService} from 'ng2-translate/ng2-translate';
 export class LogInPage extends LoginComponent{
 
 	laoding:Loading; 
-	loadindSentence:string;
+	loadindSentence:string; 
 
 	constructor(	
 		//Own injections
