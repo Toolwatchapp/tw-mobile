@@ -1,21 +1,26 @@
-import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, NativeStorage } from 'ionic-native';
 
 import { LogInPage } from '../pages/login/login';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 
-import {
-	TwAPIService
+import { 
+	TwAPIService,
+  User
 } from './../share/src/app/';
 
 @Component({
   template: `<ion-nav [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage = LogInPage;
+  rootPage:Component = LogInPage;
 
-  constructor(platform: Platform) {
+  constructor(
+    private platform: Platform,
+    private twapi: TwAPIService
+  ) {
+
     platform.ready().then(() => {
 
       this.initOnResume();
