@@ -110,14 +110,17 @@ export class DashboardPage {
 
 	error(watch:Watch){
 
-		var text = this.translate.instant('below-average');
+		var text = "";
 
 		if(watch.lastCompleteMeasure().accuracy < -10){
-			text += this.translate.instant('below-average-20-10');
+			text += this.translate.instant('below-average') + 
+			this.translate.instant('below-average-20-10');
 		}else if(watch.lastCompleteMeasure().accuracy < 10){
-			text += this.translate.instant('below-average-10-25');
+			text += this.translate.instant('below-average') + 
+			this.translate.instant('below-average-10-25');
 		}else{
-			text += this.translate.instant('below-average-25');
+			text += this.translate.instant('above-average') + 
+			this.translate.instant('below-average-25');
 		}
 
 		text += this.translate.instant('servicing');

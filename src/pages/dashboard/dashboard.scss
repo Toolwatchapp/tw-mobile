@@ -78,7 +78,10 @@
         top:15%;
         right:4%;
         span{
-            overflow:hidden;
+            white-space: nowrap;
+            overflow: hidden;
+            margin-right:5%;
+            text-overflow: clip;
             width:100%;
             display:block;
             text-align:right;
