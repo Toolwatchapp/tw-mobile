@@ -13,7 +13,7 @@ import { Component, Input } from '@angular/core';
 export class MobileError {
 
 	@Input()
-	errors: {flag:boolean, label:string}[];
+	errors: [string];
 
     constructor() {
     }

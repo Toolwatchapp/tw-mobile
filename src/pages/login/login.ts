@@ -77,7 +77,7 @@ export class LogInPage extends LoginComponent{
 							{
 							    email: fbUser.email, 
 							    id: fbUser.id,
-							    last_name: fbUser.last_name, 
+							    lastname: fbUser.last_name, 
 							    firstname: fbUser.first_name, 
 							    timezone: fbUser.timezone, 
 							    country: fbUser.country
@@ -88,14 +88,14 @@ export class LogInPage extends LoginComponent{
 					//FB Graph API error
 					//Can arise on connection lost or API change
 					error => {
-						this.error = true;
+						this.errors.push("error");
 					}
 				)
 			}, 
 			//Fb Login Error
 			//Can arise if the user doesn't gro through with the FB auth.
 			error => {
-				this.error = true;
+				this.errors.push("error");
 			}
 		);
 
