@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "0.0.39",
+    "cz-conventional-changelog": "^1.2.0",
     "typescript": "^2.0.6"
   },
   "description": "tw-mobile-2rc0: An Ionic project",
@@ -45,5 +46,10 @@
     "ionic-plugin-keyboard"
   ],
   "version": "0.7.52",
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
