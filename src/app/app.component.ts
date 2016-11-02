@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
-import { StatusBar, NativeStorage } from 'ionic-native';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, Nav } from 'ionic-angular';
+import { StatusBar } from 'ionic-native';
+import { Storage } from '@ionic/storage';
 
 import { LogInPage } from '../pages/login/login';
 import { DashboardPage } from '../pages/dashboard/dashboard';
@@ -11,14 +12,16 @@ import {
 } from './../share/src/app/';
 
 @Component({
-  template: `<ion-nav [root]="rootPage"></ion-nav>`
+  template: `<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>`
 })
 export class MyApp {
-  rootPage:Component = LogInPage;
+  @ViewChild(Nav) nav: Nav;
+  rootPage: any = LogInPage;
 
   constructor(
     private platform: Platform,
-    private twapi: TwAPIService
+    private twapi: TwAPIService,
+    private storage: Storage
   ) {
 
     platform.ready().then(() => {
@@ -28,16 +31,15 @@ export class MyApp {
       this.fetchUser()
       .then(
         user => {
-          if(user !== undefined){
 
-            console.error(user);
-            this.rootPage = DashboardPage;
-            setTimeout(()=> DashboardPage.userChanged.emit(user), 1000);
-          }else{
-            this.rootPage = LogInPage;
-          }
+          this.nav.setRoot(DashboardPage, {
+            user:user
+          });
+        },
+        error => {
+          console.log("No key set");
         }
-      ).catch((error)=>{this.rootPage = LogInPage; console.log(error)})
+      );
 
 
       // Okay, so the platform is ready and our plugins are available.
@@ -63,25 +65,29 @@ export class MyApp {
 
     return this.fetchAPIKey().then(
        key => {
-         if(key !== "cordova_not_available"){
            return this.twapi.getUser(key).then(
             user => user,
-            err => {console.log("removing", key); NativeStorage.remove('tw-api')}
+            err => {
+              console.log("removing", key); 
+              this.storage.remove('tw-api')
+            }
           )
-         }else{
-           console.log("removing", key); 
-           NativeStorage.remove('tw-api')
-           return undefined;
-         } 
+       },
+       err => {
+          throw err;
        }
-    );
+    )
   }
 
   private fetchAPIKey():Promise<string>{
-    return NativeStorage.getItem('tw-api')
-      .then(
-        data => data.key,
-        error => error
-      );
+
+    return this.storage.get('tw-api').then((key) => {
+
+      if(key !== "cordova_not_available" && key != null){
+        return key;
+      }else{
+        throw new Error("awd");
+      }
+    });
   }
 }

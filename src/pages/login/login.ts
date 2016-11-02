@@ -1,7 +1,7 @@
-import {Loading, LoadingController, NavController} from 'ionic-angular';
-import { NativeStorage, Facebook } from 'ionic-native';
-
-import {Component} from '@angular/core';
+import { Loading, LoadingController, NavController } from 'ionic-angular';
+import { Facebook } from 'ionic-native';
+import { Storage } from '@ionic/storage';
+import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 import {DashboardPage} from '../dashboard/dashboard';
@@ -29,7 +29,8 @@ export class LogInPage extends LoginComponent{
 	constructor(	
 		//Own injections
 		private nav: NavController, 
-		private loadingController: LoadingController, 
+		private loadingController: LoadingController,
+   		private storage: Storage ,
 		//Injections for LoginComponent	
 		translate: TranslateService,
 		twapi: TwAPIService, 
@@ -142,10 +143,7 @@ export class LogInPage extends LoginComponent{
 		this.nav.setRoot(DashboardPage, {
 			user:user
 		});
-		NativeStorage.setItem('tw-api', {key: user.key})
-		.then(
-			() => console.log('Stored item!'),
-			error => console.error('Error storing item', error)
-		);
+		console.log("setting tw-api to", user.key);
+		this.storage.set('tw-api', user.key);
 	}
 }

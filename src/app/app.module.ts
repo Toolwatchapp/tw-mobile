@@ -3,7 +3,7 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http';
-
+import { Storage } from '@ionic/storage';
 
 //Ionic Pages
 import { AboutPage } from '../pages/about/about';
@@ -84,7 +84,7 @@ import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-tra
     TipsPage,
     WatchPage
   ],
-  providers: [TwAPIService, GAService]
+  providers: [TwAPIService, GAService, Storage]
 })
 export class AppModule {}
 
