@@ -1,6 +1,6 @@
 import { AlertController, NavController, NavParams} from 'ionic-angular';
 
-import {Component} from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 import {
@@ -21,9 +21,7 @@ export class WatchPage extends WatchComponent {
 	
 	background:string = "addWatch-background";
 	slogan:string ="add-new-watch";
-	errors = [
-		{flag:this.error, label:"error"}
-	];
+	errors = [];
 
 	constructor(
 		//Own injections
@@ -51,17 +49,9 @@ export class WatchPage extends WatchComponent {
 			}
 		);
 
-		//The view is used for edit and create watches both.
-		//Here, we check if we received a watch and adapt the 
-		//textual context of the view.
 		let receivedWatch:Watch = this.navParams.get('watch');
-		console.log(this.navParams.get('watch'));
-		if (receivedWatch !== undefined){
+		this.watchModel = receivedWatch.clone();
 
-			this.watchModel = receivedWatch.clone();
-			this.slogan = "edit-watch";
-			this.initForm();
-		}	
 	}
 
 	/**

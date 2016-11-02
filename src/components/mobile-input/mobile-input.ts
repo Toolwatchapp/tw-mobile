@@ -52,9 +52,10 @@ export class MobileInput {
 	    /**
 	   * Pull the brands
 	   */
-	ngAfterViewInit() {
+	ngOnInit() {
 
-	    if(this.control == null || this.id == null){
+	    if(this.control == null || this.id == null
+	    	|| this.control == undefined || this.id == undefined){
 	    	throw "[Control] and [id] must be set";
 	    }
 

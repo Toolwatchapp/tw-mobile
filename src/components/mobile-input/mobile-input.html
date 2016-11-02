@@ -29,7 +29,7 @@
       [formControl]         = "control" 
       [(ngModel)]           = "value"
       (ngModelChange)       = "valueChange.emit($event);"
-      [ngClass]             = "{'ng-not-empty': (value || 0 !== value.length)}"
+      [ngClass]             = "{'ng-not-empty': (value== null || value || 0 !== value.length)}"
     > 
 
     <span class="highlight"></span>
