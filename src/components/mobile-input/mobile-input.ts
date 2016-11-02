@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output  } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import {   
   FormControl
 } from '@angular/forms';
@@ -46,6 +46,9 @@ export class MobileInput {
 	@Output()
 	valueChange = new EventEmitter();
 
+	isFocused = false;
+
+
 	constructor() {
 	    
 	}
@@ -73,5 +76,20 @@ export class MobileInput {
 	    	}
 	    }
 	}
+
+	toggleFocus():void{
+		this.isFocused = !this.isFocused;
+	}
+
+	emitChange(event):void{
+		this.value = event.target.value;
+		this.valueChange.emit(event);
+	}
+
+	isActive():boolean{
+		return this.isFocused || (this.value != null && this.value.length != 0); 
+	}
+
+
 
 }

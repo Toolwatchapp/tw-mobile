@@ -3,7 +3,7 @@
   [ngClass]="{ 'has-error' : !control.valid && submitAttempt }"
 >
 
-    <input #input_field
+    <ion-input #input_field
       *ngIf                 = "model === false"
       [attr.autocapitalize] = "autoCapitalize ? 'on' : 'off'"
       [attr.autocorrect]    = "autoCorrect ? 'on' : 'off'"
@@ -13,12 +13,15 @@
       id                    = "{{id}}" 
       type                  = "{{type}}" 
       [formControl]         = "control" 
-      (keyup)               = "valueChange.emit($event)"
-      [ngClass]             = "{'ng-not-empty': (input_field.value || 0 !== input_field.value.length)}"
+      (blur)                = "toggleFocus()" 
+      (focus)               = "toggleFocus()"
+      (keyup)               = "emitChange($event)"
     > 
+    </ion-input>
 
-    <input
+    <ion-input
       *ngIf                 = "model === true"
+      #input_field
       [attr.autocapitalize] = "autoCapitalize ? 'on' : 'off'"
       [attr.autocorrect]    = "autoCorrect ? 'on' : 'off'"
       [attr.autocomplete]   = "autoComplete ? 'on' : 'off'"
@@ -29,12 +32,22 @@
       [formControl]         = "control" 
       [(ngModel)]           = "value"
       (ngModelChange)       = "valueChange.emit($event);"
-      [ngClass]             = "{'ng-not-empty': (value== null || value || 0 !== value.length)}"
     > 
+    </ion-input>
 
-    <span class="highlight"></span>
-    <span class="bar"></span>
-    <label htmlFor="{{id}}">
+    <span 
+    [ngClass] = "{'ng-focus': isFocused}"
+    class="highlight">
+    </span>
+
+    <span class="bar"
+    [ngClass] = "{'ng-active': isFocused && control.valid, 'ng-active-invalid':  isActive() && !control.valid}"
+    >
+    </span>
+
+    <label 
+    [ngClass] = "{'ng-active': isActive()}"
+    htmlFor="{{id}}">
       {{ label | translate }}
     </label>
 

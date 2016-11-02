@@ -1,125 +1,130 @@
 mobile-input{
 
+
+
 	input               {
-	  font-size:18px;
-	  padding:10px 10px 10px 5px;
-	  display:block;
-	  width:100%;
-	  border:none;
-	  border-bottom:1px solid #757575;
+	  font-size:18px !important;
+	  padding:10px 10px 10px 5px !important;
+	  display:block !important;
+	  width:100% !important;
+	  border:none !important;
+	  border-bottom:1px solid #757575 !important;
 	}
-	input:focus         { outline:none; }
+	input:focus         { outline:none !important; }
 
 	input.ng-invalid.ng-dirty.ng-not-empty{
-	  border-bottom:1px solid red;
+	  border-bottom:1px solid red !important;
 	}
 
 	/* LABEL ======================================= */
 	label    {
-	  color:#999; 
-	  font-size:18px;
-	  font-weight:normal;
-	  position:absolute;
-	  pointer-events:none;
-	  left:5px;
-	  top:10px;
-	  transition:0.2s ease all; 
-	  -moz-transition:0.2s ease all; 
-	  -webkit-transition:0.2s ease all;
+	  color:#999 !important; 
+	  font-size:18px !important;
+	  font-weight:normal !important;
+	  position:absolute !important;
+	  pointer-events:none !important;
+	  left:5px !important;
+	  top:10px !important;
+	  transition:0.2s ease all !important; 
+	  -moz-transition:0.2s ease all !important; 
+	  -webkit-transition:0.2s ease all !important;
 	}
 
+	
+
 	/* active state */
-	input:focus ~ label, input.ng-dirty.ng-not-empty ~ label   {
-	  top:-20px;
-	  font-size:14px;
-	  color:#5264AE;
+	label.ng-active {
+	  top:-20px !important;
+	  font-size:14px !important;
+	  color:#5264AE !important;
 	}
 
 	/* BOTTOM BARS ================================= */
-	.bar    { position:relative; display:block; width:100%; }
+	.bar    { position:relative !important; display:block !important; width:100% !important; }
 	.bar:before, .bar:after     {
-	  content:'';
-	  height:2px; 
-	  width:0;
-	  bottom:1px; 
-	  position:absolute;
-	  background:#5264AE; 
-	  transition:0.2s ease all; 
-	  -moz-transition:0.2s ease all; 
-	  -webkit-transition:0.2s ease all;
+	  content:'' !important;
+	  height:2px !important; 
+	  width:0 !important;
+	  bottom:1px !important; 
+	  position:absolute !important;
+	  background:#5264AE !important; 
+	  transition:0.2s ease all !important; 
+	  -moz-transition:0.2s ease all !important; 
+	  -webkit-transition:0.2s ease all !important;
 	}
 	.bar:before {
-	  left:50%;
+	  left:50% !important;
 	}
 	.bar:after {
-	  right:50%; 
+	  right:50% !important; 
 	}
 
 	/* active state */
-	input:focus ~ .bar:before, input:focus ~ .bar:after {
-	  width:50%;
+	.bar.ng-active:before, .bar.ng-active:after {
+	  width:50% !important;
 	}
 
-	input.ng-invalid.ng-dirty ~ .bar:before, input.ng-invalid.ng-dirty ~ .bar:after {
-		background:red;
+	.bar.ng-active-invalid:before, .bar.ng-active-invalid:after {
+		background:red !important;
+		width:50% !important;
 	}
 
 
 	/* HIGHLIGHTER ================================== */
 	.highlight {
-	  position:absolute;
-	  height:60%; 
-	  width:100px; 
-	  top:25%; 
-	  left:0;
-	  pointer-events:none;
-	  opacity:0.5;
+	  position:absolute !important;
+	  height:60% !important; 
+	  width:100px !important; 
+	  top:25% !important; 
+	  left:0 !important;
+	  pointer-events:none !important;
+	  opacity:0.5 !important;
 	}
 
 	/* active state */
-	input:focus ~ .highlight {
-	  animation:inputHighlighter 0.3s ease;
+	.highlight.ng-focus {
+	  animation:inputHighlighter 0.3s ease !important;
 	}
 
 
 	@keyframes inputHighlighter {
-	    from { background:#4d77a7; }
-	  to    { width:0; background:transparent; }
+	    from { background:#4d77a7 !important; }
+	  to    { width:0 !important; background:transparent !important; }
 	}
 
 	.has-error{
-		animation:shake 0.5s ease;
+		animation:shake 0.5s ease !important;
 	}
 
 	@keyframes shake {
 	    8%, 41% {
-	        transform: translateX(-10px);
+	        transform: translateX(-10px) !important;
 	    }
 	    25%, 58% {
-	        transform: translateX(10px);
+	        transform: translateX(10px) !important;
 	    }
 	    75% {
-	        transform: translateX(-5px);
+	        transform: translateX(-5px) !important;
 	    }
 	    92% {
-	        transform: translateX(5px);
+	        transform: translateX(5px) !important;
 	    }
 	    0%, 100% {
-	        transform: translateX(0);
+	        transform: translateX(0) !important;
 	    }
 	}
 
 
 	.form-group{
-		margin-bottom: 10px;
-		width: 80%;
-		margin-left: 10%;
+		margin-bottom: 10px !important;
+		width: 80% !important;
+		margin-left: 10% !important;
 		button{
-			width: 100%;
+			width: 100% !important;
 		}
 	}
 
 	em{
-		position:absolute;
+		position:absolute !important;
 	}
 }
