@@ -37,7 +37,7 @@ export class MyApp {
           });
         },
         error => {
-          console.log("No key set");
+          console.log("No valid key set");
         }
       );
 
@@ -70,6 +70,7 @@ export class MyApp {
             err => {
               console.log("removing", key); 
               this.storage.remove('tw-api')
+              throw err;
             }
           )
        },
