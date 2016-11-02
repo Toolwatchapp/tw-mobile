@@ -35,11 +35,11 @@
     <span class="highlight"></span>
     <span class="bar"></span>
     <label htmlFor="{{id}}">
-      {{ label | translate:{value: param} }}
+      {{ label | translate }}
     </label>
 
     <em *ngIf="!control.valid && submitAttempt">
-      {{ errorLabel | translate:{value: param} }}
+      {{ errorLabel | translate }}
     </em>
 
 </div>

@@ -15,7 +15,7 @@
 
     <mobile-input 
       [id]            = "'brand'"
-      [control]       = "watchForm.controls.brand" 
+      [control]       = "watchForm.controls['brand']" 
       [errorLabel]    = "'brand-required'"
       [submitAttempt] = "submitAttempt"
       [autoComplete]  = false
@@ -37,7 +37,7 @@
     <mobile-input 
       [id]            = "'name'"
       [label]         = "'model'"
-      [control]       = "watchForm.controls.name" 
+      [control]       = "watchForm.controls['name']" 
       [submitAttempt] = "submitAttempt"
       [model]         = true
       [(value)]       = "watchModel.name"
@@ -54,7 +54,7 @@
 
     <mobile-input 
       [id]             = "'caliber'"
-      [control]        = "watchForm.controls.caliber" 
+      [control]        = "watchForm.controls['caliber']" 
       [submitAttempt]  = "submitAttempt"
       [model]         = true
       [(value)]       = "watchModel.caliber"
@@ -63,7 +63,7 @@
 
     <mobile-input 
       [id]            = "'year'"
-      [control]       = "watchForm.controls.year" 
+      [control]       = "watchForm.controls['year']" 
       [submitAttempt] = "submitAttempt"
       [errorLabel]    = "'year-required'"
       [model]         = true
@@ -73,7 +73,7 @@
 
     <mobile-input 
       [id]            = "'serial'"
-      [control]       = "watchForm.controls.serial" 
+      [control]       = "watchForm.controls['serial']" 
       [submitAttempt] = "submitAttempt"
       [model]         = true
       [(value)]       = "watchModel.serial"

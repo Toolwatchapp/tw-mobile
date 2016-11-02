@@ -10,7 +10,7 @@
 
     <mobile-input 
       [id]             = "'email'"
-      [control]        = "signupForm.controls.email" 
+      [control]        = "signupForm.controls['email']" 
       [errorLabel]     = "'email-required'"
       [submitAttempt]  = "submitAttempt"
       [autoCapitalize] = false
@@ -21,7 +21,7 @@
 
     <mobile-input 
       [id]             = "'email-repeat'"
-      [control]        = "signupForm.controls.emailRepeat" 
+      [control]        = "signupForm.controls['emailRepeat']" 
       [errorLabel]     = "'email-match'"
       [submitAttempt]  = "submitAttempt"
       [autoCapitalize] = false
@@ -33,7 +33,7 @@
     <mobile-input 
       [id]            = "'password'"
       [type]          = "'password'"
-      [control]        = "signupForm.controls.password" 
+      [control]        = "signupForm.controls['password']" 
       [errorLabel]     = "'password-required'"
       [submitAttempt]  = "submitAttempt"
       [autoCapitalize] = false
@@ -45,7 +45,7 @@
     <mobile-input 
       [id]            = "'password-repeat'"
       [type]          = "'password'"
-      [control]        = "signupForm.controls.passwordRepeat" 
+      [control]        = "signupForm.controls['passwordRepeat']" 
       [errorLabel]     = "'password-match'"
       [submitAttempt]  = "submitAttempt"
       [autoCapitalize] = false
@@ -56,14 +56,14 @@
 
     <mobile-input 
       [id]            = "'firstName'"
-      [control]        = "signupForm.controls.firstName" 
+      [control]        = "signupForm.controls['firstName']" 
       [submitAttempt]  = "submitAttempt"
     >
     </mobile-input>
 
     <mobile-input 
       [id]            = "'lastName'"
-      [control]        = "signupForm.controls.lastName" 
+      [control]        = "signupForm.controls['lastName']" 
       [submitAttempt]  = "submitAttempt"
     >
     </mobile-input>

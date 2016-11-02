@@ -10,7 +10,7 @@
 
     <mobile-input 
       [id]             = "'email'"
-      [control]        = "loginForm.controls.email" 
+      [control]        = "loginForm.controls['email']" 
       [errorLabel]     = "'email-required'"
       [submitAttempt]  = "submitAttempt"
       [autoCapitalize] = false
@@ -22,7 +22,7 @@
     <mobile-input 
       [id]            = "'password'"
       [type]          = "'password'"
-      [control]       = "loginForm.controls.password" 
+      [control]       = "loginForm.controls['password']" 
       [errorLabel]    = "'password-required'"
       [submitAttempt] = "submitAttempt"
     >
