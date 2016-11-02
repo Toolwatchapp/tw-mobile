@@ -50,7 +50,9 @@ export class WatchPage extends WatchComponent {
 		);
 
 		let receivedWatch:Watch = this.navParams.get('watch');
-		this.watchModel = receivedWatch.clone();
+		if(receivedWatch !== undefined){
+			this.watchModel = receivedWatch.clone();
+		}
 
 	}
 

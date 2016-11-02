@@ -78,10 +78,7 @@
         top:15%;
         right:4%;
         span{
-            white-space: nowrap;
-            overflow: hidden;
             margin-right:5%;
-            text-overflow: clip;
             width:100%;
             display:block;
             text-align:right;
@@ -113,16 +110,18 @@
     }
 
     #right-action{
-        padding-top:4%;
+        padding-top:2%;
         height:17vw;
         padding-left:20%;
+        width:70%;
     }
 
     h2{
-        width:70%;
+        width:68%;
         font-size:1.2em;
         color:#2a2a2c;
         overflow: hidden;
+
     }
 
     h3{

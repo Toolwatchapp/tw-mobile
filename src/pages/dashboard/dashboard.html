@@ -55,6 +55,7 @@
               <h2>{{ watch.brand }}</h2>
               <h3>{{ watch.name }}</h3>
               
+            </div>
 
               <div id="accuracy">
                 <span  *ngIf="watch.status !== WatchStatus.NeverMeasured && watch.lastCompleteMeasure() !== null">
@@ -63,8 +64,6 @@
                   </span>
                 </span>
               </div>
-
-            </div>
 
 
 
