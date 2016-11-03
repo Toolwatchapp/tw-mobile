@@ -53,6 +53,17 @@ export class LogInPage extends LoginComponent{
 		this.loginAttempt.subscribe(
 			attempt =>  this.onLoggingAttempt(attempt)
 		);
+
+		this.initOnResume();
+
+       this.fetchUser().then(
+          user => {
+          	this.userLogged.emit(user);
+          },
+          error => {
+            console.log("No valid key set");
+          }
+       );
 	}
 
 	/**
@@ -146,4 +157,68 @@ export class LogInPage extends LoginComponent{
 		console.log("setting tw-api to", user.key);
 		this.storage.set('tw-api', user.key);
 	}
+
+	/**
+	 * Fetches and user given a stored API key
+	 * @return {Promise<User>} [description]
+	 */
+	private fetchUser():Promise<User>{
+
+	    return this.fetchAPIKey().then(
+	       key => {
+	           return this.twapi.getUser(key).then(
+	            user => user,
+	            err => {
+	              this.loginAttempt.emit(false);
+	              console.log("removing", key); 
+	              this.storage.remove('tw-api')
+	              throw err;
+	            }
+	          )
+	       },
+	       err => {
+	          throw err;
+	       }
+	    )
+  }
+
+  /**
+   * Add resume event to html body and fetches up to date
+   * user from the API
+   */
+  private initOnResume(){
+    document.addEventListener('resume', () => {
+
+      this.fetchUser().then(
+        user => {
+          DashboardPage.userChanged.emit(user)
+        },
+        error => {
+            console.log("API Key changed");
+            this.nav.setRoot(LogInPage);
+        }
+      );
+      
+      TwAPIService.resetTime();
+    });
+  }
+
+  /**
+   * Fetches a stored api key
+   *
+   * @throws on no key found
+   * @return {Promise<string>} [description]
+   */
+  private fetchAPIKey():Promise<string>{
+
+    return this.storage.get('tw-api').then((key) => {
+
+      if(key !== "cordova_not_available" && key != null){
+      	this.loginAttempt.emit(true);
+        return key;
+      }else{
+        throw new Error("No valid key");
+      }
+    });
+  }
 }
