@@ -59,7 +59,7 @@
 
               <div id="accuracy">
                 <span  *ngIf="watch.status !== WatchStatus.NeverMeasured && watch.lastCompleteMeasure() !== null">
-                  {{ watch.lastCompleteMeasure().accuracy |  arethmeticSign | kFormatter}}
+                  {{ watch.lastCompleteMeasure().accuracy | decimal | arethmeticSign | kFormatter}}
                   <span id="spd">{{'spd-short' | translate }}
                   </span>
                 </span>
