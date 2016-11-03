@@ -192,9 +192,11 @@ export class LogInPage extends LoginComponent{
       this.fetchUser().then(
         user => {
           DashboardPage.userChanged.emit(user)
+          this.loginAttempt.emit(false);
         },
         error => {
             console.log("API Key changed");
+            this.loginAttempt.emit(false);
             this.nav.setRoot(LogInPage);
         }
       );
