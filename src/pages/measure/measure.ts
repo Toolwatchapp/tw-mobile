@@ -44,7 +44,7 @@ export class MeasurePage {
 
 	//css variables
 	active:boolean = false;
-	highFiveSrc= "../assets/images/h5.png";
+	highFiveSrc= "assets/images/h5.png";
 	waitingApi = false;
 
 	constructor(
@@ -216,10 +216,10 @@ export class MeasurePage {
 
 		setTimeout(() => {
 			console.log("in");
-			this.highFiveSrc = "../assets/images/h5.gif"
+			this.highFiveSrc = "assets/images/h5.gif"
 			setTimeout(() => {
 				console.log("in2");
-				this.highFiveSrc = "../assets/images/h5.png"
+				this.highFiveSrc = "assets/images/h5.png"
 			}, 2000);
 		}, 1000);
 		this.watch = watch;
