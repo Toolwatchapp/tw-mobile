@@ -82,23 +82,27 @@
 
     <div  class="group">
 
-      <div [hidden]="watchModel.id!==null">
+      <div  [hidden]="watchModel.id!==null">
         <button
+        [disabled]="submitAttempt"
         ion-button  
         color="primary" type="submit"> 
-        {{ 'add-watch' | translate }}
+        <span [hidden]="submitAttempt">{{ 'add-watch' | translate }}</span>
+        <ion-spinner [hidden]="!submitAttempt"></ion-spinner>
         </button>
       </div>
     
       <div [hidden]="watchModel.id===null">
-          <button ion-button color="accent" type="submit"
+          <button [disabled]="submitAttempt" ion-button color="accent" type="submit"
           > 
-          {{ 'update-watch' | translate }}
+          <span [hidden]="submitAttempt">{{ 'update-watch' | translate }}</span>
+          <ion-spinner [hidden]="!submitAttempt"></ion-spinner>
           </button>
 
-          <button ion-button color="danger"
+          <button [disabled]="submitAttempt" ion-button color="danger"
           (click)="onDelete()"> 
-          {{ 'delete-watch' | translate }}
+          <span [hidden]="submitAttempt">{{ 'delete-watch' | translate }}</span>
+          <ion-spinner [hidden]="!submitAttempt"></ion-spinner>
           </button>
       </div>
 

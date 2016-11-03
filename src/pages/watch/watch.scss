@@ -21,6 +21,13 @@ ion-content#watch{
 		width: 100%;
 	}
 
+	ion-spinner * {
+	  width: 28px;
+	  height: 28px;
+	  stroke: white;
+	  fill: white;
+	}
+
 	
 	input               {
 	  font-size:18px;
