@@ -1,4 +1,4 @@
-`Version: 0.7.52`
+`Version: x.x.x`
  
 ### Expected Behaviour
 *Please, tell us what you'd like to see*
