@@ -69,7 +69,7 @@
 
     #accuracy{
         position:absolute;
-        width:30%;
+        max-width: 30%;
         float:right;
         color:#3B5B7F;
         display:block;
@@ -117,16 +117,17 @@
     }
 
     h2{
-        width:68%;
         font-size:1.2em;
         color:#2a2a2c;
         overflow: hidden;
+        text-overflow: ellipsis;
 
     }
 
     h3{
         width:70%;
         overflow: hidden;
+        text-overflow: ellipsis;
 
         color:#b1b1b3;
     }

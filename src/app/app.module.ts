@@ -23,6 +23,7 @@ import { MobileInput } from '../components/mobile-input/mobile-input';
 
 import { 
   ArethmeticSign, 
+  KFormatter,
   LeadingZero,
   TwAPIService,
   GAService,
@@ -49,6 +50,7 @@ import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-tra
     WatchPage,
     TipsPage,
     ArethmeticSign,
+    KFormatter,
     LeadingZero,
     ClockComponent,
     MoonPhasesComponent,
