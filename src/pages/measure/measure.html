@@ -7,7 +7,7 @@
   <h3 class="top">{{ 'measure-instructions-part-1' | translate }} {{ 'measure-instructions-part-2' | translate }}</h3>
 
   <div [class.active]="active" class="main-button" (click)="measure()">
-    <button  class="sync-button" color="primary"> 
+    <button  [disabled]="active"  class="sync-button" color="primary"> 
     </button>
   </div>
 
