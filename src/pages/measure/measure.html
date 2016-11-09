@@ -71,7 +71,8 @@
   <div class="stats middle">
       <ion-icon ios="md-podium" md="md-podium"></ion-icon>  
       <p class="stats-number">{{ watch.average(3) }}</p>
-      <span class="stats-label">{{'average-spd-3'  | translate }}</span>
+      <span *ngIf="watch.historySize >= 4" class="stats-label">{{'average-spd-3'  | translate }}</span>
+      <span *ngIf="watch.historySize < 4" class="stats-label">{{'average-spd-3-short'  | translate }}</span>
   </div>
 
   <div class="stats">
