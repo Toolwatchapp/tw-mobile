@@ -39,6 +39,7 @@ export class DashboardPage {
 	WatchStatus = WatchStatus;
 	MeasureStatus = MeasureStatus;
 	WatchAction = WatchAction;
+	submitAttempt:boolean = false;
 	public static userChanged = new EventEmitter();
 	static cachedBackgrounds = [];
 	backgrounds = [];
@@ -140,8 +141,39 @@ export class DashboardPage {
 		});
 	}
 
-	deleteWatch(watch:Watch, slidingItem: ItemSliding){
+	deleteMeasure(watch:Watch, slidingItem: ItemSliding){
+		let alert = this.alertController.create({
+			title: this.translate.instant('delete-pending-measure'),
+			message: this.translate.instant('delete-pending-measure-confirm'),
+			buttons: [
+				{
+					text: this.translate.instant('cancel'),
+					role: 'cancel',
+					handler: () => {
+						slidingItem.close();
+					}
+				},
+				{
+					text: this.translate.instant('confirm'),
+					handler: () => {
 
+						this.submitAttempt = true;
+
+						this.twapi.deleteMeasure(watch, watch.currentMeasure()).then(
+							res => { 
+								this.submitAttempt = false;
+								this.user.upsertWatch(res);
+								slidingItem.close();
+							}
+						);
+					}
+				}
+			]
+		});
+		alert.present();
+	}
+
+	deleteWatch(watch:Watch, slidingItem: ItemSliding){
 
 		let alert = this.alertController.create({
 			title: this.translate.instant('delete-watch-alert'),
@@ -152,15 +184,15 @@ export class DashboardPage {
 					role: 'cancel',
 					handler: () => {
 						slidingItem.close();
-						console.log('Cancel clicked');
 					}
 				},
 				{
 					text: this.translate.instant('confirm'),
 					handler: () => {
-
+						this.submitAttempt = true;
 						this.twapi.deleteWatch(this.user, watch).then(
 							res => {
+								this.submitAttempt = false;
 								this.user = res;
 							}
 						);

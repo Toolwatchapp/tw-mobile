@@ -95,18 +95,21 @@
 
             </div>
 
-
-
           </ion-item>
           <ion-item-options side="left">
-            <button (click)="deleteWatch(watch, slidingItem)" color="danger" ion-button icon-only>
-              <ion-icon  name="ios-trash-outline"></ion-icon>
+            <button [disabled]="submitAttempt" (click)="deleteWatch(watch, slidingItem)" color="danger" ion-button icon-only>
+              <ion-icon [hidden]="submitAttempt" name="md-watch"></ion-icon>
+              <ion-spinner [hidden]="!submitAttempt"></ion-spinner>
+            </button>
+            <button (click)="updateWatch(watch, slidingItem)" color="secondary" ion-button icon-only>
+              <ion-icon name="ios-build-outline"></ion-icon>
             </button>
 
           </ion-item-options>
-          <ion-item-options side="right">
-            <button (click)="updateWatch(watch, slidingItem)" color="secondary" ion-button icon-only>
-              <ion-icon name="ios-build-outline"></ion-icon>
+          <ion-item-options *ngIf="watch.next !== WatchAction.Measure" side="right">
+            <button [disabled]="submitAttempt" (click)="deleteMeasure(watch, slidingItem)" color="danger" ion-button icon-only>
+              <ion-icon [hidden]="submitAttempt" name="ios-stopwatch-outline"></ion-icon>
+              <ion-spinner [hidden]="!submitAttempt"></ion-spinner>
             </button>
           </ion-item-options>
         </ion-item-sliding>
