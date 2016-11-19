@@ -36,20 +36,7 @@ export class LogInPage extends LoginComponent{
 		twapi: TwAPIService, 
 		builder: FormBuilder
 	) {
-
-
-
 		super(translate, twapi, builder);
-
-				console.log(
-			nav,
-			loadingController,
-			storage,
-			translate,
-			twapi, 
-			builder
-		);
-
 
 		GAService.screenview("LOGIN");
 
