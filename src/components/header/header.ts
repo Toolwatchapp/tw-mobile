@@ -28,6 +28,6 @@ export class Header {
 	}
 
 	onChat(){
-		let browser = new InAppBrowser('https://go.crisp.im/chat/embed/?website_id=-K4rBEcM_Qbt6JrISVzu', '_system');
+		new InAppBrowser('https://go.crisp.im/chat/embed/?website_id=-K4rBEcM_Qbt6JrISVzu', '_system');
 	}
 }
