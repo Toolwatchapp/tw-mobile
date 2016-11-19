@@ -1,8 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
-import { StatusBar } from 'ionic-native';
+import { StatusBar, AppVersion  } from 'ionic-native';
 
 import { LogInPage } from '../pages/login/login';
+import { GAService } from '../core';
+
 
 @Component({
   template: `<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>`
@@ -20,6 +22,17 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
+
+
+      AppVersion.getVersionNumber().then(
+        (version)=> GAService.appVersion = version
+      );
+
+      if(platform.is('ios')){
+        GAService.appName = "ios";
+      }else{
+        GAService.appName = "android";
+      }
     });
   }
 }

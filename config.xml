@@ -98,4 +98,5 @@
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <plugin name="cordova-plugin-apprate" spec="~1.2" />
     <plugin name="cordova-plugin-inappbrowser" spec="~1.5.0" />
+    <plugin name="cordova-plugin-app-version" spec="~0.1.9" />
 </widget>
