@@ -8,7 +8,7 @@ import {
 	Watch,
 	WatchComponent,
 	GAService
-} from './../../share/src/app/';
+} from '../../core';
 
 import {DashboardPage} from '../dashboard/dashboard';
 

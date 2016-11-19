@@ -23,7 +23,7 @@ import {
 	MeasureStatus,
 	GAService,
 	User
-} from './../../share/src/app/';
+} from '../../core';
 
 import {
 	TranslateService,

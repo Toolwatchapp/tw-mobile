@@ -14,7 +14,7 @@ import {
 	TwAPIService, 
 	GAService,
 	User
-} from './../../share/src/app/';
+} from '../../core';
 
 import {TranslateService} from 'ng2-translate/ng2-translate';
 
@@ -37,7 +37,18 @@ export class LogInPage extends LoginComponent{
 		builder: FormBuilder
 	) {
 
+
+
 		super(translate, twapi, builder);
+
+				console.log(
+			nav,
+			loadingController,
+			storage,
+			translate,
+			twapi, 
+			builder
+		);
 
 
 		GAService.screenview("LOGIN");

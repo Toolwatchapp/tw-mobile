@@ -12,8 +12,9 @@ export class MyApp {
   rootPage: any = LogInPage;
 
   constructor(
-    private platform: Platform
+    private platform: Platform,
   ) {
+
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

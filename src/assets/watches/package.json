@@ -1,0 +1,59 @@
+{
+  "_args": [
+    [
+      "../tw-watches",
+      "/home/math/www/tw-mobile"
+    ]
+  ],
+  "_from": "../tw-watches",
+  "_id": "toolwatch-watches@0.1.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/toolwatch-watches",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": null,
+    "raw": "../tw-watches",
+    "rawSpec": "../tw-watches",
+    "scope": null,
+    "spec": "/home/math/www/tw-watches",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../tw-watches",
+  "_shasum": "9c13598ba1928635c397e5760d50fd33949b8157",
+  "_shrinkwrap": null,
+  "_spec": "../tw-watches",
+  "_where": "/home/math/www/tw-mobile",
+  "author": {
+    "email": "mathieu.nayrolles@gmail.com",
+    "name": "Mathieu Nayrolles"
+  },
+  "bugs": {
+    "url": "https://github.com/toolwatchapp/watches/issues"
+  },
+  "dependencies": {},
+  "description": "Models and brands available for auto-completion in toolwatch apps and websites.",
+  "devDependencies": {},
+  "files": [
+    "ico_watches",
+    "logo_watches",
+    "watch-brand.json",
+    "watch-models"
+  ],
+  "gitHead": "a006d54c144f5faf3a1bb939002d0de0b164298e",
+  "homepage": "https://github.com/toolwatchapp/watches#readme",
+  "license": "MIT",
+  "name": "toolwatch-watches",
+  "optionalDependencies": {},
+  "private": true,
+  "readme": "# tw-watches\nModels and brands available for auto-completion in toolwatch apps and websites.\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toolwatchapp/watches.git"
+  },
+  "version": "0.1.0"
+}

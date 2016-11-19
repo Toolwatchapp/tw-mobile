@@ -2,7 +2,7 @@ import {Loading, LoadingController, NavController, NavParams} from 'ionic-angula
 
 import {Component} from '@angular/core';
 
-import {TwAPIService, BlogPost, GAService} from './../../share/src/app/';
+import {TwAPIService, BlogPost, GAService} from '../../core';
 
 import {TranslateService} from 'ng2-translate/ng2-translate';
 

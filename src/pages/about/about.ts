@@ -9,7 +9,7 @@ import {
 
 import {
     GAService
-} from './../../share/src/app/';
+} from '../../core';
 
 import {
     TranslateService

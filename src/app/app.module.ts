@@ -4,6 +4,7 @@ import { MyApp } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
+import { BrowserModule } from '@angular/platform-browser';
 
 //Ionic Pages
 import { AboutPage } from '../pages/about/about';
@@ -21,22 +22,22 @@ import { Header } from '../components/header/header';
 import { MobileError } from '../components/mobile-error/mobile-error';
 import { MobileInput } from '../components/mobile-input/mobile-input';
 
-import { 
-  ArethmeticSign, 
-  KFormatter,
-  LeadingZero,
-  TwAPIService,
-  GAService,
-  ClockComponent,
-  MoonPhasesComponent,
-  LoginComponent,
-  SignupComponent,
-  WatchComponent
-} from '../share/src/app';
-
-
 //Common Pipes
 import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-translate/ng2-translate';
+
+import { TwAPIService, GAService } from '../core';
+
+import { 
+  ArethmeticSign,
+  LeadingZero,
+  KFormatter,
+  MoonPhasesComponent
+} from '../core'
+
+
+export function createTranslateLoader(http: Http) {
+    return new TranslateStaticLoader(http, './assets/i18n', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -49,21 +50,20 @@ import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-tra
     TimePage,
     WatchPage,
     TipsPage,
-    ArethmeticSign,
-    KFormatter,
-    LeadingZero,
-    ClockComponent,
-    MoonPhasesComponent,
-    LoginComponent,
-    SignupComponent,
-    WatchComponent,
     Footer,
     Header,
     MobileError,
-    MobileInput
+    MobileInput,
+    ArethmeticSign,
+    LeadingZero,
+    KFormatter,
+    MoonPhasesComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp),
+    FormsModule,
+    HttpModule,
+    BrowserModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
@@ -86,10 +86,6 @@ import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-tra
     TipsPage,
     WatchPage
   ],
-  providers: [TwAPIService, GAService, Storage]
+  providers: [Storage, TwAPIService, GAService]
 })
 export class AppModule {}
-
-export function createTranslateLoader(http: Http) {
-    return new TranslateStaticLoader(http, './assets/i18n', '.json');
-}

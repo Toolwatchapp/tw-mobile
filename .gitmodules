@@ -1,9 +1,9 @@
-[submodule "src/share"]
-	path = src/share
-	url = https://github.com/Toolwatchapp/tw-common
 [submodule "src/assets/i18n"]
 	path = src/assets/i18n
 	url = https://github.com/Toolwatchapp/tw-i18n
 [submodule "src/assets/watches"]
 	path = src/assets/watches
 	url = https://github.com/Toolwatchapp/tw-watches
+[submodule "src/core"]
+	path = src/core
+	url = https://github.com/Toolwatchapp/tw-core

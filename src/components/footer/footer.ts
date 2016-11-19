@@ -22,7 +22,7 @@ import {
 	User, 
 	Watch, 
 	WatchAction
-} from './../../share/src/app';
+} from '../../core';
 
 import {
 	TranslateService
