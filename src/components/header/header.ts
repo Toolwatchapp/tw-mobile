@@ -1,5 +1,6 @@
 import {NavController} from 'ionic-angular';
 import {Component, ElementRef, Input} from '@angular/core';
+import {InAppBrowser} from 'ionic-native';
 
 
 @Component({
@@ -11,7 +12,7 @@ export class Header {
 	@Input()
 	slogan:string = "slogan";
 	@Input()
-	chat: boolean = false;
+	chat: boolean = true;
 	@Input()
 	back:boolean = false;
 	@Input()
@@ -24,10 +25,9 @@ export class Header {
 
 	onBack(){
 		this.nav.pop();
-		console.log("back");
 	}
 
 	onChat(){
-		console.log("chat");
+		let browser = new InAppBrowser('https://go.crisp.im/chat/embed/?website_id=-K4rBEcM_Qbt6JrISVzu', '_system');
 	}
 }
