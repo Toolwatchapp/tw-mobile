@@ -6,7 +6,8 @@ import {
 	NavParams,
 	ModalController
 } from 'ionic-angular';
-import {SocialSharing} from 'ionic-native';
+
+import { SocialSharing, AppRate } from 'ionic-native';
 
 import {Component, ElementRef} from '@angular/core';
 
@@ -244,6 +245,26 @@ export class MeasurePage {
 		GAService.event("API", "MEASURE", "SECOND");
 
 		this.step = 3;
+
+		setTimeout(() => {
+			AppRate.preferences.storeAppURL = {
+				ios: '1105636950',
+				android: 'market://details?id=toolwatch.toolwatch',
+			};
+
+			AppRate.preferences.customLocale = {
+				title: "Rate Toolwatch",
+				message: "If you enjoy using Toolwatch, would you mind taking a moment to rate it? It won’t take more than a minute. Thanks for your support!",
+				cancelButtonLabel: "No, Thanks",
+				laterButtonLabel: "Remind Me Later",
+				rateButtonLabel: "Rate It Now"
+			};
+			AppRate.preferences.usesUntilPrompt = 1;
+			AppRate.preferences.promptAgainForEachNewVersion = true;
+
+			AppRate.promptForRating(false);
+		}, 3000);
+
 	}
 
 	/**
