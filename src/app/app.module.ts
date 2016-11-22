@@ -4,7 +4,6 @@ import { MyApp } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
-import { BrowserModule } from '@angular/platform-browser';
 
 //Ionic Pages
 import { AboutPage } from '../pages/about/about';
@@ -60,10 +59,7 @@ export function createTranslateLoader(http: Http) {
     MoonPhasesComponent
   ],
   imports: [
-    IonicModule.forRoot(MyApp),
-    FormsModule,
-    HttpModule,
-    BrowserModule,
+     IonicModule.forRoot(MyApp),
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
