@@ -8,7 +8,7 @@ import {DashboardPage} from '../dashboard/dashboard';
 
 import {SignupPage} from '../signup/signup';
 
-import {Header} from '../../components/header';
+import {Header} from '../../components/header/header';
 
 import {
 	LoginComponent,
@@ -153,8 +153,8 @@ export class LogInPage extends LoginComponent{
 		this.nav.setRoot(DashboardPage, {
 			user:user
 		});
-		Header.name = user.name + " " + user.lastname;
-		Header.email = user.email;
+		GAService.userName = user.name + " " + user.lastname;
+		GAService.userEmail = user.email;
 		console.log("setting tw-api to", user.key);
 		this.storage.set('tw-api', user.key);
 	}
