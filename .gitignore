@@ -28,6 +28,8 @@ plugins/android.json
 plugins/ios.json
 www/
 $RECYCLE.BIN/
+src/assets/i18n/
+src/assets/watches/
 
 .DS_Store
 Thumbs.db
