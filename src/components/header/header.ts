@@ -2,6 +2,10 @@ import {NavController} from 'ionic-angular';
 import {Component, ElementRef, Input} from '@angular/core';
 import {InAppBrowser} from 'ionic-native';
 
+import {
+	LoginComponent,
+	User
+} from '../../core';
 
 @Component({
 	templateUrl: 'header.html',
@@ -18,16 +22,27 @@ export class Header {
 	@Input()
 	topBg:string = "handBg";
 
+	public static email:string = null;
+	public static name:string = null;
+
 	constructor(
-		private nav: NavController, 
-		private elementRef: ElementRef
-	) { }
+		private nav: NavController
+	) { 
+	}
 
 	onBack(){
 		this.nav.pop();
 	}
 
 	onChat(){
-		new InAppBrowser('https://go.crisp.im/chat/embed/?website_id=-K4rBEcM_Qbt6JrISVzu', '_system');
+		let browser = new InAppBrowser('https://go.crisp.im/chat/embed/?website_id=-K4rBEcM_Qbt6JrISVzu', '_system');
+
+		if(Header.email != null && Header.name != null){
+			let script:string = 'window.CRISP_READY_TRIGGER = function() {'
+			+	'$crisp.set("user:email", "'+ Header.email +'");'
+			+	'$crisp.set("user:nickname", "'+   Header.name +'");'
+			+'};'
+			browser.executeScript({code: script});
+		}
 	}
 }
