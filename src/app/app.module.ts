@@ -24,14 +24,16 @@ import { MobileInput } from '../components/mobile-input/mobile-input';
 //Common Pipes
 import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-translate/ng2-translate';
 
-import { TwAPIService, GAService } from '../core';
+import { TwAPIService, GAService } from 'tw-core';
+
+import { TwCoreModule } from 'tw-core';
 
 import { 
   ArethmeticSign,
   LeadingZero,
   KFormatter,
   MoonPhasesComponent
-} from '../core'
+} from 'tw-core'
 
 
 export function createTranslateLoader(http: Http) {
@@ -52,24 +54,13 @@ export function createTranslateLoader(http: Http) {
     Footer,
     Header,
     MobileError,
-    MobileInput,
-    ArethmeticSign,
-    LeadingZero,
-    KFormatter,
-    MoonPhasesComponent
+    MobileInput
   ],
   imports: [
-     IonicModule.forRoot(MyApp),
-    FormsModule,
-    HttpModule,
-    ReactiveFormsModule,
-    TranslateModule.forRoot({ 
-          provide: TranslateLoader,
-          useFactory: (createTranslateLoader),
-          deps: [Http]
-        })
+    IonicModule.forRoot(MyApp),
+    TwCoreModule
   ],
-  exports: [HttpModule, TranslateModule],
+  exports: [],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
@@ -82,6 +73,6 @@ export function createTranslateLoader(http: Http) {
     TipsPage,
     WatchPage
   ],
-  providers: [Storage, TwAPIService, GAService]
+  providers: [Storage]
 })
 export class AppModule {}
