@@ -1,5 +1,5 @@
 import {NavController} from 'ionic-angular';
-import {Component, ElementRef, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {InAppBrowser} from 'ionic-native';
 
 import {

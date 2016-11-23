@@ -5,10 +5,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 import {DashboardPage} from '../dashboard/dashboard';
-
 import {SignupPage} from '../signup/signup';
-
-import {Header} from '../../components/header/header';
 
 import {
 	LoginComponent,
