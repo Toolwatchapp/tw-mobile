@@ -25,6 +25,8 @@ export class MyApp {
 
       AppVersion.getVersionNumber().then(
         (version)=> GAService.appVersion = version
+      ).catch(
+        (err)=> {GAService.appVersion = "0.0.0"}
       );
 
       if(platform.is('ios')){
