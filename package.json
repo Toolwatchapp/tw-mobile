@@ -79,7 +79,7 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard"
   ],
-  "version": "0.9.1",
+  "version": "1.0.0",
   "cordovaPlatforms": [],
   "config": {
     "commitizen": {
