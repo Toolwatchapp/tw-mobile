@@ -31,8 +31,11 @@ export class Header {
 	}
 
 	onChat(){
-		let browser = new InAppBrowser('https://go.crisp.im/chat/embed/?website_id=-K4rBEcM_Qbt6JrISVzu', '_system');
+		let browser = new InAppBrowser('https://go.crisp.im/chat/embed/?website_id=-K4rBEcM_Qbt6JrISVzu', '_blank');
 
+		/**
+		 * Don't do inject if user isn't logged yet
+		 */
 		if(GAService.userEmail != null && GAService.userName != null){
 
 
@@ -40,7 +43,6 @@ export class Header {
 			+	'$crisp.set("user:email", "'+ GAService.userEmail +'");'
 			+	'$crisp.set("user:nickname", "'+   GAService.userName +'");'
 			+''
-			console.log(script);
 			browser.executeScript({code: script});
 		}
 	}
