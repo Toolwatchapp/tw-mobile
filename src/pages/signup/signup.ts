@@ -1,5 +1,5 @@
 import {NavController, NavParams, Loading, LoadingController} from 'ionic-angular';
-
+import { Storage } from '@ionic/storage';
 import { Component } from '@angular/core';
 
 import {DashboardPage} from '../dashboard/dashboard';
@@ -27,6 +27,7 @@ export class SignupPage extends SignupComponent{
     private nav: NavController, 
     private navParams: NavParams, 
     private loadingController: LoadingController,
+    private storage: Storage,
     //injection for SignupComponent
     translate: TranslateService, 
     twapi: TwAPIService,  
@@ -37,11 +38,16 @@ export class SignupPage extends SignupComponent{
 
     GAService.screenview("SIGNUP");
 
-  	this.userLogged.subscribe(
-  		user => this.nav.setRoot(DashboardPage, {
-  			user:user
-  		})
-  	);
+  	this.userLogged.subscribe(user => {
+          this.nav.setRoot(DashboardPage, {
+            user:user
+          });
+          GAService.userName = user.name + " " + user.lastname;
+		      GAService.userEmail = user.email;
+		      console.log("setting tw-api to", user.key);
+		      this.storage.set('tw-api', user.key);
+    });
+      
 
     this.signupAttempt.subscribe(
       attempt => {
