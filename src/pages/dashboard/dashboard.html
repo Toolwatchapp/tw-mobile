@@ -6,7 +6,7 @@
 <div *ngIf="user && user.watches.length == 0" class="no-watch">
   <h1>{{ 'no-watch' | translate }}</h1>
   <p>{{ 'no-watch-sub' | translate }}</p>
-  <button primary (click)="newWatch()">
+  <button color="primary" (click)="newWatch()" ion-button>
       {{ 'new-watch' | translate }}
   </button>
 </div>
