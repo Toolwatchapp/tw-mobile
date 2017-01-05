@@ -23,7 +23,7 @@ import {
 	MeasureStatus,
 	GAService,
 	User
-} from '../../core';
+} from 'tw-core';
 
 import {
 	TranslateService,

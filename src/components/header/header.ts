@@ -4,7 +4,7 @@ import {InAppBrowser} from 'ionic-native';
 
 import {
 	GAService
-} from '../../core';
+} from 'tw-core';
 
 @Component({
 	templateUrl: 'header.html',

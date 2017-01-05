@@ -22,7 +22,7 @@ import {
 	User, 
 	Watch, 
 	WatchAction
-} from '../../core';
+} from 'tw-core';
 
 import {
 	TranslateService

@@ -9,7 +9,7 @@ import {
 
 import {
     GAService
-} from '../../core';
+} from 'tw-core';
 
 import {
     TranslateService

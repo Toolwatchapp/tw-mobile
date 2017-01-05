@@ -1,35 +1,61 @@
 {
   "_args": [
     [
-      "../tw-watches",
-      "/home/math/www/tw-mobile"
+      {
+        "raw": "tw-watches@git+https://github.com/Toolwatchapp/tw-watches.git",
+        "scope": null,
+        "escapedName": "tw-watches",
+        "name": "tw-watches",
+        "rawSpec": "git+https://github.com/Toolwatchapp/tw-watches.git",
+        "spec": "git+https://github.com/Toolwatchapp/tw-watches.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:Toolwatchapp/tw-watches.git",
+          "sshUrl": "git+ssh://git@github.com/Toolwatchapp/tw-watches.git",
+          "httpsUrl": "git+https://github.com/Toolwatchapp/tw-watches.git",
+          "gitUrl": "git://github.com/Toolwatchapp/tw-watches.git",
+          "shortcut": "github:Toolwatchapp/tw-watches",
+          "directUrl": "https://raw.githubusercontent.com/Toolwatchapp/tw-watches/master/package.json"
+        }
+      },
+      "/mnt/dev/1-NodeWorkspace/toolwatch/tw-mobile"
     ]
   ],
-  "_from": "../tw-watches",
-  "_id": "toolwatch-watches@0.1.0",
+  "_from": "git+https://github.com/Toolwatchapp/tw-watches.git",
+  "_id": "tw-watches@0.1.0",
   "_inCache": true,
-  "_installable": true,
-  "_location": "/toolwatch-watches",
+  "_location": "/tw-watches",
   "_phantomChildren": {},
   "_requested": {
-    "name": null,
-    "raw": "../tw-watches",
-    "rawSpec": "../tw-watches",
+    "raw": "tw-watches@git+https://github.com/Toolwatchapp/tw-watches.git",
     "scope": null,
-    "spec": "/home/math/www/tw-watches",
-    "type": "directory"
+    "escapedName": "tw-watches",
+    "name": "tw-watches",
+    "rawSpec": "git+https://github.com/Toolwatchapp/tw-watches.git",
+    "spec": "git+https://github.com/Toolwatchapp/tw-watches.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:Toolwatchapp/tw-watches.git",
+      "sshUrl": "git+ssh://git@github.com/Toolwatchapp/tw-watches.git",
+      "httpsUrl": "git+https://github.com/Toolwatchapp/tw-watches.git",
+      "gitUrl": "git://github.com/Toolwatchapp/tw-watches.git",
+      "shortcut": "github:Toolwatchapp/tw-watches",
+      "directUrl": "https://raw.githubusercontent.com/Toolwatchapp/tw-watches/master/package.json"
+    }
   },
   "_requiredBy": [
-    "#USER"
+    "/"
   ],
-  "_resolved": "file:../tw-watches",
-  "_shasum": "9c13598ba1928635c397e5760d50fd33949b8157",
+  "_resolved": "git+https://github.com/Toolwatchapp/tw-watches.git#5bac8c1a47c62df6099f9a5e5610c2d6cebf8a8e",
+  "_shasum": "5c292fa062ea045e2b4316a146a9ac2a56518692",
   "_shrinkwrap": null,
-  "_spec": "../tw-watches",
-  "_where": "/home/math/www/tw-mobile",
+  "_spec": "tw-watches@git+https://github.com/Toolwatchapp/tw-watches.git",
+  "_where": "/mnt/dev/1-NodeWorkspace/toolwatch/tw-mobile",
   "author": {
-    "email": "mathieu.nayrolles@gmail.com",
-    "name": "Mathieu Nayrolles"
+    "name": "Mathieu Nayrolles",
+    "email": "mathieu.nayrolles@gmail.com"
   },
   "bugs": {
     "url": "https://github.com/toolwatchapp/watches/issues"
@@ -40,13 +66,13 @@
   "files": [
     "ico_watches",
     "logo_watches",
-    "watch-brand.json",
-    "watch-models"
+    "watch-models",
+    "watch-brand.json"
   ],
-  "gitHead": "a006d54c144f5faf3a1bb939002d0de0b164298e",
+  "gitHead": "5bac8c1a47c62df6099f9a5e5610c2d6cebf8a8e",
   "homepage": "https://github.com/toolwatchapp/watches#readme",
   "license": "MIT",
-  "name": "toolwatch-watches",
+  "name": "tw-watches",
   "optionalDependencies": {},
   "private": true,
   "readme": "# tw-watches\nModels and brands available for auto-completion in toolwatch apps and websites.\n",

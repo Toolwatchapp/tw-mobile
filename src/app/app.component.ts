@@ -3,20 +3,18 @@ import { Platform, Nav } from 'ionic-angular';
 import { StatusBar, AppVersion  } from 'ionic-native';
 
 import { LogInPage } from '../pages/login/login';
-import { GAService } from '../core';
-
+import { GAService } from 'tw-core';
 
 @Component({
   template: `<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>`
 })
-export class MyApp {
+export class MyApp{
   @ViewChild(Nav) nav: Nav;
   rootPage: any = LogInPage;
 
   constructor(
-    private platform: Platform,
+    platform: Platform
   ) {
-
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -37,3 +35,4 @@ export class MyApp {
     });
   }
 }
+

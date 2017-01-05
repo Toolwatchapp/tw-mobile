@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
-import { IonicApp, IonicModule } from 'ionic-angular';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
+import {BrowserModule} from '@angular/platform-browser';
 
 //Ionic Pages
 import { AboutPage } from '../pages/about/about';
@@ -24,15 +25,9 @@ import { MobileInput } from '../components/mobile-input/mobile-input';
 //Common Pipes
 import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-translate/ng2-translate';
 
-import { TwAPIService, GAService } from '../core';
+import { TwAPIService, GAService } from 'tw-core';
 
-import { 
-  ArethmeticSign,
-  LeadingZero,
-  KFormatter,
-  MoonPhasesComponent
-} from '../core'
-
+import { TwCoreModule } from 'tw-core';
 
 export function createTranslateLoader(http: Http) {
     return new TranslateStaticLoader(http, './assets/i18n', '.json');
@@ -52,22 +47,20 @@ export function createTranslateLoader(http: Http) {
     Footer,
     Header,
     MobileError,
-    MobileInput,
-    ArethmeticSign,
-    LeadingZero,
-    KFormatter,
-    MoonPhasesComponent
+    MobileInput
   ],
   imports: [
-     IonicModule.forRoot(MyApp),
+    TwCoreModule,
+    IonicModule.forRoot(MyApp),
     FormsModule,
-    HttpModule,
     ReactiveFormsModule,
+    BrowserModule,
+    HttpModule,
     TranslateModule.forRoot({ 
           provide: TranslateLoader,
           useFactory: (createTranslateLoader),
           deps: [Http]
-        })
+    })
   ],
   exports: [HttpModule, TranslateModule],
   bootstrap: [IonicApp],
@@ -82,6 +75,6 @@ export function createTranslateLoader(http: Http) {
     TipsPage,
     WatchPage
   ],
-  providers: [Storage, TwAPIService, GAService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage, TwAPIService, GAService]
 })
 export class AppModule {}

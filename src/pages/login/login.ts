@@ -12,7 +12,7 @@ import {
 	TwAPIService, 
 	GAService,
 	User
-} from '../../core';
+} from 'tw-core';
 
 import {TranslateService} from 'ng2-translate/ng2-translate';
 
@@ -30,11 +30,11 @@ export class LogInPage extends LoginComponent{
 		private loadingController: LoadingController,
    		private storage: Storage ,
 		//Injections for LoginComponent	
-		translate: TranslateService,
-		twapi: TwAPIService, 
-		builder: FormBuilder
+		translate: TranslateService, 
+		twapi  : TwAPIService, 
+		formBuilder  : FormBuilder
 	) {
-		super(translate, twapi, builder);
+		super(translate, twapi, formBuilder);
 
 		GAService.screenview("LOGIN");
 
@@ -52,7 +52,7 @@ export class LogInPage extends LoginComponent{
 
 		this.initOnResume();
 
-       this.fetchUser().then(
+       	this.fetchUser().then(
           user => {
           	this.userLogged.emit(user);
           },

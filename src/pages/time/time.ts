@@ -7,7 +7,7 @@ import {
 	ClockComponent,
 	User,
 	GAService
-} from '../../core';
+} from 'tw-core';
 
 import {TranslateService} from 'ng2-translate/ng2-translate';
 
