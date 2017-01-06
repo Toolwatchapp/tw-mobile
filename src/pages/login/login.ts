@@ -121,7 +121,7 @@ export class LogInPage extends LoginComponent{
 		});
 	}
 
-
+ 
 	/**
 	 * Display loading animation when user attempt to log
 	 * @param {boolean} attempt
@@ -222,3 +222,4 @@ export class LogInPage extends LoginComponent{
     });
   }
 }
+
