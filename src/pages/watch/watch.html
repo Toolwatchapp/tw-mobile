@@ -7,9 +7,8 @@
     [formGroup]="watchForm"
     (ngSubmit)="onSubmit()"
   >     
-<!-- 
-    <pre>{{watchForm.value | json}}</pre>
-    <pre>{{watchModel | json}}</pre> -->
+ 
+
 
     <mobile-error [errors] = "errors"></mobile-error>
 
@@ -18,7 +17,6 @@
       [control]       = "watchForm.controls['brand']" 
       [errorLabel]    = "'brand-required'"
       [submitAttempt] = "submitAttempt"
-      [autoComplete]  = false
       [model]         = true
       [(value)]       = "watchModel.brand"
       (valueChange)   = filterBrand($event)
@@ -37,6 +35,7 @@
     <mobile-input 
       [id]            = "'name'"
       [label]         = "'model'"
+      [errorLabel]    = "'model-required'"
       [control]       = "watchForm.controls['name']" 
       [submitAttempt] = "submitAttempt"
       [model]         = true
@@ -84,19 +83,19 @@
 
       <div  [hidden]="watchModel.id!==null">
         <button
-        [disabled]="submitAttempt"
+        [disabled]="watchForm.valid && submitAttempt && error == false"
         ion-button  
         color="primary" type="submit"> 
-        <span [hidden]="submitAttempt">{{ 'add-watch' | translate }}</span>
-        <ion-spinner [hidden]="!submitAttempt"></ion-spinner>
+        <span [hidden]="submitAttempt && watchForm.valid && error == false">{{ 'add-watch' | translate }}</span>
+        <ion-spinner [hidden]="!submitAttempt || !watchForm.valid || error"></ion-spinner>
         </button>
       </div>
     
       <div [hidden]="watchModel.id===null">
-          <button [disabled]="submitAttempt" ion-button color="accent" type="submit"
+          <button [disabled]="submitAttempt && watchForm.valid" ion-button color="accent" type="submit"
           > 
           <span [hidden]="submitAttempt">{{ 'update-watch' | translate }}</span>
-          <ion-spinner [hidden]="!submitAttempt"></ion-spinner>
+          <ion-spinner [hidden]="!submitAttempt  && watchForm.valid"></ion-spinner>
           </button>
 
           <button [disabled]="submitAttempt" ion-button color="danger"
