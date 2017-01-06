@@ -31,7 +31,7 @@
     "rxjs": "5.0.0-beta.12",
     "tw-core": "file:///mnt/dev/1-NodeWorkspace/toolwatch/tw-core",
     "tw-i18n": "git+https://github.com/Toolwatchapp/tw-i18n.git",
-    "tw-watches": "git+https://github.com/Toolwatchapp/tw-watches.git",
+    "tw-watches": "github:toolwatchapp/tw-watches",
     "zone.js": "0.6.26"
   },
   "devDependencies": {
