@@ -21,6 +21,7 @@
 	"brand": "Brand",
 	"brand-required": "A brand name is required",
 	"model": "Model",
+	"model-required": "A model is required",
 	"caliber": "Caliber",
 	"year": "Year of purchase",
 	"year-required": "Year of purchase must have 4 digits",
