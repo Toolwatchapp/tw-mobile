@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="Toolwatch.Toolwatch" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="Toolwatch.Toolwatch" version="1.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Toolwatch - Watch accuracy app</name>
   <description>Measure and track the accuracy of your mechanical watches. Toolwatch is a free watch accuracy app trusted by the watchmaking industry's leaders and 15 000+ monthly users. Is your watch accurate? Should it be serviced? How does it compare versus other watches? Find out now by measuring the accuracy of your watch!</description>
   <author email="mathieu@toolwatch.io" href="https://toolwatch.io/">Mathieu Nayrolles</author>

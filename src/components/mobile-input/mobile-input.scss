@@ -1,6 +1,11 @@
 mobile-input{
 
-
+	.selectable {
+	  -webkit-user-select: text;
+	  -moz-user-select: text;
+	  -ms-user-select: text;
+	  user-select: text;
+	}
 
 	.text-input               {
 	  font-size:18px !important;
