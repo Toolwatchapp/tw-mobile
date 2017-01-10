@@ -10,5 +10,11 @@
 <h1> {{ 'about-works-title' | translate }} </h1>
 <p> {{ 'about-works' | translate }}  </p>
 
+<button color="primary" (click)="buyUsBeer()" ion-button icon-left>
+	<ion-icon name="ios-beer-outline"></ion-icon>
+    {{ 'buy-us-beer' | translate }}
+</button>
+
+
 </ion-content>
 <footer-nav [user]="user"></footer-nav>

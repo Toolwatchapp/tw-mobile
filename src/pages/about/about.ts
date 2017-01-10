@@ -1,6 +1,7 @@
 import {
     NavParams
 } from 'ionic-angular';
+import {InAppBrowser} from 'ionic-native';
 
 import {
     Component
@@ -31,4 +32,8 @@ export class AboutPage {
         GAService.screenview("ABOUT");
 		this.user = this.navParams.get('user');
 	}
+
+    buyUsBeer(){
+        new InAppBrowser('https://ko-fi.com/A872I1N', '_blank');
+    }
 }
