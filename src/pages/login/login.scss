@@ -15,7 +15,7 @@ ion-content#login{
 	}
 
 	#login{
-		margin-top: 10%;
+		margin-top: 5%;
 	}
 
 
@@ -25,6 +25,19 @@ ion-content#login{
 		text-align: center;
 		.ion-logo-facebook{
 			left:5%;
+		}
+	}
+
+	#reset-password{
+		width: 80%;
+		margin-left: 10%;
+		text-align: right;
+		font-style: italic;
+
+		p{
+			margin-top:1%;
+			margin-bottom:0px;
+			padding-bottom: 0px;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-import { Loading, LoadingController, NavController } from 'ionic-angular';
+import { Loading, LoadingController, NavController, AlertController } from 'ionic-angular';
 import { Facebook } from 'ionic-native';
 import { Storage } from '@ionic/storage';
 import { Component } from '@angular/core';
@@ -6,6 +6,7 @@ import { FormBuilder } from '@angular/forms';
 
 import {DashboardPage} from '../dashboard/dashboard';
 import {SignupPage} from '../signup/signup';
+import {MyApp} from '../../app/app.component';
 
 import {
 	LoginComponent,
@@ -28,7 +29,8 @@ export class LogInPage extends LoginComponent{
 		//Own injections
 		private nav: NavController, 
 		private loadingController: LoadingController,
-   		private storage: Storage ,
+   		private storage: Storage,
+		private alertController: AlertController,
 		//Injections for LoginComponent	
 		translate: TranslateService, 
 		twapi  : TwAPIService, 
@@ -62,6 +64,34 @@ export class LogInPage extends LoginComponent{
        );
 	}
 
+	onResetPassword(){
+		let prompt = this.alertController.create({
+			title: this.translate.instant('password-reset'),
+			message: this.translate.instant('password-reset-desc'),
+			inputs: [
+				{
+					name: 'email',
+					placeholder: this.translate.instant('email')
+				},
+			],
+			buttons: [
+				{
+					text: this.translate.instant('cancel'),
+					handler: () => {
+						prompt.dismiss();
+					}
+				},
+				{
+					text: this.translate.instant('ok'),
+					handler: (data) => {
+						this.onPasswordResetSubmit(data.email);
+					}
+				}
+			]
+		});
+		prompt.present();
+	}
+
 	/**
 	 * Login user using facebook
 	 */
@@ -84,14 +114,11 @@ export class LogInPage extends LoginComponent{
 						this.onFbSubmit(
 							{
 							    email: fbUser.email, 
-							    id: fbUser.id,
+							    token: facebookLoginResponse.authResponse.accessToken,
 							    lastname: fbUser.last_name, 
-							    firstname: fbUser.first_name, 
-							    timezone: fbUser.timezone, 
-							    country: fbUser.country
+							    firstname: fbUser.first_name
 							}
 						);
-
 					},
 					//FB Graph API error
 					//Can arise on connection lost or API change
@@ -152,6 +179,7 @@ export class LogInPage extends LoginComponent{
 		});
 		GAService.userName = user.name + " " + user.lastname;
 		GAService.userEmail = user.email;
+		MyApp.userLogged.emit();
 		console.log("setting tw-api to", user.key);
 		this.storage.set('tw-api', user.key);
 	}
