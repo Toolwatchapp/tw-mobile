@@ -4,28 +4,22 @@
 [![devDependency Status][david-dev-badge]][david-dev-badge-url]
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-
 # toolwatchapp-mobile
-Mobile Apps
 
-### Screens
+Thanks for your interest in contributing to the Toolwatch Mobile Apps! :tada:
 
-- [x] Dashboard
-- [x] Add Watch
-- [x] Edit / Delete watch
-- [x] Result
-- [x] Login
-- [x] Signup
-- [x] Time
+This repository contains the code for our apps. The _core_ functionalities (shared accross web & mobiles) are hosted [here](https://github.com/Toolwatchapp/tw-core) while the backend is [here](https://github.com/Toolwatchapp/tw-backend)
 
-### Functionalities
+## Creating an Issue
 
-- [x] List watches
-- [x] Add/edit/delete watches
-- [x] Login (email)
-- [x] Signup (email)
-- [x] Login fb
-- [x] Social share
+If you have a question about using toolwatch, please ask on us on the [Crisp](https://go.crisp.im/chat/embed/?website_id=-K4rBEcM_Qbt6JrISVzu).
+
+If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported](https://github.com/Toolwatchapp/tw-mobile/issues). You can search through existing issues to see if there is a similar one reported. Include closed issues as it may have been closed with a solution.
+
+
+## Creating a Pull Request
+
+We appreciate you taking the time to contribute! Before submitting a pull request, we ask that you please [create an issue](https://github.com/Toolwatchapp/tw-mobile/issues) that explains the bug or feature request and let us know that you plan on creating a pull request for it. If an issue already exists, please comment on that issue letting us know you would like to submit a pull request for it. This helps us to keep track of the pull request and make sure there isn't duplicated effort.
 
 [![Throughput Graph](https://graphs.waffle.io/Toolwatchapp/tw-mobile/throughput.svg)](https://waffle.io/Toolwatchapp/tw-mobile/metrics/throughput)
 
