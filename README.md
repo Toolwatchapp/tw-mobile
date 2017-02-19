@@ -19,7 +19,7 @@ If you think you have found a bug, or have a new feature idea, please start by m
 
 ## Creating a Pull Request
 
-We appreciate you taking the time to contribute! Before submitting a pull request, we ask that you please [create an issue](https://github.com/Toolwatchapp/tw-mobile/issues) that explains the bug or feature request and let us know that you plan on creating a pull request for it. If an issue already exists, please comment on that issue letting us know you would like to submit a pull request for it. This helps us to keep track of the pull request and make sure there isn't duplicated effort.
+We appreciate you taking the time to contribute! Before submitting a pull request, we ask that you please [create an issue](https://github.com/Toolwatchapp/tw-mobile/issues) that explains the bug or feature request and let us know that you plan on creating a pull request for it. If an issue already exists, please comment on that issue letting us know you would like to submit a pull request for it. This helps us to keep track of the pull request and make sure there isn't duplicated effort. You can also look for issues with the pr_state:welcome label (![untitled](https://cloud.githubusercontent.com/assets/7218861/23103611/8014af38-f68b-11e6-8275-517663f83541.png)) if you want to contribute. These issues are ideals for a first contribution as they should be _relatively_ easy to fix. 
 
 [![Throughput Graph](https://graphs.waffle.io/Toolwatchapp/tw-mobile/throughput.svg)](https://waffle.io/Toolwatchapp/tw-mobile/metrics/throughput)
 
