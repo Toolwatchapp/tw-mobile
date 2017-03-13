@@ -3,7 +3,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http';
-import { Storage } from '@ionic/storage';
+import { IonicStorageModule  } from '@ionic/storage';
 import {BrowserModule} from '@angular/platform-browser';
 
 //Ionic Pages
@@ -22,16 +22,15 @@ import { Header } from '../components/header/header';
 import { MobileError } from '../components/mobile-error/mobile-error';
 import { MobileInput } from '../components/mobile-input/mobile-input';
 
-//Common Pipes
-import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-translate/ng2-translate';
+import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 
 import { TwAPIService, GAService } from 'tw-core';
-
 import { TwCoreModule } from 'tw-core';
 
 export function createTranslateLoader(http: Http) {
     return new TranslateStaticLoader(http, './assets/i18n', '.json');
 }
+
 
 @NgModule({
   declarations: [
@@ -56,6 +55,7 @@ export function createTranslateLoader(http: Http) {
     ReactiveFormsModule,
     BrowserModule,
     HttpModule,
+    IonicStorageModule.forRoot(),
     TranslateModule.forRoot({ 
           provide: TranslateLoader,
           useFactory: (createTranslateLoader),

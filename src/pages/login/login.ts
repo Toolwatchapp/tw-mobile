@@ -221,9 +221,13 @@ export class LogInPage extends LoginComponent{
           this.loginAttempt.emit(false);
         },
         error => {
-            console.log("API Key changed");
-            this.loginAttempt.emit(false);
-            this.nav.setRoot(LogInPage);
+			this.loginAttempt.emit(false);
+			
+			//In case the user were on the signup page, let him be
+			//https://github.com/Toolwatchapp/tw-mobile/issues/98
+			if(this.nav.getActive().name != "SignupPage"){
+				this.nav.setRoot(LogInPage);
+			}            
         }
       );
       
@@ -245,6 +249,7 @@ export class LogInPage extends LoginComponent{
       	this.loginAttempt.emit(true);
         return key;
       }else{
+		  console.log(this.nav.getActive().name)
         throw new Error("No valid key");
       }
     });
