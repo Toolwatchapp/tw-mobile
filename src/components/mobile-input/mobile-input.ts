@@ -2,7 +2,7 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 import {   
   FormControl
 } from '@angular/forms';
-
+import { Clipboard } from 'ionic-native';
 
 /*
   Generates a mobile form input
@@ -75,6 +75,19 @@ export class MobileInput {
 	    		this[variablesToInitialize[i]] = this.id;
 	    	}
 	    }
+	}
+
+	onPast(){
+		Clipboard.paste().then(
+			(resolve: string) => {
+				this.value = resolve;
+				this.valueChange.emit(this.value);
+			},
+			(reject: string) => {
+				console.error("Unsucessful pasting")
+			}
+		);
+		
 	}
 
 	toggleFocus():void{
