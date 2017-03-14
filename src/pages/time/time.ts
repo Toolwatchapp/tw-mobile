@@ -19,12 +19,14 @@ export class TimePage extends ClockComponent{
 	//So I can use the math lib in the view
 	//for rounding milliseconds
 	Math:any = Math;
-	interval:number = 100;
+	intervalTime:number = 100;
 	offset:number;
 	user:User;
 	background:string = "time-background";
 	loading:Loading; 
 	twelveHoursFormat:boolean = true;
+	interval:any;
+
 
 	constructor(
 		//own injection
@@ -49,8 +51,14 @@ export class TimePage extends ClockComponent{
 		this.user = this.navParams.get('user');
 
 		document.addEventListener('resume', () => {
+			console.log("resume")
 			this.ngAfterViewInit();
 		});
+	}
+
+	ionViewCanLeave():boolean {
+		clearInterval(this.interval);
+		return true;
 	}
 
 	ngAfterViewInit() {
@@ -60,11 +68,12 @@ export class TimePage extends ClockComponent{
 		this.twapi.accurateTime().then(
 			date => {
 
-				setInterval(()=>{
-						this.date = new Date(this.date.getTime() + this.interval);
+				this.interval = setInterval(()=>{
+						this.date = new Date(this.date.getTime() + this.intervalTime);
 						this.initLocalClocks();
+						console.log(this.date.getMilliseconds());
 					}, 
-					this.interval
+					this.intervalTime
 				);
 
 				setTimeout(()=>{
