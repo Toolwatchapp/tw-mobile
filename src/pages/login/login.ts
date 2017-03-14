@@ -23,7 +23,8 @@ import {TranslateService} from 'ng2-translate/ng2-translate';
 export class LogInPage extends LoginComponent{
 
 	laoding:Loading; 
-	loadindSentence:string; 
+	loadindSentence:string;
+	laodingDashboard:Loading; 
 
 	constructor(	
 		//Own injections
@@ -213,7 +214,7 @@ export class LogInPage extends LoginComponent{
    * user from the API
    */
   private initOnResume(){
-	  console.log("resime");
+
     document.addEventListener('resume', () => {
 
 	if(this.nav.getActive().name != "SignupPage" || this.nav.getActive().name != "LoginPage"){
@@ -221,17 +222,22 @@ export class LogInPage extends LoginComponent{
 		this.translate.get('loading-dashboard').subscribe(
 			sentenceLoading => {
 
-				let laodingDashboard = this.loadingController.create({content: sentenceLoading})
-				laodingDashboard.present();
+				this.laodingDashboard = this.loadingController.create({content: sentenceLoading})
+				this.laodingDashboard.present();
 
 				this.fetchUser().then(
 					user => {
 						this.onSuccessLogging(user)
-						laodingDashboard.dismiss();
+
+						setTimeout(()=>{
+							this.laodingDashboard.dismiss();
+						}, 500);
 					},
 					error => {
 						this.nav.setRoot(LogInPage);
-						laodingDashboard.dismiss();        
+						setTimeout(()=>{
+							this.laodingDashboard.dismiss();
+						}, 500);       
 					}
 				);
 			}

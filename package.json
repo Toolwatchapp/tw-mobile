@@ -22,15 +22,16 @@
     "@angular/platform-browser-dynamic": "2.4.8",
     "@angular/platform-server": "2.4.8",
     "@ionic/storage": "^2.0.0",
-    "ng2-translate": "5.0.0",
     "@types/node": "^6.0.45",
     "gsap": "^1.19.0",
     "ionic-angular": "2.2.0",
     "ionic-native": "2.4.1",
     "ionicons": "3.0.0",
     "moment": "2.15.1",
+    "ng2-translate": "5.0.0",
     "rxjs": "5.0.1",
     "sw-toolbox": "3.4.0",
+    "tw-core": "git+https://github.com/Toolwatchapp/tw-core.git",
     "tw-i18n": "github:toolwatchapp/tw-i18n",
     "tw-watches": "github:toolwatchapp/tw-watches",
     "zone.js": "0.7.2"
@@ -49,7 +50,7 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard"
   ],
-  "version": "1.1.0",
+  "version": "1.2.0",
   "cordovaPlatforms": [],
   "config": {
     "commitizen": {
