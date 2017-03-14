@@ -249,7 +249,6 @@ export class LogInPage extends LoginComponent{
       	this.loginAttempt.emit(true);
         return key;
       }else{
-		  console.log(this.nav.getActive().name)
         throw new Error("No valid key");
       }
     });

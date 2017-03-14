@@ -52,8 +52,21 @@ export class WatchPage extends WatchComponent {
 		let receivedWatch:Watch = this.navParams.get('watch');
 		if(receivedWatch !== undefined){
 			this.watchModel = receivedWatch.clone();
+			console.log(this.watchModel)
 		}
 
+	}
+
+	onSubmit(){
+		console.log("here");
+		super.onSubmit();
+		if(this.error == true){
+			let alert = this.alertController.create({
+				title: this.translate.instant('watch-add-error'),
+				buttons: ['OK']
+			});
+			alert.present();
+		}
 	}
 
 	/**
