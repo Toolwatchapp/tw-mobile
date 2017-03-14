@@ -213,24 +213,31 @@ export class LogInPage extends LoginComponent{
    * user from the API
    */
   private initOnResume(){
+	  console.log("resime");
     document.addEventListener('resume', () => {
 
-      this.fetchUser().then(
-        user => {
-          DashboardPage.userChanged.emit(user)
-          this.loginAttempt.emit(false);
-        },
-        error => {
-			this.loginAttempt.emit(false);
-			
-			//In case the user were on the signup page, let him be
-			//https://github.com/Toolwatchapp/tw-mobile/issues/98
-			if(this.nav.getActive().name != "SignupPage"){
-				this.nav.setRoot(LogInPage);
-			}            
-        }
-      );
-      
+	if(this.nav.getActive().name != "SignupPage" || this.nav.getActive().name != "LoginPage"){
+
+		this.translate.get('loading-dashboard').subscribe(
+			sentenceLoading => {
+
+				let laodingDashboard = this.loadingController.create({content: sentenceLoading})
+				laodingDashboard.present();
+
+				this.fetchUser().then(
+					user => {
+						this.onSuccessLogging(user)
+						laodingDashboard.dismiss();
+					},
+					error => {
+						this.nav.setRoot(LogInPage);
+						laodingDashboard.dismiss();        
+					}
+				);
+			}
+		);
+	}
+
       TwAPIService.resetTime();
     });
   }
