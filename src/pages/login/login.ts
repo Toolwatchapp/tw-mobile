@@ -24,7 +24,6 @@ export class LogInPage extends LoginComponent{
 
 	laoding:Loading; 
 	loadindSentence:string;
-	laodingDashboard:Loading; 
 
 	constructor(	
 		//Own injections
@@ -41,7 +40,7 @@ export class LogInPage extends LoginComponent{
 
 		GAService.screenview("LOGIN");
 
-		translate.get('logging-in').subscribe(
+		translate.get('loading-dashboard').subscribe(
 			sentence => this.loadindSentence = sentence
 		);
 
@@ -213,39 +212,29 @@ export class LogInPage extends LoginComponent{
    * Add resume event to html body and fetches up to date
    * user from the API
    */
+    /**
+   * Add resume event to html body and fetches up to date
+   * user from the API
+   */
   private initOnResume(){
 
     document.addEventListener('resume', () => {
 
-	if(this.nav.getActive().name != "SignupPage" || this.nav.getActive().name != "LoginPage"){
-
-		this.translate.get('loading-dashboard').subscribe(
-			sentenceLoading => {
-
-				this.laodingDashboard = this.loadingController.create({content: sentenceLoading})
-				this.laodingDashboard.present();
-
-				this.fetchUser().then(
-					user => {
-						this.onSuccessLogging(user)
-
-						setTimeout(()=>{
-							this.laodingDashboard.dismiss();
-						}, 500);
-					},
-					error => {
-						this.nav.setRoot(LogInPage);
-						setTimeout(()=>{
-							this.laodingDashboard.dismiss();
-						}, 500);       
-					}
-				);
-			}
-		);
-	}
-
-      TwAPIService.resetTime();
-    });
+		if(this.nav.getActive().name != "SignupPage" && this.nav.getActive().name != "LoginPage"){
+			this.fetchUser().then(
+				user => {
+				DashboardPage.userChanged.emit(user)
+				this.loginAttempt.emit(false);
+				},
+				error => {
+					console.log("API Key changed");
+					this.loginAttempt.emit(false);
+					this.nav.setRoot(LogInPage);
+				}
+			);
+			TwAPIService.resetTime();
+		}
+	});
   }
 
   /**
