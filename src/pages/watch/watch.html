@@ -26,7 +26,7 @@
     <div class="suggestions" *ngIf="filteredBrandList.length > 0">
       <ul>
         <li *ngFor="let brand of filteredBrandList">
-          <a (click)="selectBrand(brand.name)">{{ brand.name }}</a>
+          <a (click)="selectBrand(brand)">{{ brand.name }}</a>
           <img src="assets/watches/ico_watches/{{ brand.icon }}"/>
         </li>
       </ul>

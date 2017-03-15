@@ -58,7 +58,6 @@ export class WatchPage extends WatchComponent {
 	}
 
 	onSubmit(){
-		console.log("here");
 		super.onSubmit();
 		if(this.error == true){
 			let alert = this.alertController.create({
