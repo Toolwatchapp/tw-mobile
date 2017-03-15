@@ -55,10 +55,18 @@
       [id]             = "'caliber'"
       [control]        = "watchForm.controls['caliber']" 
       [submitAttempt]  = "submitAttempt"
-      [model]         = true
-      [(value)]       = "watchModel.caliber"
+      [model]          = true
+      [(value)]        = "watchModel.caliber"
+      (valueChange)    = filterCaliber($event)
     >
     </mobile-input>
+    <div class="suggestions" *ngIf="filteredCaliberList.length > 0">
+      <ul>
+        <li *ngFor="let caliber of filteredCaliberList">
+          <a (click)="selectCaliber(caliber)">{{ caliber }}</a>
+        </li>
+      </ul>
+    </div>
 
     <mobile-input 
       [id]            = "'year'"
