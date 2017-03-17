@@ -2,6 +2,7 @@
   "name": "toolwatch-mobile",
   "author": "Mathieu Nayrolles",
   "homepage": "https://toolwatch.io/",
+  "version": "1.3.2",
   "private": true,
   "scripts": {
     "ionic:build": "npm run assets && ionic-app-scripts build",
@@ -25,7 +26,7 @@
     "@types/node": "^6.0.45",
     "gsap": "^1.19.0",
     "ionic-angular": "2.2.0",
-    "ionic-native": "2.4.1",
+    "ionic-native": "2.8.1",
     "ionicons": "3.0.0",
     "moment": "2.15.1",
     "ng2-translate": "5.0.0",
@@ -50,7 +51,6 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard"
   ],
-  "version": "1.3.1",
   "cordovaPlatforms": [],
   "config": {
     "commitizen": {
