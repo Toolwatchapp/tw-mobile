@@ -47,6 +47,8 @@ export class MobileInput {
 	valueChange = new EventEmitter();
 
 	isFocused = false;
+	pressedOn = 0;
+	pastTimeOut;
 
 
 	constructor() {
@@ -77,7 +79,23 @@ export class MobileInput {
 	    }
 	}
 
-	onPast(){
+	onPressUp(){
+		if(Date.now() - this.pressedOn < 1000){
+			clearTimeout(this.pastTimeOut);
+		}
+		this.pressedOn = 0;
+	}
+
+	onPress(){
+		
+		this.pressedOn = Date.now();
+		this.pastTimeOut = setTimeout(()=>{
+			this.paste();
+		}, 1000);
+		
+	}
+
+	paste(){
 		Clipboard.paste().then(
 			(resolve: string) => {
 				this.value = resolve;
@@ -87,7 +105,6 @@ export class MobileInput {
 				console.error("Unsucessful pasting")
 			}
 		);
-		
 	}
 
 	toggleFocus():void{

@@ -16,7 +16,8 @@
       (blur)                = "toggleFocus()" 
       (focus)               = "toggleFocus()"
       (keyup)               = "emitChange($event)"
-      (press)               = "onPast()"
+      (press)               = "onPress()"
+      (pressup)             = "onPressUp()"
     > 
     </ion-input>
 
@@ -33,7 +34,8 @@
       [formControl]         = "control" 
       [(ngModel)]           = "value"
       (ngModelChange)       = "valueChange.emit($event)"
-      (press)               = "onPast()"
+      (press)               = "onPress()"      
+      (pressup)             = "onPressUp()"
     > 
     </ion-input>
 
