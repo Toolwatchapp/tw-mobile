@@ -2,7 +2,6 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 import {   
   FormControl
 } from '@angular/forms';
-import { Clipboard } from 'ionic-native';
 
 /*
   Generates a mobile form input
@@ -47,8 +46,6 @@ export class MobileInput {
 	valueChange = new EventEmitter();
 
 	isFocused = false;
-	pressedOn = 0;
-	pastTimeOut;
 
 
 	constructor() {
@@ -77,34 +74,6 @@ export class MobileInput {
 	    		this[variablesToInitialize[i]] = this.id;
 	    	}
 	    }
-	}
-
-	onPressUp(){
-		if(Date.now() - this.pressedOn < 1000){
-			clearTimeout(this.pastTimeOut);
-		}
-		this.pressedOn = 0;
-	}
-
-	onPress(){
-		
-		this.pressedOn = Date.now();
-		this.pastTimeOut = setTimeout(()=>{
-			this.paste();
-		}, 1000);
-		
-	}
-
-	paste(){
-		Clipboard.paste().then(
-			(resolve: string) => {
-				this.value = resolve;
-				this.valueChange.emit(this.value);
-			},
-			(reject: string) => {
-				console.error("Unsucessful pasting")
-			}
-		);
 	}
 
 	toggleFocus():void{
