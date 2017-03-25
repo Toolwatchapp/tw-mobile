@@ -26,9 +26,6 @@ export class TimePage extends ClockComponent{
 	loading:Loading; 
 	twelveHoursFormat:boolean = true;
 	interval:any;
-	soundInterval:any;
-	tic = new Audio('assets/sounds/tic.mp3');
-	toc = new Audio('assets/sounds/toc.mp3');
 
 
 	constructor(
@@ -61,7 +58,6 @@ export class TimePage extends ClockComponent{
 
 	ionViewCanLeave():boolean {
 		clearInterval(this.interval);
-		clearInterval(this.soundInterval);
 		return true;
 	}
 
@@ -72,20 +68,6 @@ export class TimePage extends ClockComponent{
 		this.twapi.accurateTime().then(
 			date => {
 
-				let ms = this.date.getMilliseconds() 
-
-				setTimeout(()=>{
-					this.soundInterval = setInterval(()=>{
-						ms = 0;
-						if(this.date.getSeconds() % 2 == 0){
-							this.tic.play();
-						}else{
-							this.toc.play();
-						}
-					}, 1000);
-				}, 990-ms)
-
-
 				this.interval = setInterval(()=>{
 						this.date = new Date(this.date.getTime() + this.intervalTime);
 						this.initLocalClocks();
@@ -93,7 +75,6 @@ export class TimePage extends ClockComponent{
 					this.intervalTime
 				);
 				
-
 				setTimeout(()=>{
 			      this.loading.dismiss()
 			   	});
