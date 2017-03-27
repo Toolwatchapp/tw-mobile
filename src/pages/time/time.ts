@@ -67,7 +67,7 @@ export class TimePage extends ClockComponent{
 		
 		this.twapi.accurateTime().then(
 			date => {
-
+        clearInterval(this.interval);
 				this.interval = setInterval(()=>{
 						this.date = new Date(this.date.getTime() + this.intervalTime);
 						this.initLocalClocks();
