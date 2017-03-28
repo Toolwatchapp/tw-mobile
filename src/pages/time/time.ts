@@ -1,4 +1,4 @@
-import {Loading, NavController, LoadingController, NavParams} from 'ionic-angular';
+import {Loading, NavController, LoadingController, NavParams, Platform } from 'ionic-angular';
 
 import {Component, ElementRef} from '@angular/core';
 
@@ -35,6 +35,7 @@ export class TimePage extends ClockComponent{
 		private twapi: TwAPIService, 
 		private translate: TranslateService,
 		private loadingController: LoadingController,
+		private platform: Platform,
 		//injection for ClockComponent
 		elementRef: ElementRef
 	) {
@@ -52,13 +53,20 @@ export class TimePage extends ClockComponent{
 
 		document.addEventListener('resume', () => {
 			console.log("resume")
-			this.ngAfterViewInit();
+			
 		});
-	}
 
-	ionViewCanLeave():boolean {
-		clearInterval(this.interval);
-		return true;
+		platform.ready().then(() => {    
+	        this.platform.pause.subscribe(() => {
+	            console.log('[INFO] App paused');
+	            clearInterval(this.interval);
+	        });
+
+	        this.platform.resume.subscribe(() => {
+	            console.log('[INFO] App resumed');
+	            this.ngAfterViewInit();
+	        });
+	    });
 	}
 
 	ngAfterViewInit() {
@@ -67,7 +75,6 @@ export class TimePage extends ClockComponent{
 		
 		this.twapi.accurateTime().then(
 			date => {
-        clearInterval(this.interval);
 				this.interval = setInterval(()=>{
 						this.date = new Date(this.date.getTime() + this.intervalTime);
 						this.initLocalClocks();
