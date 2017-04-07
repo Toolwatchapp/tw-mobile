@@ -51,14 +51,10 @@ export class TimePage extends ClockComponent{
 
 		this.user = this.navParams.get('user');
 
-		document.addEventListener('resume', () => {
-			console.log("resume")
-			
-		});
-
 		platform.ready().then(() => {    
 	        this.platform.pause.subscribe(() => {
 	            console.log('[INFO] App paused');
+				TwAPIService.resetTime();
 	            clearInterval(this.interval);
 	        });
 

@@ -223,8 +223,8 @@ export class LogInPage extends LoginComponent{
 		if(this.nav.getActive().name != "SignupPage" && this.nav.getActive().name != "LoginPage"){
 			this.fetchUser().then(
 				user => {
-				DashboardPage.userChanged.emit(user)
-				this.loginAttempt.emit(false);
+					DashboardPage.userChanged.emit(user)
+					this.loginAttempt.emit(false);
 				},
 				error => {
 					console.log("API Key changed");
