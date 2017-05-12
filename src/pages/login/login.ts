@@ -11,11 +11,10 @@ import {MyApp} from '../../app/app.component';
 import {
 	LoginComponent,
 	TwAPIService, 
-	GAService,
+	AnalyticsService,
 	User
 } from 'tw-core';
-
-import {TranslateService} from 'ng2-translate/ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	templateUrl: 'login.html'
@@ -34,11 +33,13 @@ export class LogInPage extends LoginComponent{
 		//Injections for LoginComponent	
 		translate: TranslateService, 
 		twapi  : TwAPIService, 
+		analytics: AnalyticsService,
 		formBuilder  : FormBuilder
 	) {
-		super(translate, twapi, formBuilder);
 
-		GAService.screenview("LOGIN");
+		super(translate, twapi, analytics, formBuilder,);
+
+		this.analytics.screenview("LOGIN");
 
 		translate.get('loading-dashboard').subscribe(
 			sentence => this.loadindSentence = sentence
@@ -177,8 +178,6 @@ export class LogInPage extends LoginComponent{
 		this.nav.setRoot(DashboardPage, {
 			user:user
 		});
-		GAService.userName = user.name + " " + user.lastname;
-		GAService.userEmail = user.email;
 		MyApp.userLogged.emit();
 		console.log("setting tw-api to", user.key);
 		this.storage.set('tw-api', user.key);
