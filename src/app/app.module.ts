@@ -8,11 +8,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { Keyboard } from '@ionic-native/keyboard';
+import { AppVersion } from '@ionic-native/app-version';
+import { StatusBar } from '@ionic-native/status-bar';
+import { Facebook } from '@ionic-native/facebook';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { AppRate } from '@ionic-native/app-rate';
 //Ionic Pages
 import { AboutPage } from '../pages/about/about';
 import { DashboardPage } from '../pages/dashboard/dashboard';
-import { LogInPage } from '../pages/login/login';
 import { MeasurePage } from '../pages/measure/measure';
 import { SignupPage } from '../pages/signup/signup';
 import { TimePage } from '../pages/time/time';
@@ -55,7 +59,6 @@ export function ConfigurationFactory() {
     MyApp,
     AboutPage,
     DashboardPage,
-    LogInPage,
     MeasurePage,
     SignupPage,
     TimePage,
@@ -71,7 +74,6 @@ export function ConfigurationFactory() {
       links: [
         { component: AboutPage, name: 'AboutPage', segment: 'About' },
         { component: DashboardPage, name: 'DashboardPage', segment: 'Dashboard' },
-        { component: LogInPage, name: 'LogInPage', segment: 'LogIn' },
         { component: MeasurePage, name: 'MeasurePage', segment: 'Measure' },
         { component: SignupPage, name: 'SignupPage', segment: 'Signup' },
         { component: TimePage, name: 'TimePage', segment: 'Time' },
@@ -96,7 +98,6 @@ export function ConfigurationFactory() {
     MyApp,
     AboutPage,
     DashboardPage,
-    LogInPage,
     MeasurePage,
     SignupPage,
     TimePage,
@@ -104,11 +105,18 @@ export function ConfigurationFactory() {
     WatchPage
   ],
   providers: [
-    {provide: ErrorHandler, useClass: IonicErrorHandler}, 
+    // {provide: ErrorHandler, useClass: IonicErrorHandler}, 
     TwAPIService, 
     InAppBrowser,
     AnalyticsService,
     {provide: ConfigurationService, useFactory: ConfigurationFactory}, 
+    SplashScreen,
+    Keyboard,
+    AppVersion,
+    StatusBar,
+    Facebook,
+    SocialSharing,
+    AppRate
   ]
 })
 export class AppModule {}

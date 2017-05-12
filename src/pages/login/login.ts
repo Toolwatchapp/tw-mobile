@@ -6,7 +6,7 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { DashboardPage } from '../dashboard/dashboard';
 import { SignupPage } from '../signup/signup';
 import { MyApp } from '../../app/app.component';
-
+import { IonicPage } from 'ionic-angular';
 import {
     LoginComponent,
     TwAPIService,
@@ -15,6 +15,10 @@ import {
 } from 'tw-core';
 import { TranslateService } from '@ngx-translate/core';
 
+@IonicPage({
+  name: 'LogInPage',
+  segment: 'LogInPage'
+})
 @Component({
     templateUrl: 'login.html'
 })

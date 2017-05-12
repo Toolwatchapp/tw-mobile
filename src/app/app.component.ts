@@ -5,7 +5,6 @@ import { AppVersion } from '@ionic-native/app-version';
 import { Keyboard } from '@ionic-native/keyboard';
 import { StatusBar } from '@ionic-native/status-bar';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { LogInPage } from '../pages/login/login';
 import { AnalyticsService, TwAPIService } from 'tw-core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -59,7 +58,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = LogInPage;
+  rootPage: any = 'LogInPage';
   version: string;
   public static userLogged = new EventEmitter();
 
@@ -152,7 +151,7 @@ export class MyApp {
   logout() {
     this.menuController.enable(false);
     this.storage.remove("tw-api");
-    this.nav.setRoot(LogInPage);
+    this.nav.setRoot('LogInPage');
   }
 
   deleteAccount() {
