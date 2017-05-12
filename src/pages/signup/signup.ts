@@ -7,10 +7,10 @@ import { FormBuilder } from '@angular/forms';
 import {
   SignupComponent,
   TwAPIService,
-  GAService
+  AnalyticsService
 } from 'tw-core';
 
-import {TranslateService} from 'ng2-translate/ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   templateUrl: 'signup.html'
@@ -31,19 +31,18 @@ export class SignupPage extends SignupComponent{
     //injection for SignupComponent
     translate: TranslateService, 
     twapi: TwAPIService,  
-    builder: FormBuilder
+    builder: FormBuilder,
+    analytics: AnalyticsService
   ) {
 
-  	super(translate, twapi, builder);
+  	super(translate, twapi, builder, analytics);
 
-    GAService.screenview("SIGNUP");
+    this.analytics.screenview("SIGNUP");
 
   	this.userLogged.subscribe(user => {
           this.nav.setRoot(DashboardPage, {
             user:user
           });
-          GAService.userName = user.name + " " + user.lastname;
-		      GAService.userEmail = user.email;
 		      console.log("setting tw-api to", user.key);
 		      this.storage.set('tw-api', user.key);
     });
