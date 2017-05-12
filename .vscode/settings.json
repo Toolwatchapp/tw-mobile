@@ -1,0 +1,8 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "tslint.validateWithDefaultConfig": true,
+    "tslint.autoFixOnSave": true,
+    "tslint.rulesDirectory": "node_modules/codelyzer",
+    "tslint.ignoreDefinitionFiles": false,
+    "tslint.configFile": "tslint.json"
+}
