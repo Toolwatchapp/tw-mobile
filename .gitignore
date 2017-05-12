@@ -9,7 +9,6 @@
 log.txt
 *.sublime-project
 *.sublime-workspace
-.vscode/
 npm-debug.log*
 
 .idea/
@@ -28,10 +27,12 @@ plugins/android.json
 plugins/ios.json
 www/
 $RECYCLE.BIN/
-src/assets/i18n/*
-src/assets/watches/*
-
 .DS_Store
+._.DS_Store
 
 Thumbs.db
 UserInterfaceState.xcuserstate
+
+src/assets/watches/ico_watches/*
+src/assets/watches/logo_watches/*
+src/assets/watches/watch-models/*
