@@ -1,98 +1,96 @@
-import { AlertController, NavController, NavParams} from 'ionic-angular';
+import { AlertController, NavController, NavParams } from 'ionic-angular';
 
-import {Component,} from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 import {
-	TwAPIService, 
-	Watch,
-	WatchComponent,
-	GAService
+    TwAPIService,
+    Watch,
+    WatchComponent,
+    AnalyticsService
 } from 'tw-core';
 
-import {DashboardPage} from '../dashboard/dashboard';
+import { DashboardPage } from '../dashboard/dashboard';
 
-import {TranslateService} from 'ng2-translate/ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-	templateUrl: 'watch.html'
+    templateUrl: 'watch.html'
 })
 export class WatchPage extends WatchComponent {
-	
-	background:string = "addWatch-background";
-	slogan:string ="add-new-watch";
-	errors = [];
 
-	constructor(
-		//Own injections
-		private nav: NavController, 
-		private navParams: NavParams, 
-		private alertController: AlertController,
-		//Injections for WatchComponent
-		translate: TranslateService,
-		twapi: TwAPIService, 
-		builder: FormBuilder
-	) {
+    background: string = "addWatch-background";
+    slogan: string = "add-new-watch";
+    errors = [];
 
-		super(translate, twapi, builder);
+    constructor(
+        //Own injections
+        private nav: NavController,
+        private navParams: NavParams,
+        private alertController: AlertController,
+        private analytics: AnalyticsService,
+        //Injections for WatchComponent
+        translate: TranslateService,
+        twapi: TwAPIService,
+        builder: FormBuilder
+    ) {
 
-    	GAService.screenview("WATCH");
+        super(translate, twapi, builder);
 
-		TwAPIService.assetsUrl = "assets/watches";
+        this.analytics.screenview("WATCH");
 
-		this.user = this.navParams.get('user');
+        this.user = this.navParams.get('user');
 
-		this.watchSaved.subscribe(
-			user => {
-				DashboardPage.userChanged.emit(user);
-				this.nav.pop();
-			}
-		);
+        this.watchSaved.subscribe(
+            user => {
+                DashboardPage.userChanged.emit(user);
+                this.nav.pop();
+            }
+        );
 
-		let receivedWatch:Watch = this.navParams.get('watch');
-		if(receivedWatch !== undefined){
-			this.watchModel = receivedWatch.clone();
-			console.log(this.watchModel)
-		}
+        let receivedWatch: Watch = this.navParams.get('watch');
+        if (receivedWatch !== undefined) {
+            this.watchModel = receivedWatch.clone();
+        }
 
-	}
+    }
 
-	onSubmit(){
-		super.onSubmit();
-		if(this.error == true){
-			let alert = this.alertController.create({
-				title: this.translate.instant('watch-add-error'),
-				buttons: ['OK']
-			});
-			alert.present();
-		}
-	}
+    onSubmit() {
+        super.onSubmit();
+        if (this.error === true) {
+            let alert = this.alertController.create({
+                title: this.translate.instant('watch-add-error'),
+                buttons: ['OK']
+            });
+            alert.present();
+        }
+    }
 
-	/**
-	 * Preempt delete action to present a confirmation popup
-	 */
-	onDelete(){
-		let alert = this.alertController.create({
-		title: this.translate.instant('delete-watch-alert'),
-		message: this.translate.instant('delete-watch-confirm') + this.watchModel.brand + " " +  this.watchModel.name + "?",
-		buttons: 
-			[
-				{
-					text: this.translate.instant('cancel'),
-					role: 'cancel',
-					handler: () => {
-						console.log('Cancel clicked');
-					}
-				},
-				{
-					text: this.translate.instant('confirm'),
-					handler: () => {
+    /**
+     * Preempt delete action to present a confirmation popup
+     */
+    onDelete() {
+        let alert = this.alertController.create({
+            title: this.translate.instant('delete-watch-alert'),
+            message: this.translate.instant('delete-watch-confirm') + this.watchModel.brand + " " + this.watchModel.name + "?",
+            buttons:
+            [
+                {
+                    text: this.translate.instant('cancel'),
+                    role: 'cancel',
+                    handler: () => {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: this.translate.instant('confirm'),
+                    handler: () => {
 
-						super.onDelete();
-					}
-				}
-			]
-		});
-		alert.present();
-	}
+                        super.onDelete();
+                    }
+                }
+            ]
+        });
+        alert.present();
+    }
 }

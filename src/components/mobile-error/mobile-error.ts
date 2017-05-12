@@ -12,9 +12,9 @@ import { Component, Input } from '@angular/core';
 })
 export class MobileError {
 
-	@Input()
-	errors: [string];
+  @Input()
+  errors: [string];
 
-    constructor() {
-    }
+  constructor() {
+  }
 }

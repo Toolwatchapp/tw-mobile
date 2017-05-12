@@ -4,7 +4,10 @@ import { MyApp } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http';
 import { IonicStorageModule  } from '@ionic/storage';
-import {BrowserModule} from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 //Ionic Pages
 import { AboutPage } from '../pages/about/about';
@@ -22,15 +25,30 @@ import { Header } from '../components/header/header';
 import { MobileError } from '../components/mobile-error/mobile-error';
 import { MobileInput } from '../components/mobile-input/mobile-input';
 
-import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { TwAPIService, GAService } from 'tw-core';
-import { TwCoreModule } from 'tw-core';
+import { 
+    TwAPIService,     
+    ArethmeticSign,
+    LeadingZero,
+    KFormatter,
+    MoonPhasesComponent,
+    TwCoreModule,
+    AnalyticsService,
+    ConfigurationService, 
+    configurationProvider
+} from 'tw-core';
 
-export function createTranslateLoader(http: Http) {
-    return new TranslateStaticLoader(http, './assets/i18n', '.json');
+// The translate loader needs to know where to load i18n files
+// in Ionic's static asset pipeline.
+export function HttpLoaderFactory(http: Http) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
+export function ConfigurationFactory() {
+  return configurationProvider("a", "b");
+}
 
 @NgModule({
   declarations: [
@@ -49,20 +67,30 @@ export function createTranslateLoader(http: Http) {
     MobileInput
   ],
   imports: [
-    TwCoreModule,
-    IonicModule.forRoot(MyApp),
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserModule,
-    HttpModule,
+    IonicModule.forRoot(MyApp, {}, {
+      links: [
+        { component: AboutPage, name: 'AboutPage', segment: 'About' },
+        { component: DashboardPage, name: 'DashboardPage', segment: 'Dashboard' },
+        { component: LogInPage, name: 'LogInPage', segment: 'LogIn' },
+        { component: MeasurePage, name: 'MeasurePage', segment: 'Measure' },
+        { component: SignupPage, name: 'SignupPage', segment: 'Signup' },
+        { component: TimePage, name: 'TimePage', segment: 'Time' },
+        { component: WatchPage, name: 'WatchPage', segment: 'Watch' },
+        { component: TipsPage, name: 'TipsPage', segment: 'Tips' }
+      ]
+    }),
     IonicStorageModule.forRoot(),
-    TranslateModule.forRoot({ 
-          provide: TranslateLoader,
-          useFactory: (createTranslateLoader),
-          deps: [Http]
-    })
+    BrowserModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [Http]
+      }
+    }),
+    HttpModule,
+    TwCoreModule
   ],
-  exports: [HttpModule, TranslateModule],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
@@ -75,6 +103,12 @@ export function createTranslateLoader(http: Http) {
     TipsPage,
     WatchPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage, TwAPIService, GAService]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler}, 
+    TwAPIService, 
+    InAppBrowser,
+    AnalyticsService,
+    {provide: ConfigurationService, useFactory: ConfigurationFactory}, 
+  ]
 })
 export class AppModule {}

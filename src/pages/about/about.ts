@@ -1,7 +1,7 @@
 import {
     NavParams
 } from 'ionic-angular';
-import {InAppBrowser} from 'ionic-native';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import {
     Component
@@ -9,31 +9,31 @@ import {
 
 
 import {
-    GAService
+    AnalyticsService
 } from 'tw-core';
 
-import {
-    TranslateService
-} from 'ng2-translate/ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
-	templateUrl: 'about.html'
+    templateUrl: 'about.html'
 })
 export class AboutPage {
 
-	user:any;
+    user: any;
 
-	constructor(
+    constructor(
         private navParams: NavParams,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private analytics: AnalyticsService,
+        private iab: InAppBrowser
     ) {
 
-        GAService.screenview("ABOUT");
-		this.user = this.navParams.get('user');
-	}
+        this.analytics.screenview("ABOUT");
+        this.user = this.navParams.get('user');
+    }
 
-    buyUsBeer(){
-        new InAppBrowser('https://ko-fi.com/A872I1N', '_blank');
+    buyUsBeer() {
+        this.iab.create('https://ko-fi.com/A872I1N', '_blank');
     }
 }

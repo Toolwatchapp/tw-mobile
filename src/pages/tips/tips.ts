@@ -1,44 +1,41 @@
-import {Loading, LoadingController, NavController, NavParams} from 'ionic-angular';
-
-import {Component} from '@angular/core';
-
-import {TwAPIService, BlogPost, GAService} from 'tw-core';
-
-import {TranslateService} from 'ng2-translate/ng2-translate';
+import { Loading, LoadingController, NavController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { TwAPIService, BlogPost, AnalyticsService } from 'tw-core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-	templateUrl: 'tips.html'
+    templateUrl: 'tips.html'
 })
 export class TipsPage {
 
-	user:any;
-	posts:BlogPost[];
-	laoding:Loading;
-	
+    user: any;
+    posts: BlogPost[];
+    laoding: Loading;
+    
+    constructor(
+        private nav: NavController, 
+        private navParams: NavParams,
+        private twapi: TwAPIService, 
+        private translate: TranslateService,
+        private loadingController: LoadingController,
+        private analytics: AnalyticsService
+    ) {
 
-	constructor(
-		private nav: NavController, 
-		private navParams: NavParams,
-		private twapi: TwAPIService, 
-		private translate: TranslateService,
-		private loadingController: LoadingController
-	) {
+        this.user = this.navParams.get('user');
+        this.analytics.screenview("TIPS");
 
-		this.user = this.navParams.get('user');
-    	GAService.screenview("TIPS");
+        this.laoding = this.loadingController.create();
 
-    	this.laoding = this.loadingController.create();
+        this.twapi.getBlogPosts().then(
+            posts => {
+                this.posts = posts;
+                this.laoding.dismiss();
+            }
+        );
+    }
 
-		this.twapi.getBlogPosts().then(
-			posts => {
-				this.posts = posts;
-				this.laoding.dismiss();
-			}
-		);
-	}
+    ngAfterViewInit() {
 
-	ngAfterViewInit() {
-
-		this.laoding.present();
-	}
+        this.laoding.present();
+    }
 }

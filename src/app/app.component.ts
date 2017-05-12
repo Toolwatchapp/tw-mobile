@@ -1,11 +1,13 @@
 import { Component, ViewChild, EventEmitter } from '@angular/core';
 import { Platform, Nav, AlertController, MenuController } from 'ionic-angular';
-import { StatusBar, AppVersion, Keyboard, InAppBrowser  } from 'ionic-native';
 import { Storage } from '@ionic/storage';
-
+import { AppVersion } from '@ionic-native/app-version';
+import { Keyboard } from '@ionic-native/keyboard';
+import { StatusBar } from '@ionic-native/status-bar';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { LogInPage } from '../pages/login/login';
-import { GAService, TwAPIService } from 'tw-core';
-import {TranslateService} from 'ng2-translate/ng2-translate';
+import { AnalyticsService, TwAPIService } from 'tw-core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   template: `
@@ -55,128 +57,132 @@ import {TranslateService} from 'ng2-translate/ng2-translate';
 </ion-menu>
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>`
 })
-export class MyApp{
+export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = LogInPage;
-  version:string;
+  version: string;
   public static userLogged = new EventEmitter();
 
   constructor(
     private platform: Platform,
-    private twapi:TwAPIService,
+    private twapi: TwAPIService,
     private alertController: AlertController,
     public menuController: MenuController,
     private storage: Storage,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private keyboard: Keyboard,
+    private appVersion: AppVersion,
+    private statusBar: StatusBar,
+    private iab: InAppBrowser
   ) {
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
+      statusBar.styleDefault();
 
-      Keyboard.disableScroll(true);
+      keyboard.disableScroll(true);
       this.menuController.enable(false);
 
       MyApp.userLogged.subscribe(
-        ()=>{this.menuController.enable(true)}
+        () => { this.menuController.enable(true); }
       );
 
 
-      AppVersion.getVersionNumber().then(
-        (version)=> {
-          GAService.appVersion = version;
-          this.version = version;
-       }
-      ).catch(
-        (err)=> {
-          GAService.appVersion = "0.0.0";
-          this.version = "0.0.0";
-        }
-      );
+      // AppVersion.getVersionNumber().then(
+      //   (version)=> {
+      //     GAService.appVersion = version;
+      //     this.version = version;
+      //  }
+      // ).catch(
+      //   (err)=> {
+      //     GAService.appVersion = "0.0.0";
+      //     this.version = "0.0.0";
+      //   }
+      // );
 
-      if(platform.is('ios')){
-        GAService.appName = "ios";
-      }else{
-        GAService.appName = "android";
-      }
+      // if(platform.is('ios')){
+      //   GAService.appName = "ios";
+      // }else{
+      //   GAService.appName = "android";
+      // }
     });
   }
 
-  intagram(){
+  intagram() {
     window.open("https://instagram.com/toolwatchapp/");
   }
 
-  pinterest(){
+  pinterest() {
     window.open("https://www.pinterest.com/toolwatch/");
   }
 
-  twitter(){
+  twitter() {
     window.open("https://twitter.com/ToolwatchApp");
   }
 
-  facebook(){
+  facebook() {
     window.open("https://www.facebook.com/Toolwatch/");
   }
 
-  contact(){
-    let browser = new InAppBrowser('https://go.crisp.im/chat/embed/?website_id=-K4rBEcM_Qbt6JrISVzu', '_blank');
+  contact() {
+    this.iab.create('https://go.crisp.im/chat/embed/?website_id=-K4rBEcM_Qbt6JrISVzu', '_blank');
 
 		/**
 		 * Don't do inject if user isn't logged yet
 		 */
-		if(GAService.userEmail != null && GAService.userName != null){
+    // if(GAService.userEmail != null && GAService.userName != null){
 
 
-			let script:string = ''
-			+	'$crisp.set("user:email", "'+ GAService.userEmail +'");'
-			+	'$crisp.set("user:nickname", "'+   GAService.userName +'");'
-			+''
-			browser.executeScript({code: script});
-		}
+    // 	let script:string = ''
+    // 	+	'$crisp.set("user:email", "'+ GAService.userEmail +'");'
+    // 	+	'$crisp.set("user:nickname", "'+   GAService.userName +'");'
+    // 	+''
+    // 	browser.executeScript({code: script});
+    // }
     this.menuController.close();
-    
+
   }
 
-  beer(){
-    new InAppBrowser('https://ko-fi.com/A872I1N', '_blank');
+  beer() {
+    this.iab.create('https://ko-fi.com/A872I1N', '_blank');
     this.menuController.close();
   }
 
-  logout(){
+  logout() {
     this.menuController.enable(false);
     this.storage.remove("tw-api");
     this.nav.setRoot(LogInPage);
   }
 
-  deleteAccount(){
+  deleteAccount() {
     let alert = this.alertController.create({
-		title: this.translate.instant('Delete your account'),
-		message: this.translate.instant('delete-account-warning'),
-		buttons: 
-			[
-				{
-					text: this.translate.instant('cancel'),
-					role: 'cancel',
-					handler: () => {
-						console.log('Cancel clicked');
-					}
-				},
-				{
-					text: this.translate.instant('confirm'),
-					handler: () => {
+      title: this.translate.instant('Delete your account'),
+      message: this.translate.instant('delete-account-warning'),
+      buttons:
+      [
+        {
+          text: this.translate.instant('cancel'),
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: this.translate.instant('confirm'),
+          handler: () => {
 
             this.twapi.deleteAccount().then(
-              ()=>{
+              () => {
                 alert.dismiss();
                 this.logout();
               }
             );
-					}
-				}
-			]
-		});
-		alert.present();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }
 
