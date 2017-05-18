@@ -1,4 +1,4 @@
-import { Loading, NavController, LoadingController, NavParams, Platform } from 'ionic-angular';
+import { Loading, NavController, LoadingController, NavParams, Platform, IonicPage } from 'ionic-angular';
 
 import { Component, ElementRef } from '@angular/core';
 
@@ -11,6 +11,9 @@ import {
 
 import { TranslateService } from '@ngx-translate/core';
 
+@IonicPage({
+  name: 'TimePage'
+})
 @Component({
     templateUrl: 'time.html'
 })

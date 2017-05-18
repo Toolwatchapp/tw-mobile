@@ -11,13 +11,6 @@ import {
     Input
 } from '@angular/core';
 
-import { WatchPage } from '../../pages/watch/watch';
-import { TipsPage } from '../../pages/tips/tips';
-import { TimePage } from '../../pages/time/time';
-import { MeasurePage } from '../../pages/measure/measure';
-import { AboutPage } from '../../pages/about/about';
-import { DashboardPage } from '../../pages/dashboard/dashboard';
-
 import {
     User,
     Watch,
@@ -79,7 +72,7 @@ export class Footer {
      * Show WatchPage
      */
     onNewWatch() {
-        this.nav.push(WatchPage, {
+        this.nav.push("WatchPage", {
             user: this.user
         });
         this.toggleMenu();
@@ -89,7 +82,7 @@ export class Footer {
      * Show DashboardPage
      */
     onDashboard() {
-        this.nav.setRoot(DashboardPage, {
+        this.nav.setRoot("DashboardPage", {
             user: this.user
         });
     }
@@ -98,7 +91,7 @@ export class Footer {
      * Show AboutPage
      */
     onAbout() {
-        this.nav.push(AboutPage, {
+        this.nav.push("AboutPage", {
             user: this.user
         });
     }
@@ -147,7 +140,7 @@ export class Footer {
      * Shows TimePage
      */
     onTime() {
-        this.nav.push(TimePage, {
+        this.nav.push("TimePage", {
             user: this.user
         });
     }
@@ -155,7 +148,7 @@ export class Footer {
      * Shows TipsPage
      */
     onTips() {
-        this.nav.push(TipsPage, {
+        this.nav.push("TipsPage", {
             user: this.user
         });
     }
@@ -253,7 +246,7 @@ export class Footer {
             }
 
             //And away we go
-            this.nav.push(MeasurePage, {
+            this.nav.push("MeasurePage", {
                 watch: selectedWatch,
                 user: this.user
             });

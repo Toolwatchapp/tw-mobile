@@ -1,4 +1,4 @@
-import { NavController, NavParams, Loading, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, Loading, LoadingController, IonicPage } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Component } from '@angular/core';
 
@@ -12,6 +12,10 @@ import {
 
 import { TranslateService } from '@ngx-translate/core';
 
+@IonicPage({
+  name: 'SignupPage',
+  segment: 'SignupPage'
+})
 @Component({
   templateUrl: 'signup.html'
 })

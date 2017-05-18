@@ -1,4 +1,4 @@
-import { AlertController, NavController, NavParams } from 'ionic-angular';
+import { AlertController, NavController, NavParams, IonicPage } from 'ionic-angular';
 
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
@@ -14,6 +14,10 @@ import { DashboardPage } from '../dashboard/dashboard';
 
 import { TranslateService } from '@ngx-translate/core';
 
+@IonicPage({
+  name: 'WatchPage',
+  segment: 'WatchPage'
+})
 @Component({
     templateUrl: 'watch.html'
 })

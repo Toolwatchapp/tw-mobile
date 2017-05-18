@@ -1,4 +1,5 @@
 import {
+    IonicPage,
     NavParams
 } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
@@ -14,7 +15,10 @@ import {
 
 import { TranslateService } from '@ngx-translate/core';
 
-
+@IonicPage({
+  name: 'AboutPage',
+  segment: 'AboutPage'
+})
 @Component({
     templateUrl: 'about.html'
 })

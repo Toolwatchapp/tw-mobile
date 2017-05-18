@@ -1,8 +1,12 @@
-import { Loading, LoadingController, NavController, NavParams } from 'ionic-angular';
+import { Loading, LoadingController, NavController, NavParams, IonicPage } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { TwAPIService, BlogPost, AnalyticsService } from 'tw-core';
 import { TranslateService } from '@ngx-translate/core';
 
+@IonicPage({
+  name: 'TipsPage',
+  segment: 'TipsPage'
+})
 @Component({
     templateUrl: 'tips.html'
 })

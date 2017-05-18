@@ -3,9 +3,9 @@ import { Storage } from '@ionic/storage';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
-import { DashboardPage } from '../dashboard/dashboard';
-import { SignupPage } from '../signup/signup';
 import { MyApp } from '../../app/app.component';
+import { DashboardPage } from '../../pages/dashboard/dashboard';
+
 import { IonicPage } from 'ionic-angular';
 import {
     LoginComponent,
@@ -147,7 +147,7 @@ export class LogInPage extends LoginComponent {
      */
     onSignup() {
 
-        this.nav.push(SignupPage, {
+        this.nav.push('SignupPage', {
             email: this.loginForm.controls["email"].value,
             password: this.loginForm.controls["password"].value
         });
@@ -179,7 +179,7 @@ export class LogInPage extends LoginComponent {
      */
     private onSuccessLogging(user: User) {
         this.laoding.dismiss();
-        this.nav.setRoot(DashboardPage, {
+        this.nav.setRoot('DashboardPage', {
             user: user
         });
         MyApp.userLogged.emit();

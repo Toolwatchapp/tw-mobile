@@ -3,9 +3,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http';
-import { IonicStorageModule  } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
@@ -14,34 +13,18 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Facebook } from '@ionic-native/facebook';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AppRate } from '@ionic-native/app-rate';
-//Ionic Pages
-import { AboutPage } from '../pages/about/about';
-import { DashboardPage } from '../pages/dashboard/dashboard';
-import { MeasurePage } from '../pages/measure/measure';
-import { SignupPage } from '../pages/signup/signup';
-import { TimePage } from '../pages/time/time';
-import { TipsPage } from '../pages/tips/tips';
-import { WatchPage } from '../pages/watch/watch';
 
-//Mobile Components
-import { Footer } from '../components/footer/footer';
-import { Header } from '../components/header/header';
-import { MobileError } from '../components/mobile-error/mobile-error';
-import { MobileInput } from '../components/mobile-input/mobile-input';
-
+import { MissingTranslationHandler, MissingTranslationHandlerParams } from '@ngx-translate/core';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { 
-    TwAPIService,     
-    ArethmeticSign,
-    LeadingZero,
-    KFormatter,
-    MoonPhasesComponent,
-    TwCoreModule,
-    AnalyticsService,
-    ConfigurationService, 
-    configurationProvider
+
+
+import {
+  TwAPIService,
+  AnalyticsService,
+  ConfigurationService,
+  configurationProvider
 } from 'tw-core';
 
 // The translate loader needs to know where to load i18n files
@@ -51,36 +34,22 @@ export function HttpLoaderFactory(http: Http) {
 }
 
 export function ConfigurationFactory() {
-  return configurationProvider("a", "b");
+  return configurationProvider("https://toolwatch.io/api/", "b");
+}
+
+export class MyMissingTranslationHandler implements MissingTranslationHandler {
+  handle(params: MissingTranslationHandlerParams) {
+    console.log('fool');
+    return 'some value';
+  }
 }
 
 @NgModule({
   declarations: [
-    MyApp,
-    AboutPage,
-    DashboardPage,
-    MeasurePage,
-    SignupPage,
-    TimePage,
-    WatchPage,
-    TipsPage,
-    Footer,
-    Header,
-    MobileError,
-    MobileInput
+    MyApp
   ],
   imports: [
-    IonicModule.forRoot(MyApp, {}, {
-      links: [
-        { component: AboutPage, name: 'AboutPage', segment: 'About' },
-        { component: DashboardPage, name: 'DashboardPage', segment: 'Dashboard' },
-        { component: MeasurePage, name: 'MeasurePage', segment: 'Measure' },
-        { component: SignupPage, name: 'SignupPage', segment: 'Signup' },
-        { component: TimePage, name: 'TimePage', segment: 'Time' },
-        { component: WatchPage, name: 'WatchPage', segment: 'Watch' },
-        { component: TipsPage, name: 'TipsPage', segment: 'Tips' }
-      ]
-    }),
+    IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     BrowserModule,
     TranslateModule.forRoot({
@@ -90,26 +59,18 @@ export function ConfigurationFactory() {
         deps: [Http]
       }
     }),
-    HttpModule,
-    TwCoreModule
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    AboutPage,
-    DashboardPage,
-    MeasurePage,
-    SignupPage,
-    TimePage,
-    TipsPage,
-    WatchPage
+    MyApp
   ],
   providers: [
     // {provide: ErrorHandler, useClass: IonicErrorHandler}, 
-    TwAPIService, 
+    TwAPIService,
     InAppBrowser,
     AnalyticsService,
-    {provide: ConfigurationService, useFactory: ConfigurationFactory}, 
+    { provide: ConfigurationService, useFactory: ConfigurationFactory },
     SplashScreen,
     Keyboard,
     AppVersion,
@@ -119,4 +80,20 @@ export function ConfigurationFactory() {
     AppRate
   ]
 })
-export class AppModule {}
+export class AppModule {
+
+  static translateModule: any;
+
+  constructor() {
+
+    AppModule.translateModule = TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [Http]
+      },
+      missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler },
+    });
+  }
+
+}

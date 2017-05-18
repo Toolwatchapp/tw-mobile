@@ -3,7 +3,8 @@ import {
     NavParams,
     ItemSliding,
     ActionSheetController,
-    AlertController
+    AlertController,
+    IonicPage
 } from 'ionic-angular';
 
 import {
@@ -12,8 +13,6 @@ import {
     EventEmitter
 } from '@angular/core';
 
-import { WatchPage } from '../watch/watch';
-import { MeasurePage } from '../measure/measure';
 import {
     TwAPIService,
     Watch,
@@ -28,6 +27,9 @@ import { TranslateService } from '@ngx-translate/core';
 
 declare var Math;
 
+@IonicPage({
+  name: 'DashboardPage'
+})
 @Component({
     templateUrl: 'dashboard.html'
 })
@@ -79,7 +81,7 @@ export class DashboardPage {
 
     updateWatch(watch: Watch, slidingItem: ItemSliding) {
         console.log(watch);
-        this.nav.push(WatchPage, {
+        this.nav.push('WatchPage', {
             watch: watch,
             user: this.user
         });
@@ -88,7 +90,7 @@ export class DashboardPage {
 
     measureWatch(watch: Watch) {
 
-        this.nav.push(MeasurePage, {
+        this.nav.push('MeasurePage', {
             watch: watch,
             user: this.user
         });
@@ -135,7 +137,7 @@ export class DashboardPage {
     }
 
     newWatch() {
-        this.nav.push(WatchPage, {
+        this.nav.push('WatchPage', {
             user: this.user
         });
     }

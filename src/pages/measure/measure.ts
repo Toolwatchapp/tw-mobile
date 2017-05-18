@@ -4,7 +4,8 @@ import {
     LoadingController,
     NavController,
     NavParams,
-    ModalController
+    ModalController,
+    IonicPage
 } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AppRate } from '@ionic-native/app-rate';
@@ -26,6 +27,10 @@ import { TranslateService } from '@ngx-translate/core';
 
 declare var window;
 
+@IonicPage({
+  name: 'MeasurePage',
+  segment: 'MeasurePage'
+})
 @Component({
     templateUrl: 'measure.html'
 })
