@@ -6,9 +6,10 @@ module.exports = function (config) {
 
     frameworks: ['jasmine'],
 
-    files: [
-      {pattern: './karma-test-shim.js', watched: true}
-    ],
+    files: [{
+      pattern: './karma-test-shim.js',
+      watched: true
+    }],
 
     preprocessors: {
       './karma-test-shim.js': ['webpack', 'sourcemap']
@@ -30,12 +31,44 @@ module.exports = function (config) {
       terminal: true
     },
 
-    reporters: ['kjhtml', 'dots'],
+    customLaunchers: {
+      'PhantomJS_custom': {
+        base: 'PhantomJS',
+        options: {
+          windowName: 'my-window',
+          settings: {
+            webSecurityEnabled: false
+          },
+        },
+        flags: ['--load-images=true'],
+        debug: true
+      },
+      ChromeTravisCi: {
+        base: 'Chrome',
+        flags: [
+          '--no-sandbox',
+          // See https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md
+          '--headless',
+          '--disable-gpu',
+          // Without a remote debugging port, Google Chrome exits immediately.
+          ' --remote-debugging-port=9222',
+          ' --disable-web-security'
+        ]
+      }
+    },
+
+    coverageIstanbulReporter: {
+      reports: ['html', 'lcovonly'],
+      fixWebpackSourcePaths: true
+    },
+
+    reporters: config.coverage ? ['kjhtml', 'dots', 'coverage-istanbul'] : ['kjhtml', 'dots'],
+
     port: 9876,
     colors: true,
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_ERROR,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['ChromeTravisCi'],
     singleRun: false
   };
 

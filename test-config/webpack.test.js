@@ -9,30 +9,36 @@ module.exports = {
   },
 
   module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        loaders: [
-          {
-            loader: 'ts-loader'
-          } , 'angular2-template-loader'
-        ]
-      },
-      {
-        test: /\.html$/,
-        loader: 'html-loader'
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        loader: 'null-loader'
+    rules: [{
+      test: /\.ts$/,
+      loaders: [{
+        loader: 'ts-loader'
+      }, 'angular2-template-loader']
+    },
+    {
+      test: /.+\.ts$/,
+      exclude: /(index.ts|mocks.ts|\.spec\.ts$)/,
+      loader: 'istanbul-instrumenter-loader',
+      enforce: 'post',
+      query: {
+        esModules: true
       }
+    },
+    {
+      test: /\.html$/,
+      loader: 'html-loader?attrs=false'
+    },
+    {
+      test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+      loader: 'null-loader'
+    }
     ]
   },
 
   plugins: [
     new webpack.ContextReplacementPlugin(
       // The (\\|\/) piece accounts for path separators in *nix and Windows
-      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      /(ionic-angular)|(angular(\\|\/)core(\\|\/)@angular)/,
       root('./src'), // location of your src
       {} // a map of your routes
     )

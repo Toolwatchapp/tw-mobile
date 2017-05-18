@@ -1,0 +1,51 @@
+dist: trusty
+
+sudo: required
+
+language: node_js
+
+cache: yarn
+
+notifications:
+  email: false
+
+node_js:
+  - '7'
+
+env:
+    - TRAVIS=true
+
+branches:
+  except:
+    - "/^v\\d+\\.\\d+\\.\\d+$/"
+
+before_install:
+  - export CHROME_BIN=chromium-browser
+
+addons:
+  hosts:
+    - twapi.com
+
+before_script:
+  # install backend
+  # - cd tests/e2e
+  # - docker build -t mathieunls/tw-test .
+  # - docker run -dit -p 8282:80 -p 3307:3306 --name tw-test mathieunls/tw-test
+  # - docker exec -it tw-test /bin/bash ./start.sh
+  # - cd ../..
+  # node configuration
+  - npm prune
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
+script: 
+  - npm run test
+  # - sh coverage-checker.sh
+  # - curl http://localhost:8282/api/time
+
+after_success:
+   - npm run coverage
+   
+notifications:
+  slack: toolwatchapp:AfvHCPE9Em1MY3j04gdlqbYe
+  email: false
