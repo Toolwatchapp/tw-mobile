@@ -44,7 +44,7 @@
     "moment": "2.15.1",
     "rxjs": "5.1.1",
     "sw-toolbox": "3.6.0",
-    "tw-core": "git+https://github.com/Toolwatchapp/tw-core.git",
+    "tw-core": "^3.0.0",
     "tw-i18n": "git+https://github.com/Toolwatchapp/tw-i18n.git",
     "tw-watches": "git+https://github.com/Toolwatchapp/tw-watches.git",
     "zone.js": "0.8.10"
