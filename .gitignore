@@ -34,6 +34,7 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 
+src/assets/watches/package.json
 src/assets/watches/ico_watches/*
 src/assets/watches/logo_watches/*
 src/assets/watches/watch-models/*
