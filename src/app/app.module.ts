@@ -34,7 +34,7 @@ export function HttpLoaderFactory(http: Http) {
 }
 
 export function ConfigurationFactory() {
-  return configurationProvider("https://toolwatch.io/api/", "b");
+  return configurationProvider("https://toolwatch.io/api/", "./assets/");
 }
 
 export class MyMissingTranslationHandler implements MissingTranslationHandler {

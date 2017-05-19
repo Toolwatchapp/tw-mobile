@@ -148,8 +148,8 @@ export class LogInPage extends LoginComponent {
     onSignup() {
 
         this.nav.push('SignupPage', {
-            email: this.loginForm.controls["email"].value,
-            password: this.loginForm.controls["password"].value
+          email: this.loginForm.controls["email"].value,
+          password: this.loginForm.controls["password"].value
         });
     }
 
@@ -159,6 +159,7 @@ export class LogInPage extends LoginComponent {
      * @param {boolean} attempt
      */
     private onLoggingAttempt(attempt: boolean) {
+
         if (attempt === true) {
             /**
              * We can't present a loader twice. Seams like dismiss() destroys it.
