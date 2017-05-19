@@ -82,11 +82,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 })
 export class AppModule {
 
-  static translateModule: any;
-
-  constructor() {
-
-    AppModule.translateModule = TranslateModule.forChild({
+  static translateModule: any = TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
@@ -94,6 +90,5 @@ export class AppModule {
       },
       missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler },
     });
-  }
 
 }
