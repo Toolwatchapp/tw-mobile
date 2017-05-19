@@ -11,7 +11,7 @@
     "i18n": "rm -Rf src/assets/i18n && mkdir src/assets/i18n && cp node_modules/tw-i18n/lang/*.json src/assets/i18n",
     "twwatches": "rm -Rf src/assets/watches && mkdir src/assets/watches && cp -R node_modules/tw-watches/* src/assets/watches",
     "prod": "npm run assets && ionic-app-scripts build --prod",
-    "test": "karma start ./test-config/karma.conf.js",
+    "test": "karma start ./test-config/karma.conf.js --coverage",
     "test-ci": "karma start ./test-config/karma.conf.js --single-run --coverage",
     "e2e": "webdriver-manager update --standalone false --gecko false; protractor ./test-config/protractor.conf.js",
     "coverage": "codecov -f coverage/*.info"

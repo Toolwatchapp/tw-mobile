@@ -49,7 +49,7 @@
     "/"
   ],
   "_resolved": "git+https://github.com/Toolwatchapp/tw-watches.git#a32dbd4b494ff364e3cfda08fd9753bdf6a38917",
-  "_shasum": "2368333744ddcd458661c649afd55edbc603c75f",
+  "_shasum": "7afb48249513e6c10981be43e62a3cc2ae67d928",
   "_shrinkwrap": null,
   "_spec": "tw-watches@git+https://github.com/Toolwatchapp/tw-watches.git",
   "_where": "/mnt/dev/1-NodeWorkspace/toolwatch/tw-mobile",

@@ -1,10 +1,9 @@
 import { async, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { IonicModule, Platform } from 'ionic-angular';
 
-import { PlatformMock } from '../../test-config/mocks-ionic';
+import { PlatformMock } from '../../../test-config/mocks-ionic';
 
-import { MyApp } from './app.component';
-
+import { AboutPage } from './about';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,6 +19,10 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { AppRate } from '@ionic-native/app-rate';
 
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
+
+
+import { HeaderComponentModule } from './../../components/header/header.module';
+import { FooterComponentModule } from './../../components/footer/footer.module';
 
 import {
     TwAPIService,
@@ -37,15 +40,16 @@ class ApiMock {
 
 describe('MyApp Component', () => {
     let fixture;
-    let component: MyApp;
+    let component: AboutPage;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [MyApp],
+            declarations: [AboutPage],
             imports: [
-                IonicModule.forRoot(MyApp),
-                IonicStorageModule.forRoot(),
-                TranslateModule.forRoot()
+                IonicModule.forRoot(AboutPage),
+                TranslateModule.forRoot(),
+                HeaderComponentModule,
+                FooterComponentModule,
             ],
             providers: [
                 StatusBar,
@@ -63,54 +67,11 @@ describe('MyApp Component', () => {
                 Keyboard
             ]
         });
-        
-        window.open = function(url?: string, target?: string, features?: string, replace?: boolean): Window{
-            return window;
-        }
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(MyApp);
+        fixture = TestBed.createComponent(AboutPage);
         component = fixture.componentInstance;
     });
-
-    it('should be created', () => {
-        expect(component instanceof MyApp).toBe(true);
-    });
-
-    it('should open intagram', () => {
-        expect(component.intagram()).toBeUndefined();
-    });
-
-    it('should open pinterest', () => {
-        expect(component.pinterest()).toBeUndefined();
-    });
-
-    it('should open twitter', () => {
-        expect(component.twitter()).toBeUndefined();
-    });
-
-    it('should open facebook', () => {
-        expect(component.facebook()).toBeUndefined();
-    });
-
-    it('should enable the menu controller', fakeAsync(() => {
-
-        MyApp.userLogged.emit();
-        tick();
-        expect((component as any).menuController).toBeDefined();
-    }));
-
-    it('should open the contact form', fakeAsync(() => {
-        component.contact();
-        tick();
-        expect((component as any).menuController).toBeDefined();
-    }));
-
-    it('should open the beer form', fakeAsync(() => {
-        component.beer();
-        tick();
-        expect((component as any).menuController).toBeDefined();
-    }));
 
 });

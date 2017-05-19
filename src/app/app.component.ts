@@ -66,7 +66,8 @@ export class MyApp {
     private platform: Platform,
     private twapi: TwAPIService,
     private alertController: AlertController,
-    public menuController: MenuController,
+    private menuController: MenuController,
+    private analytics: AnalyticsService,
     private storage: Storage,
     private translate: TranslateService,
     private keyboard: Keyboard,
@@ -82,29 +83,29 @@ export class MyApp {
 
       keyboard.disableScroll(true);
       this.menuController.enable(false);
+     
 
       MyApp.userLogged.subscribe(
         () => { this.menuController.enable(true); }
       );
 
+      appVersion.getVersionNumber().then(
+        (version) => {
+          analytics.appVersion = version;
+          this.version = version;
+        }
+      ).catch(
+        (err) => {
+          analytics.appVersion = "0.0.0";
+          this.version = "0.0.0";
+        }
+        );
 
-      // AppVersion.getVersionNumber().then(
-      //   (version)=> {
-      //     GAService.appVersion = version;
-      //     this.version = version;
-      //  }
-      // ).catch(
-      //   (err)=> {
-      //     GAService.appVersion = "0.0.0";
-      //     this.version = "0.0.0";
-      //   }
-      // );
-
-      // if(platform.is('ios')){
-      //   GAService.appName = "ios";
-      // }else{
-      //   GAService.appName = "android";
-      // }
+      if (platform.is('ios')) {
+        analytics.appName = "ios";
+      } else {
+        analytics.appName = "android";
+      }
     });
   }
 
@@ -125,20 +126,20 @@ export class MyApp {
   }
 
   contact() {
-    this.iab.create('https://go.crisp.im/chat/embed/?website_id=-K4rBEcM_Qbt6JrISVzu', '_blank');
+    let browser = this.iab.create('https://go.crisp.im/chat/embed/?website_id=-K4rBEcM_Qbt6JrISVzu', '_blank');
 
 		/**
 		 * Don't do inject if user isn't logged yet
 		 */
-    // if(GAService.userEmail != null && GAService.userName != null){
+    if (this.analytics.userEmail != null && this.analytics.userName != null) {
 
 
-    // 	let script:string = ''
-    // 	+	'$crisp.set("user:email", "'+ GAService.userEmail +'");'
-    // 	+	'$crisp.set("user:nickname", "'+   GAService.userName +'");'
-    // 	+''
-    // 	browser.executeScript({code: script});
-    // }
+      let script: string = ''
+        + '$crisp.set("user:email", "' + this.analytics.userEmail + '");'
+        + '$crisp.set("user:nickname", "' + this.analytics.userName + '");'
+        + ''
+      browser.executeScript({ code: script });
+    }
     this.menuController.close();
 
   }
