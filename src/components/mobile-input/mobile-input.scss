@@ -1,5 +1,9 @@
 mobile-input{
 
+	.input-cover {
+	  position: static;
+	}
+
 	.selectable {
 	  -webkit-user-select: text;
 	  -moz-user-select: text;
