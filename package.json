@@ -6,7 +6,7 @@
     "private": true,
     "scripts": {
         "build": "npm run assets && ionic-app-scripts build",
-        "serve": "npm run assets && ionic-app-scripts serve -lca ",
+        "serve": "npm run assets && ionic-app-scripts serve -lc -a 0.0.0.0",
         "assets": "npm run i18n && npm run twwatches",
         "i18n": "rm -Rf src/assets/i18n && mkdir src/assets/i18n && cp node_modules/tw-i18n/lang/*.json src/assets/i18n",
         "twwatches": "rm -Rf src/assets/watches && mkdir src/assets/watches && cp -R node_modules/tw-watches/* src/assets/watches",
@@ -48,7 +48,6 @@
         "tw-i18n": "git+https://github.com/Toolwatchapp/tw-i18n.git",
         "tw-watches": "git+https://github.com/Toolwatchapp/tw-watches.git",
         "zone.js": "0.8.10",
-        "com.verso.cordova.clipboard": "https://github.com/VersoSolutions/CordovaClipboard.git",
         "cordova-plugin-app-version": "~0.1.9",
         "cordova-plugin-apprate": "~1.2",
         "cordova-plugin-console": "~1.0.4",
