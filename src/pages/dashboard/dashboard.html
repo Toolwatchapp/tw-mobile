@@ -76,8 +76,7 @@
 
                 <div class="stats middle">
                     
-                    <p class="stats-number" *ngIf="watch.status !== WatchStatus.NeverMeasured
-                    && watch.lastCompleteMeasure() !== null">{{ watch.lastCompleteMeasure().percentile}}%<ion-icon ios="md-globe" md="md-globe"></ion-icon></p>
+                    <p class="stats-number" *ngIf="watch.status !== WatchStatus.NeverMeasured && watch.lastCompleteMeasure() !== null">{{ watch.lastCompleteMeasure().percentile}}%<ion-icon ios="md-globe" md="md-globe"></ion-icon></p>
                     <p class="stats-number" *ngIf="watch.lastCompleteMeasure() == null">0.0%<ion-icon ios="md-globe" md="md-globe"></ion-icon></p>
                  </div>
 
